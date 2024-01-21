@@ -6,6 +6,13 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Player Settings")]
     public float movementSpeed = 5.0f;
+    public float runSpeed = 5.0f;
+    public float jumpHeight = 5.0f;
+    
+    [Header("Ground Check Settings")]
+    public Transform groundCheckTransform;
+    public float groundCheckRadius = 0.1f;
+    public LayerMask groundLayerMask;
     
     #region Input Actions
     
@@ -15,8 +22,8 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D _rb;
     private Vector2 _moveInput = Vector2.zero;
-    private bool _isMoving;
-    
+    private bool _isMoving, _isRunning;
+
     private void Start()
     {
         // Get the rigidbody component.
@@ -44,9 +51,11 @@ public class PlayerController : MonoBehaviour
         _moveInput = _move.ReadValue<Vector2>();
         // Update the player's state.
         _isMoving = _moveInput != Vector2.zero;
+        // Update the player's running state.
+        _isRunning = _run.ReadValue<float>() is 1 ? true : false;
         
         // Move the player.
-        _rb.velocity = new Vector2(_moveInput.x * movementSpeed, _rb.velocity.y);
+        _rb.velocity = new Vector2(_moveInput.x * (movementSpeed + (_isRunning ? runSpeed : 0)), _rb.velocity.y);
     }
     
     /// <summary>
@@ -55,7 +64,10 @@ public class PlayerController : MonoBehaviour
     /// <param name="context">The input context.</param>
     private void Jump(InputAction.CallbackContext context)
     {
+        if (!IsGrounded()) return;
         
+        // Jump.
+        _rb.velocity = new Vector2(_rb.velocity.x, jumpHeight);
     }
     
     /// <summary>
@@ -64,6 +76,8 @@ public class PlayerController : MonoBehaviour
     /// <param name="context">The input context.</param>
     private void Run(InputAction.CallbackContext context)
     {
-        
+        //
     }
+    
+    private bool IsGrounded() => Physics2D.OverlapCircle(groundCheckTransform.position, groundCheckRadius, groundLayerMask);
 }
