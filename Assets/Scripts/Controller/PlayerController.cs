@@ -18,6 +18,10 @@ namespace Controller
         public float groundCheckRadius = 0.1f;
         public LayerMask groundLayerMask;
 
+        [Header("Player Health Settings")]
+        public int maxHealth = 3;
+        private int _currentHealth;
+        
         #region Input Actions
     
         private InputAction _move, _jump, _crouch, _run, _attack;
@@ -47,9 +51,10 @@ namespace Controller
             // Listen for input actions.
             _jump.started += Jump;
             _attack.started += Attack;
-            // Special case for WaterGun.
-            // _attack.performed += _ => _weaponController.waterGun.Charging();
             _attack.canceled += _ => _weaponController.waterGun.Shoot();
+            
+            // Set the player's health.
+            _currentHealth = maxHealth;
         }
 
         private void FixedUpdate()
@@ -127,7 +132,38 @@ namespace Controller
                     break;
             }
         }
-    
+
+        public void TakeDamage(int damage)
+        {
+            _currentHealth -= damage;
+            if (_currentHealth <= 0)
+            {
+                Die();
+            }
+            else
+            {
+                // TODO: Animate the player taking damage.
+            }
+        }
+
+        private void Die()
+        {
+            // TODO: Animate the player dying.
+            
+            // TODO: Play the death sound.
+            
+            // TODO: HUD feed back.
+            Respawn();
+        }
+
+        private void Respawn()
+        {
+            _currentHealth = maxHealth;
+            
+            // Reset or restart the level.
+            transform.Reset(true, true);
+        }
+
         private bool IsGrounded() => Physics2D.OverlapCircle(groundCheckTransform.position, groundCheckRadius, groundLayerMask);
     }
 }

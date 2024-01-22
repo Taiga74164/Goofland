@@ -391,6 +391,7 @@ MonoBehaviour:
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  maxHealth: 3
 --- !u!50 &1068039987
 Rigidbody2D:
   serializedVersion: 4

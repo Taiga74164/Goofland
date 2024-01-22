@@ -28,10 +28,14 @@ namespace Objects
     /// </summary>
     public enum Prefabs
     {
+        // Entities.
         Player,
         Enemy,
+        // Weapons.
         Pie,
         WaterGun,
         BananaPeel,
+        // Projectiles.
+        WaterGunProjectile,
     }
 }

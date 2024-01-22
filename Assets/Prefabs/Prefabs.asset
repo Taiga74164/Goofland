@@ -28,3 +28,8 @@ MonoBehaviour:
     shouldPool: 0
     initialSize: 0
     objectRoot: 
+  - type: 5
+    prefab: {fileID: 2573339257355329383, guid: cac04453178c5b2429c9ea9bbe936e6e, type: 3}
+    shouldPool: 0
+    initialSize: 5
+    objectRoot: Player/

@@ -1,10 +1,16 @@
+using System.Collections;
+using Managers;
+using Objects;
 using UnityEngine;
 
 public class WaterGun : MonoBehaviour
 {
     public float maxChargeTime = 3.0f;
+    public float minDistance = 1.0f;
     public float maxDistance = 3.0f;
-
+    
+    public Transform waterSpawnPoint;
+    
     private float _chargeTime;
     private float _shotDistance;
 
@@ -23,19 +29,29 @@ public class WaterGun : MonoBehaviour
     public void Charging()
     {
         if (!gameObject.active) return;
-        _chargeTime += Time.deltaTime;
+        _chargeTime = Mathf.Min(_chargeTime + Time.deltaTime, maxChargeTime);
     }
     
     public void Shoot()
     {
         if (!gameObject.active) return;
         
-        _shotDistance = Mathf.Lerp(maxDistance, 1, Mathf.Clamp01(_chargeTime / maxChargeTime));
+        _shotDistance = Mathf.Lerp(minDistance, maxDistance, Mathf.Clamp01(_chargeTime / maxChargeTime));
         
-        var direction = transform.right;
-        var force = Mathf.Clamp(_chargeTime, 0.0f, maxChargeTime);
-        var hit = Physics2D.Raycast(transform.position, direction, maxDistance);
+        var projectile = PrefabManager.Instance.Create(Prefabs.WaterGunProjectile);
+        projectile.transform.SetParent(waterSpawnPoint);
         
+        var velocity = new Vector2(_shotDistance, 0.0f);
+        var rb = projectile.GetComponent<Rigidbody2D>();
+        rb.velocity = velocity;
+        rb.isKinematic = true;
+        
+        var duration = _shotDistance / velocity.magnitude;
+        StartCoroutine(DestroyAfterDuration(projectile, duration));
+        
+        // var direction = transform.right;
+        // var force = Mathf.Clamp(_chargeTime, 0.0f, maxChargeTime);
+        // var hit = Physics2D.Raycast(transform.position, direction, maxDistance);
         
         // if (hit.collider != null)
         // {
@@ -45,6 +61,12 @@ public class WaterGun : MonoBehaviour
         //         // TODO: Deal damage to the enemy.
         //     }
         // }
+    }
+    
+    private IEnumerator DestroyAfterDuration(GameObject obj, float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        Destroy(obj);
     }
     
     private void OnDrawGizmos()
