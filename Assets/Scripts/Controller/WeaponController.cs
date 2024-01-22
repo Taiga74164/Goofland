@@ -8,24 +8,19 @@ namespace Controller
     public class WeaponController : MonoBehaviour
     {
         public WeaponType currentWeapon;
-        private GameObject[] _weapons;
-        
+
         #region Input Actions
     
         private InputAction _selectPie, _selectWaterGun, _selectBananaPeel;
     
         #endregion
 
+        public WaterGun waterGun;
+        
+        private bool _isLandminePlaced;
+
         private void Start()
         {
-            // Create the weapons.
-            _weapons = new[]
-            {
-                PrefabManager.Instance.Create(Prefabs.Pie, false),
-                PrefabManager.Instance.Create(Prefabs.WaterGun, false),
-                PrefabManager.Instance.Create(Prefabs.BananaPeel, false),
-            };
-            
             // Set up input action references.
             _selectPie = InputManager.SelectPie;
             _selectWaterGun = InputManager.SelectWaterGun;
@@ -35,44 +30,88 @@ namespace Controller
             _selectPie.performed += _ => SelectWeapon(WeaponType.Pie);
             _selectWaterGun.performed += _ => SelectWeapon(WeaponType.WaterGun);
             _selectBananaPeel.performed += _ => SelectWeapon(WeaponType.BananaPeel);
+            
+            // Create water gun for later use.
+            waterGun = PrefabManager.Instance.Create(Prefabs.WaterGun, false).GetComponent<WaterGun>();
         }
 
         private void Update()
         {
+            waterGun.gameObject.SetActive(currentWeapon == WeaponType.WaterGun);
             Debug.Log($"currentWeapon: {currentWeapon}");
         }
 
+        /// <summary>
+        /// Selects the weapon once the player presses the corresponding button.
+        /// </summary>
+        /// <param name="weaponType">The weapon type.</param>
         private void SelectWeapon(WeaponType weaponType)
         {
             currentWeapon = weaponType;
             SwitchWeapon();
         }
         
+        /// <summary>
+        /// Responsible for giving feedback to the player on the HUD.
+        /// </summary>
         private void SwitchWeapon()
         {            
             switch (currentWeapon)
             {
                 case WeaponType.Pie:
-                    ActivateWeapon(WeaponType.Pie);
+                    // HUD
                     break;
                 case WeaponType.WaterGun:
-                    ActivateWeapon(WeaponType.WaterGun);
+                    // HUD
                     break;
                 case WeaponType.BananaPeel:
-                    ActivateWeapon(WeaponType.BananaPeel);
+                    // HUD
+                    break;
+                default:
+                    break;
+            }
+        }
+        
+        /// <summary>
+        /// Spawns the weapon. This is called from the PlayerController. Mainly used for Pie
+        /// </summary>
+        /// <param name="weaponType">The weapon type.</param>
+        public void SpawnWeapon(WeaponType weaponType)
+        {
+            switch (weaponType)
+            {
+                case WeaponType.Pie:
+                    PrefabManager.Instance.Create(Prefabs.Pie);
+                    break;
+                case WeaponType.BananaPeel:
+                    HandleLandmine();
+                    _isLandminePlaced = !_isLandminePlaced;
                     break;
             }
         }
 
-        private void ActivateWeapon(WeaponType weaponType)
+        private void HandleLandmine()
         {
-            foreach (var weapon in _weapons)
-                weapon.SetActive(weapon.name.Contains(weaponType.ToString()));
+            if (!_isLandminePlaced)
+            {
+                var landmine = PrefabManager.Instance.Create(Prefabs.BananaPeel);
+                landmine.transform.position = transform.position;
+            }
+            else
+            {
+                var landmine = FindObjectOfType<BananaPeel>();
+                if (landmine != null)
+                    landmine.Explode();
+                else
+                    Debug.Log("No landmine found in the scene.");
+            }
         }
+        
     }
     
     public enum WeaponType
     {
+        None,
         Pie,
         WaterGun,
         BananaPeel,

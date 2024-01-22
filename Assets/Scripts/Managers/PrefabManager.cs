@@ -81,16 +81,16 @@ namespace Managers
             {
                 newObject = Instantiate(prefabData.prefab);
             }
+            
+            newObject.SetActive(setActive);
 
             if (prefabData.objectRoot == null) return newObject;
 
             var root = GameObject.Find(prefabData.objectRoot);
             if (root)
             {
-                newObject.transform.SetParent(root.transform, true);
+                newObject.transform.SetParent(root.transform, false);
             }
-
-            newObject.SetActive(setActive);
             
             return newObject;
         }

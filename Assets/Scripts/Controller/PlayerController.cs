@@ -17,7 +17,7 @@ namespace Controller
         public Transform groundCheckTransform;
         public float groundCheckRadius = 0.1f;
         public LayerMask groundLayerMask;
-    
+
         #region Input Actions
     
         private InputAction _move, _jump, _crouch, _run, _attack;
@@ -25,6 +25,7 @@ namespace Controller
         #endregion
 
         private Rigidbody2D _rb;
+        private WeaponController _weaponController;
         private Vector2 _moveInput = Vector2.zero;
         private bool _isMoving, _isRunning, _isCrouching;
 
@@ -32,7 +33,10 @@ namespace Controller
         {
             // Get the rigidbody component.
             _rb = GetComponent<Rigidbody2D>();
-        
+            
+            // Get the weapon controller.
+            _weaponController = GetComponent<WeaponController>();
+            
             // Set up input action references.
             _move = InputManager.Move;
             _jump = InputManager.Jump;
@@ -43,10 +47,16 @@ namespace Controller
             // Listen for input actions.
             _jump.started += Jump;
             _attack.started += Attack;
+            // Special case for WaterGun.
+            // _attack.performed += _ => _weaponController.waterGun.Charging();
+            _attack.canceled += _ => _weaponController.waterGun.Shoot();
         }
 
         private void FixedUpdate()
         {
+            if (_attack.IsPressed())
+                _weaponController.waterGun.Charging(); 
+            
             HandleMovement();
         }
 
@@ -101,7 +111,21 @@ namespace Controller
         /// <param name="context">The input context.</param>
         private void Attack(InputAction.CallbackContext context)
         {
-            // TODO: Attack.
+            switch (_weaponController.currentWeapon)
+            {
+                case WeaponType.Pie:
+                    _weaponController.SpawnWeapon(WeaponType.Pie);
+                    // Animate the pie throw.
+                    break;
+                case WeaponType.WaterGun:
+                    _weaponController.waterGun.Charge();
+                    // Animate the water gun.
+                    break;
+                case WeaponType.BananaPeel:
+                    _weaponController.SpawnWeapon(WeaponType.BananaPeel);
+                    // Animate the banana peel throw.
+                    break;
+            }
         }
     
         private bool IsGrounded() => Physics2D.OverlapCircle(groundCheckTransform.position, groundCheckRadius, groundLayerMask);
