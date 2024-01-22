@@ -46,9 +46,54 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Crouch"",
+                    ""type"": ""Button"",
+                    ""id"": ""4dafc1be-5cbf-4b3d-840c-66a03fd58b82"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Run"",
                     ""type"": ""Button"",
                     ""id"": ""575009dd-0190-48b2-a2af-d3702413b9ce"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""3d3ec24f-2c11-4c29-bd99-9fef7fe032d3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectPie"",
+                    ""type"": ""Button"",
+                    ""id"": ""3dff87dc-32d6-480b-a84e-1b2cac779637"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectWaterGun"",
+                    ""type"": ""Button"",
+                    ""id"": ""b5700c1e-504c-439d-a195-1577c1846e9d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectBananaPeel"",
+                    ""type"": ""Button"",
+                    ""id"": ""fd2f9239-1960-4a77-ac1b-3444bc3200da"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -132,6 +177,72 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Run"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""74972716-feaf-466b-94ac-1084673ed7a5"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ad0db155-0dd9-4098-8609-20f45bf92f91"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectPie"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2dbde3e9-97e6-4200-ac8d-00e920e1a2c0"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectWaterGun"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4fbac87c-96bc-4085-9c57-11755e3a1bb8"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectBananaPeel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""78a43e7b-9a2f-4f3c-b339-cbf702ca7686"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Crouch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""66d374e2-0cd4-406e-914f-b40112467f84"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Crouch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -142,7 +253,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
         m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
+        m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
+        m_Player_SelectPie = m_Player.FindAction("SelectPie", throwIfNotFound: true);
+        m_Player_SelectWaterGun = m_Player.FindAction("SelectWaterGun", throwIfNotFound: true);
+        m_Player_SelectBananaPeel = m_Player.FindAction("SelectBananaPeel", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -206,14 +322,24 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_Crouch;
     private readonly InputAction m_Player_Run;
+    private readonly InputAction m_Player_Attack;
+    private readonly InputAction m_Player_SelectPie;
+    private readonly InputAction m_Player_SelectWaterGun;
+    private readonly InputAction m_Player_SelectBananaPeel;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
         public PlayerActions(@InputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
         public InputAction @Run => m_Wrapper.m_Player_Run;
+        public InputAction @Attack => m_Wrapper.m_Player_Attack;
+        public InputAction @SelectPie => m_Wrapper.m_Player_SelectPie;
+        public InputAction @SelectWaterGun => m_Wrapper.m_Player_SelectWaterGun;
+        public InputAction @SelectBananaPeel => m_Wrapper.m_Player_SelectBananaPeel;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -229,9 +355,24 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @Crouch.started += instance.OnCrouch;
+            @Crouch.performed += instance.OnCrouch;
+            @Crouch.canceled += instance.OnCrouch;
             @Run.started += instance.OnRun;
             @Run.performed += instance.OnRun;
             @Run.canceled += instance.OnRun;
+            @Attack.started += instance.OnAttack;
+            @Attack.performed += instance.OnAttack;
+            @Attack.canceled += instance.OnAttack;
+            @SelectPie.started += instance.OnSelectPie;
+            @SelectPie.performed += instance.OnSelectPie;
+            @SelectPie.canceled += instance.OnSelectPie;
+            @SelectWaterGun.started += instance.OnSelectWaterGun;
+            @SelectWaterGun.performed += instance.OnSelectWaterGun;
+            @SelectWaterGun.canceled += instance.OnSelectWaterGun;
+            @SelectBananaPeel.started += instance.OnSelectBananaPeel;
+            @SelectBananaPeel.performed += instance.OnSelectBananaPeel;
+            @SelectBananaPeel.canceled += instance.OnSelectBananaPeel;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -242,9 +383,24 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @Crouch.started -= instance.OnCrouch;
+            @Crouch.performed -= instance.OnCrouch;
+            @Crouch.canceled -= instance.OnCrouch;
             @Run.started -= instance.OnRun;
             @Run.performed -= instance.OnRun;
             @Run.canceled -= instance.OnRun;
+            @Attack.started -= instance.OnAttack;
+            @Attack.performed -= instance.OnAttack;
+            @Attack.canceled -= instance.OnAttack;
+            @SelectPie.started -= instance.OnSelectPie;
+            @SelectPie.performed -= instance.OnSelectPie;
+            @SelectPie.canceled -= instance.OnSelectPie;
+            @SelectWaterGun.started -= instance.OnSelectWaterGun;
+            @SelectWaterGun.performed -= instance.OnSelectWaterGun;
+            @SelectWaterGun.canceled -= instance.OnSelectWaterGun;
+            @SelectBananaPeel.started -= instance.OnSelectBananaPeel;
+            @SelectBananaPeel.performed -= instance.OnSelectBananaPeel;
+            @SelectBananaPeel.canceled -= instance.OnSelectBananaPeel;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -266,6 +422,11 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnCrouch(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
+        void OnSelectPie(InputAction.CallbackContext context);
+        void OnSelectWaterGun(InputAction.CallbackContext context);
+        void OnSelectBananaPeel(InputAction.CallbackContext context);
     }
 }

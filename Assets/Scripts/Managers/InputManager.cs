@@ -1,42 +1,56 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-/// <summary>
-/// Manages inputs globally for the game.
-/// </summary>
-public class InputManager : MonoBehaviour
+namespace Managers
 {
-    private static InputActions _actions;
-
-    // Player actions.
-    public static InputAction move;
-    public static InputAction jump;
-    public static InputAction run;
-
-    private void Awake()
+    /// <summary>
+    /// Manages inputs globally for the game.
+    /// </summary>
+    public class InputManager : MonoBehaviour
     {
-        // Create the input actions asset.
-        _actions = new InputActions();
+        private static InputActions _actions;
 
-        // Update the player actions.
-        move = _actions.Player.Movement;
-        jump = _actions.Player.Jump;
-        run = _actions.Player.Run;
+        // Player actions.
+        public static InputAction Move;
+        public static InputAction Jump;
+        public static InputAction Crouch;
+        public static InputAction Run;
+        public static InputAction Attack;
+        // Weapon selection.
+        public static InputAction SelectPie;
+        public static InputAction SelectWaterGun;
+        public static InputAction SelectBananaPeel;
+
+        private void Awake()
+        {
+            // Create the input actions asset.
+            _actions = new InputActions();
+
+            // Update the player actions.
+            Move = _actions.Player.Movement;
+            Jump = _actions.Player.Jump;
+            Crouch = _actions.Player.Crouch;
+            Run = _actions.Player.Run;
+            Attack = _actions.Player.Attack;
+            SelectPie = _actions.Player.SelectPie;
+            SelectWaterGun = _actions.Player.SelectWaterGun;
+            SelectBananaPeel = _actions.Player.SelectBananaPeel;
+        }
+
+        #region Boilerplate
+
+        private void OnEnable()
+        {
+            // Enable the input actions.
+            _actions.Enable();
+        }
+
+        private void OnDisable()
+        {
+            // Disable the input actions.
+            _actions.Disable();
+        }
+
+        #endregion
     }
-
-    #region Boilerplate
-
-    private void OnEnable()
-    {
-        // Enable the input actions.
-        _actions.Enable();
-    }
-
-    private void OnDisable()
-    {
-        // Disable the input actions.
-        _actions.Disable();
-    }
-
-    #endregion
 }

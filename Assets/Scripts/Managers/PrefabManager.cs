@@ -12,10 +12,11 @@ namespace Managers
         private readonly Dictionary<Prefabs, Queue<GameObject>> _pools = new ();
 
         /// <summary>
-        /// Static shortcut method for creating a prefab.
+        /// Shortcut method for creating a prefab.
         /// </summary>
         /// <param name="prefab">The type of prefab to create.</param>
-        public static GameObject Create(Prefabs prefab) => Instance.Instantiate(prefab);
+        /// <param name="setActive">The active state of the prefab.</param>
+        public GameObject Create(Prefabs prefab, bool setActive = true) => Instance.Instantiate(prefab, setActive);
 
         protected override void OnAwake()
         {
@@ -44,8 +45,9 @@ namespace Managers
         /// Creates a new instance of the prefab.
         /// </summary>
         /// <param name="prefab">The prefab type</param>
+        /// <param name="setActive">The active state.</param>
         /// <returns>The created object.</returns>
-        private GameObject Instantiate(Prefabs prefab)
+        private GameObject Instantiate(Prefabs prefab, bool setActive = true)
         {
             var prefabData = _prefabs[prefab];
 
@@ -85,9 +87,11 @@ namespace Managers
             var root = GameObject.Find(prefabData.objectRoot);
             if (root)
             {
-                newObject.transform.SetParent(root.transform, false);
+                newObject.transform.SetParent(root.transform, true);
             }
 
+            newObject.SetActive(setActive);
+            
             return newObject;
         }
     }

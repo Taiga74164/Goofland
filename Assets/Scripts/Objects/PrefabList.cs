@@ -23,8 +23,15 @@ namespace Objects
         public string objectRoot;
     }
 
+    /// <summary>
+    /// Each prefab should have a unique prefab type.
+    /// </summary>
     public enum Prefabs
     {
-        Player
+        Player,
+        Enemy,
+        Pie,
+        WaterGun,
+        BananaPeel,
     }
 }
