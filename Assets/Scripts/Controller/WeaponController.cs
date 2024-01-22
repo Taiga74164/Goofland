@@ -15,10 +15,25 @@ namespace Controller
     
         #endregion
 
-        public WaterGun waterGun;
+        #region Pie Properties
+
+        private float _pieCooldownDuration = 1.0f;
+        private float _lastPieThrownTime = -1.0f;
+
+        #endregion
         
+        #region Water Gun Properties
+
+        public WaterGun waterGun;
+
+        #endregion
+
+        #region Banana Peel Properties
+
         private bool _isLandminePlaced;
 
+        #endregion
+        
         private void Start()
         {
             // Set up input action references.
@@ -73,7 +88,7 @@ namespace Controller
         }
         
         /// <summary>
-        /// Spawns the weapon. This is called from the PlayerController. Mainly used for Pie
+        /// Spawns the weapon. This is called from the PlayerController. Mainly used for Pie and BananaPeel.
         /// </summary>
         /// <param name="weaponType">The weapon type.</param>
         public void SpawnWeapon(WeaponType weaponType)
@@ -81,7 +96,7 @@ namespace Controller
             switch (weaponType)
             {
                 case WeaponType.Pie:
-                    PrefabManager.Instance.Create(Prefabs.Pie);
+                    HandlePieThrow();
                     break;
                 case WeaponType.BananaPeel:
                     HandleLandmine();
@@ -89,6 +104,16 @@ namespace Controller
                     break;
             }
         }
+        
+        private void HandlePieThrow()
+        {
+            if (!IsPieReady()) return;
+            
+            PrefabManager.Instance.Create(Prefabs.Pie);
+            _lastPieThrownTime = Time.time;
+        }
+        
+        private bool IsPieReady() => Time.time - _lastPieThrownTime >= _pieCooldownDuration;
 
         private void HandleLandmine()
         {
@@ -106,7 +131,6 @@ namespace Controller
                     Debug.Log("No landmine found in the scene.");
             }
         }
-        
     }
     
     public enum WeaponType
