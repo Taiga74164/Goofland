@@ -7,9 +7,11 @@ public class Pie : MonoBehaviour
     public float throwForce = 2.0f;
     
     private Rigidbody2D _rigidbody2D;
-    
+
+    private float _spawnOffSet = .1f;
     private void Start()
     {
+        this.GetComponent<Transform>().Translate(new Vector3(0, _spawnOffSet, 0)); //prevents pie from being destroyed on spawn
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _rigidbody2D.isKinematic = true;
         ThrowPie();
@@ -34,6 +36,11 @@ public class Pie : MonoBehaviour
         {
             // TODO: Deal damage to the enemy.
             other.gameObject.GetComponent<Enemy>().GotHit(gameObject);
+            Destroy(gameObject);
+        }
+        else if(!other.gameObject.CompareTag("Player"))
+        {
+            Destroy(gameObject);
         }
     }
 }

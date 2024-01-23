@@ -5,6 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] protected float _speed;
+
+    [SerializeField] protected bool _useTimer;
     [SerializeField] protected float _turnTimer;
     //weaknesses
     [SerializeField] protected bool _pieWeakness;
@@ -24,11 +26,9 @@ public class Enemy : MonoBehaviour
     protected virtual void FixedUpdate()
     { 
         
-        _turnCount += Time.deltaTime; //timer
-        if( _turnCount >= _turnTimer )
+        if(_useTimer)
         {
-            Turn();
-            _turnCount = 0;
+            Timer();
         }
 
         MoveEnemy();
@@ -37,6 +37,16 @@ public class Enemy : MonoBehaviour
     private void MoveEnemy()//moves the  enemy horizontally
     {  
         gameObject.transform.Translate(_direction * _speed * Time.deltaTime);
+    }
+
+    private void Timer() //swaps direction if x amount of seconds have passed
+    {
+        _turnCount += Time.deltaTime; 
+        if (_turnCount >= _turnTimer)
+        {
+            Turn();
+            _turnCount = 0;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)//turns around when hitting wall
