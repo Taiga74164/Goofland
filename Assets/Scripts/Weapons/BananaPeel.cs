@@ -36,7 +36,7 @@ public class BananaPeel : MonoBehaviour
         {
             if (hitCollider.CompareTag("Enemy"))
             {
-                // TODO: Deal damage to the enemy.
+                hitCollider.gameObject.GetComponent<Enemy>().GotHit(gameObject);
             }
         }
         

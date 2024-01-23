@@ -33,6 +33,7 @@ public class Pie : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             // TODO: Deal damage to the enemy.
+            other.gameObject.GetComponent<Enemy>().GotHit(gameObject);
         }
     }
 }

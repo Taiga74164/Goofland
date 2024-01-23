@@ -6,6 +6,11 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] protected float _speed;
     [SerializeField] protected float _turnTimer;
+    //weaknesses
+    [SerializeField] protected bool _pieWeakness;
+    [SerializeField] protected bool _bananaWeakness;
+    [SerializeField] protected bool _waterWeakness;
+
     private float _turnCount = 0;
     private Rigidbody2D _rb;
     private Vector2 _direction = Vector2.right;
@@ -51,6 +56,44 @@ public class Enemy : MonoBehaviour
     {
         _direction *= new Vector2(-1, 0);
         this.gameObject.transform.localScale *= new Vector2(-1, 1);
+    }
+
+    public virtual void GotHit(GameObject attack) //checks if the projectile that hit the enemy is able to hurt it
+    {
+        if(attack.GetComponent<Pie>() != null)
+        {
+            if(_pieWeakness)
+            {
+                Die();
+            }
+            else
+            {
+                Debug.Log("wrong type");
+            }
+        }
+        else if(attack.GetComponent<BananaPeel>() != null)
+        {
+            if (_bananaWeakness)
+            {
+                Die();
+            }
+            else
+            {
+                Debug.Log("wrong type");
+            }
+        }
+        else if(attack.GetComponent<WaterGunProjectile>() != null)
+        {
+            if (_waterWeakness)
+            {
+                Die();
+            }
+            else
+            {
+                Debug.Log("wrong type");
+            }
+        }
+        
     }
 
 
