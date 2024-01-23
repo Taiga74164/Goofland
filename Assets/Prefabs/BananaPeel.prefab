@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5575998924318050078}
   - component: {fileID: -7516816841692625784}
   - component: {fileID: 887606075050387723}
-  - component: {fileID: 4518600927347362950}
+  - component: {fileID: 1339986907013043039}
   m_Layer: 8
   m_Name: BananaPeel
   m_TagString: Untagged
@@ -111,13 +111,13 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!50 &4518600927347362950
+--- !u!50 &1339986907013043039
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0

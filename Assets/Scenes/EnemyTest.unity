@@ -490,7 +490,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3436695763135192132, guid: b4547075294f5b34bb8fcb16f3870c6e, type: 3}
       propertyPath: _turnTimer
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3436695763135192132, guid: b4547075294f5b34bb8fcb16f3870c6e, type: 3}
       propertyPath: _pieWeakness

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8269147574228123166}
   - component: {fileID: -7742052087896811072}
   - component: {fileID: 536057142589509186}
-  - component: {fileID: -1547276017410658329}
+  - component: {fileID: 1972078411033555684}
   m_Layer: 0
   m_Name: Pie
   m_TagString: Untagged
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: {x: 20, y: 100}
   throwForce: 10
---- !u!61 &-1547276017410658329
+--- !u!61 &1972078411033555684
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
