@@ -6,6 +6,8 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] protected float _speed;
 
+    [SerializeField] protected int _damage = 1;
+
     [SerializeField] protected bool _useTimer;
     [SerializeField] protected float _turnTimer;
     //weaknesses
@@ -51,7 +53,11 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)//turns around when hitting wall
     {
-        if(collision.gameObject.layer != LayerMask.NameToLayer("Ground")) //this wont work well depending on how levels are built. will likely have to change
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<Controller.PlayerController>().TakeDamage(_damage);
+        }
+        else if(collision.gameObject.layer != LayerMask.NameToLayer("Ground")) //this wont work well depending on how levels are built. will likely have to change
         {
             Turn();
         }
