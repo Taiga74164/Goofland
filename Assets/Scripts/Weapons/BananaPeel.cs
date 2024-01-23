@@ -13,7 +13,7 @@ public class BananaPeel : MonoBehaviour
     {
         _circleCollider2D = GetComponent<CircleCollider2D>();
         _circleCollider2D.isTrigger = true;
-        _circleCollider2D.radius = explosionRadius;
+        
         
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _rigidbody2D.isKinematic = true;
@@ -36,7 +36,7 @@ public class BananaPeel : MonoBehaviour
         {
             if (hitCollider.CompareTag("Enemy"))
             {
-                // TODO: Deal damage to the enemy.
+                hitCollider.gameObject.GetComponent<Enemy>().GotHit(gameObject);
             }
         }
         
@@ -50,6 +50,8 @@ public class BananaPeel : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Enemy"))
+        {
             Explode();
+        }      
     }
 }

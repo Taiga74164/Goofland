@@ -5,7 +5,16 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] protected float _speed;
+
+    [SerializeField] protected int _damage = 1;
+
+    [SerializeField] protected bool _useTimer;
     [SerializeField] protected float _turnTimer;
+    //weaknesses
+    [SerializeField] protected bool _pieWeakness;
+    [SerializeField] protected bool _bananaWeakness;
+    [SerializeField] protected bool _waterWeakness;
+
     private float _turnCount = 0;
     private Rigidbody2D _rb;
     private Vector2 _direction = Vector2.right;
@@ -19,11 +28,9 @@ public class Enemy : MonoBehaviour
     protected virtual void FixedUpdate()
     { 
         
-        _turnCount += Time.deltaTime; //timer
-        if( _turnCount >= _turnTimer )
+        if(_useTimer)
         {
-            Turn();
-            _turnCount = 0;
+            Timer();
         }
 
         MoveEnemy();
@@ -34,9 +41,23 @@ public class Enemy : MonoBehaviour
         gameObject.transform.Translate(_direction * _speed * Time.deltaTime);
     }
 
+    private void Timer() //swaps direction if x amount of seconds have passed
+    {
+        _turnCount += Time.deltaTime; 
+        if (_turnCount >= _turnTimer)
+        {
+            Turn();
+            _turnCount = 0;
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)//turns around when hitting wall
     {
-        if(collision.gameObject.layer != LayerMask.NameToLayer("Ground")) //this wont work well depending on how levels are built. will likely have to change
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<Controller.PlayerController>().TakeDamage(_damage);
+        }
+        else if(collision.gameObject.layer != LayerMask.NameToLayer("Ground")) //this wont work well depending on how levels are built. will likely have to change
         {
             Turn();
         }
@@ -51,6 +72,44 @@ public class Enemy : MonoBehaviour
     {
         _direction *= new Vector2(-1, 0);
         this.gameObject.transform.localScale *= new Vector2(-1, 1);
+    }
+
+    public virtual void GotHit(GameObject attack) //checks if the projectile that hit the enemy is able to hurt it
+    {
+        if(attack.GetComponent<Pie>() != null)
+        {
+            if(_pieWeakness)
+            {
+                Die();
+            }
+            else
+            {
+                Debug.Log("wrong type");
+            }
+        }
+        else if(attack.GetComponent<BananaPeel>() != null)
+        {
+            if (_bananaWeakness)
+            {
+                Die();
+            }
+            else
+            {
+                Debug.Log("wrong type");
+            }
+        }
+        else if(attack.GetComponent<WaterGunProjectile>() != null)
+        {
+            if (_waterWeakness)
+            {
+                Die();
+            }
+            else
+            {
+                Debug.Log("wrong type");
+            }
+        }
+        
     }
 
 
