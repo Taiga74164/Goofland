@@ -9,12 +9,12 @@ public class Pie : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
 
     private float _spawnOffSet = .1f;
-    private void Start()
+    private void Awake()
     {
         this.GetComponent<Transform>().Translate(new Vector3(0, _spawnOffSet, 0)); //prevents pie from being destroyed on spawn
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _rigidbody2D.isKinematic = true;
-        ThrowPie();
+        //ThrowPie();
     }
 
     private void LateUpdate()

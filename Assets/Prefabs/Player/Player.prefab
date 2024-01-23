@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3304819539057298540}
   - component: {fileID: 3304819539057298541}
   - component: {fileID: 3304819539057298536}
-  - component: {fileID: 3304819539057298537}
+  - component: {fileID: 1768298607370541275}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -158,7 +158,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &3304819539057298537
+--- !u!114 &1768298607370541275
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,11 +167,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3304819539057298543}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1b56fdb076846b6bed6cfd974e55de1, type: 3}
+  m_Script: {fileID: 11500000, guid: 45896ec33b5b7be42aaadf79010b03d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWeapon: 0
-  waterGun: {fileID: 0}
+  MaxChargeTime: 3
+  MinForce: 7
+  MaxForce: 20
 --- !u!1 &3304819539234435546
 GameObject:
   m_ObjectHideFlags: 0

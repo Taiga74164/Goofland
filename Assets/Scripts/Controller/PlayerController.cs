@@ -29,7 +29,8 @@ namespace Controller
         #endregion
 
         private Rigidbody2D _rb;
-        private WeaponController _weaponController;
+        // private WeaponController _weaponController;
+        private PieController _pieController; 
         private Vector2 _moveInput = Vector2.zero;
         private bool _isMoving, _isRunning, _isCrouching;
 
@@ -39,7 +40,8 @@ namespace Controller
             _rb = GetComponent<Rigidbody2D>();
             
             // Get the weapon controller.
-            _weaponController = GetComponent<WeaponController>();
+            //_weaponController = GetComponent<WeaponController>();
+            _pieController = GetComponent<PieController>();
             
             // Set up input action references.
             _move = InputManager.Move;
@@ -51,7 +53,7 @@ namespace Controller
             // Listen for input actions.
             _jump.started += Jump;
             _attack.started += Attack;
-            _attack.canceled += _ => _weaponController.waterGun.Shoot();
+            _attack.canceled += _ => _pieController.HandlePieThrow();
             
             // Set the player's health.
             _currentHealth = maxHealth;
@@ -60,7 +62,7 @@ namespace Controller
         private void FixedUpdate()
         {
             if (_attack.IsPressed())
-                _weaponController.waterGun.Charging(); 
+                _pieController.Charging(); 
             
             HandleMovement();
         }
@@ -116,6 +118,7 @@ namespace Controller
         /// <param name="context">The input context.</param>
         private void Attack(InputAction.CallbackContext context)
         {
+           /*
             switch (_weaponController.currentWeapon)
             {
                 case WeaponType.Pie:
@@ -131,6 +134,8 @@ namespace Controller
                     // Animate the banana peel throw.
                     break;
             }
+           */
+           _pieController.Charge();
         }
 
         public void TakeDamage(int damage)
