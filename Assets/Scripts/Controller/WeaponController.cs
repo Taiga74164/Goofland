@@ -17,7 +17,7 @@ namespace Controller
 
         #region Pie Properties
 
-        private float _pieCooldownDuration = 1.0f;
+        private readonly float _pieCooldownDuration = 1.0f;
         private float _lastPieThrownTime = -1.0f;
 
         #endregion
@@ -82,6 +82,7 @@ namespace Controller
                 case WeaponType.BananaPeel:
                     // HUD
                     break;
+                case WeaponType.None:
                 default:
                     break;
             }

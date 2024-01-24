@@ -34,13 +34,19 @@ namespace Controller
         private Vector2 _moveInput = Vector2.zero;
         private bool _isMoving, _isRunning, _isCrouching;
 
+        private void Awake()
+        {
+            if (GameManager.Instance.playerController == null)
+                GameManager.Instance.playerController = this;
+        }
+
         private void Start()
         {
             // Get the rigidbody component.
             _rb = GetComponent<Rigidbody2D>();
             
             // Get the weapon controller.
-            //_weaponController = GetComponent<WeaponController>();
+            // _weaponController = GetComponent<WeaponController>();
             _pieController = GetComponent<PieController>();
             
             // Set up input action references.

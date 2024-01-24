@@ -122,6 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: {x: 20, y: 100}
   throwForce: 10
+  debug: 1
 --- !u!61 &1972078411033555684
 BoxCollider2D:
   m_ObjectHideFlags: 0

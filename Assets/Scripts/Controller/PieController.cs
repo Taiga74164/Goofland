@@ -1,70 +1,47 @@
 using Managers;
 using Objects;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Controller
 {
     public class PieController : MonoBehaviour
     {
-        private float _pieCooldownDuration = 1.0f;
-        private float _lastPieThrownTime = -1.0f;
+        public float maxChargeTime = 3.0f;
+        public float minForce = 2.0f;
+        public float maxForce = 6.0f;
 
-
-        public float MaxChargeTime = 3.0f;
-        public float MinForce = 2.0f;
-        public float MaxForce = 6.0f;
-
+        private Pie _pie;
         private float _chargeTime;
-
-        private float _throwForce;
+        private float _lastPieThrownTime = -1.0f;
+        private readonly float _pieCooldownDuration = 1.0f;
         private Vector2 _throwDirection;
-        private Pie _lastPieThrown;
+        private float _throwForce;
 
-        // Start is called before the first frame update
-        void Start()
-        {
+        public void Charge() => _chargeTime = 0.0f;
 
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
-        public void Charge()
-        {
-            if (!gameObject.active) return;
-            _chargeTime = 0.0f;
-        }
         public void Charging()
         {
-            if (!gameObject.active) return;
-            _chargeTime = Mathf.Min(_chargeTime + Time.deltaTime, MaxChargeTime);
-            Debug.Log(_chargeTime);
+            _chargeTime = Mathf.Min(_chargeTime + Time.deltaTime, maxChargeTime);
+            Debug.Log($"charging: {_chargeTime}");
         }
 
         public void HandlePieThrow() //spawns and sets physics of pie
         {
             if (!IsPieReady()) return;
-            _throwForce = Mathf.Lerp(MinForce, MaxForce, Mathf.Clamp01(_chargeTime / MaxChargeTime));
+            _throwForce = Mathf.Lerp(minForce, maxForce, Mathf.Clamp01(_chargeTime / maxChargeTime));
 
-            _throwDirection = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
-            
-            GameObject pie = PrefabManager.Instance.Create(Prefabs.Pie);
-            Debug.Log("spawn");
-            _lastPieThrown = pie.GetComponent<Pie>();
-            _lastPieThrown.throwForce = _throwForce;
-            _lastPieThrown.direction = _throwDirection;
+            if (Camera.main != null)
+                _throwDirection = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+
+            var pie = PrefabManager.Instance.Create(Prefabs.Pie);
+            _pie = pie.GetComponent<Pie>();
+            _pie.throwForce = _throwForce;
+            _pie.direction = _throwDirection;
             _lastPieThrownTime = Time.time;
 
-            _lastPieThrown.ThrowPie();
+            _pie.ThrowPie();
         }
 
         private bool IsPieReady() => Time.time - _lastPieThrownTime >= _pieCooldownDuration;
     }
 }
-
-

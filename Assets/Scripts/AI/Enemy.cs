@@ -1,116 +1,100 @@
-using System.Collections;
-using System.Collections.Generic;
+using Controller;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] protected float _speed;
+    [SerializeField] protected float speed;
 
-    [SerializeField] protected int _damage = 1;
+    [SerializeField] protected int damage = 1;
 
-    [SerializeField] protected bool _useTimer;
-    [SerializeField] protected float _turnTimer;
+    [SerializeField] protected bool useTimer;
+
+    [SerializeField] protected float turnTimer;
+
     //weaknesses
-    [SerializeField] protected bool _pieWeakness;
-    [SerializeField] protected bool _bananaWeakness;
-    [SerializeField] protected bool _waterWeakness;
-
-    private float _turnCount = 0;
-    private Rigidbody2D _rb;
+    [SerializeField] protected bool pieWeakness;
+    [SerializeField] protected bool bananaWeakness;
+    [SerializeField] protected bool waterWeakness;
     private Vector2 _direction = Vector2.right;
+    private Rigidbody2D _rb;
 
-    // Start is called before the first frame update
-    void Start()
+    private float _turnCount;
+    
+    private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
     }
 
     protected virtual void FixedUpdate()
-    { 
-        
-        if(_useTimer)
-        {
-            Timer();
-        }
+    {
+        if (useTimer) Timer();
 
         MoveEnemy();
     }
 
-    private void MoveEnemy()//moves the  enemy horizontally
-    {  
-        gameObject.transform.Translate(_direction * _speed * Time.deltaTime);
+    private void OnCollisionEnter2D(Collision2D collision) //turns around when hitting wall
+    {
+        if (collision.gameObject.CompareTag("Player"))
+            collision.gameObject.GetComponent<PlayerController>().TakeDamage(damage);
+        else if
+            (collision.gameObject.layer !=
+             LayerMask.NameToLayer(
+                 "Ground")) //this wont work well depending on how levels are built. will likely have to change
+            Turn();
+    }
+
+    private void MoveEnemy() //moves the  enemy horizontally
+    {
+        gameObject.transform.Translate(_direction * (speed * Time.deltaTime));
     }
 
     private void Timer() //swaps direction if x amount of seconds have passed
     {
-        _turnCount += Time.deltaTime; 
-        if (_turnCount >= _turnTimer)
-        {
-            Turn();
-            _turnCount = 0;
-        }
+        _turnCount += Time.deltaTime;
+        if (!(_turnCount >= turnTimer)) return;
+        Turn();
+        _turnCount = 0;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)//turns around when hitting wall
+    protected virtual void Die() //destroys object on death
     {
-        if(collision.gameObject.CompareTag("Player"))
-        {
-            collision.gameObject.GetComponent<Controller.PlayerController>().TakeDamage(_damage);
-        }
-        else if(collision.gameObject.layer != LayerMask.NameToLayer("Ground")) //this wont work well depending on how levels are built. will likely have to change
-        {
-            Turn();
-        }
-        
-    }
-    protected virtual void Die()//destroys object on death
-    {
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 
     private void Turn() //changes enemies direction
     {
         _direction *= new Vector2(-1, 0);
-        this.gameObject.transform.localScale *= new Vector2(-1, 1);
+        gameObject.transform.localScale *= new Vector2(-1, 1);
     }
 
-    public virtual void GotHit(GameObject attack) //checks if the projectile that hit the enemy is able to hurt it
+    /// <summary>
+    /// Called when the enemy is hit by a weapon.
+    /// </summary>
+    /// <param name="weapon">The weapon type.</param>
+    public void GotHit(IWeapon weapon)
     {
-        if(attack.GetComponent<Pie>() != null)
+        switch (weapon)
         {
-            if(_pieWeakness)
-            {
+            case Pie when pieWeakness:
                 Die();
-            }
-            else
-            {
+                break;
+            case Pie:
                 Debug.Log("wrong type");
-            }
-        }
-        else if(attack.GetComponent<BananaPeel>() != null)
-        {
-            if (_bananaWeakness)
-            {
+                break;
+            
+            case BananaPeel when bananaWeakness:
                 Die();
-            }
-            else
-            {
+                break;
+            case BananaPeel:
                 Debug.Log("wrong type");
-            }
-        }
-        else if(attack.GetComponent<WaterGunProjectile>() != null)
-        {
-            if (_waterWeakness)
-            {
+                break;
+            
+            case WaterGunProjectile when waterWeakness:
                 Die();
-            }
-            else
-            {
+                break;
+            case WaterGunProjectile:
                 Debug.Log("wrong type");
-            }
+                break;
         }
-        
     }
-
-
 }

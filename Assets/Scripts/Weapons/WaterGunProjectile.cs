@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class WaterGunProjectile : MonoBehaviour
+public class WaterGunProjectile : MonoBehaviour, IWeapon
 {
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            other.gameObject.GetComponent<Enemy>().GotHit(gameObject);
+            other.gameObject.GetComponent<Enemy>().GotHit(this);
         }
     }
 }

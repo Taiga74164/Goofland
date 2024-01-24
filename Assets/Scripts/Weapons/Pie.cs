@@ -1,26 +1,38 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Pie : MonoBehaviour
+public class Pie : MonoBehaviour, IWeapon
 {
     public Vector2 direction = new Vector2(1, 3);
     public float throwForce = 2.0f;
     
     private Rigidbody2D _rigidbody2D;
 
-    private float _spawnOffSet = .1f;
+    [Header("Debugging")]
+    public bool debug;
+    private Vector3 _initialPosition;
+    private float _travelDistance;
+
+    private readonly float _spawnOffSet = 0.1f;
+    
     private void Awake()
     {
         this.GetComponent<Transform>().Translate(new Vector3(0, _spawnOffSet, 0)); //prevents pie from being destroyed on spawn
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _rigidbody2D.isKinematic = true;
-        //ThrowPie();
     }
 
     private void LateUpdate()
     {
         if (transform.position.y < -100)
             Destroy(gameObject);
+        
+        #region Debugging
+
+        if (debug)
+            _travelDistance = Vector3.Distance(_initialPosition, transform.position);
+
+        #endregion
     }
 
     public void ThrowPie()
@@ -28,6 +40,13 @@ public class Pie : MonoBehaviour
         var forceDirection = direction.normalized;
         _rigidbody2D.isKinematic = false;
         _rigidbody2D.AddForce(forceDirection * throwForce, ForceMode2D.Impulse);
+
+        #region Debugging
+
+        if (debug)
+            _initialPosition = transform.position;
+
+        #endregion
     }
     
     private void OnCollisionEnter2D(Collision2D other)
@@ -35,7 +54,7 @@ public class Pie : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             // TODO: Deal damage to the enemy.
-            other.gameObject.GetComponent<Enemy>().GotHit(gameObject);
+            other.gameObject.GetComponent<Enemy>().GotHit(this);
             Destroy(gameObject);
         }
         else if(!other.gameObject.CompareTag("Player"))
@@ -43,4 +62,12 @@ public class Pie : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(_initialPosition, transform.position);
+    }
+#endif
 }

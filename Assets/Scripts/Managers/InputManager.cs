@@ -32,9 +32,9 @@ namespace Managers
             Crouch = _actions.Player.Crouch;
             Run = _actions.Player.Run;
             Attack = _actions.Player.Attack;
-            //SelectPie = _actions.Player.SelectPie;
-           // SelectWaterGun = _actions.Player.SelectWaterGun;
-            //SelectBananaPeel = _actions.Player.SelectBananaPeel;
+            SelectPie = _actions.Player.SelectPie;
+            SelectWaterGun = _actions.Player.SelectWaterGun;
+            SelectBananaPeel = _actions.Player.SelectBananaPeel;
         }
 
         #region Boilerplate

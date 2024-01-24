@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(CircleCollider2D))]
-public class BananaPeel : MonoBehaviour
+public class BananaPeel : MonoBehaviour, IWeapon
 {
     public float explosionRadius = 3.0f;
     public bool isPlaced;
@@ -36,7 +36,7 @@ public class BananaPeel : MonoBehaviour
         {
             if (hitCollider.CompareTag("Enemy"))
             {
-                hitCollider.gameObject.GetComponent<Enemy>().GotHit(gameObject);
+                hitCollider.gameObject.GetComponent<Enemy>().GotHit(this);
             }
         }
         
