@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8749543168785758678, guid: 8504b216ab260c94cab84284675b009c, type: 3}
+      propertyPath: pieWeakness
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3436695763135192128, guid: 8504b216ab260c94cab84284675b009c, type: 3}
       propertyPath: m_RootOrder
       value: 3

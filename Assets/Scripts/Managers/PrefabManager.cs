@@ -12,11 +12,28 @@ namespace Managers
         private readonly Dictionary<Prefabs, Queue<GameObject>> _pools = new ();
 
         /// <summary>
-        /// Shortcut method for creating a prefab.
+        /// Static shortcut method for creating a prefab.
         /// </summary>
         /// <param name="prefab">The type of prefab to create.</param>
         /// <param name="setActive">The active state of the prefab.</param>
-        public GameObject Create(Prefabs prefab, bool setActive = true) => Instance.Instantiate(prefab, setActive);
+        public static GameObject Create(Prefabs prefab, bool setActive = true) => Instance.Instantiate(prefab, setActive);
+        
+        /// <summary>
+        /// Overload for creating a prefab and returning a component.
+        /// </summary>
+        /// <param name="prefab">The type of prefab to create.</param>
+        /// <param name="setActive">The active state of the prefab.</param>
+        /// <typeparam name="T">The type of component to return.</typeparam>
+        /// <returns>The component of the prefab.</returns>
+        public static T Create<T>(Prefabs prefab, bool setActive = true) where T : Component
+        {
+            var newObject = Instance.Instantiate(prefab, setActive);
+            var component = newObject.GetComponent<T>();
+            if (component == null)
+                Debug.LogError($"Prefab {prefab} does not have component {typeof(T)}");
+            
+            return component;
+        }
 
         protected override void OnAwake()
         {

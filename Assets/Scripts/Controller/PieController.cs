@@ -33,13 +33,13 @@ namespace Controller
             if (Camera.main != null)
                 _throwDirection = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
 
-            var pie = PrefabManager.Instance.Create(Prefabs.Pie);
-            _pie = pie.GetComponent<Pie>();
-            _pie.throwForce = _throwForce;
-            _pie.direction = _throwDirection;
+            var pie = PrefabManager.Create<Pie>(Prefabs.Pie);
+            if (pie == null) return;
+            pie.throwForce = _throwForce;
+            pie.direction = _throwDirection;
             _lastPieThrownTime = Time.time;
 
-            _pie.ThrowPie();
+            pie.ThrowPie();
         }
 
         private bool IsPieReady() => Time.time - _lastPieThrownTime >= _pieCooldownDuration;

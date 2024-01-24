@@ -47,7 +47,7 @@ namespace Controller
             _selectBananaPeel.performed += _ => SelectWeapon(WeaponType.BananaPeel);
             
             // Create water gun for later use.
-            waterGun = PrefabManager.Instance.Create(Prefabs.WaterGun, false).GetComponent<WaterGun>();
+            waterGun = PrefabManager.Create<WaterGun>(Prefabs.WaterGun, false);
         }
 
         private void Update()
@@ -110,7 +110,7 @@ namespace Controller
         {
             if (!IsPieReady()) return;
             
-            PrefabManager.Instance.Create(Prefabs.Pie);
+            PrefabManager.Create(Prefabs.Pie);
             _lastPieThrownTime = Time.time;
         }
         
@@ -120,8 +120,8 @@ namespace Controller
         {
             if (!_isLandminePlaced)
             {
-                var landmine = PrefabManager.Instance.Create(Prefabs.BananaPeel);
-                landmine.transform.position = transform.position;
+                var landmine = PrefabManager.Create(Prefabs.BananaPeel);
+                landmine!.transform.position = transform.position;
             }
             else
             {
