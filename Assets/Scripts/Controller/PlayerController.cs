@@ -22,6 +22,11 @@ namespace Controller
         public int maxHealth = 3;
         private int _currentHealth;
         
+        [Header("Player Sprites")]
+        public Sprite[] playerSprites;
+        private PolygonCollider2D _collider2D;
+        private SpriteRenderer _spriteRenderer;
+        
         #region Input Actions
     
         private InputAction _move, _jump, _crouch, _run, _attack;
@@ -48,6 +53,12 @@ namespace Controller
             // Get the weapon controller.
             // _weaponController = GetComponent<WeaponController>();
             _pieController = GetComponent<PieController>();
+            
+            // Get the collider component.
+            _collider2D = GetComponent<PolygonCollider2D>();
+            
+            // Get the sprite renderer component.
+            _spriteRenderer = GetComponent<SpriteRenderer>();
             
             // Set up input action references.
             _move = InputManager.Move;
@@ -83,6 +94,19 @@ namespace Controller
             _isRunning = _run.IsPressed();
             // Update the player's crouching state.
             _isCrouching = _crouch.IsPressed();
+
+            // Update the player's sprite based on the direction they are facing.
+            switch (_moveInput.x)
+            {
+                // right
+                case > 0:
+                    UpdateCollider(playerSprites[0]);
+                    break;
+                // left
+                case < 0:
+                    UpdateCollider(playerSprites[1]);
+                    break;
+            }
             
             // Move the player.
             _rb.velocity = new Vector2(
@@ -92,7 +116,7 @@ namespace Controller
                  (_isCrouching && IsGrounded() ? crouchSpeedMultiplier : 1)), 
                 _rb.velocity.y);
         }
-    
+
         /// <summary>
         /// Invoked when the jump action is performed.
         /// </summary>
@@ -142,6 +166,14 @@ namespace Controller
             }
            */
            _pieController.Charge();
+        }
+        
+        private void UpdateCollider(Sprite newSprite)
+        {
+            // Update the sprite.
+            _spriteRenderer.sprite = newSprite;
+            // Reshape the collider.
+            _collider2D.UpdateShapeToSprite(newSprite);
         }
 
         public void TakeDamage(int damage)
