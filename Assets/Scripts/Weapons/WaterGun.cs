@@ -39,7 +39,7 @@ public class WaterGun : MonoBehaviour
         _shotDistance = Mathf.Lerp(minDistance, maxDistance, Mathf.Clamp01(_chargeTime / maxChargeTime));
         
         var projectile = PrefabManager.Create(Prefabs.WaterGunProjectile);
-        projectile!.transform.SetParent(waterSpawnPoint);
+        projectile.transform.SetParent(waterSpawnPoint);
         
         var velocity = new Vector2(_shotDistance, 0.0f);
         var rb = projectile.GetComponent<Rigidbody2D>();

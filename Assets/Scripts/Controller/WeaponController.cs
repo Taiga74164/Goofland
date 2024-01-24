@@ -121,7 +121,7 @@ namespace Controller
             if (!_isLandminePlaced)
             {
                 var landmine = PrefabManager.Create(Prefabs.BananaPeel);
-                landmine!.transform.position = transform.position;
+                landmine.transform.position = transform.position;
             }
             else
             {

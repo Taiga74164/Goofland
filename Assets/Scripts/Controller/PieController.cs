@@ -34,7 +34,6 @@ namespace Controller
                 _throwDirection = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
 
             var pie = PrefabManager.Create<Pie>(Prefabs.Pie);
-            if (pie == null) return;
             pie.throwForce = _throwForce;
             pie.direction = _throwDirection;
             _lastPieThrownTime = Time.time;
