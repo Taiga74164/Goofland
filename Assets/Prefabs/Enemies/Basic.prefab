@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 3436695763135192135}
   - component: {fileID: 3436695763135192134}
   - component: {fileID: 3436695763135192133}
-  - component: {fileID: 3033658486426596688}
+  - component: {fileID: -7935801896717851846}
   m_Layer: 0
-  m_Name: Teeth
+  m_Name: Basic
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.561501, a: 1}
+  m_Color: {r: 1, g: 0.61547077, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -134,7 +134,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &3033658486426596688
+--- !u!114 &-7935801896717851846
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,11 +143,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3436695763135192139}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9a5e65614bd22a4ba35f14b91d6cb73, type: 3}
+  m_Script: {fileID: 11500000, guid: 73611677cdfe1c949b9f62a8eab93fbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0
-  _turnTimer: 0
-  _pieWeakness: 1
-  _bananaWeakness: 0
-  _waterWeakness: 1
+  speed: 1
+  damage: 1
+  useTimer: 0
+  turnTimer: 0
+  pieWeakness: 1
+  bananaWeakness: 0
+  waterWeakness: 0

@@ -15,12 +15,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected bool pieWeakness;
     [SerializeField] protected bool bananaWeakness;
     [SerializeField] protected bool waterWeakness;
-    private Vector2 _direction = Vector2.right;
-    private Rigidbody2D _rb;
+    private Vector2 _direction = Vector2.left;
+    protected Rigidbody2D _rb;
 
     private float _turnCount;
     
-    private void Start()
+    protected virtual void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
     }
@@ -71,7 +71,7 @@ public class Enemy : MonoBehaviour
     /// Called when the enemy is hit by a weapon.
     /// </summary>
     /// <param name="weapon">The weapon type.</param>
-    public void GotHit(IWeapon weapon)
+    public virtual void GotHit(IWeapon weapon)
     {
         switch (weapon)
         {

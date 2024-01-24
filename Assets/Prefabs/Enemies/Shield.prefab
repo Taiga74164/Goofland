@@ -146,8 +146,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ad922e26698cc549baaf0d64d7e8142, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0
-  _turnTimer: 0
-  _pieWeakness: 1
-  _bananaWeakness: 1
-  _waterWeakness: 0
+  speed: 1
+  damage: 1
+  useTimer: 0
+  turnTimer: 0
+  pieWeakness: 1
+  bananaWeakness: 0
+  waterWeakness: 0
+  _health: 2
