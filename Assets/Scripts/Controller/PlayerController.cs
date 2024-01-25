@@ -1,6 +1,7 @@
 using Managers;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace Controller
 {
@@ -38,6 +39,7 @@ namespace Controller
         private PieController _pieController; 
         private Vector2 _moveInput = Vector2.zero;
         private bool _isMoving, _isRunning, _isCrouching;
+        private Vector3 _spawnPosition;
 
         private void Awake()
         {
@@ -74,6 +76,9 @@ namespace Controller
             
             // Set the player's health.
             _currentHealth = maxHealth;
+            
+            // Set the spawn position.
+            _spawnPosition = transform.position;
         }
 
         private void FixedUpdate()
@@ -176,7 +181,7 @@ namespace Controller
             _collider2D.UpdateShapeToSprite(newSprite);
         }
 
-        public void TakeDamage(int damage)
+        public void TakeDamage(int damage = 1)
         {
             _currentHealth -= damage;
             if (_currentHealth <= 0)
@@ -201,11 +206,16 @@ namespace Controller
 
         private void Respawn()
         {
+            if (_currentHealth <= 0)
+                RestartLevel();
+            
             _currentHealth = maxHealth;
             
-            // Reset or restart the level.
-            transform.Reset(true, true);
+            // Reset.
+            transform.position = _spawnPosition;
         }
+
+        private static void RestartLevel() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
         private bool IsGrounded() => Physics2D.OverlapCircle(groundCheckTransform.position, groundCheckRadius, groundLayerMask);
     }

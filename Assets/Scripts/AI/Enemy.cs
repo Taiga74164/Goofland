@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision) //turns around when hitting wall
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.IsPlayer())
             collision.gameObject.GetComponent<PlayerController>().TakeDamage(damage);
         else if
             (collision.gameObject.layer !=

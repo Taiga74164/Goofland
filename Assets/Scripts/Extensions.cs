@@ -47,4 +47,16 @@ public static class Extensions
             collider.SetPath(i, path.ToArray());
         }
     }
+    
+    /// <summary>
+    /// Returns true if the collider is a player.
+    /// </summary>
+    public static bool IsPlayer(this Collider2D collider)
+        => collider.CompareTag("Player");
+    
+    /// <summary>
+    /// Returns true if the collision is a player.
+    /// </summary>
+    public static bool IsPlayer(this Collision2D collision)
+        => collision.gameObject.CompareTag("Player");
 }

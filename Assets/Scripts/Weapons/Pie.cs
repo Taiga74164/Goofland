@@ -57,7 +57,7 @@ public class Pie : MonoBehaviour, IWeapon
             other.gameObject.GetComponent<Enemy>().GotHit(this);
             Destroy(gameObject);
         }
-        else if(!other.gameObject.CompareTag("Player"))
+        else if(!other.IsPlayer())
         {
             Destroy(gameObject);
         }
