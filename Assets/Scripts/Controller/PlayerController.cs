@@ -252,15 +252,13 @@ namespace Controller
         private void Respawn()
         {
             if (_currentHealth <= 0)
-                RestartLevel();
+                LevelManager.Instance.RestartLevel();
             
             _currentHealth = maxHealth;
             
             // Reset.
             transform.position = _spawnPosition;
         }
-
-        private static void RestartLevel() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
         private bool IsGrounded() => 
             Physics2D.OverlapCircle(groundCheckTransform.position, groundCheckRadius, groundLayerMask);

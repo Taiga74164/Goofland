@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,9 +8,9 @@ public class GameEvent : ScriptableObject
 
     public void Raise(Component sender, object data)
     {
-        for (int i = 0; i < listeners.Count; i++)
+        foreach (var listener in listeners)
         {
-            listeners[i].OnEventRaised(sender, data);
+            listener.OnEventRaised(sender, data);
         }
     }
 

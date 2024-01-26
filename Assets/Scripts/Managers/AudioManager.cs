@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-
 
 namespace Managers
 {
@@ -10,23 +6,17 @@ namespace Managers
     {
         public void PlayAudio(Component sender, object data)
         {
-            
-            if(data is AudioSource)
+            if (data is AudioSource audioSource)
             {
-                AudioSource audioSource = (AudioSource) data;
-                audioSource?.Play();
+                audioSource.Play();
             }
-                
-            
-            
         }
 
         public void StopAudio(Component sender, object data)
         {
-            if (data is AudioSource)
+            if (data is AudioSource audioSource)
             {
-                AudioSource audioSource = (AudioSource)data;
-                audioSource?.Stop();
+                audioSource.Stop();
             }
         }
     }
