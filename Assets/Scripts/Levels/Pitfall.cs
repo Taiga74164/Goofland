@@ -12,7 +12,7 @@ namespace Levels
             if (!other.IsPlayer()) return;
             
             other.GetComponent<PlayerController>().TakeDamage();
-            other.transform.position = respawnPoint.position;
+            other.transform.position = Vector3.Lerp(other.transform.position, respawnPoint.position, 5.0f);
         }
     }
 }

@@ -10,10 +10,22 @@ namespace Controller
     {
         [Header("Player Settings")]
         public float movementSpeed = 5.0f;
-        public float runSpeedMultiplier = 2.0f;
+        public float runSpeedMultiplier = 1.5f;
         public float crouchSpeedMultiplier = 0.5f;
         public float jumpHeight = 5.0f;
+        [Tooltip("Higher value, faster fall.")]
+        public float fallMultiplier = 5.0f;
+        [Tooltip("Lower value, shorter jump.")]
+        public float lowJumpMultiplier = 2.0f;
     
+        [Header("Coyote Time Settings")]
+        public float coyoteTime = 0.2f;
+        private float _coyoteTimeCounter;
+        
+        [Header("Jump Buffering Settings")]
+        public float jumpBufferTime = 0.2f;
+        private float _jumpBufferCounter;
+
         [Header("Ground Check Settings")]
         public Transform groundCheckTransform;
         public float groundCheckRadius = 0.1f;
@@ -25,7 +37,7 @@ namespace Controller
         
         [Header("Player Sprites")]
         public Sprite[] playerSprites;
-        private PolygonCollider2D _collider2D;
+        private CapsuleCollider2D _collider2D;
         private SpriteRenderer _spriteRenderer;
         
         #region Input Actions
@@ -57,7 +69,7 @@ namespace Controller
             _pieController = GetComponent<PieController>();
             
             // Get the collider component.
-            _collider2D = GetComponent<PolygonCollider2D>();
+            _collider2D = GetComponent<CapsuleCollider2D>();
             
             // Get the sprite renderer component.
             _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -70,8 +82,8 @@ namespace Controller
             _attack = InputManager.Attack;
 
             // Listen for input actions.
-            _jump.started += Jump;
-            _attack.started += Attack;
+            _jump.started +=  _ => Jump();
+            _attack.started += _ => Attack();
             _attack.canceled += _ => _pieController.HandlePieThrow();
             
             // Set the player's health.
@@ -81,14 +93,42 @@ namespace Controller
             _spawnPosition = transform.position;
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             if (_attack.IsPressed())
-                _pieController.Charging(); 
+                _pieController.Charging();
             
-            HandleMovement();
+            HandleCoyoteTime();
+            HandleJumpBuffering();
         }
 
+        private void FixedUpdate()
+        {
+            HandleMovement();
+            HandleClampFallSpeed();
+        }
+
+        private void HandleCoyoteTime() => _coyoteTimeCounter = IsGrounded() ? 
+            coyoteTime : _coyoteTimeCounter - Time.deltaTime;
+        
+        // ReSharper disable Unity.PerformanceAnalysis
+        private void HandleJumpBuffering()
+        {
+            // Decrement the jump buffer counter.
+            _jumpBufferCounter -= Time.deltaTime;
+            // If the jump button is pressed, set the jump buffer counter.
+            if (_jump.triggered)
+                _jumpBufferCounter = jumpBufferTime;
+
+            // If the jump buffer counter is greater than 0 and the coyote time counter is greater than 0, jump.
+            if (!(_jumpBufferCounter > 0.0f) || !(_coyoteTimeCounter > 0.0f)) return;
+            Jump();
+            
+            // Reset the jump buffer counter and coyote time counter.
+            _jumpBufferCounter = 0.0f;
+            _coyoteTimeCounter = 0.0f;
+        }
+        
         private void HandleMovement()
         {
             // Get the input values.
@@ -105,11 +145,11 @@ namespace Controller
             {
                 // right
                 case > 0:
-                    UpdateCollider(playerSprites[0]);
+                    _spriteRenderer.sprite = playerSprites[0];
                     break;
                 // left
                 case < 0:
-                    UpdateCollider(playerSprites[1]);
+                    _spriteRenderer.sprite = playerSprites[1];
                     break;
             }
             
@@ -121,26 +161,40 @@ namespace Controller
                  (_isCrouching && IsGrounded() ? crouchSpeedMultiplier : 1)), 
                 _rb.velocity.y);
         }
+        
+        private void HandleClampFallSpeed()
+        {
+            switch (_rb.velocity.y)
+            {
+                // If the player is falling, increase the fall speed.
+                case < 0:
+                    // Apply the fall multiplier.
+                    _rb.velocity += Vector2.up * (Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime);
+                    break;
+                // If the player is jumping and the jump button is released, decrease the jump speed.
+                case > 0 when !_jump.IsPressed():
+                    // Apply the low jump multiplier.
+                    _rb.velocity += Vector2.up * (Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime);
+                    break;
+            }
+        }
 
         /// <summary>
         /// Invoked when the jump action is performed.
         /// </summary>
-        /// <param name="context">The input context.</param>
-        private void Jump(InputAction.CallbackContext context)
+        private void Jump()
         {
-            if (!IsGrounded()) return;
-        
+            if (!IsGrounded() && _coyoteTimeCounter <= 0.0f) return;
+            
             // Jump.
             _rb.velocity = new Vector2(_rb.velocity.x, jumpHeight);
-            
             // Animate the jump.
         }
         
         /// <summary>
         /// Invoked when the crouch action is performed.
         /// </summary>
-        /// <param name="context">The input context.</param>
-        private void Crouch(InputAction.CallbackContext context)
+        private void Crouch()
         {
             if (!IsGrounded() || _isRunning) return;
             
@@ -150,8 +204,7 @@ namespace Controller
         /// <summary>
         /// Invoked when the Attack action is performed.
         /// </summary>
-        /// <param name="context">The input context.</param>
-        private void Attack(InputAction.CallbackContext context)
+        private void Attack()
         {
            /*
             switch (_weaponController.currentWeapon)
@@ -171,14 +224,6 @@ namespace Controller
             }
            */
            _pieController.Charge();
-        }
-        
-        private void UpdateCollider(Sprite newSprite)
-        {
-            // Update the sprite.
-            _spriteRenderer.sprite = newSprite;
-            // Reshape the collider.
-            _collider2D.UpdateShapeToSprite(newSprite);
         }
 
         public void TakeDamage(int damage = 1)
@@ -217,6 +262,7 @@ namespace Controller
 
         private static void RestartLevel() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
-        private bool IsGrounded() => Physics2D.OverlapCircle(groundCheckTransform.position, groundCheckRadius, groundLayerMask);
+        private bool IsGrounded() => 
+            Physics2D.OverlapCircle(groundCheckTransform.position, groundCheckRadius, groundLayerMask);
     }
 }
