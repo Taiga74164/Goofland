@@ -4,12 +4,12 @@ namespace Levels
 {
     public class Target : MonoBehaviour
     {
-        public Gate gate;
-        
+        public GameObject trigger;
+
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject.GetComponent<Pie>())
-                gate.Open();
+                trigger.GetComponent<ITrigger>().Trigger();
         }
     }
 }

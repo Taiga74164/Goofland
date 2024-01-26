@@ -4,12 +4,12 @@ namespace Levels
 {
     public class Button : MonoBehaviour
     {
-        public Gate gate;
+        public ITrigger trigger;
         
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.IsPlayer())
-                gate.Open();
+                trigger.Trigger();
         }
     }
 }

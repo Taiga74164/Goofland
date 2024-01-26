@@ -2,15 +2,9 @@
 
 namespace Levels
 {
-    public class Gate : MonoBehaviour
+    public class Gate : MonoBehaviour, ITrigger
     {
-        public void Open()
-        {
-            // Temporary.
-            gameObject.SetActive(!gameObject.activeSelf);
-        }
-        
-        public void Close()
+        public void Trigger()
         {
             // Temporary.
             gameObject.SetActive(!gameObject.activeSelf);
