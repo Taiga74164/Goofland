@@ -8,14 +8,26 @@ namespace Managers
 {
     public class AudioManager : Singleton<AudioManager>
     {
-        public void PlayAudio(AudioSource sound)
+        public void PlayAudio(Component sender, object data)
         {
-            sound.Play();
+            
+            if(data is AudioSource)
+            {
+                AudioSource audioSource = (AudioSource) data;
+                audioSource?.Play();
+            }
+                
+            
+            
         }
 
-        public void StopAudio(AudioSource sound)
+        public void StopAudio(Component sender, object data)
         {
-            sound.Stop();
+            if (data is AudioSource)
+            {
+                AudioSource audioSource = (AudioSource)data;
+                audioSource?.Stop();
+            }
         }
     }
 }
