@@ -224,7 +224,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3304819539057298539, guid: e0cf160916fb8584ebc15afc636b93ed, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3304819539057298539, guid: e0cf160916fb8584ebc15afc636b93ed, type: 3}
       propertyPath: m_LocalPosition.x
@@ -291,6 +291,7 @@ GameObject:
   - component: {fileID: 1737261741}
   - component: {fileID: 1737261740}
   - component: {fileID: 1737261739}
+  - component: {fileID: 1737261743}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -338,6 +339,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1737261743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737261738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 503ed693b6c7c2b4ebb6bddbab665009, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1766290500
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,7 +471,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3436695763135192128, guid: 7f6228389d425e346a97d59c7132b08d, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3436695763135192128, guid: 7f6228389d425e346a97d59c7132b08d, type: 3}
       propertyPath: m_LocalPosition.x
