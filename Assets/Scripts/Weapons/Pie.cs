@@ -35,11 +35,12 @@ public class Pie : MonoBehaviour, IWeapon
         #endregion
     }
 
-    public void ThrowPie()
+    public void ThrowPie(Vector2 playerVelocity)
     {
         var forceDirection = direction.normalized;
         _rigidbody2D.isKinematic = false;
-        _rigidbody2D.AddForce(forceDirection * throwForce, ForceMode2D.Impulse);
+        var force = forceDirection * throwForce + (playerVelocity / 2);
+        _rigidbody2D.AddForce(force, ForceMode2D.Impulse);
 
         #region Debugging
 

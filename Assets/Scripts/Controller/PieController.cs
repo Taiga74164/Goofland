@@ -38,7 +38,8 @@ namespace Controller
             pie.direction = _throwDirection;
             _lastPieThrownTime = Time.time;
 
-            pie.ThrowPie();
+            var velocity = GetComponent<Rigidbody2D>().velocity;
+            pie.ThrowPie(velocity);
         }
 
         private bool IsPieReady() => Time.time - _lastPieThrownTime >= _pieCooldownDuration;
