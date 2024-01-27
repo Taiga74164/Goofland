@@ -157,7 +157,7 @@ namespace Controller
             _rb.velocity = new Vector2(
                 _moveInput.x * 
                 (movementSpeed * 
-                 (_isRunning && !_isCrouching && IsGrounded() ? runSpeedMultiplier : 1) *
+                 (_isRunning && !_isCrouching ? runSpeedMultiplier : 1) *
                  (_isCrouching && IsGrounded() ? crouchSpeedMultiplier : 1)), 
                 _rb.velocity.y);
         }
