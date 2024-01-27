@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb2ece91b0eef0242b738b3fefd66b46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gate: {fileID: 3117167251170265403}
+  myObject: {fileID: 3117167251170265403}
 --- !u!1001 &4028556803472018390
 PrefabInstance:
   m_ObjectHideFlags: 0

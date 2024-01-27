@@ -1,15 +1,18 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Levels
 {
     public class Target : MonoBehaviour
     {
-        public GameObject trigger;
+        [SerializeField, InterfaceType(typeof(ITrigger))]
+        private Object myObject;
+        private ITrigger Trigger => myObject as ITrigger;
 
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject.GetComponent<Pie>())
-                trigger.GetComponent<ITrigger>().Trigger();
+                Trigger.Trigger();
         }
     }
 }
