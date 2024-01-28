@@ -1,7 +1,6 @@
 using Managers;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 namespace Controller
 {
@@ -35,10 +34,8 @@ namespace Controller
         public int maxHealth = 3;
         private int _currentHealth;
         
-        [Header("Player Sprites")]
-        public Sprite[] playerSprites;
-        private CapsuleCollider2D _collider2D;
-        private SpriteRenderer _spriteRenderer;
+        [Header("Animation Settings")]
+        public Animator animator;
         
         #region Input Actions
     
@@ -50,9 +47,19 @@ namespace Controller
         // private WeaponController _weaponController;
         private PieController _pieController; 
         private Vector2 _moveInput = Vector2.zero;
-        private bool _isMoving, _isRunning, _isCrouching;
+        private bool _isMoving, _isRunning, _isCrouching, _isJumping, _isFalling, _isAttacking;
         private Vector3 _spawnPosition;
 
+        #region Cached Properties
+
+        private static readonly int Walking = Animator.StringToHash("Walking");
+        private static readonly int Running = Animator.StringToHash("Running");
+        private static readonly int Jumping = Animator.StringToHash("Jumping");
+        private static readonly int Falling = Animator.StringToHash("Falling");
+        private static readonly int Attacking = Animator.StringToHash("Attacking");
+
+        #endregion
+        
         private void Awake()
         {
             if (GameManager.Instance.playerController == null)
@@ -68,12 +75,6 @@ namespace Controller
             // _weaponController = GetComponent<WeaponController>();
             _pieController = GetComponent<PieController>();
             
-            // Get the collider component.
-            _collider2D = GetComponent<CapsuleCollider2D>();
-            
-            // Get the sprite renderer component.
-            _spriteRenderer = GetComponent<SpriteRenderer>();
-            
             // Set up input action references.
             _move = InputManager.Move;
             _jump = InputManager.Jump;
@@ -82,9 +83,22 @@ namespace Controller
             _attack = InputManager.Attack;
 
             // Listen for input actions.
-            _jump.started +=  _ => Jump();
-            _attack.started += _ => Attack();
-            _attack.canceled += _ => _pieController.HandlePieThrow();
+            _jump.started += _ =>
+            {
+                Jump();
+                _isJumping = true;
+            };
+            _attack.started += _ =>
+            {
+                Attack(); 
+                _isAttacking = true;
+                
+            };
+            _attack.canceled += _ =>
+            {
+                _pieController.HandlePieThrow();
+                _isAttacking = false;
+            };
             
             // Set the player's health.
             _currentHealth = maxHealth;
@@ -100,6 +114,8 @@ namespace Controller
             
             HandleCoyoteTime();
             HandleJumpBuffering();
+
+            HandleAnimations();
         }
 
         private void FixedUpdate()
@@ -128,6 +144,15 @@ namespace Controller
             _jumpBufferCounter = 0.0f;
             _coyoteTimeCounter = 0.0f;
         }
+
+        private void HandleAnimations()
+        {
+            animator.SetBool(Walking, _isMoving);
+            animator.SetBool(Running, _isRunning);
+            animator.SetBool(Jumping, _isJumping);
+            animator.SetBool(Falling, _isFalling);
+            animator.SetBool(Attacking, _isAttacking);
+        }
         
         private void HandleMovement()
         {
@@ -136,20 +161,22 @@ namespace Controller
             // Update the player's state.
             _isMoving = _moveInput != Vector2.zero;
             // Update the player's running state.
-            _isRunning = _run.IsPressed();
+            _isRunning = _run.IsPressed() && _isMoving;
             // Update the player's crouching state.
             _isCrouching = _crouch.IsPressed();
-
+            // Update the player's falling state.
+            _isFalling = _rb.velocity.y < 0.0f;
+            
             // Update the player's sprite based on the direction they are facing.
             switch (_moveInput.x)
             {
                 // right
                 case > 0:
-                    _spriteRenderer.sprite = playerSprites[0];
+                    animator.transform.eulerAngles = Vector3.zero;
                     break;
                 // left
                 case < 0:
-                    _spriteRenderer.sprite = playerSprites[1];
+                    animator.transform.eulerAngles = new Vector3(0, 180, 0);
                     break;
             }
             
@@ -170,6 +197,7 @@ namespace Controller
                 case < 0:
                     // Apply the fall multiplier.
                     _rb.velocity += Vector2.up * (Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime);
+                    _isJumping = false;
                     break;
                 // If the player is jumping and the jump button is released, decrease the jump speed.
                 case > 0 when !_jump.IsPressed():
@@ -188,6 +216,7 @@ namespace Controller
             
             // Jump.
             _rb.velocity = new Vector2(_rb.velocity.x, jumpHeight);
+            
             // Animate the jump.
         }
         
