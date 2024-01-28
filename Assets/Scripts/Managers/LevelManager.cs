@@ -13,6 +13,9 @@ namespace Managers
         {
             // Clear the stack of menus before reloading the level.
             MenuManager.Instance.ClearStack();
+            // Unpause the game.
+            if (GameManager.IsPaused) GameManager.IsPaused = false;
+            // Reload the current level.
             LoadLevel(SceneManager.GetActiveScene().buildIndex);
         }
     }

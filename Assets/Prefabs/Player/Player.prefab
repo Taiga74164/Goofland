@@ -126,10 +126,10 @@ MonoBehaviour:
     m_Bits: 64
   maxHealth: 3
   animator: {fileID: 6217618972266284348}
-  jumpSound: {fileID: 0}
-  hurtSound: {fileID: 0}
-  onJump: {fileID: 0}
-  onTakeDamage: {fileID: 0}
+  jumpSound: {fileID: -3110268896995303043}
+  hurtSound: {fileID: -3110268896995303043}
+  onJump: {fileID: 11400000, guid: 3a81f5e22d7786d4985aacd0a3763ccd, type: 2}
+  onTakeDamage: {fileID: 11400000, guid: 3a81f5e22d7786d4985aacd0a3763ccd, type: 2}
 --- !u!114 &5675425815831273900
 MonoBehaviour:
   m_ObjectHideFlags: 0
