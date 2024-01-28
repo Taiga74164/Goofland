@@ -12,6 +12,7 @@ namespace Controller
         public float runSpeedMultiplier = 1.5f;
         public float crouchSpeedMultiplier = 0.5f;
         public float jumpHeight = 5.0f;
+        public float knockbackForce;
         [Tooltip("Higher value, faster fall.")]
         public float fallMultiplier = 5.0f;
         [Tooltip("Lower value, shorter jump.")]
@@ -274,7 +275,7 @@ namespace Controller
            _pieController.Charge();
         }
 
-        public void TakeDamage(int damage = 1)
+        public void TakeDamage(Transform enemy = null,int damage = 1)
         {
             _currentHealth -= damage;
             onTakeDamage.Raise(hurtSound);
@@ -286,6 +287,7 @@ namespace Controller
             else
             {
                 // TODO: Animate the player taking damage.
+                _rb.AddForce((transform.position - enemy.position).normalized * knockbackForce);
             }
         }
 

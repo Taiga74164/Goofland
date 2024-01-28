@@ -22,7 +22,7 @@ namespace Controller
         public void Charging()
         {
             _chargeTime = Mathf.Min(_chargeTime + Time.deltaTime, maxChargeTime);
-            Debug.Log($"charging: {_chargeTime}");
+            //Debug.Log($"charging: {_chargeTime}");
         }
 
         public void HandlePieThrow() //spawns and sets physics of pie
