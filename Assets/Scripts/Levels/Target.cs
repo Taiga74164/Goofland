@@ -8,7 +8,7 @@ namespace Levels
         private Object myObject;
         private ITrigger Trigger => myObject as ITrigger;
 
-        private void OnTriggerEnter2D(Collider2D other)
+        private void OnCollisionEnter2D(Collision2D other)
         {
             if (other.gameObject.GetComponent<Pie>())
                 Trigger.Trigger();
