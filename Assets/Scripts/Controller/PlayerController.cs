@@ -252,7 +252,7 @@ namespace Controller
         private void Respawn()
         {
             if (_currentHealth <= 0)
-                LevelManager.Instance.RestartLevel();
+                LevelManager.RestartLevel();
             
             _currentHealth = maxHealth;
             

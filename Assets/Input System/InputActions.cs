@@ -245,6 +245,34 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Interface"",
+            ""id"": ""75c65396-148f-4858-966c-d032d6715309"",
+            ""actions"": [
+                {
+                    ""name"": ""Return"",
+                    ""type"": ""Button"",
+                    ""id"": ""278fba34-385d-41fb-89dd-eb61aa1bd328"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""92b2c75b-fb36-4ec7-a7ab-8483686cb76c"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Return"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -259,6 +287,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Player_SelectPie = m_Player.FindAction("SelectPie", throwIfNotFound: true);
         m_Player_SelectWaterGun = m_Player.FindAction("SelectWaterGun", throwIfNotFound: true);
         m_Player_SelectBananaPeel = m_Player.FindAction("SelectBananaPeel", throwIfNotFound: true);
+        // Interface
+        m_Interface = asset.FindActionMap("Interface", throwIfNotFound: true);
+        m_Interface_Return = m_Interface.FindAction("Return", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -418,6 +449,52 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // Interface
+    private readonly InputActionMap m_Interface;
+    private List<IInterfaceActions> m_InterfaceActionsCallbackInterfaces = new List<IInterfaceActions>();
+    private readonly InputAction m_Interface_Return;
+    public struct InterfaceActions
+    {
+        private @InputActions m_Wrapper;
+        public InterfaceActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Return => m_Wrapper.m_Interface_Return;
+        public InputActionMap Get() { return m_Wrapper.m_Interface; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(InterfaceActions set) { return set.Get(); }
+        public void AddCallbacks(IInterfaceActions instance)
+        {
+            if (instance == null || m_Wrapper.m_InterfaceActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_InterfaceActionsCallbackInterfaces.Add(instance);
+            @Return.started += instance.OnReturn;
+            @Return.performed += instance.OnReturn;
+            @Return.canceled += instance.OnReturn;
+        }
+
+        private void UnregisterCallbacks(IInterfaceActions instance)
+        {
+            @Return.started -= instance.OnReturn;
+            @Return.performed -= instance.OnReturn;
+            @Return.canceled -= instance.OnReturn;
+        }
+
+        public void RemoveCallbacks(IInterfaceActions instance)
+        {
+            if (m_Wrapper.m_InterfaceActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IInterfaceActions instance)
+        {
+            foreach (var item in m_Wrapper.m_InterfaceActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_InterfaceActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public InterfaceActions @Interface => new InterfaceActions(this);
     public interface IPlayerActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -428,5 +505,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnSelectPie(InputAction.CallbackContext context);
         void OnSelectWaterGun(InputAction.CallbackContext context);
         void OnSelectBananaPeel(InputAction.CallbackContext context);
+    }
+    public interface IInterfaceActions
+    {
+        void OnReturn(InputAction.CallbackContext context);
     }
 }
