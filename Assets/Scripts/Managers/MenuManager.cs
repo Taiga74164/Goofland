@@ -5,7 +5,12 @@ namespace Managers
     public class MenuManager : Singleton<MenuManager>
     {
         private Stack<Menu> _menuStack = new Stack<Menu>();
-    
+        
+        /// <summary>
+        /// Clears the menuStack.
+        /// </summary>
+        public void ClearStack() => _menuStack.Clear();
+        
         /// <summary>
         /// Checks if the menuStack has any menus open and if the top menu is the same as the menu you want to check.
         /// </summary>

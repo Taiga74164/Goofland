@@ -3,9 +3,11 @@ using UnityEngine;
 
 namespace UI
 {
-    public class Victory : MonoBehaviour
+    public class Victory : Menu
     {
         [SerializeField] private SettingsMenu settingsMenu;
+        
+        private void OnEnable() => GameManager.IsPaused = true;
         
         public void OnHomeButtonClicked() => LevelManager.LoadLevel("MainMenu");
         

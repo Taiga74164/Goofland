@@ -9,7 +9,12 @@ namespace Managers
         
         public static void LoadLevel(string levelName) => SceneManager.LoadScene(levelName);
         
-        public static void RestartLevel() => LoadLevel(SceneManager.GetActiveScene().buildIndex);
+        public static void RestartLevel()
+        {
+            // Clear the stack of menus before reloading the level.
+            MenuManager.Instance.ClearStack();
+            LoadLevel(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 }
 
