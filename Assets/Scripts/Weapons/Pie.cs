@@ -1,3 +1,4 @@
+using Managers;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -24,6 +25,8 @@ public class Pie : MonoBehaviour, IWeapon
 
     private void LateUpdate()
     {
+        if (GameManager.Instance.IsPaused) return;
+        
         if (transform.position.y < -100)
             Destroy(gameObject);
         
@@ -71,4 +74,10 @@ public class Pie : MonoBehaviour, IWeapon
         Gizmos.DrawLine(_initialPosition, transform.position);
     }
 #endif
+    
+    public bool Enabled
+    {
+        get => this.enabled;
+        set => this.enabled = value;
+    }
 }

@@ -54,4 +54,10 @@ public class BananaPeel : MonoBehaviour, IWeapon
             Explode();
         }      
     }
+    
+    public bool Enabled
+    {
+        get => this.enabled;
+        set => this.enabled = value;
+    }
 }

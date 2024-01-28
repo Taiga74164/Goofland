@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Managers;
 using UnityEngine;
 
 namespace Levels
@@ -46,6 +47,8 @@ namespace Levels
 
         private void Update()
         {
+            if (GameManager.Instance.IsPaused) return;
+            
             // var distance = Vector3.Distance(transform.position, _destination);
             // if (distance < 0.01f)
             // {
@@ -58,12 +61,16 @@ namespace Levels
 
         private void FixedUpdate()
         {
+            if (GameManager.Instance.IsPaused) return;
+            
             if (transform.position != waypoints[_targetIndex].position) return;
             _targetIndex = _targetIndex == waypoints.Count - 1 ? 0 : _targetIndex + 1;
         }
         
         private void LateUpdate()
         {
+            if (GameManager.Instance.IsPaused) return;
+            
             foreach (var playerRb in playersOnPlatform)
             {
                 if (playerRb == null) continue;

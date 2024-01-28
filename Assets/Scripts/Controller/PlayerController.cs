@@ -109,6 +109,8 @@ namespace Controller
 
         private void Update()
         {
+            if (GameManager.Instance.IsPaused) return;
+            
             if (_attack.IsPressed())
                 _pieController.Charging();
             
@@ -120,6 +122,8 @@ namespace Controller
 
         private void FixedUpdate()
         {
+            if (GameManager.Instance.IsPaused) return;
+            
             HandleMovement();
             HandleClampFallSpeed();
         }
@@ -212,7 +216,7 @@ namespace Controller
         /// </summary>
         private void Jump()
         {
-            if (!IsGrounded() && _coyoteTimeCounter <= 0.0f) return;
+            if (GameManager.Instance.IsPaused && !IsGrounded() && _coyoteTimeCounter <= 0.0f) return;
             
             // Jump.
             _rb.velocity = new Vector2(_rb.velocity.x, jumpHeight);
@@ -235,6 +239,7 @@ namespace Controller
         /// </summary>
         private void Attack()
         {
+            if (GameManager.Instance.IsPaused) return;
            /*
             switch (_weaponController.currentWeapon)
             {

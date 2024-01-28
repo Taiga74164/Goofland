@@ -20,6 +20,9 @@ namespace Managers
         public static InputAction SelectPie;
         public static InputAction SelectWaterGun;
         public static InputAction SelectBananaPeel;
+        
+        // User Interface actions.
+        public static InputAction Return;
 
         private void Awake()
         {
@@ -35,6 +38,9 @@ namespace Managers
             SelectPie = _actions.Player.SelectPie;
             SelectWaterGun = _actions.Player.SelectWaterGun;
             SelectBananaPeel = _actions.Player.SelectBananaPeel;
+            
+            // Update the user interface actions.
+            Return = _actions.Interface.Return;
         }
 
         #region Boilerplate

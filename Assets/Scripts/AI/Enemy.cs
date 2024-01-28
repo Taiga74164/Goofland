@@ -1,5 +1,6 @@
 using Controller;
 using JetBrains.Annotations;
+using Managers;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -33,6 +34,8 @@ public class Enemy : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
+        if (GameManager.Instance.IsPaused) return;
+        
         if (useTimer) Timer();
 
         MoveEnemy();
