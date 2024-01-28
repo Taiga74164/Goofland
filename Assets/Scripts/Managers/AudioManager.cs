@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace Managers
 {
     public class AudioManager : Singleton<AudioManager>
     {
-        [SerializeField] private AudioSource _mainTheme;
+        public AudioMixer audioMixer;
+        
         public void PlayAudio(object data)
         {
             if (data is AudioSource audioSource)
@@ -19,6 +21,16 @@ namespace Managers
             {
                 audioSource.Stop();
             }
+        }
+
+        public void SetBGMVolume(float value)
+        {
+            audioMixer.SetFloat("BGMVolume", value);
+        }
+        
+        public void SetSFXVolume(float value)
+        {
+            audioMixer.SetFloat("SFXVolume", value);
         }
     }
 }
