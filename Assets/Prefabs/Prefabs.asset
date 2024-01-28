@@ -33,3 +33,8 @@ MonoBehaviour:
     shouldPool: 0
     initialSize: 5
     objectRoot: Player/
+  - type: 6
+    prefab: {fileID: 3998107801253273502, guid: e508024bba0cf9647ab8e2ab8bef59b6, type: 3}
+    shouldPool: 1
+    initialSize: 3
+    objectRoot: Canvas/HUD/HealthContainer

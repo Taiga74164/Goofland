@@ -30,7 +30,8 @@ namespace Managers
             // }
         
             // Open the menu.
-            menu.Open();
+            if (menu != null)
+                menu.Open();
         
             // Add the menu to the stack.
             _menuStack.Push(menu);
@@ -46,7 +47,8 @@ namespace Managers
         
             // Close the top menu.
             var topMenu = _menuStack.Pop();
-            topMenu.Close();
+            if (topMenu != null)
+                topMenu.Close();
         
             // Open the previous menu.
             if (_menuStack.Count > 0)

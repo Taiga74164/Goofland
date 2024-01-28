@@ -32,8 +32,8 @@ namespace Controller
 
         [Header("Player Health Settings")]
         public int maxHealth = 3;
-        private int _currentHealth;
-        
+        public int CurrentHealth { get; private set; }
+
         [Header("Animation Settings")]
         public Animator animator;
         
@@ -108,7 +108,7 @@ namespace Controller
             };
             
             // Set the player's health.
-            _currentHealth = maxHealth;
+            CurrentHealth = maxHealth;
             
             // Set the spawn position.
             _spawnPosition = transform.position;
@@ -276,10 +276,10 @@ namespace Controller
 
         public void TakeDamage(int damage = 1)
         {
-            _currentHealth -= damage;
+            CurrentHealth -= damage;
             onTakeDamage.Raise(this, hurtSound);
 
-            if (_currentHealth <= 0)
+            if (CurrentHealth <= 0)
             {
                 Die();
             }
@@ -301,10 +301,10 @@ namespace Controller
 
         private void Respawn()
         {
-            if (_currentHealth <= 0)
+            if (CurrentHealth <= 0)
                 LevelManager.RestartLevel();
             
-            _currentHealth = maxHealth;
+            CurrentHealth = maxHealth;
             
             // Reset.
             transform.position = _spawnPosition;

@@ -12,15 +12,12 @@ namespace Managers
         public static bool IsPaused
         {
             get => Instance._isPaused;
-            set
-            {
-                Instance._isPaused = value;
-                // Instance.playerController.enabled = !value;
-                // FindObjectOfType<PieController>().enabled = !value;
-                // FindObjectsOfType<MonoBehaviour>().OfType<IWeapon>().ToList().ForEach(
-                //     w => w.Enabled = !value);
-                // FindObjectsOfType<Enemy>().ToList().ForEach(e => e.enabled = !value);
-            }
+            set => Instance._isPaused = value;
+            // Instance.playerController.enabled = !value;
+            // FindObjectOfType<PieController>().enabled = !value;
+            // FindObjectsOfType<MonoBehaviour>().OfType<IWeapon>().ToList().ForEach(
+            //     w => w.Enabled = !value);
+            // FindObjectsOfType<Enemy>().ToList().ForEach(e => e.enabled = !value);
         }
     }
 }

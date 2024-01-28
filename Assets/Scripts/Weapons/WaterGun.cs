@@ -69,6 +69,7 @@ public class WaterGun : MonoBehaviour
         Destroy(obj);
     }
     
+    #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
@@ -76,4 +77,5 @@ public class WaterGun : MonoBehaviour
         
         UnityEditor.Handles.Label(transform.position + transform.right * _shotDistance, $"{_shotDistance} units");
     }
+    #endif
 }

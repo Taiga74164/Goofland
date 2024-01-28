@@ -37,5 +37,7 @@ namespace Objects
         BananaPeel,
         // Projectiles.
         WaterGunProjectile,
+        // UI.
+        Health
     }
 }
