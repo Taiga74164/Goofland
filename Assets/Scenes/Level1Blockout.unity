@@ -245,6 +245,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Basic
       objectReference: {fileID: 0}
+    - target: {fileID: 6050030673327814775, guid: 8504b216ab260c94cab84284675b009c, type: 3}
+      propertyPath: useTimer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6050030673327814775, guid: 8504b216ab260c94cab84284675b009c, type: 3}
+      propertyPath: turnTimer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7897555048088618765, guid: 8504b216ab260c94cab84284675b009c, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -402,6 +410,14 @@ PrefabInstance:
     - target: {fileID: 3436695763135192139, guid: 8504b216ab260c94cab84284675b009c, type: 3}
       propertyPath: m_Name
       value: Basic
+      objectReference: {fileID: 0}
+    - target: {fileID: 6050030673327814775, guid: 8504b216ab260c94cab84284675b009c, type: 3}
+      propertyPath: useTimer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6050030673327814775, guid: 8504b216ab260c94cab84284675b009c, type: 3}
+      propertyPath: turnTimer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7897555048088618758, guid: 8504b216ab260c94cab84284675b009c, type: 3}
       propertyPath: m_Name
@@ -13595,6 +13611,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Basic
       objectReference: {fileID: 0}
+    - target: {fileID: 4563184286788681733, guid: 8504b216ab260c94cab84284675b009c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.46844482
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563184286788681733, guid: 8504b216ab260c94cab84284675b009c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.024736
+      objectReference: {fileID: 0}
     - target: {fileID: 7897555048088618758, guid: 8504b216ab260c94cab84284675b009c, type: 3}
       propertyPath: m_Name
       value: UmbrellaHat (4)
@@ -13613,6 +13637,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8504b216ab260c94cab84284675b009c, type: 3}
+--- !u!1 &1153140735 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5010838872374434220, guid: 8504b216ab260c94cab84284675b009c, type: 3}
+  m_PrefabInstance: {fileID: 1153140734}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1153140736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153140735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73611677cdfe1c949b9f62a8eab93fbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rig: {fileID: 0}
+  speed: 0
+  damage: 2
+  useTimer: 1
+  turnTimer: 0
+  pieWeakness: 0
+  bananaWeakness: 0
+  waterWeakness: 0
 --- !u!1 &1180514169
 GameObject:
   m_ObjectHideFlags: 0
@@ -14190,6 +14239,14 @@ PrefabInstance:
     - target: {fileID: 3436695763135192139, guid: 8504b216ab260c94cab84284675b009c, type: 3}
       propertyPath: m_Name
       value: Basic
+      objectReference: {fileID: 0}
+    - target: {fileID: 6050030673327814775, guid: 8504b216ab260c94cab84284675b009c, type: 3}
+      propertyPath: useTimer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6050030673327814775, guid: 8504b216ab260c94cab84284675b009c, type: 3}
+      propertyPath: turnTimer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7897555048088618758, guid: 8504b216ab260c94cab84284675b009c, type: 3}
       propertyPath: m_Name
