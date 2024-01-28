@@ -173,7 +173,7 @@ namespace Controller
             // Update the player's state.
             _isMoving = _moveInput != Vector2.zero;
             // Update the player's running state.
-            _isRunning = _run.IsPressed() && _isMoving;
+            _isRunning = _run.IsPressed() && _isMoving && IsGrounded();
             // Update the player's crouching state.
             _isCrouching = _crouch.IsPressed();
             // Update the player's falling state.
