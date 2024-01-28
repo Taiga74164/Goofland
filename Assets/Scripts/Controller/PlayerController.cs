@@ -36,14 +36,14 @@ namespace Controller
         
         [Header("Animation Settings")]
         public Animator animator;
-
+        
         [Header("Audio Settings")]
-        [SerializeField] private AudioSource _jumpSound;
-        [SerializeField] private AudioSource _hurtSound;
+        [SerializeField] private AudioSource jumpSound;
+        [SerializeField] private AudioSource hurtSound;
 
         [Header("Event Settings")]
-        public GameEvent OnJump;
-        public GameEvent OnTakeDamage;
+        public GameEvent onJump;
+        public GameEvent onTakeDamage;
         #region Input Actions
 
         private InputAction _move, _jump, _crouch, _run, _attack;
@@ -116,7 +116,7 @@ namespace Controller
 
         private void Update()
         {
-            if (GameManager.Instance.IsPaused) return;
+            if (GameManager.IsPaused) return;
             
             if (_attack.IsPressed())
                 _pieController.Charging();
@@ -129,7 +129,7 @@ namespace Controller
 
         private void FixedUpdate()
         {
-            if (GameManager.Instance.IsPaused) return;
+            if (GameManager.IsPaused) return;
             
             HandleMovement();
             HandleClampFallSpeed();
@@ -223,13 +223,13 @@ namespace Controller
         /// </summary>
         private void Jump()
         {
-            if (GameManager.Instance.IsPaused && !IsGrounded() && _coyoteTimeCounter <= 0.0f) return;
+            if (GameManager.IsPaused && !IsGrounded() && _coyoteTimeCounter <= 0.0f) return;
             
             if (!IsGrounded() && _coyoteTimeCounter <= 0.0f) return;
 
             //Play Jump SFX
 
-            OnJump.Raise(this, _jumpSound);
+            onJump.Raise(this, jumpSound);
 
             // Jump.
 
@@ -253,7 +253,7 @@ namespace Controller
         /// </summary>
         private void Attack()
         {
-            if (GameManager.Instance.IsPaused) return;
+            if (GameManager.IsPaused) return;
            /*
             switch (_weaponController.currentWeapon)
             {
@@ -277,7 +277,7 @@ namespace Controller
         public void TakeDamage(int damage = 1)
         {
             _currentHealth -= damage;
-            OnTakeDamage.Raise(this, _hurtSound);
+            onTakeDamage.Raise(this, hurtSound);
 
             if (_currentHealth <= 0)
             {
@@ -310,7 +310,7 @@ namespace Controller
             transform.position = _spawnPosition;
         }
 
-        private bool IsGrounded() => 
+        private bool IsGrounded() => !GameManager.IsPaused &&
             Physics2D.OverlapCircle(groundCheckTransform.position, groundCheckRadius, groundLayerMask);
     }
 }

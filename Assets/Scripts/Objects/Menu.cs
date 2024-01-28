@@ -3,9 +3,9 @@ using UnityEngine;
 
 public abstract class Menu<T> : Singleton<T> where T : Menu<T>
 {
-    public virtual void Open() => gameObject.SetActive(true);
+    public void Open() => gameObject.SetActive(true);
     
-    public virtual void Close() => gameObject.SetActive(false);
+    public void Close() => gameObject.SetActive(false);
 }
 
 public abstract class Menu : Menu<Menu>
@@ -18,7 +18,7 @@ public abstract class Menu : Menu<Menu>
     
     public bool IsOpen => MenuManager.Instance.IsMenuOpen(this);
     
-    public virtual void OpenMenu() => MenuManager.Instance.OpenMenu(this);
+    public void OpenMenu() => MenuManager.Instance.OpenMenu(this);
     
-    public virtual void CloseMenu() => MenuManager.Instance.CloseMenu();
+    public void CloseMenu() => MenuManager.Instance.CloseMenu();
 }

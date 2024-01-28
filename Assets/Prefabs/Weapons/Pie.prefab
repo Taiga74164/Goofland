@@ -124,8 +124,8 @@ MonoBehaviour:
   direction: {x: 20, y: 100}
   throwForce: 10
   debug: 1
-  OnImpact: {fileID: 11400000, guid: 3a81f5e22d7786d4985aacd0a3763ccd, type: 2}
-  _audioSource: {fileID: 4789983632227013063}
+  onImpact: {fileID: 11400000, guid: 3a81f5e22d7786d4985aacd0a3763ccd, type: 2}
+  audioSource: {fileID: 4789983632227013063}
 --- !u!61 &1972078411033555684
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -7,9 +7,9 @@ namespace UI
     {
         [SerializeField] private SettingsMenu settingsMenu;
         
-        private void OnEnable() => GameManager.Instance.IsPaused = true;
+        private void OnEnable() => GameManager.IsPaused = true;
         
-        private void OnDisable() => GameManager.Instance.IsPaused = false;
+        private void OnDisable() => GameManager.IsPaused = false;
         
         public void OnRestartButtonClicked() => LevelManager.RestartLevel();
 

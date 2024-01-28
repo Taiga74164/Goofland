@@ -9,12 +9,12 @@ namespace Managers
         public PlayerController playerController;
 
         private bool _isPaused;
-        public bool IsPaused
+        public static bool IsPaused
         {
-            get => _isPaused;
+            get => Instance._isPaused;
             set
             {
-                _isPaused = value;
+                Instance._isPaused = value;
                 // Instance.playerController.enabled = !value;
                 // FindObjectOfType<PieController>().enabled = !value;
                 // FindObjectsOfType<MonoBehaviour>().OfType<IWeapon>().ToList().ForEach(

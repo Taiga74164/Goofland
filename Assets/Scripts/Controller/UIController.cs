@@ -9,17 +9,16 @@ namespace Controller
     {
         public PauseMenu pauseMenu;
         
-        // private InputAction _action;
-        //
-        // private void Start()
-        // {
-        //     _action = InputManager.Return;
-        //     _action.canceled += _ => PauseGame();
-        // }
-        
+        private InputAction _action;
+
+        private void Start()
+        {
+            _action = InputManager.Return;
+        }
+
         private void Update()
         {
-            if (Input.GetKeyUp(KeyCode.Escape) && !GameManager.Instance.IsPaused && !pauseMenu.IsOpen)
+            if (_action.WasReleasedThisFrame() && !GameManager.IsPaused && !pauseMenu.IsOpen)
                 pauseMenu.OpenMenu();
         }
     }

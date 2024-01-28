@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        if (GameManager.Instance.IsPaused) return;
+        if (GameManager.IsPaused) return;
         
         if (useTimer) Timer();
 

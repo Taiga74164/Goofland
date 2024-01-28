@@ -15,8 +15,8 @@ public class Pie : MonoBehaviour, IWeapon
     private float _travelDistance;
 
     [Header("Audio")]
-    public GameEvent OnImpact;
-    [SerializeField] private AudioSource _audioSource;
+    public GameEvent onImpact;
+    [SerializeField] private AudioSource audioSource;
 
     private readonly float _spawnOffSet = 0.1f;
     
@@ -29,7 +29,7 @@ public class Pie : MonoBehaviour, IWeapon
 
     private void LateUpdate()
     {
-        if (GameManager.Instance.IsPaused) return;
+        if (GameManager.IsPaused) return;
         
         if (transform.position.y < -100)
             Destroy(gameObject);
@@ -61,20 +61,20 @@ public class Pie : MonoBehaviour, IWeapon
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            OnImpact.Raise(this, _audioSource);
+            onImpact.Raise(this, audioSource);
             // TODO: Deal damage to the enemy.
             other.gameObject.GetComponent<Enemy>().GotHit(this);
             _rigidbody2D.velocity = Vector2.zero;
             _rigidbody2D.bodyType = RigidbodyType2D.Static;
-            Invoke("Die", _audioSource.clip.length);
+            Invoke(nameof(Die), audioSource.clip.length);
             //Destroy(gameObject);
         }
         else if(!other.IsPlayer())
         {
-            OnImpact.Raise(this, _audioSource);
+            onImpact.Raise(this, audioSource);
             _rigidbody2D.velocity = Vector2.zero;
             _rigidbody2D.bodyType = RigidbodyType2D.Static;
-            Invoke("Die", _audioSource.clip.length);
+            Invoke(nameof(Die), audioSource.clip.length);
             //Destroy(gameObject);
         }
     }
