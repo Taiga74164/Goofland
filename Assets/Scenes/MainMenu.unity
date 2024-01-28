@@ -2005,7 +2005,11 @@ MonoBehaviour:
     Cansu G
 
 
-    Music Composer: Jay W'
+    Music Composer: Jay W
+
+
+    Special thanks: Sean Lynch and Megan
+    Theam'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 05b7205a458af7943ac09b081992099d, type: 2}
   m_sharedMaterial: {fileID: -5571567102015074194, guid: 05b7205a458af7943ac09b081992099d, type: 2}
@@ -2032,8 +2036,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

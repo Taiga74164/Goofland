@@ -1,4 +1,5 @@
 using Managers;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI
@@ -15,6 +16,10 @@ namespace UI
 
         protected override void Awake()
         {
+            bgmVolumeBar.onValueChanged.AddListener(OnBGMVolumeBarValueChanged);
+            sfxVolumeBar.onValueChanged.AddListener(OnSFXVolumeBarValueChanged);
+            masterVolumeBar.onValueChanged.AddListener(OnMasterVolumeBarValueChanged);
+            
             LoadSettings();
             UpdateUIElements();
             UpdateSettings();
@@ -46,23 +51,27 @@ namespace UI
             PlayerPrefsManager.BGMVolume = _bgmVolume;
             PlayerPrefsManager.SFXVolume = _sfxVolume;
             PlayerPrefsManager.MasterVolume = _masterVolume;
+            PlayerPrefsManager.Save();
         }
     
         public void OnBGMVolumeBarValueChanged(float value)
         {
-            PlayerPrefsManager.BGMVolume = value;
+            _bgmVolume = value;
+            AudioManager.Instance.SetBGMVolume(bgmVolumeBar.value);
             SaveSettings();
         }
     
         public void OnSFXVolumeBarValueChanged(float value)
         {
-            PlayerPrefsManager.SFXVolume = value;
+            _sfxVolume = value;
+            AudioManager.Instance.SetSFXVolume(sfxVolumeBar.value);
             SaveSettings();
         }
     
         public void OnMasterVolumeBarValueChanged(float value)
         {
-            PlayerPrefsManager.MasterVolume = value;
+            _masterVolume = value;
+            AudioManager.Instance.SetMasterVolume(masterVolumeBar.value);
             SaveSettings();
         }
 
