@@ -36,9 +36,16 @@ namespace Controller
         
         [Header("Animation Settings")]
         public Animator animator;
-        
+
+        [Header("Audio Settings")]
+        [SerializeField] private AudioSource _jumpSound;
+        [SerializeField] private AudioSource _hurtSound;
+
+        [Header("Event Settings")]
+        public GameEvent OnJump;
+        public GameEvent OnTakeDamage;
         #region Input Actions
-    
+
         private InputAction _move, _jump, _crouch, _run, _attack;
     
         #endregion
@@ -59,7 +66,7 @@ namespace Controller
         private static readonly int Attacking = Animator.StringToHash("Attacking");
 
         #endregion
-        
+
         private void Awake()
         {
             if (GameManager.Instance.playerController == null)
@@ -218,7 +225,14 @@ namespace Controller
         {
             if (GameManager.Instance.IsPaused && !IsGrounded() && _coyoteTimeCounter <= 0.0f) return;
             
+            if (!IsGrounded() && _coyoteTimeCounter <= 0.0f) return;
+
+            //Play Jump SFX
+
+            OnJump.Raise(this, _jumpSound);
+
             // Jump.
+
             _rb.velocity = new Vector2(_rb.velocity.x, jumpHeight);
             
             // Animate the jump.
@@ -263,6 +277,8 @@ namespace Controller
         public void TakeDamage(int damage = 1)
         {
             _currentHealth -= damage;
+            OnTakeDamage.Raise(this, _hurtSound);
+
             if (_currentHealth <= 0)
             {
                 Die();
