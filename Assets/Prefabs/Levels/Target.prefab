@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 447341642740720358}
   - component: {fileID: 447341642740720359}
-  - component: {fileID: 447341642740720344}
+  - component: {fileID: 2192927843173387106}
   - component: {fileID: 447341642740720345}
   m_Layer: 0
   m_Name: Target
@@ -81,14 +81,14 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 5.101465, y: 6.6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &447341642740720344
-BoxCollider2D:
+--- !u!58 &2192927843173387106
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -97,22 +97,12 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.84}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.101465, y: 6.6}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0.030831337, y: 0.90644205}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Radius: 0.6485028
 --- !u!114 &447341642740720345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,6 +123,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 447341642740720358}
     m_Modifications:
+    - target: {fileID: 2065507398139953890, guid: 6129d4b2dcf2f594ca44ceaea988ad2c, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 1.2753663
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065507398139953890, guid: 6129d4b2dcf2f594ca44ceaea988ad2c, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 1.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065507398139953891, guid: 6129d4b2dcf2f594ca44ceaea988ad2c, type: 3}
+      propertyPath: m_Size.x
+      value: 1.2753663
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065507398139953891, guid: 6129d4b2dcf2f594ca44ceaea988ad2c, type: 3}
+      propertyPath: m_Size.y
+      value: 1.65
+      objectReference: {fileID: 0}
     - target: {fileID: 2065507398139953900, guid: 6129d4b2dcf2f594ca44ceaea988ad2c, type: 3}
       propertyPath: m_RootOrder
       value: 0
