@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[System.Serializable] public class CustomGameEvent : UnityEvent<Component, object> { }
+[System.Serializable] public class CustomGameEvent : UnityEvent<object> { }
 public class GameEventListener : MonoBehaviour
 {
     public GameEvent gameEvent; //the event this object is listening for
@@ -19,8 +19,8 @@ public class GameEventListener : MonoBehaviour
         gameEvent.UnregisterListener(this);
     }
 
-    public void OnEventRaised(Component sender, object data)
+    public void OnEventRaised(object data)
     {
-        response.Invoke(sender, data);
+        response.Invoke(data);
     }
 }

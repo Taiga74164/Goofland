@@ -229,7 +229,7 @@ namespace Controller
 
             //Play Jump SFX
 
-            onJump.Raise(this, jumpSound);
+            onJump.Raise(jumpSound);
 
             // Jump.
 
@@ -277,7 +277,7 @@ namespace Controller
         public void TakeDamage(int damage = 1)
         {
             _currentHealth -= damage;
-            onTakeDamage.Raise(this, hurtSound);
+            onTakeDamage.Raise(hurtSound);
 
             if (_currentHealth <= 0)
             {
