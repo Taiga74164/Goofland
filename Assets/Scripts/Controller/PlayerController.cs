@@ -24,6 +24,7 @@ namespace Controller
         
         [Header("Jump Buffering Settings")]
         public float jumpBufferTime = 0.2f;
+        public float jumpBoostMultiplier = 1.2f;
         private float _jumpBufferCounter;
 
         [Header("Ground Check Settings")]
@@ -228,13 +229,19 @@ namespace Controller
             
             if (!IsGrounded() && _coyoteTimeCounter <= 0.0f) return;
 
-            //Play Jump SFX
-
+            // Play Jump SFX.
             onJump.Raise(jumpSound);
+            
+            // Increase the jump force if the player is running.
+            var jumpForce = jumpHeight;
+            if (_isRunning)
+            {
+                jumpForce *= jumpBoostMultiplier;
+                Debug.Log("Jump Boost!");
+            }
 
             // Jump.
-
-            _rb.velocity = new Vector2(_rb.velocity.x, jumpHeight);
+            _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
             
             // Animate the jump.
         }
