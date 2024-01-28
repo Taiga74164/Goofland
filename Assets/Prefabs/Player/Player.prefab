@@ -114,6 +114,7 @@ MonoBehaviour:
   runSpeedMultiplier: 1.8
   crouchSpeedMultiplier: 0.5
   jumpHeight: 8
+  knockbackForce: 1000
   fallMultiplier: 5
   lowJumpMultiplier: 4
   coyoteTime: 0.2

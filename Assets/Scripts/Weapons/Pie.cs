@@ -61,7 +61,7 @@ public class Pie : MonoBehaviour, IWeapon
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            onImpact.Raise(this, audioSource);
+            onImpact.Raise(audioSource);
             // TODO: Deal damage to the enemy.
             other.gameObject.GetComponent<Enemy>().GotHit(this);
             _rigidbody2D.velocity = Vector2.zero;
@@ -72,7 +72,7 @@ public class Pie : MonoBehaviour, IWeapon
         }
         else if(!other.IsPlayer())
         {
-            onImpact.Raise(this, audioSource);
+            onImpact.Raise(audioSource);
             _rigidbody2D.velocity = Vector2.zero;
             _rigidbody2D.bodyType = RigidbodyType2D.Static;
             Invoke(nameof(Die), audioSource.clip.length);

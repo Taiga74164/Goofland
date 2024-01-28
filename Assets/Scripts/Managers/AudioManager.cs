@@ -4,7 +4,8 @@ namespace Managers
 {
     public class AudioManager : Singleton<AudioManager>
     {
-        public void PlayAudio(Component sender, object data)
+        [SerializeField] private AudioSource _mainTheme;
+        public void PlayAudio(object data)
         {
             if (data is AudioSource audioSource)
             {
@@ -12,7 +13,7 @@ namespace Managers
             }
         }
 
-        public void StopAudio(Component sender, object data)
+        public void StopAudio(object data)
         {
             if (data is AudioSource audioSource)
             {
