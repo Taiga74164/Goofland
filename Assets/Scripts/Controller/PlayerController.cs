@@ -118,6 +118,9 @@ namespace Controller
 
         private void Update()
         {
+            // Take damage if the player falls too far.
+            if (_rb.velocity.y < -30.0f) TakeDamage();
+            
             if (GameManager.IsPaused) return;
             
             if (_attack.IsPressed())
