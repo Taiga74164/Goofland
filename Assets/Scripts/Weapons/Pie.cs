@@ -66,6 +66,7 @@ public class Pie : MonoBehaviour, IWeapon
             other.gameObject.GetComponent<Enemy>().GotHit(this);
             _rigidbody2D.velocity = Vector2.zero;
             _rigidbody2D.bodyType = RigidbodyType2D.Static;
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
             Invoke(nameof(Die), audioSource.clip.length);
             //Destroy(gameObject);
         }

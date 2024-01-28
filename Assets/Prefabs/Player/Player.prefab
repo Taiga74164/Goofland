@@ -125,10 +125,10 @@ MonoBehaviour:
     m_Bits: 64
   maxHealth: 3
   animator: {fileID: 6217618972266284348}
-  _jumpSound: {fileID: -3110268896995303043}
-  _hurtSound: {fileID: -4992933149475272467}
-  OnJump: {fileID: 11400000, guid: 3a81f5e22d7786d4985aacd0a3763ccd, type: 2}
-  OnTakeDamage: {fileID: 11400000, guid: 3a81f5e22d7786d4985aacd0a3763ccd, type: 2}
+  jumpSound: {fileID: 0}
+  hurtSound: {fileID: 0}
+  onJump: {fileID: 0}
+  onTakeDamage: {fileID: 0}
 --- !u!114 &5675425815831273900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,7 +314,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 383fde201bdecc240b45c691c3a1882e, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
