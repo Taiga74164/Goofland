@@ -13,6 +13,10 @@ public class Pie : MonoBehaviour, IWeapon
     private Vector3 _initialPosition;
     private float _travelDistance;
 
+    [Header("Audio")]
+    public GameEvent OnImpact;
+    [SerializeField] private AudioSource _audioSource;
+
     private readonly float _spawnOffSet = 0.1f;
     
     private void Awake()
@@ -54,14 +58,27 @@ public class Pie : MonoBehaviour, IWeapon
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
+            OnImpact.Raise(this, _audioSource);
             // TODO: Deal damage to the enemy.
             other.gameObject.GetComponent<Enemy>().GotHit(this);
-            Destroy(gameObject);
+            _rigidbody2D.velocity = Vector2.zero;
+            _rigidbody2D.bodyType = RigidbodyType2D.Static;
+            Invoke("Die", _audioSource.clip.length);
+            //Destroy(gameObject);
         }
         else if(!other.IsPlayer())
         {
-            Destroy(gameObject);
+            OnImpact.Raise(this, _audioSource);
+            _rigidbody2D.velocity = Vector2.zero;
+            _rigidbody2D.bodyType = RigidbodyType2D.Static;
+            Invoke("Die", _audioSource.clip.length);
+            //Destroy(gameObject);
         }
+    }
+
+    private void Die()
+    {
+        Destroy(gameObject);
     }
     
 #if UNITY_EDITOR
