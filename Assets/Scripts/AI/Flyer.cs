@@ -8,7 +8,7 @@ public class Flyer : Enemy
     protected override void Start()
     {
         base.Start();
-        _rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+        rb.constraints = RigidbodyConstraints2D.FreezePositionY;
     }
 
     // Update is called once per frame

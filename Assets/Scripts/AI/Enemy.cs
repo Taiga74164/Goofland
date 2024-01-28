@@ -1,8 +1,11 @@
 using Controller;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [CanBeNull] public GameObject rig;
+    
     [SerializeField] protected float speed;
 
     [SerializeField] protected int damage = 1;
@@ -16,13 +19,16 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected bool bananaWeakness;
     [SerializeField] protected bool waterWeakness;
     private Vector2 _direction = Vector2.left;
-    protected Rigidbody2D _rb;
+    protected Rigidbody2D rb;
 
     private float _turnCount;
     
     protected virtual void Start()
     {
-        _rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
+        
+        if (rig == null)
+            rig = gameObject;
     }
 
     protected virtual void FixedUpdate()
@@ -38,12 +44,12 @@ public class Enemy : MonoBehaviour
             collision.gameObject.GetComponent<PlayerController>().TakeDamage(damage);
         else if
             (collision.gameObject.layer !=
-             LayerMask.NameToLayer(
-                 "Ground")) //this wont work well depending on how levels are built. will likely have to change
+             ~LayerMask.NameToLayer(
+                 "Player")) //this wont work well depending on how levels are built. will likely have to change
             Turn();
     }
 
-    private void MoveEnemy() //moves the  enemy horizontally
+    private void MoveEnemy() //moves the enemy horizontally
     {
         gameObject.transform.Translate(_direction * (speed * Time.deltaTime));
     }
@@ -64,7 +70,16 @@ public class Enemy : MonoBehaviour
     private void Turn() //changes enemies direction
     {
         _direction *= new Vector2(-1, 0);
-        gameObject.transform.localScale *= new Vector2(-1, 1);
+        if (_direction == Vector2.left)
+        {
+            // Rotate the enemy 180 degrees.
+            rig!.transform.eulerAngles = new Vector3(0, 180, 0);
+        }
+        else if (_direction == Vector2.right)
+        {
+            // Reset the enemy's rotation.
+            rig!.transform.eulerAngles = Vector3.zero;
+        }
     }
 
     /// <summary>
