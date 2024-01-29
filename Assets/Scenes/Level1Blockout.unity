@@ -1408,6 +1408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55be8a2fcd5663a4fbca2c4e02882f31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
 --- !u!1 &424246266
 GameObject:
   m_ObjectHideFlags: 0
@@ -15703,6 +15704,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 963f5bad05b6c84408ad567ffb31cdee, type: 3}
+    - target: {fileID: 2192927843173387106, guid: b15a6163f56f8a944bfa26b2f836d045, type: 3}
+      propertyPath: m_Radius
+      value: 1.5778679
+      objectReference: {fileID: 0}
+    - target: {fileID: 2192927843173387106, guid: b15a6163f56f8a944bfa26b2f836d045, type: 3}
+      propertyPath: m_Offset.y
+      value: 1.835807
+      objectReference: {fileID: 0}
     - target: {fileID: 4635966816393624690, guid: b15a6163f56f8a944bfa26b2f836d045, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -17426,6 +17435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55be8a2fcd5663a4fbca2c4e02882f31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
 --- !u!224 &3966565563235790168
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17572,6 +17582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55be8a2fcd5663a4fbca2c4e02882f31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
 --- !u!114 &3966565563697915188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17794,6 +17805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55be8a2fcd5663a4fbca2c4e02882f31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
 --- !u!114 &3966565564442757192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18362,6 +18374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55be8a2fcd5663a4fbca2c4e02882f31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
 --- !u!224 &8374376916644899946
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18584,3 +18597,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55be8a2fcd5663a4fbca2c4e02882f31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
