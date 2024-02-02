@@ -5,7 +5,7 @@ using UnityEngine.UI;
 namespace UI
 {
     [RequireComponent(typeof(Image), typeof(Button))]
-    public class ButtonUtils : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    public class ButtonUtils : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler// , IPointerUpHandler
     {
         #region Button Hover Effect
 
@@ -15,6 +15,8 @@ namespace UI
         private const float LerpSpeed = 10.0f;
 
         #endregion
+        
+        public AudioSource audioSource;
         
         private void Start()
         {
@@ -35,5 +37,6 @@ namespace UI
         public void OnPointerEnter(PointerEventData eventData) => _targetScale = _originalScale * ScaleFactor;
     
         public void OnPointerExit(PointerEventData eventData) => _targetScale = _originalScale;
+        // public void OnPointerUp(PointerEventData eventData) => audioSource.Play();
     }
 }
