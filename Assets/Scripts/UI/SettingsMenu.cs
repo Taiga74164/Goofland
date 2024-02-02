@@ -78,7 +78,5 @@ namespace UI
             AudioManager.Instance.SetMasterVolume(masterVolumeBar.value);
             SaveSettings();
         }
-
-        public void OnExitButtonClicked() => CloseMenu();
     }
 }

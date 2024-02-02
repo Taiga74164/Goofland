@@ -10,12 +10,13 @@ namespace Controller
         
         private void Update()
         {
-            var playerTransform = GameManager.Instance.playerController.transform;
-            var targetPosition = new Vector3(playerTransform.position.x + offsetX, transform.position.y, transform.position.z);
-            var verticalDistance = Mathf.Abs(playerTransform.position.y - transform.position.y);
+            var playerPosition = GameManager.Instance.playerController.transform.position;
+            var position = transform.position;
+            var targetPosition = new Vector3(playerPosition.x + offsetX, position.y, position.z);
+            var verticalDistance = Mathf.Abs(playerPosition.y - position.y);
 
             if (verticalDistance > maxVerticalDistance)
-                targetPosition.y = playerTransform.position.y;
+                targetPosition.y = playerPosition.y;
 
             transform.position = targetPosition;
         }

@@ -1,7 +1,6 @@
 ﻿using Managers;
 using UI;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Controller
 {
@@ -9,16 +8,9 @@ namespace Controller
     {
         public PauseMenu pauseMenu;
         
-        private InputAction _action;
-
-        private void Start()
-        {
-            _action = InputManager.Return;
-        }
-
         private void Update()
         {
-            if (_action.WasReleasedThisFrame() && !GameManager.IsPaused && !pauseMenu.IsOpen)
+            if (InputManager.Return.WasReleasedThisFrame() && !GameManager.IsPaused && !pauseMenu.IsOpen)
                 pauseMenu.OpenMenu();
         }
     }

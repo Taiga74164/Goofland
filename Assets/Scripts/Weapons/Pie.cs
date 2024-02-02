@@ -18,11 +18,11 @@ public class Pie : MonoBehaviour, IWeapon
     public GameEvent onImpact;
     [SerializeField] private AudioSource audioSource;
 
-    private readonly float _spawnOffSet = 0.1f;
+    private const float SpawnOffSet = 0.1f;
     
     private void Awake()
     {
-        this.GetComponent<Transform>().Translate(new Vector3(0, _spawnOffSet, 0)); //prevents pie from being destroyed on spawn
+        transform.Translate(Vector3.up * SpawnOffSet);
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _rigidbody2D.isKinematic = true;
     }
@@ -31,59 +31,41 @@ public class Pie : MonoBehaviour, IWeapon
     {
         if (GameManager.IsPaused) return;
         
-        if (transform.position.y < -100)
-            Destroy(gameObject);
+        if (transform.position.y < -100.0f) Destroy(gameObject);
         
         #region Debugging
 
-        if (debug)
-            _travelDistance = Vector3.Distance(_initialPosition, transform.position);
-
-        #endregion
-    }
-
-    public void ThrowPie(Vector2 playerVelocity)
-    {
-        var forceDirection = direction.normalized;
-        _rigidbody2D.isKinematic = false;
-        var force = forceDirection * throwForce + (playerVelocity / 2);
-        _rigidbody2D.AddForce(force, ForceMode2D.Impulse);
-
-        #region Debugging
-
-        if (debug)
-            _initialPosition = transform.position;
+        if (debug) _travelDistance = Vector3.Distance(_initialPosition, transform.position);
 
         #endregion
     }
     
     private void OnCollisionEnter2D(Collision2D other)
     {
+        onImpact.Raise(audioSource);
         if (other.gameObject.CompareTag("Enemy"))
-        {
-            onImpact.Raise(audioSource);
-            // TODO: Deal damage to the enemy.
             other.gameObject.GetComponent<Enemy>().GotHit(this);
-            _rigidbody2D.velocity = Vector2.zero;
-            _rigidbody2D.bodyType = RigidbodyType2D.Static;
-            gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            Invoke(nameof(Die), audioSource.clip.length);
-            //Destroy(gameObject);
-        }
-        else if(!other.IsPlayer())
-        {
-            onImpact.Raise(audioSource);
-            _rigidbody2D.velocity = Vector2.zero;
-            _rigidbody2D.bodyType = RigidbodyType2D.Static;
-            Invoke(nameof(Die), audioSource.clip.length);
-            //Destroy(gameObject);
-        }
+        
+        _rigidbody2D.velocity = Vector2.zero;
+        _rigidbody2D.bodyType = RigidbodyType2D.Static;
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        Invoke(nameof(Die), audioSource.clip.length);
+    }
+    
+    public void ThrowPie(Vector2 playerVelocity)
+    {
+        _rigidbody2D.isKinematic = false;
+        var force = direction.normalized * throwForce + (playerVelocity / 2);
+        _rigidbody2D.AddForce(force, ForceMode2D.Impulse);
+
+        #region Debugging
+
+        if (debug) _initialPosition = transform.position;
+
+        #endregion
     }
 
-    private void Die()
-    {
-        Destroy(gameObject);
-    }
+    private void Die() => Destroy(gameObject);
     
 #if UNITY_EDITOR
     private void OnDrawGizmos()

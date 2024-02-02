@@ -18,33 +18,23 @@ namespace Managers
         public void PlayAudio(object data)
         {
             if (data is AudioSource audioSource)
-            {
                 audioSource.Play();
-            }
         }
 
         public void StopAudio(object data)
         {
             if (data is AudioSource audioSource)
-            {
                 audioSource.Stop();
-            }
         }
 
-        public void SetMasterVolume(float value)
-        {
+        public void SetMasterVolume(float value) => 
             audioMixer.SetFloat("MasterVolume", Mathf.Log10(value) * 20);
-        }
         
-        public void SetBGMVolume(float value)
-        {
+        public void SetBGMVolume(float value) => 
             audioMixer.SetFloat("MusicVolume", Mathf.Log10(value) * 20);
-        }
         
-        public void SetSFXVolume(float value)
-        {
+        public void SetSFXVolume(float value) => 
             audioMixer.SetFloat("SFXVolume", Mathf.Log10(value) * 20);
-        }
     }
 }
 

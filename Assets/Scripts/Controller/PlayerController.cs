@@ -46,12 +46,15 @@ namespace Controller
         [Header("Event Settings")]
         public GameEvent onJump;
         public GameEvent onTakeDamage;
+        
         #region Input Actions
 
         private InputAction _move, _jump, _crouch, _run, _attack;
     
         #endregion
 
+        #region Properties
+        
         private Rigidbody2D _rb;
         // private WeaponController _weaponController;
         private PieController _pieController; 
@@ -59,6 +62,8 @@ namespace Controller
         private bool _isMoving, _isRunning, _isCrouching, _isJumping, _isFalling, _isAttacking;
         private Vector3 _spawnPosition;
 
+        #endregion
+        
         #region Cached Properties
 
         private static readonly int Walking = Animator.StringToHash("Walking");
@@ -73,23 +78,19 @@ namespace Controller
         {
             if (GameManager.Instance.playerController == null)
                 GameManager.Instance.playerController = this;
-        }
-
-        private void Start()
-        {
+            
             // Get the rigidbody component.
             _rb = GetComponent<Rigidbody2D>();
             
             // Get the weapon controller.
             // _weaponController = GetComponent<WeaponController>();
             _pieController = GetComponent<PieController>();
-            
+        }
+
+        private void Start()
+        {
             // Set up input action references.
-            _move = InputManager.Move;
-            _jump = InputManager.Jump;
-            _crouch = InputManager.Crouch;
-            _run = InputManager.Run;
-            _attack = InputManager.Attack;
+            SetupInputActions();
 
             // Listen for input actions.
             _jump.started += _ =>
@@ -126,8 +127,8 @@ namespace Controller
             if (_attack.IsPressed())
                 _pieController.Charging();
             
-            HandleCoyoteTime();
-            HandleJumpBuffering();
+            HandleInput();
+            HandleCoyoteTimeJumpBuffering();
 
             HandleAnimations();
         }
@@ -139,13 +140,36 @@ namespace Controller
             HandleMovement();
             HandleClampFallSpeed();
         }
+        
+        private void SetupInputActions()
+        {
+            _move = InputManager.Move;
+            _jump = InputManager.Jump;
+            _crouch = InputManager.Crouch;
+            _run = InputManager.Run;
+            _attack = InputManager.Attack;
+        }
 
-        private void HandleCoyoteTime() => _coyoteTimeCounter = IsGrounded() ? 
-            coyoteTime : _coyoteTimeCounter - Time.deltaTime;
+        private void HandleInput()
+        {
+            // Get the input values.
+            _moveInput = _move.ReadValue<Vector2>();
+            // Update the player's state.
+            _isMoving = _moveInput != Vector2.zero;
+            // Update the player's running state.
+            _isRunning = _run.IsPressed() && _isMoving && IsGrounded();
+            // Update the player's crouching state.
+            _isCrouching = _crouch.IsPressed();
+            // Update the player's falling state.
+            _isFalling = _rb.velocity.y < 0.0f;
+        }
         
         // ReSharper disable Unity.PerformanceAnalysis
-        private void HandleJumpBuffering()
+        private void HandleCoyoteTimeJumpBuffering()
         {
+            // Decrement the coyote time counter if the player is grounded.
+            _coyoteTimeCounter = IsGrounded() ? coyoteTime : _coyoteTimeCounter - Time.deltaTime;
+            
             // Decrement the jump buffer counter.
             _jumpBufferCounter -= Time.deltaTime;
             // If the jump button is pressed, set the jump buffer counter.
@@ -172,30 +196,16 @@ namespace Controller
         
         private void HandleMovement()
         {
-            // Get the input values.
-            _moveInput = _move.ReadValue<Vector2>();
-            // Update the player's state.
-            _isMoving = _moveInput != Vector2.zero;
-            // Update the player's running state.
-            _isRunning = _run.IsPressed() && _isMoving && IsGrounded();
-            // Update the player's crouching state.
-            _isCrouching = _crouch.IsPressed();
-            // Update the player's falling state.
-            _isFalling = _rb.velocity.y < 0.0f;
-            
             // Update the player's sprite based on the direction they are facing.
-            switch (_moveInput.x)
+            animator.transform.eulerAngles = _moveInput.x switch
             {
                 // right
-                case > 0:
-                    animator.transform.eulerAngles = Vector3.zero;
-                    break;
+                > 0 => Vector3.zero,
                 // left
-                case < 0:
-                    animator.transform.eulerAngles = new Vector3(0, 180, 0);
-                    break;
-            }
-            
+                < 0 => new Vector3(0, 180, 0),
+                _ => animator.transform.eulerAngles
+            };
+
             // Move the player.
             _rb.velocity = new Vector2(
                 _moveInput.x * 
@@ -245,8 +255,6 @@ namespace Controller
 
             // Jump.
             _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
-            
-            // Animate the jump.
         }
         
         /// <summary>
@@ -297,17 +305,13 @@ namespace Controller
             else
             {
                 // TODO: Animate the player taking damage.
-                _rb.AddForce((transform.position - enemy.position).normalized * knockbackForce);
+                _rb.AddForce((transform.position - enemy!.position).normalized * knockbackForce);
             }
         }
 
         private void Die()
         {
-            // TODO: Animate the player dying.
-            
-            // TODO: Play the death sound.
-            
-            // TODO: HUD feed back.
+            // TODO: Death logic.
             Respawn();
         }
 

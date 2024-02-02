@@ -13833,7 +13833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73611677cdfe1c949b9f62a8eab93fbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rig: {fileID: 0}
+  model: {fileID: 0}
   speed: 0
   damage: 2
   useTimer: 1

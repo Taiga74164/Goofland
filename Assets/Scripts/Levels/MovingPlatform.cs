@@ -33,11 +33,6 @@ namespace Levels
             
             // Get the collider component.
             _collider = GetComponent<BoxCollider2D>();
-            
-            // Set the start position and target position for the platform.
-            // _startPosition = transform.position;
-            // _targetPosition = targetWaypoint.position;
-            // _destination = _targetPosition;
 
             // Set the transform component and last position.
             _transform = transform;
@@ -48,14 +43,9 @@ namespace Levels
         {
             if (GameManager.IsPaused) return;
             
-            // var distance = Vector3.Distance(transform.position, _destination);
-            // if (distance < 0.01f)
-            // {
-            //     _destination = _destination == _startPosition ? _targetPosition : _startPosition;
-            // }
-            
-            // transform.position = Vector3.MoveTowards(transform.position, _destination, speed * Time.deltaTime);
-            transform.position = Vector3.MoveTowards(transform.position, waypoints[_targetIndex].position, speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, 
+                waypoints[_targetIndex].position, 
+                speed * Time.deltaTime);
         }
 
         private void FixedUpdate()

@@ -22,24 +22,23 @@ namespace Controller
         public void Charging()
         {
             _chargeTime = Mathf.Min(_chargeTime + Time.deltaTime, maxChargeTime);
-            //Debug.Log($"charging: {_chargeTime}");
+            // Debug.Log($"charging: {_chargeTime}");
         }
 
-        public void HandlePieThrow() //spawns and sets physics of pie
+        public void HandlePieThrow()
         {
-            if (!IsPieReady()) return;
+            if (!IsPieReady() || Camera.main == null) return;
             _throwForce = Mathf.Lerp(minForce, maxForce, Mathf.Clamp01(_chargeTime / maxChargeTime));
-
-            if (Camera.main != null)
-                _throwDirection = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+            _throwDirection = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
 
             var pie = PrefabManager.Create<Pie>(Prefabs.Pie);
             pie.throwForce = _throwForce;
             pie.direction = _throwDirection;
-            _lastPieThrownTime = Time.time;
 
             var velocity = GetComponent<Rigidbody2D>().velocity;
             pie.ThrowPie(velocity);
+            
+            _lastPieThrownTime = Time.time;
         }
 
         private bool IsPieReady() => !GameManager.IsPaused &&

@@ -9,7 +9,6 @@ namespace Levels
         
         public void Trigger()
         {
-            Debug.Log("end game");
             victory.OpenMenu();
         }
     }

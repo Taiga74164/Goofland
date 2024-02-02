@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using Managers;
 using UnityEngine;
 
@@ -8,6 +9,9 @@ namespace UI
         public string levelName = "Main";
         [SerializeField] private SettingsMenu settingsMenu;
         [SerializeField] private Credits credits;
+        
+        [DllImport("__Internal")]
+        private static extern void CloseTab();
 
         public void OnPlayButtonClick() => LevelManager.LoadLevel(levelName);
         
@@ -19,6 +23,8 @@ namespace UI
         {
             #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
+            #elif UNITY_WEBGL
+            CloseTab();
             #else
             Application.Quit();
             #endif

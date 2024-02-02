@@ -1,5 +1,5 @@
 ﻿using Managers;
-using UnityEngine;
+using UnityEngine.InputSystem;
 
 public abstract class Menu<T> : Singleton<T> where T : Menu<T>
 {
@@ -12,7 +12,7 @@ public abstract class Menu : Menu<Menu>
 {
     protected virtual void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Escape))
+        if (InputManager.Return.WasReleasedThisFrame())
             CloseMenu();
     }
     
@@ -21,4 +21,6 @@ public abstract class Menu : Menu<Menu>
     public void OpenMenu() => MenuManager.Instance.OpenMenu(this);
     
     public void CloseMenu() => MenuManager.Instance.CloseMenu();
+    
+    public virtual void OnBackPressed() => CloseMenu();
 }
