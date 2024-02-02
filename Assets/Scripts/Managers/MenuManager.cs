@@ -24,19 +24,21 @@ namespace Managers
         /// <param name="menu">The menu you want to close. This menu must inherit the Menu class</param>
         public void OpenMenu(Menu menu)
         {
-            // if (_menuStack.Count > 0)
-            // {
-            //     // If the menu is already open, do nothing.
-            //     if (_menuStack.Peek().Equals(menu))
-            //         return;
-            //     
-            //     // Close the previous menu.
-            //     _menuStack.Peek().Close();
-            // }
+            if (menu == null) return;
+            
+            // If the menu is already open and is the top menu, do nothing.
+            if (_menuStack.Count > 0 && _menuStack.Peek().Equals(menu)) return;
+            
+            // Close all instances of the menu.
+            while (_menuStack.Contains(menu))
+                _menuStack.Pop().Close();
+            
+            // Close the previous menu.
+            if (_menuStack.Count > 0)
+                _menuStack.Peek().Close();
         
             // Open the menu.
-            if (menu != null)
-                menu.Open();
+            menu.Open();
         
             // Add the menu to the stack.
             _menuStack.Push(menu);
@@ -47,13 +49,11 @@ namespace Managers
         /// </summary>
         public void CloseMenu()
         {
-            if (_menuStack.Count == 0)
-                return;
+            if (_menuStack.Count == 0) return;
         
             // Close the top menu.
             var topMenu = _menuStack.Pop();
-            if (topMenu != null)
-                topMenu.Close();
+            topMenu.Close();
         
             // Open the previous menu.
             if (_menuStack.Count > 0)

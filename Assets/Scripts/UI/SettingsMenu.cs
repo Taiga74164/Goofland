@@ -24,6 +24,10 @@ namespace UI
             UpdateUIElements();
             UpdateSettings();
         }
+        
+        private void OnEnable() => GameManager.IsPaused = true;
+        
+        private void OnDisable() => GameManager.IsPaused = false;
     
         private void LoadSettings()
         {
