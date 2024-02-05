@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 namespace UI
 {
+    /// <summary>
+    /// Provides utility functions for buttons.
+    /// </summary>
     [RequireComponent(typeof(Image), typeof(Button))]
     public class ButtonUtils : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
@@ -18,8 +21,12 @@ namespace UI
 
         #endregion
         
+        #region Audio Feedback
+        
         private AudioData _mouseClickData;
         private AudioData _mouseSelectData;
+        
+        #endregion
         
         private void Start()
         {

@@ -8,7 +8,6 @@ namespace Levels
     {
         [Header("Platform Settings")]
         public List<Transform> waypoints;
-        // public Transform targetWaypoint;
         public float speed = 1.0f;
         
         [Header("Platform State")]

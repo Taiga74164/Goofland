@@ -13,12 +13,10 @@ namespace Managers
         {
             base.Awake();
             
-            // Set the volume to the value stored in PlayerPrefs.
-            SetBGMVolume(PlayerPrefsManager.BGMVolume);
-            SetSFXVolume(PlayerPrefsManager.SFXVolume);
-            SetMasterVolume(PlayerPrefsManager.MasterVolume);
-            
             _audioSource = GetComponent<AudioSource>();
+            
+            // Load volume settings from PlayerPrefs.
+            LoadVolumeSettings();
         }
         
         public void PlayAudio(object data)
@@ -37,6 +35,13 @@ namespace Managers
         {
             if (data is AudioSource audioSource)
                 audioSource.Stop();
+        }
+        
+        private void LoadVolumeSettings()
+        {
+            SetBGMVolume(PlayerPrefsManager.BGMVolume);
+            SetSFXVolume(PlayerPrefsManager.SFXVolume);
+            SetMasterVolume(PlayerPrefsManager.MasterVolume);
         }
 
         public void SetMasterVolume(float value) => 

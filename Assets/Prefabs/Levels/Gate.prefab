@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioData: {fileID: 11400000, guid: d2aeefbe6dd095c42af0bada7b529d8d, type: 2}
+  onTrigger: {fileID: 11400000, guid: 3a81f5e22d7786d4985aacd0a3763ccd, type: 2}
 --- !u!82 &202787644265778554
 AudioSource:
   m_ObjectHideFlags: 0

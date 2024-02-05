@@ -1,15 +1,26 @@
 ﻿using System.Collections.Generic;
+using Objects;
+using UnityEngine.SceneManagement;
 
 namespace Managers
 {
     public class MenuManager : Singleton<MenuManager>
     {
         private Stack<Menu> _menuStack = new Stack<Menu>();
-        
+
+        private void Start() => SceneManager.activeSceneChanged += OnSceneChanged;
+
         /// <summary>
         /// Clears the menuStack.
         /// </summary>
-        public void ClearStack() => _menuStack.Clear();
+        private void ClearStack() => _menuStack.Clear();
+        
+        /// <summary>
+        /// Clears the menuStack when the scene changes.
+        /// </summary>
+        /// <param name="current">The current scene.</param>
+        /// <param name="next">The next scene.</param>
+        private void OnSceneChanged(Scene current, Scene next) => ClearStack();
         
         /// <summary>
         /// Checks if the menuStack has any menus open and if the top menu is the same as the menu you want to check.

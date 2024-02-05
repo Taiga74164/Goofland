@@ -1,4 +1,4 @@
-﻿using Managers;
+﻿using System;
 using Objects.Scriptable;
 using UnityEngine;
 
@@ -9,6 +9,8 @@ namespace Levels
         public AudioData audioData;
         private AudioSource _audioSource;
 
+        public GameEvent onTrigger;
+        
         private void Start()
         {
             _audioSource = GetComponent<AudioSource>();
@@ -17,9 +19,9 @@ namespace Levels
         
         public void Trigger()
         {
-            // Temporary.
+            onTrigger.Raise(_audioSource);
+            // TODO: Change to animation.
             gameObject.SetActive(!gameObject.activeSelf);
-            _audioSource.Play();
         }
     }
 }

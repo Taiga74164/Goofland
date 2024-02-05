@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Objects.Scriptable
 {
+    /// <summary>
+    /// Represents a game event for use in the game.
+    /// </summary>
     [CreateAssetMenu(menuName = "GameEvent")] 
     public class GameEvent : ScriptableObject
     {

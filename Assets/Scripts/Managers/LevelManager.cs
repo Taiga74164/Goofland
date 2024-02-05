@@ -11,8 +11,6 @@ namespace Managers
         
         public static void RestartLevel()
         {
-            // Clear the stack of menus before reloading the level.
-            MenuManager.Instance.ClearStack();
             // Unpause the game.
             GameManager.IsPaused = false;
             // Reload the current level.

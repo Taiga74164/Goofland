@@ -129,7 +129,7 @@ namespace Controller
             
             HandleInput();
             HandleSfx();
-            HandleCoyoteTimeJumpBuffering();
+            HandleCoyoteTimeAndJumpBuffering();
 
             HandleAnimations();
         }
@@ -184,7 +184,7 @@ namespace Controller
         }
         
         // ReSharper disable Unity.PerformanceAnalysis
-        private void HandleCoyoteTimeJumpBuffering()
+        private void HandleCoyoteTimeAndJumpBuffering()
         {
             // Decrement the coyote time counter if the player is grounded.
             _coyoteTimeCounter = IsGrounded() ? coyoteTime : _coyoteTimeCounter - Time.deltaTime;
@@ -293,23 +293,7 @@ namespace Controller
         private void Attack()
         {
             if (GameManager.IsPaused) return;
-           /*
-            switch (_weaponController.currentWeapon)
-            {
-                case WeaponType.Pie:
-                    _weaponController.SpawnWeapon(WeaponType.Pie);
-                    // Animate the pie throw.
-                    break;
-                case WeaponType.WaterGun:
-                    _weaponController.waterGun.Charge();
-                    // Animate the water gun.
-                    break;
-                case WeaponType.BananaPeel:
-                    _weaponController.SpawnWeapon(WeaponType.BananaPeel);
-                    // Animate the banana peel throw.
-                    break;
-            }
-           */
+            
            _pieController.Charge();
         }
 
@@ -324,14 +308,12 @@ namespace Controller
             }
             else
             {
-                // TODO: Animate the player taking damage.
                 _rb.AddForce((transform.position - enemy!.position).normalized * knockbackForce);
             }
         }
 
         private void Die()
         {
-            // TODO: Death logic.
             Respawn();
         }
 
