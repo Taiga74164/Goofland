@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3989284628922936502}
   - component: {fileID: 3989284628922936503}
   m_Layer: 0
-  m_Name: Chymbal_Color
+  m_Name: Cymbal_Color
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

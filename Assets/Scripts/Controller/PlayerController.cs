@@ -1,4 +1,5 @@
 using Managers;
+using Objects.Scriptable;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -40,12 +41,11 @@ namespace Controller
         public Animator animator;
         
         [Header("Audio Settings")]
-        [SerializeField] private AudioSource jumpSound;
-        [SerializeField] private AudioSource hurtSound;
-
-        [Header("Event Settings")]
-        public GameEvent onJump;
-        public GameEvent onTakeDamage;
+        [SerializeField] private AudioData jumpSoundData;
+        [SerializeField] private AudioData runSoundData;
+        [SerializeField] private AudioData walkSoundData;
+        [SerializeField] private AudioData fartSoundData;
+        [SerializeField] private AudioSource audioSource;
         
         #region Input Actions
 
@@ -128,6 +128,7 @@ namespace Controller
                 _pieController.Charging();
             
             HandleInput();
+            HandleSfx();
             HandleCoyoteTimeJumpBuffering();
 
             HandleAnimations();
@@ -162,6 +163,24 @@ namespace Controller
             _isCrouching = _crouch.IsPressed();
             // Update the player's falling state.
             _isFalling = _rb.velocity.y < 0.0f;
+        }
+        
+        private void HandleSfx()
+        {
+            switch (_isMoving)
+            {
+                // Play SFX based on the player's state.
+                case true when !_isJumping && IsGrounded() && !audioSource.isPlaying:
+                {
+                    var audioData = _isRunning ? runSoundData : walkSoundData;
+                    audioSource.Configure(audioData);
+                    AudioManager.Instance.PlayAudio(audioSource);
+                    break;
+                }
+                case false when !_isJumping:
+                    AudioManager.Instance.StopAudio(audioSource);
+                    break;
+            }
         }
         
         // ReSharper disable Unity.PerformanceAnalysis
@@ -241,9 +260,10 @@ namespace Controller
             if (GameManager.IsPaused && !IsGrounded() && _coyoteTimeCounter <= 0.0f) return;
             
             if (!IsGrounded() && _coyoteTimeCounter <= 0.0f) return;
-
-            // Play Jump SFX.
-            onJump.Raise(jumpSound);
+            
+            // Play the jump sound.
+            audioSource.Configure(jumpSoundData);
+            AudioManager.Instance.PlayAudio(audioSource);
             
             // Increase the jump force if the player is running.
             var jumpForce = jumpHeight;
@@ -296,8 +316,8 @@ namespace Controller
         public void TakeDamage(Transform enemy = null,int damage = 1)
         {
             CurrentHealth -= damage;
-            onTakeDamage.Raise(hurtSound);
-
+            audioSource.Configure(fartSoundData);
+            AudioManager.Instance.PlayAudio(audioSource);
             if (CurrentHealth <= 0)
             {
                 Die();

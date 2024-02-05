@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Objects
+namespace Objects.Scriptable
 {
     [CreateAssetMenu(fileName = "Prefabs", menuName = "Prefabs/List")]
     public class PrefabList : ScriptableObject

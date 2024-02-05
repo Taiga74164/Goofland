@@ -9,12 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 957172202727210063}
-  - component: {fileID: 3685995784000455477}
+  - component: {fileID: 3052049423994991101}
   - component: {fileID: 957172202727210057}
   - component: {fileID: 5729629414474103126}
   - component: {fileID: 4482716032093260893}
+  - component: {fileID: 2854524598147413072}
   m_Layer: 0
-  m_Name: Chymbal
+  m_Name: Cymbal
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,7 +37,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3685995784000455477
+--- !u!114 &3052049423994991101
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,7 +46,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 957172202727210052}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73611677cdfe1c949b9f62a8eab93fbb, type: 3}
+  m_Script: {fileID: 11500000, guid: ef67fb6b22544591905c1c29493d0f92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 6398481855239680041}
@@ -56,6 +57,8 @@ MonoBehaviour:
   pieWeakness: 1
   bananaWeakness: 0
   waterWeakness: 0
+  audioData: {fileID: 11400000, guid: 969c3bbac8ba2ea4981635e050b65a81, type: 2}
+  deathAudioData: {fileID: 11400000, guid: 7d5168932bc5d474ea12ffa12fb031ae, type: 2}
 --- !u!50 &957172202727210057
 Rigidbody2D:
   serializedVersion: 4
@@ -119,6 +122,102 @@ CircleCollider2D:
   m_Offset: {x: -0.08619678, y: 1.4287381}
   serializedVersion: 2
   m_Radius: 0.61800694
+--- !u!82 &2854524598147413072
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 957172202727210052}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &6857916286191096212
 PrefabInstance:
   m_ObjectHideFlags: 0

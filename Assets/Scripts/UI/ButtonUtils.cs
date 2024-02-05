@@ -1,3 +1,5 @@
+using Managers;
+using Objects.Scriptable;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -5,7 +7,7 @@ using UnityEngine.UI;
 namespace UI
 {
     [RequireComponent(typeof(Image), typeof(Button))]
-    public class ButtonUtils : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler// , IPointerUpHandler
+    public class ButtonUtils : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         #region Button Hover Effect
 
@@ -16,7 +18,8 @@ namespace UI
 
         #endregion
         
-        public AudioSource audioSource;
+        private AudioData _mouseClickData;
+        private AudioData _mouseSelectData;
         
         private void Start()
         {
@@ -24,6 +27,13 @@ namespace UI
             
             // This is to make sure that the button is not clickable when it is invisible.
             GetComponent<Image>().alphaHitTestMinimumThreshold = 1.0f;
+            
+            // Load the audio data from the Resources folder.
+            _mouseClickData = Resources.Load<AudioData>("SoundData/Mouse_Click");
+            _mouseSelectData = Resources.Load<AudioData>("SoundData/Selection_Sound");
+            
+            // Play the audio when the button is clicked.
+            GetComponent<Button>().onClick.AddListener(() => AudioManager.Instance.PlayAudio(_mouseClickData));
         }
     
         private void Update()
@@ -34,9 +44,12 @@ namespace UI
             transform.localScale = Vector3.Lerp(transform.localScale, _targetScale, LerpSpeed * Time.deltaTime);
         }
         
-        public void OnPointerEnter(PointerEventData eventData) => _targetScale = _originalScale * ScaleFactor;
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            _targetScale = _originalScale * ScaleFactor;
+            AudioManager.Instance.PlayAudio(_mouseSelectData);
+        }
     
         public void OnPointerExit(PointerEventData eventData) => _targetScale = _originalScale;
-        // public void OnPointerUp(PointerEventData eventData) => audioSource.Play();
     }
 }

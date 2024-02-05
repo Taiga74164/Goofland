@@ -1,7 +1,8 @@
 ﻿using Managers;
-using Objects;
+using Objects.Scriptable;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Weapons;
 
 namespace Controller
 { 

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Objects.Scriptable;
 using UnityEngine;
 
 public static class Extensions
@@ -59,4 +60,15 @@ public static class Extensions
     /// </summary>
     public static bool IsPlayer(this Collision2D collision)
         => collision.gameObject.CompareTag("Player");
+    
+    /// <summary>
+    /// Configures the audio source with the audio data.
+    /// </summary>
+    public static void Configure(this AudioSource audioSource, AudioData audioData)
+    {
+        audioSource.clip = audioData.clip;
+        audioSource.outputAudioMixerGroup = audioData.mixerGroup;
+        audioSource.playOnAwake = audioData.playOnAwake;
+        audioSource.loop = audioData.loop;
+    }
 }

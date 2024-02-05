@@ -2,6 +2,7 @@ using Controller;
 using JetBrains.Annotations;
 using Managers;
 using UnityEngine;
+using Weapons;
 
 /// <summary>
 /// Defines the base class for all enemies in the game.
@@ -89,5 +90,11 @@ public class Enemy : MonoBehaviour
                      (weapon is WaterGunProjectile && waterWeakness);
         
         if (isWeak) Die();
+    }
+
+    public enum EnemyState
+    {
+        Colorless,
+        Color,
     }
 }
