@@ -129,6 +129,7 @@ MonoBehaviour:
   jumpSoundData: {fileID: 11400000, guid: 868f14eb28077d6469409f8e5719ac9d, type: 2}
   runSoundData: {fileID: 11400000, guid: c017ce76d1e837b4eab7932c3ac1f04c, type: 2}
   walkSoundData: {fileID: 11400000, guid: 9045134e7407541439a2abcfdcf74fc1, type: 2}
+  fartSoundData: {fileID: 11400000, guid: 9901e681be49089438f0426e9c5d1600, type: 2}
   audioSource: {fileID: 2293451832235115546}
 --- !u!114 &5675425815831273900
 MonoBehaviour:

@@ -174,11 +174,11 @@ namespace Controller
                 {
                     var audioData = _isRunning ? runSoundData : walkSoundData;
                     audioSource.Configure(audioData);
-                    AudioManager.Instance.PlayAudio(audioSource);
+                    audioSource.Play();
                     break;
                 }
                 case false when !_isJumping:
-                    AudioManager.Instance.StopAudio(audioSource);
+                    audioSource.Stop();
                     break;
             }
         }
@@ -263,7 +263,7 @@ namespace Controller
             
             // Play the jump sound.
             audioSource.Configure(jumpSoundData);
-            AudioManager.Instance.PlayAudio(audioSource);
+            audioSource.Play();
             
             // Increase the jump force if the player is running.
             var jumpForce = jumpHeight;
@@ -317,7 +317,7 @@ namespace Controller
         {
             CurrentHealth -= damage;
             audioSource.Configure(fartSoundData);
-            AudioManager.Instance.PlayAudio(audioSource);
+            audioSource.Play();
             if (CurrentHealth <= 0)
             {
                 Die();

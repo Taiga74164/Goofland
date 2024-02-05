@@ -19,7 +19,7 @@ namespace Levels
         {
             // Temporary.
             gameObject.SetActive(!gameObject.activeSelf);
-            AudioManager.Instance.PlayAudio(_audioSource);
+            _audioSource.Play();
         }
     }
 }

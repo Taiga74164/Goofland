@@ -15,4 +15,4 @@ MonoBehaviour:
   clip: {fileID: 8300000, guid: ebf0f2fc0a1baa5428cec0b79478d1f0, type: 3}
   mixerGroup: {fileID: -5388765665678994932, guid: 6b885a192e05b3d4dac2c81155d11090, type: 2}
   playOnAwake: 0
-  loop: 0
+  loop: 1
