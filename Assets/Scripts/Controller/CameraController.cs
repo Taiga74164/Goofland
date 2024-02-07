@@ -5,13 +5,14 @@ namespace Controller
 {
     public class CameraController : MonoBehaviour
     {
-        [Header("Follow")]
+        [Header("Follow Settings")]
         public float offsetX = 5.0f;
         public float maxVerticalDistance = 10.0f;
 
-        [Header("Smooth Follow")]
+        [Header("Smooth Follow Settings")]
         public bool enable;
         public float smoothTime = 0.2f;
+        
         private Vector3 _velocity = Vector3.zero;
         
         private void LateUpdate()

@@ -1,6 +1,5 @@
-using System.Linq;
 using Controller;
-using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Managers
 {
@@ -13,11 +12,19 @@ namespace Managers
         {
             get => Instance._isPaused;
             set => Instance._isPaused = value;
-            // Instance.playerController.enabled = !value;
-            // FindObjectOfType<PieController>().enabled = !value;
-            // FindObjectsOfType<MonoBehaviour>().OfType<IWeapon>().ToList().ForEach(
-            //     w => w.Enabled = !value);
-            // FindObjectsOfType<Enemy>().ToList().ForEach(e => e.enabled = !value);
+        }
+
+        private void Start()
+        {
+            SceneManager.activeSceneChanged += OnSceneChanged;
+        }
+        
+        private static void OnSceneChanged(Scene current, Scene next)
+        {
+            // Unpause the game when the scene changes.
+            IsPaused = false;
+            // Clear the menu stack when the scene changes.
+            MenuManager.Instance.ClearStack();
         }
     }
 }

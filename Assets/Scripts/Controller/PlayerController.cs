@@ -9,34 +9,8 @@ namespace Controller
     public class PlayerController : MonoBehaviour
     {
         [Header("Player Settings")]
-        public float movementSpeed = 5.0f;
-        public float runSpeedMultiplier = 1.5f;
-        public float crouchSpeedMultiplier = 0.5f;
-        public float jumpHeight = 5.0f;
-        public float knockbackForce;
-        [Tooltip("Higher value, faster fall.")]
-        public float fallMultiplier = 5.0f;
-        [Tooltip("Lower value, shorter jump.")]
-        public float lowJumpMultiplier = 2.0f;
-    
-        [Header("Coyote Time Settings")]
-        public float coyoteTime = 0.2f;
-        private float _coyoteTimeCounter;
+        public PlayerSettings playerSettings;
         
-        [Header("Jump Buffering Settings")]
-        public float jumpBufferTime = 0.2f;
-        public float jumpBoostMultiplier = 1.2f;
-        private float _jumpBufferCounter;
-
-        [Header("Ground Check Settings")]
-        public Transform groundCheckTransform;
-        public float groundCheckRadius = 0.1f;
-        public LayerMask groundLayerMask;
-
-        [Header("Player Health Settings")]
-        public int maxHealth = 3;
-        public int CurrentHealth { get; private set; }
-
         [Header("Animation Settings")]
         public Animator animator;
         
@@ -46,21 +20,18 @@ namespace Controller
         [SerializeField] private AudioData walkSoundData;
         [SerializeField] private AudioData fartSoundData;
         [SerializeField] private AudioSource audioSource;
-        
-        #region Input Actions
-
-        private InputAction _move, _jump, _crouch, _run, _attack;
-    
-        #endregion
 
         #region Properties
         
+        public int CurrentHealth { get; private set; }
+        
         private Rigidbody2D _rb;
-        // private WeaponController _weaponController;
         private PieController _pieController; 
-        private Vector2 _moveInput = Vector2.zero;
-        private bool _isMoving, _isRunning, _isCrouching, _isJumping, _isFalling, _isAttacking;
         private Vector3 _spawnPosition;
+        private Vector2 _moveInput = Vector2.zero;
+        private InputAction _move, _jump, _crouch, _run, _attack;
+        private bool _isMoving, _isRunning, _isCrouching, _isJumping, _isFalling, _isAttacking;
+        private float _coyoteTimeCounter, _jumpBufferCounter;
 
         #endregion
         
@@ -82,8 +53,7 @@ namespace Controller
             // Get the rigidbody component.
             _rb = GetComponent<Rigidbody2D>();
             
-            // Get the weapon controller.
-            // _weaponController = GetComponent<WeaponController>();
+            // Get the pie controller component.
             _pieController = GetComponent<PieController>();
         }
 
@@ -111,7 +81,7 @@ namespace Controller
             };
             
             // Set the player's health.
-            CurrentHealth = maxHealth;
+            CurrentHealth = playerSettings.maxHealth;
             
             // Set the spawn position.
             _spawnPosition = transform.position;
@@ -160,7 +130,7 @@ namespace Controller
             // Update the player's running state.
             _isRunning = _run.IsPressed() && _isMoving && IsGrounded();
             // Update the player's crouching state.
-            _isCrouching = _crouch.IsPressed();
+            _isCrouching = _crouch.IsPressed() && IsGrounded();
             // Update the player's falling state.
             _isFalling = _rb.velocity.y < 0.0f;
         }
@@ -187,13 +157,13 @@ namespace Controller
         private void HandleCoyoteTimeAndJumpBuffering()
         {
             // Decrement the coyote time counter if the player is grounded.
-            _coyoteTimeCounter = IsGrounded() ? coyoteTime : _coyoteTimeCounter - Time.deltaTime;
+            _coyoteTimeCounter = IsGrounded() ? playerSettings.coyoteTime : _coyoteTimeCounter - Time.deltaTime;
             
             // Decrement the jump buffer counter.
             _jumpBufferCounter -= Time.deltaTime;
             // If the jump button is pressed, set the jump buffer counter.
             if (_jump.triggered)
-                _jumpBufferCounter = jumpBufferTime;
+                _jumpBufferCounter = playerSettings.jumpBufferTime;
 
             // If the jump buffer counter is greater than 0 and the coyote time counter is greater than 0, jump.
             if (!(_jumpBufferCounter > 0.0f) || !(_coyoteTimeCounter > 0.0f)) return;
@@ -216,21 +186,22 @@ namespace Controller
         private void HandleMovement()
         {
             // Update the player's sprite based on the direction they are facing.
-            animator.transform.eulerAngles = _moveInput.x switch
+            var animatorTransform = animator.transform;
+            animatorTransform.eulerAngles = _moveInput.x switch
             {
                 // right
                 > 0 => Vector3.zero,
                 // left
                 < 0 => new Vector3(0, 180, 0),
-                _ => animator.transform.eulerAngles
+                _ => animatorTransform.eulerAngles
             };
 
             // Move the player.
             _rb.velocity = new Vector2(
                 _moveInput.x * 
-                (movementSpeed * 
-                 (_isRunning && !_isCrouching ? runSpeedMultiplier : 1) *
-                 (_isCrouching && IsGrounded() ? crouchSpeedMultiplier : 1)), 
+                (playerSettings.movementSpeed * 
+                 (_isRunning && !_isCrouching ? playerSettings.runSpeedMultiplier : 1) *
+                 (_isCrouching ? playerSettings.crouchSpeedMultiplier : 1)), 
                 _rb.velocity.y);
         }
         
@@ -241,13 +212,13 @@ namespace Controller
                 // If the player is falling, increase the fall speed.
                 case < 0:
                     // Apply the fall multiplier.
-                    _rb.velocity += Vector2.up * (Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime);
+                    _rb.velocity += Vector2.up * (Physics2D.gravity.y * (playerSettings.fallMultiplier - 1) * Time.deltaTime);
                     _isJumping = false;
                     break;
                 // If the player is jumping and the jump button is released, decrease the jump speed.
                 case > 0 when !_jump.IsPressed():
                     // Apply the low jump multiplier.
-                    _rb.velocity += Vector2.up * (Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime);
+                    _rb.velocity += Vector2.up * (Physics2D.gravity.y * (playerSettings.lowJumpMultiplier - 1) * Time.deltaTime);
                     break;
             }
         }
@@ -266,10 +237,10 @@ namespace Controller
             audioSource.Play();
             
             // Increase the jump force if the player is running.
-            var jumpForce = jumpHeight;
+            var jumpForce = playerSettings.jumpHeight;
             if (_isRunning)
             {
-                jumpForce *= jumpBoostMultiplier;
+                jumpForce *= playerSettings.jumpBoostMultiplier;
                 Debug.Log("Jump Boost!");
             }
 
@@ -297,7 +268,7 @@ namespace Controller
            _pieController.Charge();
         }
 
-        public void TakeDamage(Transform enemy = null,int damage = 1)
+        public void TakeDamage(Transform enemy = null, int damage = 1)
         {
             CurrentHealth -= damage;
             audioSource.Configure(fartSoundData);
@@ -308,7 +279,7 @@ namespace Controller
             }
             else
             {
-                _rb.AddForce((transform.position - enemy!.position).normalized * knockbackForce);
+                _rb.AddForce((transform.position - enemy!.position).normalized * playerSettings.knockbackForce);
             }
         }
 
@@ -322,13 +293,17 @@ namespace Controller
             if (CurrentHealth <= 0)
                 LevelManager.RestartLevel();
             
-            CurrentHealth = maxHealth;
+            CurrentHealth = playerSettings.maxHealth;
             
             // Reset.
             transform.position = _spawnPosition;
         }
 
+        // ReSharper disable Unity.PerformanceAnalysis
         private bool IsGrounded() => !GameManager.IsPaused &&
-            Physics2D.OverlapCircle(groundCheckTransform.position, groundCheckRadius, groundLayerMask);
+                                     Physics2D.OverlapCircle(
+                                         GameObject.FindWithTag("GroundCheck").transform.position, 
+                                         playerSettings.groundCheckRadius, 
+                                         playerSettings.groundLayerMask);
     }
 }

@@ -9,21 +9,29 @@ namespace Objects.Scriptable
     public class PlayerSettings : ScriptableObject
     {
         [Header("Player Settings")]
-        public float movementSpeed = 5.0f;
-        public float runSpeedMultiplier = 1.5f;
+        public float movementSpeed = 6.0f;
+        public float runSpeedMultiplier = 1.8f;
         public float crouchSpeedMultiplier = 0.5f;
-        public float jumpHeight = 5.0f;
+        public float jumpHeight = 8.0f;
+        public float jumpBoostMultiplier = 1.2f;
         public float knockbackForce;
         [Tooltip("Higher value, faster fall.")]
         public float fallMultiplier = 5.0f;
         [Tooltip("Lower value, shorter jump.")]
-        public float lowJumpMultiplier = 2.0f;
+        public float lowJumpMultiplier = 4.0f;
     
         [Header("Coyote Time Settings")]
         public float coyoteTime = 0.2f;
         
         [Header("Jump Buffering Settings")]
         public float jumpBufferTime = 0.2f;
-        public float jumpBoostMultiplier = 1.2f;
+        
+        [Header("Player Health Settings")]
+        public int maxHealth = 3;
+        
+        [Header("Ground Check Settings")]
+        public float groundCheckRadius = 0.1f;
+        [Tooltip("The layer mask for the ground.")]
+        public LayerMask groundLayerMask;
     }
 }

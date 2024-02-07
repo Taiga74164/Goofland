@@ -9,13 +9,7 @@ namespace Managers
         
         public static void LoadLevel(string levelName) => SceneManager.LoadScene(levelName);
         
-        public static void RestartLevel()
-        {
-            // Unpause the game.
-            GameManager.IsPaused = false;
-            // Reload the current level.
-            LoadLevel(SceneManager.GetActiveScene().buildIndex);
-        }
+        public static void RestartLevel() => LoadLevel(SceneManager.GetActiveScene().buildIndex);
     }
 }
 

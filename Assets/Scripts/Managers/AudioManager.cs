@@ -4,6 +4,9 @@ using UnityEngine.Audio;
 
 namespace Managers
 {
+    /// <summary>
+    /// Manages audio globally for the game.
+    /// </summary>
     public class AudioManager : Singleton<AudioManager>
     {
         public AudioMixer audioMixer;
@@ -12,10 +15,7 @@ namespace Managers
         protected override void Awake()
         {
             base.Awake();
-            
             _audioSource = GetComponent<AudioSource>();
-            
-            // Load volume settings from PlayerPrefs.
             LoadVolumeSettings();
         }
         

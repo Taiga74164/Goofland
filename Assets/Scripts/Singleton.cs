@@ -12,10 +12,14 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
         get
         {
+            // Return the instance if it exists.
             if (_instance != null) return _instance;
+            
+            // Find the instance in the scene if it exists.
             _instance = FindObjectOfType<T>();
             if (_instance != null) return _instance;
 
+            // Create a new instance if it doesn't exist.
             var singletonObject = new GameObject();
             _instance = singletonObject.AddComponent<T>();
             singletonObject.name = typeof(T) + " (Singleton)";
@@ -34,6 +38,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         {
             if (this != _instance)
             {
+                // If there is already an instance of this Singleton, destroy this one.
                 Destroy(gameObject);
             }
         }
