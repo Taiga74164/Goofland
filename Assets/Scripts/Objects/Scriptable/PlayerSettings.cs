@@ -14,6 +14,7 @@ namespace Objects.Scriptable
         public float crouchSpeedMultiplier = 0.5f;
         public float jumpHeight = 8.0f;
         public float jumpBoostMultiplier = 1.2f;
+        public float airborneMovementSpeed = 3.0f;
         public float knockbackForce;
         [Tooltip("Higher value, faster fall.")]
         public float fallMultiplier = 5.0f;
@@ -33,5 +34,11 @@ namespace Objects.Scriptable
         public float groundCheckRadius = 0.1f;
         [Tooltip("The layer mask for the ground.")]
         public LayerMask groundLayerMask;
+        
+        [Header("Audio Data")]
+        public AudioData jumpSoundData;
+        public AudioData runSoundData;
+        public AudioData walkSoundData;
+        public AudioData fartSoundData;
     }
 }

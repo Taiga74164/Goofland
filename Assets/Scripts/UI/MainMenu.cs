@@ -10,9 +10,11 @@ namespace UI
         [SerializeField] private SettingsMenu settingsMenu;
         [SerializeField] private Credits credits;
         
+        #if UNITY_WEBGL
         [DllImport("__Internal")]
         private static extern void CloseTab();
-
+        #endif
+        
         public void OnPlayButtonClick() => LevelManager.LoadLevel(levelName);
         
         public void OnSettingsButtonClicked() => settingsMenu.OpenMenu();
