@@ -1,28 +1,28 @@
 ﻿using UnityEngine;
 
-namespace Controller.States
+namespace Controller.StateMachines
 {
-    public class RunningState : Grounded
+    public class WalkingState : Grounded
     {
-        public RunningState(PlayerController player) : base("RunningState", player)
+        public WalkingState(PlayerController player) : base("WalkingState", player)
         {
         }
         
         public override void EnterState()
         {
-            // Set the running animation.
-            player.animator.SetBool(Running, true);
+            // Set the walking animation.
+            player.animator.SetBool(Walking, true);
             
             // Configure the audio source
-            player.audioSource.Configure(player.playerSettings.runSoundData);
+            player.audioSource.Configure(player.playerSettings.walkSoundData);
         }
         
         public override void HandleInput()
         {
             base.HandleInput();
             
-            if (!input.IsRunning)
-                player.ChangeState(player.walkingState);
+            if (input.IsRunning)
+                player.ChangeState(player.runningState);
             else if (input.IsIdle)
                 player.ChangeState(player.idleState);
         }
@@ -33,21 +33,21 @@ namespace Controller.States
             
             // Move the player.
             player.rb.velocity = new Vector2(
-                input.MoveInput.x * 
-                (player.playerSettings.movementSpeed * player.playerSettings.runSpeedMultiplier), 
+                input.MoveInput.x *
+                player.playerSettings.movementSpeed, 
                 player.rb.velocity.y);
             
-            // Play the running sound.
+            // Play the walking sound.
             if (!input.IsJumping && player.IsGrounded() &&!player.audioSource.isPlaying)
                 player.audioSource.Play();
         }
         
         public override void ExitState()
         {
-            // Set the running animation to false.
-            player.animator.SetBool(Running, false);
+            // Set the walking animation to false.
+            player.animator.SetBool(Walking, false);
             
-            // Stop the running sound.
+            // Stop the walking sound.
             player.audioSource.Stop();
         }
     }

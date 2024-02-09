@@ -1,12 +1,11 @@
 ﻿using Managers;
-using UnityEngine;
 
-namespace Controller.States
+namespace Controller.StateMachines
 {
     /// <summary>
     /// Hierarchy class for grounded player states.
     /// </summary>
-    public class Grounded : PlayerState
+    public class Grounded : BaseState
     {
         protected Grounded(string name, PlayerController player) : base(name, player)
         {
@@ -17,19 +16,16 @@ namespace Controller.States
             base.HandleInput();
 
             if (input.IsCrouching)
-            {
                 player.ChangeState(player.crouchingState);
-            }
             
             if (InputManager.Jump.IsInProgress())
-            {
                 player.ChangeState(player.jumpingState);
-            }
 
             if (input.IsFalling)
-            {
                 player.ChangeState(player.fallingState);
-            }
+            
+            if (InputManager.Attack.triggered)
+                ChangeSubState(new AttackingSubState(this));
         }
         
         public override void UpdateState()
@@ -38,6 +34,8 @@ namespace Controller.States
             
             if (player.CanJump())
                 player.ChangeState(player.jumpingState);
+            
+            currentSubState?.UpdateSubState();
         }
     }
 }

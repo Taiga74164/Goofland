@@ -1,7 +1,6 @@
-﻿using Managers;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Controller.States
+namespace Controller.StateMachines
 {
     public class JumpingState : Airborne
     {
@@ -29,8 +28,8 @@ namespace Controller.States
             
             // Increase the jump force if the player is running.
             var jumpForce = player.playerSettings.jumpHeight;
-            // if (input.IsRunning)
-            //     jumpForce *= player.playerSettings.jumpBoostMultiplier;
+            if (input.IsRunning)
+                jumpForce *= player.playerSettings.jumpBoostMultiplier;
             
             player.rb.velocity = new Vector2(player.rb.velocity.x, jumpForce);
             player.ResetCoyoteTimeAndJumpBufferCounter();

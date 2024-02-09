@@ -1,9 +1,8 @@
-﻿using System;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
-namespace EckTechGames.AutoSave
+namespace EckTechGames.AutoSave.Editor
 {
 	/// <summary>
 	/// This static class registers the autosave methods when playmode state changes

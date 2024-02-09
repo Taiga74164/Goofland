@@ -41,12 +41,15 @@ public class Enemy : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.IsPlayer())
-            collision.gameObject.GetComponent<PlayerController>().TakeDamage(transform, damage);
-        else if
-            (collision.gameObject.layer !=
-             ~LayerMask.NameToLayer(
-                 "Player"))
+        {
+            var player = collision.gameObject.GetComponent<PlayerController>();
+            player.TakeDamage(damage);
+            player.KnockBack(transform);
+        }
+        else if (collision.gameObject.layer != ~LayerMask.NameToLayer("Player"))
+        {
             Turn();
+        }
     }
 
     private void MoveEnemy() => transform.Translate(_direction * (speed * Time.deltaTime));

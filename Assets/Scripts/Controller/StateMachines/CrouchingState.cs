@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace Controller.States
+namespace Controller.StateMachines
 {
-    public class CrouchingState : PlayerState
+    public class CrouchingState : BaseState
     {
         public CrouchingState(PlayerController player) : base("CrouchingState", player)
         {
@@ -23,6 +23,7 @@ namespace Controller.States
         
         public override void UpdateState()
         {
+            // Move the player.
             player.rb.velocity = new Vector2(
                 input.MoveInput.x * 
                 (player.playerSettings.movementSpeed * player.playerSettings.crouchSpeedMultiplier), 

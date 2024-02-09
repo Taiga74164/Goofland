@@ -1,8 +1,7 @@
-using Controller.States;
+using Controller.StateMachines;
 using Managers;
 using Objects.Scriptable;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Controller
 {
@@ -25,6 +24,7 @@ namespace Controller
         public float JumpBufferCounter { get; private set; }
         
         [HideInInspector] public Rigidbody2D rb;
+        [HideInInspector] public PieController pieController;
         [HideInInspector] public InputController inputController;
         [HideInInspector] public IdleState idleState;
         [HideInInspector] public WalkingState walkingState;
@@ -32,31 +32,25 @@ namespace Controller
         [HideInInspector] public CrouchingState crouchingState;
         [HideInInspector] public JumpingState jumpingState;
         [HideInInspector] public FallingState fallingState;
-
         
-        private PlayerState _currentState;
-        private PieController _pieController; 
-        private Vector3 _spawnPosition;
-        private InputAction _move, _jump, _crouch, _run, _attack;
-        private bool _isAttacking;
+        private BaseState _currentState;
         
-
-
         #endregion
 
         private void Awake()
         {
+            // Set the player controller global reference.
             if (GameManager.Instance.playerController == null)
                 GameManager.Instance.playerController = this;
-            
-            // Get the input controller component.
-            inputController = GetComponent<InputController>();
             
             // Get the rigidbody component.
             rb = GetComponent<Rigidbody2D>();
             
             // Get the pie controller component.
-            _pieController = GetComponent<PieController>();
+            pieController = GetComponent<PieController>();
+            
+            // Get the input controller component.
+            inputController = GetComponent<InputController>();
             
             // Set up the player's states.
             idleState = new IdleState(this);
@@ -72,27 +66,8 @@ namespace Controller
 
         private void Start()
         {
-            // Set up input action references.
-            SetupInputActions();
-
-            // Listen for input actions.
-            _attack.started += _ =>
-            {
-                Attack(); 
-                _isAttacking = true;
-                
-            };
-            _attack.canceled += _ =>
-            {
-                _pieController.HandlePieThrow();
-                _isAttacking = false;
-            };
-            
             // Set the player's health.
             CurrentHealth = playerSettings.maxHealth;
-            
-            // Set the spawn position.
-            _spawnPosition = transform.position;
         }
 
         private void Update()
@@ -102,7 +77,27 @@ namespace Controller
             
             if (GameManager.IsPaused) return;
             
-            // Update the player's sprite based on the direction they are facing.
+            UpdatePlayerSprite();
+            
+            _currentState.UpdateState();
+            _currentState.HandleInput();
+            
+            UpdateCoyoteTimeCounter();
+            UpdateJumpBufferCounter();
+        }
+
+        public void ChangeState(BaseState state)
+        {
+            _currentState?.ExitState();
+            _currentState = state;
+            _currentState.EnterState();
+        }
+
+        /// <summary>
+        /// Update the player's sprite based on the direction they are facing.
+        /// </summary>
+        private void UpdatePlayerSprite()
+        {
             var animatorTransform = animator.transform;
             animatorTransform.eulerAngles = inputController.MoveInput.x switch
             {
@@ -112,32 +107,6 @@ namespace Controller
                 < 0 => new Vector3(0, 180, 0),
                 _ => animatorTransform.eulerAngles
             };
-            
-            if (_attack.IsPressed())
-                _pieController.Charging();
-            
-            _currentState.UpdateState();
-            _currentState.HandleInput();
-            
-            UpdateCoyoteTimeCounter();
-            UpdateJumpBufferCounter();
-            // HandleCoyoteTimeAndJumpBuffering();
-        }
-
-        public void ChangeState(PlayerState state)
-        {
-            _currentState?.ExitState();
-            _currentState = state;
-            _currentState.EnterState();
-        }
-        
-        private void SetupInputActions()
-        {
-            // _move = InputManager.Move;
-            _jump = InputManager.Jump;
-            // _crouch = InputManager.Crouch;
-            // _run = InputManager.Run;
-            _attack = InputManager.Attack;
         }
         
         private void UpdateCoyoteTimeCounter() => 
@@ -157,78 +126,25 @@ namespace Controller
             CoyoteTimeCounter = 0.0f;
             JumpBufferCounter = 0.0f;
         }
-        
-        private void HandleCoyoteTimeAndJumpBuffering()
-        {
-            // Decrement the coyote time counter if the player is grounded.
-            CoyoteTimeCounter = IsGrounded() ? playerSettings.coyoteTime : CoyoteTimeCounter - Time.deltaTime;
-            
-            // Decrement the jump buffer counter.
-            JumpBufferCounter -= Time.deltaTime;
-            // If the jump button is pressed, set the jump buffer counter.
-            if (_jump.triggered)
-                JumpBufferCounter = playerSettings.jumpBufferTime;
 
-            // If the jump buffer counter is greater than 0 and the coyote time counter is greater than 0, jump.
-            if (JumpBufferCounter > 0.0f && CoyoteTimeCounter > 0.0f)
-            {
-                Jump();
-
-                // Reset the jump buffer counter and coyote time counter.
-                JumpBufferCounter = 0.0f;
-                CoyoteTimeCounter = 0.0f;
-            }
-        }
-
-        /// <summary>
-        /// Invoked when the jump action is performed.
-        /// </summary>
-        private void Jump()
+        public void TakeDamage(int damage = 1)
         {
-            if (GameManager.IsPaused && !IsGrounded() && CoyoteTimeCounter <= 0.0f) return;
-            
-            if (!IsGrounded() && CoyoteTimeCounter <= 0.0f) return;
-        }
-    
-        /// <summary>
-        /// Invoked when the Attack action is performed.
-        /// </summary>
-        private void Attack()
-        {
-            if (GameManager.IsPaused) return;
-            
-           _pieController.Charge();
-        }
-
-        public void TakeDamage(Transform enemy = null, int damage = 1)
-        {
-            CurrentHealth -= damage;
+            // Play the hurt sound.
             audioSource.Configure(playerSettings.fartSoundData);
             audioSource.Play();
+            
+            // Reduce the player's health.
+            CurrentHealth -= damage;
             if (CurrentHealth <= 0)
-            {
                 Die();
-            }
-            else
-            {
-                rb.AddForce((transform.position - enemy!.position).normalized * playerSettings.knockbackForce);
-            }
         }
+        
+        public void KnockBack(Transform enemy) =>
+            rb.AddForce((transform.position - enemy!.position).normalized * playerSettings.knockbackForce);
 
         private void Die()
         {
-            Respawn();
-        }
-
-        private void Respawn()
-        {
-            if (CurrentHealth <= 0)
-                LevelManager.RestartLevel();
-            
-            CurrentHealth = playerSettings.maxHealth;
-            
-            // Reset.
-            transform.position = _spawnPosition;
+            LevelManager.RestartLevel();
         }
 
         // ReSharper disable Unity.PerformanceAnalysis

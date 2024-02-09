@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Controller.States
+﻿namespace Controller.StateMachines
 {
     public class FallingState : Airborne
     {

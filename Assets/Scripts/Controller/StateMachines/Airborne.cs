@@ -1,7 +1,7 @@
 ﻿using Managers;
 using UnityEngine;
 
-namespace Controller.States
+namespace Controller.StateMachines
 {
     /// <summary>
     /// Hierarchical class for airborne player states.
@@ -12,7 +12,11 @@ namespace Controller.States
         {
         }
 
-        public override void HandleInput() { }
+        public override void HandleInput()
+        {
+            if (InputManager.Attack.triggered)
+                ChangeSubState(new AttackingSubState(this));
+        }
 
         public override void UpdateState()
         {

@@ -47,9 +47,6 @@ namespace Controller
             
             // Update the player's falling state.
             IsFalling = _playerController.rb.velocity.y < -0.2f;
-
-            // Update the player's jumping state.
-            // IsJumping = InputManager.Jump.WasPressedThisFrame() && _playerController.IsGrounded();
         }
     }
 }
