@@ -11,7 +11,7 @@ namespace Controller.States
         
         public override void EnterState()
         {
-            isJumping = true;
+            input.IsJumping = true;
             
             // Set the jumping animation.
             player.animator.SetBool(Jumping, true);
@@ -27,7 +27,7 @@ namespace Controller.States
         {
             // Increase the jump force if the player is running.
             var jumpForce = player.playerSettings.jumpHeight;
-            if (isRunning)
+            if (input.IsRunning)
             {
                 jumpForce *= player.playerSettings.jumpBoostMultiplier;
                 Debug.Log("Jump Boost!");
@@ -44,10 +44,10 @@ namespace Controller.States
                 player.ChangeState(player.fallingState);
         }
         
-        public override void FixedUpdateState()
+        public override void UpdateState()
         {
             // Move the player while in the air.
-            var horizontalSpeed = moveInput.x * player.playerSettings.movementSpeed;
+            var horizontalSpeed = input.MoveInput.x * player.playerSettings.movementSpeed;
             player.rb.velocity = new Vector2(horizontalSpeed, player.rb.velocity.y);
             
             // If the player is falling, increase the fall speed.
@@ -66,7 +66,7 @@ namespace Controller.States
             // Stop the jump sound.
             player.audioSource.Stop();
             
-            isJumping = false;
+            input.IsJumping = false;
         }
     }
 }

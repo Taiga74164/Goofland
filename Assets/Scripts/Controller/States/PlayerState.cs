@@ -1,4 +1,3 @@
-using Managers;
 using UnityEngine;
 
 namespace Controller.States
@@ -9,17 +8,12 @@ namespace Controller.States
     public abstract class PlayerState
     {
         protected PlayerController player;
+        protected InputController input;
         protected PlayerState(PlayerController player)
         {
             this.player = player;
+            input = player.inputController;
         }
-
-        #region Inputs
-        
-        protected Vector2 moveInput = Vector2.zero;
-        protected bool isMoving, isRunning, isCrouching, isJumping, isFalling, isAttacking;
-
-        #endregion
         
         #region Cached Properties
 
@@ -34,42 +28,9 @@ namespace Controller.States
         
         public virtual void EnterState() { }
 
-        public virtual void HandleInput()
-        {
-            // Get the input values.
-            moveInput = InputManager.Move.ReadValue<Vector2>();
-            
-            // Update the player's state.
-            isMoving = moveInput != Vector2.zero;
-            
-            // Update the player's running state.
-            isRunning = InputManager.Run.IsPressed() && isMoving;
-            
-            // Update the player's crouching state.
-            isCrouching = InputManager.Crouch.IsPressed() && player.IsGrounded();
-            
-            // Update the player's falling state.
-            isFalling = player.rb.velocity.y < 0.0f;
-            
-            // Update the player's jumping state.
-            // isJumping = InputManager.Jump.WasPressedThisFrame() && player.IsGrounded();
-        }
+        public virtual void HandleInput() { }
 
-        public virtual void UpdateState()
-        {
-            // Update the player's sprite based on the direction they are facing.
-            var animatorTransform = player.animator.transform;
-            animatorTransform.eulerAngles = moveInput.x switch
-            {
-                // right
-                > 0 => Vector3.zero,
-                // left
-                < 0 => new Vector3(0, 180, 0),
-                _ => animatorTransform.eulerAngles
-            };
-        }
-
-        public virtual void FixedUpdateState() { }
+        public virtual void UpdateState() { }
         
         public virtual void ExitState() { }
     }

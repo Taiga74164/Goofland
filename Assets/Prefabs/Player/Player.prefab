@@ -69,6 +69,7 @@ GameObject:
   - component: {fileID: 8904874713320273180}
   - component: {fileID: 8904874713320273179}
   - component: {fileID: 5675425815831273900}
+  - component: {fileID: 3748090300100103364}
   - component: {fileID: 8904874713320273178}
   - component: {fileID: 5613467704402204782}
   - component: {fileID: 5853635685906316266}
@@ -110,17 +111,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSettings: {fileID: 11400000, guid: 1cbfac974975fb14c99feea85a600b39, type: 2}
-  groundCheckTransform: {fileID: 8904874713210243244}
-  groundCheckRadius: 0.1
-  groundLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
   animator: {fileID: 6217618972266284348}
-  jumpSoundData: {fileID: 11400000, guid: 868f14eb28077d6469409f8e5719ac9d, type: 2}
-  runSoundData: {fileID: 11400000, guid: c017ce76d1e837b4eab7932c3ac1f04c, type: 2}
-  walkSoundData: {fileID: 11400000, guid: 9045134e7407541439a2abcfdcf74fc1, type: 2}
-  fartSoundData: {fileID: 11400000, guid: 9901e681be49089438f0426e9c5d1600, type: 2}
   audioSource: {fileID: 2293451832235115546}
+  rb: {fileID: 0}
+  inputController: {fileID: 0}
 --- !u!114 &5675425815831273900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,6 +130,18 @@ MonoBehaviour:
   maxChargeTime: 0.7
   minForce: 5
   maxForce: 15
+--- !u!114 &3748090300100103364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8904874713320273176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5f91c46460b476c91a05df01938dad7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!50 &8904874713320273178
 Rigidbody2D:
   serializedVersion: 4

@@ -1,5 +1,4 @@
 ﻿using Managers;
-using UnityEngine;
 
 namespace Controller.States
 {
@@ -13,16 +12,10 @@ namespace Controller.States
         {
             base.HandleInput();
             
-            if (isMoving)
+            if (input.IsMoving)
                 player.ChangeState(player.walkingState);
             else if (InputManager.Jump.IsInProgress())
                 player.ChangeState(player.jumpingState);
-        }
-        
-        public override void FixedUpdateState()
-        {
-            if (moveInput == Vector2.zero)
-                player.rb.velocity = new Vector2(0, player.rb.velocity.y);
         }
     }
 }

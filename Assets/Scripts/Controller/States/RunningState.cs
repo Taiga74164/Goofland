@@ -22,11 +22,11 @@ namespace Controller.States
         {
             base.HandleInput();
             
-            if (!isRunning)
+            if (!input.IsRunning)
                 player.ChangeState(player.walkingState);
-            else if (!isMoving && !isRunning && player.IsGrounded())
+            else if (!input.IsMoving && !input.IsRunning && player.IsGrounded())
                 player.ChangeState(player.idleState);
-            else if (isCrouching)
+            else if (input.IsCrouching)
                 player.ChangeState(player.crouchingState);
             else if (InputManager.Jump.IsInProgress())
                 player.ChangeState(player.jumpingState);
@@ -36,17 +36,15 @@ namespace Controller.States
         {
             base.UpdateState();
             
-            // Play the running sound.
-            if (!isJumping && player.IsGrounded() &&!player.audioSource.isPlaying)
-                player.audioSource.Play();
-        }
-
-        public override void FixedUpdateState()
-        {
+            // Move the player.
             player.rb.velocity = new Vector2(
-                moveInput.x * 
+                input.MoveInput.x * 
                 (player.playerSettings.movementSpeed * player.playerSettings.runSpeedMultiplier), 
                 player.rb.velocity.y);
+            
+            // Play the running sound.
+            if (!input.IsJumping && player.IsGrounded() &&!player.audioSource.isPlaying)
+                player.audioSource.Play();
         }
         
         public override void ExitState()

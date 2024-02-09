@@ -17,14 +17,14 @@ namespace Controller.States
         {
             base.HandleInput();
             
-            if (!isCrouching)
+            if (!input.IsCrouching)
                 player.ChangeState(player.idleState);
         }
         
-        public override void FixedUpdateState()
+        public override void UpdateState()
         {
             player.rb.velocity = new Vector2(
-                moveInput.x * 
+                input.MoveInput.x * 
                 (player.playerSettings.movementSpeed * player.playerSettings.crouchSpeedMultiplier), 
                 player.rb.velocity.y);
         }

@@ -23,6 +23,7 @@ namespace Controller
         public int CurrentHealth { get; private set; }
         
         [HideInInspector] public Rigidbody2D rb;
+        [HideInInspector] public InputController inputController;
         [HideInInspector] public IdleState idleState;
         [HideInInspector] public WalkingState walkingState;
         [HideInInspector] public RunningState runningState;
@@ -39,21 +40,14 @@ namespace Controller
         private float _coyoteTimeCounter, _jumpBufferCounter;
 
         #endregion
-        
-        #region Cached Properties
-
-        private static readonly int Walking = Animator.StringToHash("Walking");
-        private static readonly int Running = Animator.StringToHash("Running");
-        private static readonly int Jumping = Animator.StringToHash("Jumping");
-        private static readonly int Falling = Animator.StringToHash("Falling");
-        private static readonly int Attacking = Animator.StringToHash("Attacking");
-
-        #endregion
 
         private void Awake()
         {
             if (GameManager.Instance.playerController == null)
                 GameManager.Instance.playerController = this;
+            
+            // Get the input controller component.
+            inputController = GetComponent<InputController>();
             
             // Get the rigidbody component.
             rb = GetComponent<Rigidbody2D>();
@@ -105,19 +99,23 @@ namespace Controller
             
             if (GameManager.IsPaused) return;
             
+            // Update the player's sprite based on the direction they are facing.
+            var animatorTransform = animator.transform;
+            animatorTransform.eulerAngles = inputController.MoveInput.x switch
+            {
+                // right
+                > 0 => Vector3.zero,
+                // left
+                < 0 => new Vector3(0, 180, 0),
+                _ => animatorTransform.eulerAngles
+            };
+            
             if (_attack.IsPressed())
                 _pieController.Charging();
             
-            _currentState.HandleInput();
             _currentState.UpdateState();
+            _currentState.HandleInput();
             // HandleCoyoteTimeAndJumpBuffering();
-        }
-
-        private void FixedUpdate()
-        {
-            if (GameManager.IsPaused) return;
-            
-            _currentState.FixedUpdateState();
         }
 
         public void ChangeState(PlayerState state)

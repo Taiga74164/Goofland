@@ -19,13 +19,13 @@ namespace Controller.States
             base.HandleInput();
             
             if (player.IsGrounded())
-                player.ChangeState(isMoving ? player.walkingState : player.idleState);
+                player.ChangeState(input.IsMoving ? player.walkingState : player.idleState);
         }
         
-        public override void FixedUpdateState()
+        public override void UpdateState()
         {
             // Move the player while in the air.
-            var horizontalSpeed = moveInput.x * player.playerSettings.movementSpeed;
+            var horizontalSpeed = input.MoveInput.x * player.playerSettings.movementSpeed;
             player.rb.velocity = new Vector2(horizontalSpeed, player.rb.velocity.y);
             
             // If the player is falling, increase the fall speed.
