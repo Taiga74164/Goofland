@@ -4,7 +4,7 @@ namespace Controller.States
 {
     public class CrouchingState : PlayerState
     {
-        public CrouchingState(PlayerController player) : base(player)
+        public CrouchingState(PlayerController player) : base("CrouchingState", player)
         {
         }
         

@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace Controller.States
 {
-    public class WalkingState : PlayerState
+    public class WalkingState : Grounded
     {
-        public WalkingState(PlayerController player) : base(player)
+        public WalkingState(PlayerController player) : base("WalkingState", player)
         {
         }
         
@@ -24,12 +24,8 @@ namespace Controller.States
             
             if (input.IsRunning)
                 player.ChangeState(player.runningState);
-            else if (!input.IsMoving && !input.IsRunning && player.IsGrounded())
+            else if (input.IsIdle)
                 player.ChangeState(player.idleState);
-            else if (input.IsCrouching)
-                player.ChangeState(player.crouchingState);
-            else if (InputManager.Jump.IsInProgress())
-                player.ChangeState(player.jumpingState);
         }
 
         public override void UpdateState()

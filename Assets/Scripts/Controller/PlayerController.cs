@@ -21,6 +21,8 @@ namespace Controller
         #region Properties
         
         public int CurrentHealth { get; private set; }
+        public float CoyoteTimeCounter { get; private set; }
+        public float JumpBufferCounter { get; private set; }
         
         [HideInInspector] public Rigidbody2D rb;
         [HideInInspector] public InputController inputController;
@@ -37,7 +39,8 @@ namespace Controller
         private Vector3 _spawnPosition;
         private InputAction _move, _jump, _crouch, _run, _attack;
         private bool _isAttacking;
-        private float _coyoteTimeCounter, _jumpBufferCounter;
+        
+
 
         #endregion
 
@@ -115,6 +118,9 @@ namespace Controller
             
             _currentState.UpdateState();
             _currentState.HandleInput();
+            
+            UpdateCoyoteTimeCounter();
+            UpdateJumpBufferCounter();
             // HandleCoyoteTimeAndJumpBuffering();
         }
 
@@ -134,25 +140,44 @@ namespace Controller
             _attack = InputManager.Attack;
         }
         
-        // ReSharper disable Unity.PerformanceAnalysis
+        private void UpdateCoyoteTimeCounter() => 
+            CoyoteTimeCounter = IsGrounded() ? 
+                playerSettings.coyoteTime : 
+                CoyoteTimeCounter - Time.deltaTime;
+        
+        private void UpdateJumpBufferCounter() =>
+            JumpBufferCounter = InputManager.Jump.triggered ? 
+                playerSettings.jumpBufferTime : 
+                JumpBufferCounter - Time.deltaTime;
+        
+        public bool CanJump() => JumpBufferCounter > 0.0f && CoyoteTimeCounter > 0.0f;
+        
+        public void ResetCoyoteTimeAndJumpBufferCounter()
+        {
+            CoyoteTimeCounter = 0.0f;
+            JumpBufferCounter = 0.0f;
+        }
+        
         private void HandleCoyoteTimeAndJumpBuffering()
         {
             // Decrement the coyote time counter if the player is grounded.
-            _coyoteTimeCounter = IsGrounded() ? playerSettings.coyoteTime : _coyoteTimeCounter - Time.deltaTime;
+            CoyoteTimeCounter = IsGrounded() ? playerSettings.coyoteTime : CoyoteTimeCounter - Time.deltaTime;
             
             // Decrement the jump buffer counter.
-            _jumpBufferCounter -= Time.deltaTime;
+            JumpBufferCounter -= Time.deltaTime;
             // If the jump button is pressed, set the jump buffer counter.
             if (_jump.triggered)
-                _jumpBufferCounter = playerSettings.jumpBufferTime;
+                JumpBufferCounter = playerSettings.jumpBufferTime;
 
             // If the jump buffer counter is greater than 0 and the coyote time counter is greater than 0, jump.
-            if (!(_jumpBufferCounter > 0.0f) || !(_coyoteTimeCounter > 0.0f)) return;
-            Jump();
-            
-            // Reset the jump buffer counter and coyote time counter.
-            _jumpBufferCounter = 0.0f;
-            _coyoteTimeCounter = 0.0f;
+            if (JumpBufferCounter > 0.0f && CoyoteTimeCounter > 0.0f)
+            {
+                Jump();
+
+                // Reset the jump buffer counter and coyote time counter.
+                JumpBufferCounter = 0.0f;
+                CoyoteTimeCounter = 0.0f;
+            }
         }
 
         /// <summary>
@@ -160,9 +185,9 @@ namespace Controller
         /// </summary>
         private void Jump()
         {
-            if (GameManager.IsPaused && !IsGrounded() && _coyoteTimeCounter <= 0.0f) return;
+            if (GameManager.IsPaused && !IsGrounded() && CoyoteTimeCounter <= 0.0f) return;
             
-            if (!IsGrounded() && _coyoteTimeCounter <= 0.0f) return;
+            if (!IsGrounded() && CoyoteTimeCounter <= 0.0f) return;
         }
     
         /// <summary>

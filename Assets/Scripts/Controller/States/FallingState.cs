@@ -2,9 +2,9 @@
 
 namespace Controller.States
 {
-    public class FallingState : PlayerState
+    public class FallingState : Airborne
     {
-        public FallingState(PlayerController player) : base(player)
+        public FallingState(PlayerController player) : base("FallingState", player)
         {
         }
         
@@ -20,19 +20,6 @@ namespace Controller.States
             
             if (player.IsGrounded())
                 player.ChangeState(input.IsMoving ? player.walkingState : player.idleState);
-        }
-        
-        public override void UpdateState()
-        {
-            // Move the player while in the air.
-            var horizontalSpeed = input.MoveInput.x * player.playerSettings.movementSpeed;
-            player.rb.velocity = new Vector2(horizontalSpeed, player.rb.velocity.y);
-            
-            // If the player is falling, increase the fall speed.
-            player.rb.velocity += 
-                Vector2.up * 
-                (Physics2D.gravity.y * (player.playerSettings.fallMultiplier - 1) * 
-                 Time.deltaTime);
         }
         
         public override void ExitState()

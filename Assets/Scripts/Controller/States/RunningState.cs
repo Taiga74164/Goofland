@@ -1,11 +1,10 @@
-﻿using Managers;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Controller.States
 {
-    public class RunningState : PlayerState
+    public class RunningState : Grounded
     {
-        public RunningState(PlayerController player) : base(player)
+        public RunningState(PlayerController player) : base("RunningState", player)
         {
         }
         
@@ -24,12 +23,8 @@ namespace Controller.States
             
             if (!input.IsRunning)
                 player.ChangeState(player.walkingState);
-            else if (!input.IsMoving && !input.IsRunning && player.IsGrounded())
+            else if (input.IsIdle)
                 player.ChangeState(player.idleState);
-            else if (input.IsCrouching)
-                player.ChangeState(player.crouchingState);
-            else if (InputManager.Jump.IsInProgress())
-                player.ChangeState(player.jumpingState);
         }
 
         public override void UpdateState()

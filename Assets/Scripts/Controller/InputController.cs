@@ -12,6 +12,8 @@ namespace Controller
         
         public Vector2 MoveInput { get; private set; }
         
+        public bool IsIdle { get; private set; }
+        
         public bool IsMoving { get; private set; }
         
         public bool IsRunning { get; private set; }
@@ -31,6 +33,9 @@ namespace Controller
             // Get the input values.
             MoveInput = InputManager.Move.ReadValue<Vector2>();
             
+            // Update the player's idle state.
+            IsIdle = !IsMoving && !IsRunning && _playerController.IsGrounded();
+            
             // Update the player's state.
             IsMoving = MoveInput != Vector2.zero || InputManager.Move.IsInProgress();
             
@@ -41,8 +46,8 @@ namespace Controller
             IsCrouching = InputManager.Crouch.IsPressed() && _playerController.IsGrounded();
             
             // Update the player's falling state.
-            IsFalling = _playerController.rb.velocity.y < 0.0f;
-            
+            IsFalling = _playerController.rb.velocity.y < -0.2f;
+
             // Update the player's jumping state.
             // IsJumping = InputManager.Jump.WasPressedThisFrame() && _playerController.IsGrounded();
         }

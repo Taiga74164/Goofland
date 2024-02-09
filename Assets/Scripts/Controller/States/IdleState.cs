@@ -1,21 +1,17 @@
-﻿using Managers;
-
-namespace Controller.States
+﻿namespace Controller.States
 {
-    public class IdleState : PlayerState
+    public class IdleState : Grounded
     {
-        public IdleState(PlayerController player) : base(player)
+        public IdleState(PlayerController player) : base("IdleState", player)
         {
         }
-        
+
         public override void HandleInput()
         {
             base.HandleInput();
             
             if (input.IsMoving)
                 player.ChangeState(player.walkingState);
-            else if (InputManager.Jump.IsInProgress())
-                player.ChangeState(player.jumpingState);
         }
     }
 }

@@ -7,10 +7,12 @@ namespace Controller.States
     /// </summary>
     public abstract class PlayerState
     {
+        public string name;
         protected PlayerController player;
         protected InputController input;
-        protected PlayerState(PlayerController player)
+        protected PlayerState(string name, PlayerController player)
         {
+            this.name = name;
             this.player = player;
             input = player.inputController;
         }
