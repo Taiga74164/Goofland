@@ -32,7 +32,29 @@ namespace Controller
         [HideInInspector] public CrouchingState crouchingState;
         [HideInInspector] public JumpingState jumpingState;
         [HideInInspector] public FallingState fallingState;
-        
+        [HideInInspector] public ParachutingState parachutingState;
+
+        #region UmbrellaValues
+        [HideInInspector] public bool hasUmbrella = false;
+
+        private bool _canParachute = false;
+        [HideInInspector] public bool canParachute
+        {
+            get
+            {
+                return _canParachute;
+            }
+            set
+            {
+                if(hasUmbrella)
+                    _canParachute = value;
+                else
+                    _canParachute = false;
+            }
+        }
+
+        #endregion
+
         private BaseState _currentState;
         
         #endregion
@@ -59,6 +81,7 @@ namespace Controller
             crouchingState = new CrouchingState(this);
             jumpingState = new JumpingState(this);
             fallingState = new FallingState(this);
+            parachutingState = new ParachutingState(this);
             
             // Set the player's initial state.
             ChangeState(idleState);
@@ -91,6 +114,7 @@ namespace Controller
             _currentState?.ExitState();
             _currentState = state;
             _currentState.EnterState();
+            Debug.Log(state.ToString());
         }
 
         /// <summary>

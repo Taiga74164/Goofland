@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Managers;
+using UnityEngine;
 
 namespace Controller.StateMachines
 {
@@ -12,6 +13,8 @@ namespace Controller.StateMachines
         {
             input.IsJumping = true;
             
+            player.canParachute = true;
+
             // Set the jumping animation.
             player.animator.SetBool(Jumping, true);
             
@@ -41,6 +44,8 @@ namespace Controller.StateMachines
             
             if (player.rb.velocity.y < Mathf.Epsilon)
                 player.ChangeState(player.fallingState);
+            if (InputManager.Jump.triggered && player.canParachute == true)
+                player.ChangeState(player.parachutingState);
         }
         
         public override void ExitState()
