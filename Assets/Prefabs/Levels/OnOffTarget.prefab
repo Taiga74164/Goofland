@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2192927843173387106}
   - component: {fileID: 447341642740720345}
   - component: {fileID: 8999897781128454990}
+  - component: {fileID: -6934536293947523702}
   m_Layer: 0
   m_Name: OnOffTarget
   m_TagString: Untagged
@@ -129,4 +130,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onTrigger: {fileID: 11400000, guid: 09be7a2a6def00b4b9b06c3fee03e2dc, type: 2}
-  _on: 0
+  _activeColor: 0
+--- !u!114 &-6934536293947523702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 447341642740720346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4110bfbbec447f4428c161b92dc60c6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 09be7a2a6def00b4b9b06c3fee03e2dc, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8999897781128454990}
+        m_TargetAssemblyTypeName: Levels.OnOffTrigger, Assembly-CSharp
+        m_MethodName: OnTargetEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
