@@ -40,6 +40,7 @@ namespace Objects.Scriptable
         BananaPeel,
         // Projectiles.
         WaterGunProjectile,
+        MusicNoteProjectile,
         // UI.
         Health
     }

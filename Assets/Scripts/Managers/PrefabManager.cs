@@ -15,19 +15,22 @@ namespace Managers
         /// Static shortcut method for creating a prefab.
         /// </summary>
         /// <param name="prefab">The type of prefab to create.</param>
+        /// <param name="parent">The parent transform.</param>
         /// <param name="setActive">The active state of the prefab.</param>
-        public static GameObject Create(Prefabs prefab, bool setActive = true) => Instance.Instantiate(prefab, setActive);
+        public static GameObject Create(Prefabs prefab, Transform parent = null, bool setActive = true) =>
+            Instance.Instantiate(prefab, parent, setActive);
         
         /// <summary>
         /// Overload for creating a prefab and returning a component.
         /// </summary>
         /// <param name="prefab">The type of prefab to create.</param>
+        /// <param name="parent">The parent transform.</param>
         /// <param name="setActive">The active state of the prefab.</param>
         /// <typeparam name="T">The type of component to return.</typeparam>
         /// <returns>The component of the prefab.</returns>
-        public static T Create<T>(Prefabs prefab, bool setActive = true) where T : Component
+        public static T Create<T>(Prefabs prefab, Transform parent = null, bool setActive = true) where T : Component
         {
-            var newObject = Instance.Instantiate(prefab, setActive);
+            var newObject = Instance.Instantiate(prefab, parent, setActive);
             var component = newObject.GetComponent<T>();
             if (component == null)
                 Debug.LogError($"Prefab {prefab} does not have component {typeof(T)}");
@@ -62,9 +65,10 @@ namespace Managers
         /// Creates a new instance of the prefab.
         /// </summary>
         /// <param name="prefab">The prefab type</param>
+        /// <param name="parent">The parent transform.</param>
         /// <param name="setActive">The active state.</param>
         /// <returns>The created object.</returns>
-        private GameObject Instantiate(Prefabs prefab, bool setActive = true)
+        private GameObject Instantiate(Prefabs prefab, Transform parent = null, bool setActive = true)
         {
             var prefabData = _prefabs[prefab];
 
@@ -96,7 +100,7 @@ namespace Managers
             }
             else
             {
-                newObject = Instantiate(prefabData.prefab);
+                newObject = Instantiate(prefabData.prefab, parent);
             }
             
             newObject.SetActive(setActive);

@@ -20,15 +20,12 @@ namespace Controller
 
         public void Charge() => _chargeTime = 0.0f;
 
-        public void Charging()
-        {
-            _chargeTime = Mathf.Min(_chargeTime + Time.deltaTime, maxChargeTime);
-            // Debug.Log($"charging: {_chargeTime}");
-        }
+        public void Charging() => _chargeTime = Mathf.Min(_chargeTime + Time.deltaTime, maxChargeTime);
 
         public void HandlePieThrow()
         {
             if (!IsPieReady() || Camera.main == null) return;
+            
             _throwForce = Mathf.Lerp(minForce, maxForce, Mathf.Clamp01(_chargeTime / maxChargeTime));
             _throwDirection = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
 

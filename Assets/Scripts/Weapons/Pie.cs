@@ -1,3 +1,4 @@
+using Enemies;
 using Managers;
 using Objects.Scriptable;
 using UnityEngine;
@@ -34,7 +35,7 @@ namespace Weapons
         {
             if (GameManager.IsPaused) return;
         
-            if (transform.position.y < -100.0f) Destroy(gameObject);
+            if (transform.position.y < -100.0f) Die();
         
             #region Debugging
 

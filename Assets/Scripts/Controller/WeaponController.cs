@@ -48,7 +48,7 @@ namespace Controller
             _selectBananaPeel.performed += _ => SelectWeapon(WeaponType.BananaPeel);
             
             // Create water gun for later use.
-            waterGun = PrefabManager.Create<WaterGun>(Prefabs.WaterGun, false);
+            waterGun = PrefabManager.Create<WaterGun>(Prefabs.WaterGun, setActive:false);
         }
 
         private void Update()

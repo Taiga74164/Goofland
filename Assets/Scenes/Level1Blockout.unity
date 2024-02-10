@@ -1273,7 +1273,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 957172202727210052, guid: 7765283126c837a4684099e1137d862c, type: 3}
       propertyPath: m_Name
-      value: Cymbal
+      value: Chymbal
       objectReference: {fileID: 0}
     - target: {fileID: 957172202727210063, guid: 7765283126c837a4684099e1137d862c, type: 3}
       propertyPath: m_RootOrder
@@ -1281,11 +1281,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 957172202727210063, guid: 7765283126c837a4684099e1137d862c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.035965
+      value: 17.76
       objectReference: {fileID: 0}
     - target: {fileID: 957172202727210063, guid: 7765283126c837a4684099e1137d862c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.750345
+      value: -3.71
       objectReference: {fileID: 0}
     - target: {fileID: 957172202727210063, guid: 7765283126c837a4684099e1137d862c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13940,8 +13940,6 @@ MonoBehaviour:
   model: {fileID: 0}
   speed: 0
   damage: 2
-  useTimer: 1
-  turnTimer: 0
   pieWeakness: 0
   bananaWeakness: 0
   waterWeakness: 0

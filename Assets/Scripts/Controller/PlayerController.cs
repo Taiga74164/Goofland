@@ -136,16 +136,11 @@ namespace Controller
             // Reduce the player's health.
             CurrentHealth -= damage;
             if (CurrentHealth <= 0)
-                Die();
+                LevelManager.RestartLevel();
         }
         
         public void KnockBack(Transform enemy) =>
             rb.AddForce((transform.position - enemy!.position).normalized * playerSettings.knockbackForce);
-
-        private void Die()
-        {
-            LevelManager.RestartLevel();
-        }
 
         // ReSharper disable Unity.PerformanceAnalysis
         public bool IsGrounded() => !GameManager.IsPaused &&
