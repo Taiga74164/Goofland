@@ -127,7 +127,7 @@ namespace Controller
             JumpBufferCounter = 0.0f;
         }
 
-        public void TakeDamage(int damage = 1)
+        public void TakeDamage(int damage = 1, Transform enemy = null)
         {
             // Play the hurt sound.
             audioSource.Configure(playerSettings.fartSoundData);
@@ -137,16 +137,15 @@ namespace Controller
             CurrentHealth -= damage;
             if (CurrentHealth <= 0)
                 LevelManager.RestartLevel();
+            
+            // Knock back the player.
+            if (enemy != null)
+                rb.AddForce((transform.position - enemy.position).normalized * playerSettings.knockbackForce);
         }
-        
-        public void KnockBack(Transform enemy) =>
-            rb.AddForce((transform.position - enemy!.position).normalized * playerSettings.knockbackForce);
 
         // ReSharper disable Unity.PerformanceAnalysis
-        public bool IsGrounded() => !GameManager.IsPaused &&
-                                     Physics2D.OverlapCircle(
-                                         GameObject.FindWithTag("GroundCheck").transform.position, 
-                                         playerSettings.groundCheckRadius, 
-                                         playerSettings.groundLayerMask);
+        public bool IsGrounded() => !GameManager.IsPaused && Physics2D.OverlapCircle(
+            GameObject.FindWithTag("GroundCheck").transform.position, 
+            playerSettings.groundCheckRadius, playerSettings.groundLayerMask);
     }
 }

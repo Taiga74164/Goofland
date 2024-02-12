@@ -1,4 +1,3 @@
-using System;
 using Controller;
 using JetBrains.Annotations;
 using Managers;
@@ -10,14 +9,15 @@ namespace Enemies
     /// <summary>
     /// Defines the base class for all enemies in the game.
     /// </summary>
+    [RequireComponent(typeof(Rigidbody2D))]
     public class Enemy : MonoBehaviour
     {
         [CanBeNull] public GameObject model;
     
         [Header("Enemy Settings")]
-        [SerializeField] private float speed;
-        [SerializeField] private int damage = 1;
-
+        [SerializeField] protected float speed;
+        [SerializeField] protected int damage = 1;
+        [SerializeField] private float lineOfSight = 10.0f;
 
         [Header("Weaknesses")]
         [SerializeField] private bool pieWeakness;
@@ -51,22 +51,26 @@ namespace Enemies
         {
             if (collision.IsPlayer())
             {
+                // Deal damage to the player.
                 var player = collision.gameObject.GetComponent<PlayerController>();
-                player.TakeDamage();
-                player.KnockBack(transform);
+                player.TakeDamage(damage, transform);
             }
             else if (collision.gameObject.layer != ~LayerMask.NameToLayer("Player"))
             {
+                // Turn around if the enemy hits a wall or ledge.
                 Turn();
             }
         }
 
+        /// <summary>
+        /// Moves the enemy in the direction it is facing.
+        /// </summary>
         protected virtual void MoveEnemy() => transform.Translate(direction * (speed * Time.deltaTime));
 
         /// <summary>
         /// Moves the enemy in the opposite direction after a certain amount of time.
         /// </summary>
-        private void Timer()
+        protected virtual void Timer()
         {
             _turnCount += Time.deltaTime;
             if (!(_turnCount >= _turnTimer)) return;
@@ -74,6 +78,9 @@ namespace Enemies
             _turnCount = 0;
         }
         
+        /// <summary>
+        /// Turns the enemy around.
+        /// </summary>
         protected virtual void Turn()
         {
             direction *= new Vector2(-1, 0);
@@ -87,6 +94,20 @@ namespace Enemies
                 // Reset the enemy's rotation.
                 model!.transform.eulerAngles = Vector3.zero;
             }
+        }
+        
+        /// <summary>
+        /// Checks if the player is in the enemy's line of sight.
+        /// </summary>
+        /// <returns>True if the player is in the enemy's line of sight.</returns>
+        protected bool PlayerInLineOfSight()
+        {
+            var playerTransform = GameManager.Instance.playerController.transform;
+            var playerDirection  = playerTransform.position - transform.position;
+            var hit = Physics2D.Raycast(transform.position, 
+                playerDirection , lineOfSight, 
+                ~LayerMask.NameToLayer("Player"));
+            return hit.collider != null && hit.collider.IsPlayer();
         }
 
         protected virtual void Die() => Destroy(gameObject);

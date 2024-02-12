@@ -1,17 +1,16 @@
 ﻿using Controller;
-using Enemies.Projectile;
+using Enemies.Components;
 using Managers;
 using Objects.Scriptable;
 using UnityEngine;
 
 namespace Enemies
 {
-    [RequireComponent(typeof(Rigidbody2D))]
     public class Chymbal : Enemy
     {
         [Header("Attack Settings")]
+        [Tooltip("The delay between attacks.")]
         [SerializeField] private float attackInterval = 3.0f;
-        [SerializeField] private float lineOfSight = 10.0f;
     
         [Header("Audio Settings")]
         [SerializeField] private AudioData audioData;
@@ -32,15 +31,9 @@ namespace Enemies
 
         protected override void Update()
         {
-            HandleProximity();
-        }
-    
-        protected override void FixedUpdate()
-        {
-            base.FixedUpdate();
-            
             if (GameManager.IsPaused) return;
-        
+
+            HandleProximity();
             HandleAttack();
         }
         
@@ -49,49 +42,46 @@ namespace Enemies
             if (!collision.IsPlayer()) return;
             
             var player = collision.gameObject.GetComponent<PlayerController>();
-            player.TakeDamage();
-            player.KnockBack(transform);
+            player.TakeDamage(damage, transform);
         }
-    
+        
         private void HandleAttack()
         {
             if (Time.time >= _nextAttackTime && PlayerInLineOfSight())
             {
+                // Turn towards the player and attack.
                 Turn();
                 Attack();
+                
+                // Set the next attack time.
                 _nextAttackTime = Time.time + attackInterval;
             }
-        }
-        
-        private bool PlayerInLineOfSight()
-        {
-            var playerTransform = GameManager.Instance.playerController.transform;
-            var direction = playerTransform.position - transform.position;
-            var hit = Physics2D.Raycast(transform.position, 
-                direction, lineOfSight, 
-                ~LayerMask.NameToLayer("Player"));
-            return hit.collider != null && hit.collider.CompareTag("Player");
-        }
-
-        protected override void Turn()
-        {
-            var playerPosition = GameManager.Instance.playerController.transform.position;
-            var playerIsRight = playerPosition.x > transform.position.x;
-            
-            direction = playerIsRight ? Vector2.right : Vector2.left;
-            model!.transform.eulerAngles = playerIsRight ? Vector3.zero : new Vector3(0, 180, 0);
         }
 
         private void Attack()
         {
+            // Create a music note projectile.
             var projectile = PrefabManager.Create<MusicNoteProjectile>(Prefabs.MusicNoteProjectile, transform);
+            // Set the projectile's direction.
             projectile.direction = direction;
         }
-
+        
         protected override void MoveEnemy()
         {
         }
-
+        
+        protected override void Turn()
+        {
+            // Get the player's position.
+            var playerPosition = GameManager.Instance.playerController.transform.position;
+            // Determine the direction to face.
+            var playerIsRight = playerPosition.x > transform.position.x;
+            
+            // Set the direction and model rotation.
+            direction = playerIsRight ? Vector2.right : Vector2.left;
+            model!.transform.eulerAngles = playerIsRight ? Vector3.zero : new Vector3(0, 180, 0);
+        }
+        
         private void HandleProximity()
         {
             var playerTransform = GameManager.Instance.playerController.transform;

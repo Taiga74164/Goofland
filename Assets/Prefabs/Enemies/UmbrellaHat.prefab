@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7897555048088618765}
-  - component: {fileID: 6050030673327814775}
+  - component: {fileID: 534936326728906873}
   - component: {fileID: 7897555048088618763}
   - component: {fileID: 7897555048088618760}
   - component: {fileID: 7639022397768769287}
@@ -36,7 +36,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6050030673327814775
+--- !u!114 &534936326728906873
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,17 +45,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 7897555048088618758}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73611677cdfe1c949b9f62a8eab93fbb, type: 3}
+  m_Script: {fileID: 11500000, guid: e0023206abd84837844bb99fe699c68b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 261724860602795949}
-  speed: 1
+  speed: 0
   damage: 1
-  useTimer: 0
-  turnTimer: 0
-  pieWeakness: 1
+  lineOfSight: 10
+  pieWeakness: 0
   bananaWeakness: 0
   waterWeakness: 0
+  fallSpeed: 5
+  despawnTime: 10
 --- !u!50 &7897555048088618763
 Rigidbody2D:
   serializedVersion: 4

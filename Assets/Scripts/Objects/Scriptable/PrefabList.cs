@@ -38,10 +38,12 @@ namespace Objects.Scriptable
         Pie,
         WaterGun,
         BananaPeel,
-        // Projectiles.
+        // Weapon Projectiles.
         WaterGunProjectile,
         MusicNoteProjectile,
         // UI.
-        Health
+        Health,
+        // Components.
+        FartCloudEffect
     }
 }

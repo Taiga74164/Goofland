@@ -43,3 +43,8 @@ MonoBehaviour:
     shouldPool: 0
     initialSize: 3
     objectRoot: 
+  - type: 8
+    prefab: {fileID: 3664051297597662264, guid: cce1bf1b461fceb4b8c57f24dd99b9cf, type: 3}
+    shouldPool: 0
+    initialSize: 0
+    objectRoot: 

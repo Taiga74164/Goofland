@@ -1,7 +1,7 @@
 ﻿using Managers;
 using UnityEngine;
 
-namespace Enemies.Projectile
+namespace Enemies.Components
 {
     public class MusicNoteProjectile : MonoBehaviour
     {
@@ -39,7 +39,7 @@ namespace Enemies.Projectile
             // Dirty code.
             if (other.CompareTag("Enemy")) return;
             
-            if (other.CompareTag("GroundCheck"))
+            if (other.IsPlayer())
             {
                 // FYI: Please update to Unity 2022.
                 // other.transform.parent.GetComponent<PlayerController>().TakeDamage();
