@@ -172,6 +172,11 @@ namespace Controller
                 rb.AddForce((transform.position - enemy.position).normalized * playerSettings.knockbackForce);
         }
 
+        public void Bounced(Vector2 force)
+        {
+            rb.AddForce(force);
+        }
+
         // ReSharper disable Unity.PerformanceAnalysis
         public bool IsGrounded() => !GameManager.IsPaused && Physics2D.OverlapCircle(
             GameObject.FindWithTag("GroundCheck").transform.position, 

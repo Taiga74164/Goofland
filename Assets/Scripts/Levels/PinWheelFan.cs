@@ -3,37 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 using Controller;
 
-public class PinWheelFan : MonoBehaviour
+namespace Levels
 {
-    [SerializeField] private float _windForce;
-    private Vector2 _force;
+    public class PinWheelFan : MonoBehaviour
+    {
+        [SerializeField] private float _windForce;
+        private Vector2 _force;
 
-    private void Awake()
-    {
-        CalculateForce(_windForce);
-    }
-
-    private void CalculateForce(float _windValue)
-    {
-        _force = (transform.right * _windValue);
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        private void Awake()
         {
-            Debug.Log(_force);
-            collision.gameObject.GetComponent<PlayerController>().ApplyWind(_force);
+            CalculateForce(_windForce);
         }
-    }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        private void CalculateForce(float _windValue)
         {
-            collision.gameObject.GetComponent<PlayerController>().ApplyWind(_force);
+            _force = (transform.right * _windValue);
         }
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+            {
+                Debug.Log(_force);
+                collision.gameObject.GetComponent<PlayerController>().ApplyWind(_force);
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+            {
+                collision.gameObject.GetComponent<PlayerController>().ApplyWind(_force);
+            }
+        }
+
+
     }
-
-
 }
+
+
