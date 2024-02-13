@@ -23,6 +23,8 @@ namespace Weapons
         [SerializeField] private AudioSource audioSource;
 
         private const float SpawnOffSet = 0.1f;
+
+        
     
         private void Awake()
         {
@@ -31,12 +33,33 @@ namespace Weapons
             _rigidbody2D.isKinematic = true;
         }
 
+        private void Update()
+        {
+
+            Vector3 moveDirection = _rigidbody2D.velocity;
+            float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+            if (moveDirection.x < 0)
+            {
+                GetComponent<SpriteRenderer>().flipY = true;
+                transform.Rotate(0, 0, 90);
+            }
+
+            else
+            {
+                GetComponent<SpriteRenderer>().flipY = false;
+                transform.Rotate(0, 0, -90);
+            }
+
+        }
         private void LateUpdate()
         {
+
             if (GameManager.IsPaused) return;
         
             if (transform.position.y < -100.0f) Die();
-        
+
             #region Debugging
 
             if (debug) _travelDistance = Vector3.Distance(_initialPosition, transform.position);
@@ -69,7 +92,7 @@ namespace Weapons
             #endregion
         }
 
-        private void Die() => Destroy(gameObject);
+        private void Die() => Destroy(gameObject,2f);
     
 #if UNITY_EDITOR
         private void OnDrawGizmos()

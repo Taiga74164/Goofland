@@ -23,20 +23,7 @@ namespace Controller.StateMachines
             input.IsJumping = false;   
         }
 
-        protected override void Move()
-        {
-            if(!player._windForceApplied)
-                base.Move();
-            
-            else
-            {
-                player.rb.velocity = new Vector2(
-                input.MoveInput.x *
-                player.playerSettings.movementSpeed,
-                player.rb.velocity.y);
-                player.rb.AddRelativeForce(player._windForce, ForceMode2D.Force);
-            }
-        }
+        
 
     }
 }
