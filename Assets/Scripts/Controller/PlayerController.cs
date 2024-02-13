@@ -1,6 +1,7 @@
 using Controller.StateMachines;
 using Managers;
 using Objects.Scriptable;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Controller
@@ -57,11 +58,6 @@ namespace Controller
 
         private BaseState _currentState;
 
-        #region WindProperties
-        //temporary until better method can be implimented
-        public bool _windForceApplied = false;
-        public Vector2 _windForce;
-        #endregion
 
         #endregion
 
@@ -182,10 +178,9 @@ namespace Controller
             GameObject.FindWithTag("GroundCheck").transform.position, 
             playerSettings.groundCheckRadius, playerSettings.groundLayerMask);
 
-        public void ApplyWind(Vector2 force)
+        public BaseState GetCurrentState()
         {
-            _windForceApplied = !_windForceApplied;
-            _windForce = force;
+            return _currentState;
         }
     }
 }
