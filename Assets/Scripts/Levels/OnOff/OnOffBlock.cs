@@ -7,7 +7,7 @@ namespace Levels
 {
     public class OnOffBlock : MonoBehaviour
     {
-        //this blocks color
+        [Tooltip("this blocks color")]
         [SerializeField] private OnBlock _blockType;
 
         private BoxCollider2D _boxCollider;
