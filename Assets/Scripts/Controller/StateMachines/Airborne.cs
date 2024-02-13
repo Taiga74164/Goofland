@@ -35,7 +35,7 @@ namespace Controller.StateMachines
                 player.rb.velocity.y);
         }
         
-        private void HandleClampFallSpeed()
+        protected virtual void HandleClampFallSpeed()
         {
             switch (player.rb.velocity.y)
             {

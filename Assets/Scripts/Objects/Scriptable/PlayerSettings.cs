@@ -20,6 +20,11 @@ namespace Objects.Scriptable
         public float fallMultiplier = 5.0f;
         [Tooltip("Lower value, shorter jump.")]
         public float lowJumpMultiplier = 4.0f;
+
+        [Header("Umbrella Setting")]
+        public float umbrellaGravityDiminisher = 0.25f;
+        [Tooltip("amount of time player can use the umbrella")]
+        public float umbrellaTime = 2.5f;
     
         [Header("Coyote Time Settings")]
         public float coyoteTime = 0.2f;

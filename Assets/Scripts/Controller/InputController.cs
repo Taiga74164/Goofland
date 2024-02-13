@@ -26,6 +26,8 @@ namespace Controller
         
         public bool IsAttacking { get; set; }
         
+        public bool IsParachuting { get; set; }
+        
         private void Awake() => _playerController = GetComponent<PlayerController>();
         
         private void Update()
