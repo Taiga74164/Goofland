@@ -8,6 +8,8 @@ namespace Levels
     {
         private CircleCollider2D circleCollider;//may use later to check the exact point of contact
         [SerializeField] private float _explosionForce;
+
+        //deactivates at the start. Gum object will set this to active when hit by a pie
         private void Start()
         {
             circleCollider = GetComponent<CircleCollider2D>();

@@ -30,7 +30,7 @@ namespace Levels
                 if (onType == _blockType)
                 {
                     _boxCollider.enabled = true;
-                    //hate this. will change it once we get art for these
+                    //this will be changed once we have assets for blocks being on and off
                     Color color = _sprite.color;
                     color.a = 1f;
                     _sprite.color = color;
@@ -38,7 +38,7 @@ namespace Levels
                 else
                 {
                     _boxCollider.enabled = false;
-                    //hate this. will change it once we get art for these
+                    //this will be changed once we have assets for blocks being on and off
                     Color color = _sprite.color;
                     color.a = .45f;
                     _sprite.color = color;

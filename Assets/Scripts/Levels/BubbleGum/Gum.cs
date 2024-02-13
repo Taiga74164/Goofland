@@ -7,7 +7,8 @@ namespace Levels
     public class Gum : MonoBehaviour
     {
         private Bubble _bubble;
-        // Start is called before the first frame update
+       
+
         void Awake()
         {
             _bubble = GetComponentInChildren<Bubble>();
