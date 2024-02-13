@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Objects
 {
     [Serializable]
-    public class SpawnData
+    public struct SpawnData
     {
         public Transform spawnLocation;
         public Prefabs prefab;
