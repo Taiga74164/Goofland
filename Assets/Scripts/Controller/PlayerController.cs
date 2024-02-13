@@ -178,7 +178,8 @@ namespace Controller
             GameObject.FindWithTag("GroundCheck").transform.position, 
             playerSettings.groundCheckRadius, playerSettings.groundLayerMask);
 
-        public BaseState GetCurrentState()
+        //returns the current state of the player
+        public BaseState GetCurrentState() 
         {
             return _currentState;
         }

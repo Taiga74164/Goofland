@@ -13,11 +13,10 @@ namespace Controller.StateMachines
         public override void EnterState()
         {
             // Set the falling animation.
-            //temp for this state
             player.animator.SetBool(Falling, true);
             player.canParachute = false;
 
-            player.rb.velocity = new UnityEngine.Vector2(0,0);
+            player.rb.velocity = new UnityEngine.Vector2(0,0); //prevents player velocity from exceeding the slowdown of the glide.
           
 
         }

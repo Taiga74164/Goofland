@@ -6,7 +6,7 @@ namespace Levels
 {
     public class Bubble : MonoBehaviour
     {
-        private CircleCollider2D circleCollider;
+        private CircleCollider2D circleCollider;//may use later to check the exact point of contact
         [SerializeField] private float _explosionForce;
         private void Start()
         {
