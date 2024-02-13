@@ -31,19 +31,16 @@ namespace Objects.Scriptable
     /// </summary>
     public enum Prefabs
     {
-        // Entities.
         Player,
-        Enemy,
-        // Weapons.
+        Umbregglla,
         Pie,
         WaterGun,
         BananaPeel,
-        // Weapon Projectiles.
         WaterGunProjectile,
         MusicNoteProjectile,
-        // UI.
         Health,
-        // Components.
-        FartCloudEffect
+        FartCloudEffect,
+        DurumaDiverStack,
+        Piano,
     }
 }

@@ -56,7 +56,6 @@ MonoBehaviour:
   bananaWeakness: 0
   waterWeakness: 0
   fallSpeed: 5
-  despawnTime: 10
 --- !u!50 &7897555048088618763
 Rigidbody2D:
   serializedVersion: 4

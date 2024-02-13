@@ -12,11 +12,5 @@ namespace Weapons
                 other.gameObject.GetComponent<Enemy>().GotHit(this);
             }
         }
-    
-        public bool Enabled
-        {
-            get => this.enabled;
-            set => this.enabled = value;
-        }
     }
 }

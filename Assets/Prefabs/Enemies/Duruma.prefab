@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3436695763135192134}
   - component: {fileID: 3436695763135192133}
   m_Layer: 0
-  m_Name: DurumaDiver
+  m_Name: Duruma
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df86d75179814a9481e5fe8b4854aeaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stacks: 2
+  stacks: 0
 --- !u!61 &4917126360187352302
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -243,11 +243,11 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8056670440075477145}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -255,4 +255,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 4
+  m_Constraints: 5

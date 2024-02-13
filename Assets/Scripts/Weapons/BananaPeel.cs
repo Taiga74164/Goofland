@@ -57,11 +57,5 @@ namespace Weapons
                 Explode();
             }      
         }
-    
-        public bool Enabled
-        {
-            get => this.enabled;
-            set => this.enabled = value;
-        }
     }
 }

@@ -21,8 +21,7 @@ namespace Enemies
 
         [Header("Weaknesses")]
         [SerializeField] private bool pieWeakness;
-        [SerializeField] private bool bananaWeakness;
-        [SerializeField] private bool waterWeakness;
+        [SerializeField] private bool pianoWeakness;
     
         protected Vector2 direction = Vector2.left;
         private bool _useTimer;
@@ -118,11 +117,8 @@ namespace Enemies
         /// <param name="weapon">The weapon type.</param>
         public virtual void GotHit(IWeapon weapon)
         {
-            var isWeak = (weapon is Pie && pieWeakness) || 
-                         (weapon is BananaPeel && bananaWeakness) ||
-                         (weapon is WaterGunProjectile && waterWeakness);
-        
-            if (isWeak) Die();
+            if ((weapon is Pie && pieWeakness) || (weapon is Piano && pianoWeakness))
+                Die();
         }
     }
 }

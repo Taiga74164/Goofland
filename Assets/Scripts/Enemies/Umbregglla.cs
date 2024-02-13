@@ -1,16 +1,12 @@
 ﻿using Controller;
 using Managers;
+using Objects.Scriptable;
 using UnityEngine;
 
 namespace Enemies
 {
     public class Umbregglla : Enemy
     {
-        /*
-         * An eggy with an umbrella hat falls from the top of the screen to the bottom of the screen.
-         * They mostly just act as falling hazards. This enemy randomly spawns from the skies but we will have places where they can’t spawn.
-         * It would help if there was a spawner block that the level designers could place and a despawner block.
-         */
         [Header("Umbregglla Settings")]
         [SerializeField] private float fallSpeed = 5.0f;
         

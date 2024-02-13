@@ -78,11 +78,5 @@ namespace Weapons
             Gizmos.DrawLine(_initialPosition, transform.position);
         }
 #endif
-    
-        public bool Enabled
-        {
-            get => this.enabled;
-            set => this.enabled = value;
-        }
     }
 }

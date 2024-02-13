@@ -26,11 +26,8 @@ namespace Objects
             
             var playerPosition = GameManager.Instance.playerController.transform.position;
             
-            foreach (var entry in prefabDictionary)
+            foreach (var (triggerTransform, spawnData) in prefabDictionary)
             {
-                var triggerTransform = entry.Key;
-                var spawnData = entry.Value;
-                
                 if (Vector2.Distance(playerPosition, triggerTransform.position) <= 1.0f)
                 {
                     PrefabManager.Create(spawnData.prefab, spawnData.spawnLocation);

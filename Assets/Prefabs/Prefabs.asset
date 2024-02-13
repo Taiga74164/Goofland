@@ -48,3 +48,18 @@ MonoBehaviour:
     shouldPool: 0
     initialSize: 0
     objectRoot: 
+  - type: 9
+    prefab: {fileID: 6730984093689718686, guid: 772f046fe08af604dbcb542bd01d46a7, type: 3}
+    shouldPool: 0
+    initialSize: 0
+    objectRoot: 
+  - type: 1
+    prefab: {fileID: 7897555048088618758, guid: 8504b216ab260c94cab84284675b009c, type: 3}
+    shouldPool: 0
+    initialSize: 0
+    objectRoot: 
+  - type: 10
+    prefab: {fileID: 2573339257355329383, guid: bbea7e6dc3b849b4b88d7f99760d891b, type: 3}
+    shouldPool: 0
+    initialSize: 0
+    objectRoot: 
