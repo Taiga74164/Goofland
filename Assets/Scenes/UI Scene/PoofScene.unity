@@ -243,8 +243,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8, y: 0}
-  m_SizeDelta: {x: 456.96, y: 459.88}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 750, y: 550}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &615227563
 MonoBehaviour:
@@ -266,7 +266,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f15bd590aafca484aa9e2a0105838466, type: 3}
+  m_Sprite: {fileID: 21300000, guid: adbe5d4b7d35cb04c81f903cc58f893c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -521,7 +521,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.088, y: -0.776}
+  m_AnchoredPosition: {x: 0.14, y: -0.56}
   m_SizeDelta: {x: 480.6, y: 298.71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!102 &2134556059
@@ -534,7 +534,7 @@ TextMesh:
   m_GameObject: {fileID: 2134556057}
   m_Text: POOF!
   m_OffsetZ: 0
-  m_CharacterSize: 30
+  m_CharacterSize: 50
   m_LineSpacing: 1
   m_Anchor: 4
   m_Alignment: 1
@@ -542,10 +542,10 @@ TextMesh:
   m_FontSize: 20
   m_FontStyle: 1
   m_RichText: 1
-  m_Font: {fileID: 12800000, guid: 3891d22410948e84aa66efb600bc72a7, type: 3}
+  m_Font: {fileID: 12800000, guid: 8a9a4fd40b1d55947bcbafdcd8a2a37f, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4278190297
+    rgba: 4287122030
 --- !u!23 &2134556060
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -566,7 +566,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3891d22410948e84aa66efb600bc72a7, type: 3}
+  - {fileID: 2100000, guid: 8a9a4fd40b1d55947bcbafdcd8a2a37f, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
