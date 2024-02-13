@@ -56,7 +56,13 @@ namespace Controller
         #endregion
 
         private BaseState _currentState;
-        
+
+        #region WindProperties
+        //temporary until better method can be implimented
+        public bool _windForceApplied = false;
+        public Vector2 _windForce;
+        #endregion
+
         #endregion
 
         private void Awake()
@@ -114,7 +120,6 @@ namespace Controller
             _currentState?.ExitState();
             _currentState = state;
             _currentState.EnterState();
-            Debug.Log(state.ToString());
         }
 
         /// <summary>
@@ -171,5 +176,11 @@ namespace Controller
         public bool IsGrounded() => !GameManager.IsPaused && Physics2D.OverlapCircle(
             GameObject.FindWithTag("GroundCheck").transform.position, 
             playerSettings.groundCheckRadius, playerSettings.groundLayerMask);
+
+        public void ApplyWind(Vector2 force)
+        {
+            _windForceApplied = !_windForceApplied;
+            _windForce = force;
+        }
     }
 }

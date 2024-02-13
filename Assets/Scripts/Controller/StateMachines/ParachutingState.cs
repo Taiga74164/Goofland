@@ -18,7 +18,7 @@ namespace Controller.StateMachines
             player.canParachute = false;
 
             player.rb.velocity = new UnityEngine.Vector2(0,0);
-            //resets umbrella timer
+          
 
         }
         public override void HandleInput()

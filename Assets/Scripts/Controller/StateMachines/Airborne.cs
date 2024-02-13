@@ -26,7 +26,7 @@ namespace Controller.StateMachines
             HandleClampFallSpeed();
         }
         
-        private void Move()
+        protected virtual void Move()
         {
             // Move the player while in the air.
             player.rb.velocity = new Vector2(
