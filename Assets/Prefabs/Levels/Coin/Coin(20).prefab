@@ -124,5 +124,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba107eeb21c685f47aa2012b47e61218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CoinEvent: {fileID: 11400000, guid: fb2ad067ef4d738439b626d9f41eaf8f, type: 2}
-  _value: 20
+  coinValue: 20

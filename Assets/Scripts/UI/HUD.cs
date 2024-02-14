@@ -7,14 +7,13 @@ namespace UI
 {
     public class HUD : MonoBehaviour
     {
-        public GameObject healthContainer;
-        
+        public TMP_Text coinText;
         public TMP_Text timeText;
         private float _timer;
-        
+
         private void Update()
         {
-            HandleHealthChanged(GameManager.Instance.playerController.CurrentHealth);
+            coinText.text = $"{CurrencyManager.Instance.Currency}";
         }
         
         private void FixedUpdate()
@@ -22,15 +21,6 @@ namespace UI
             if (GameManager.IsPaused) return;
             _timer += Time.fixedDeltaTime;
             timeText.text = $"Time: {TimeSpan.FromSeconds(_timer):mm\\:ss}";
-        }
-        
-        private void HandleHealthChanged(int health)
-        {
-            for (var i = 0; i < healthContainer.transform.childCount; i++)
-            {
-                var heart = healthContainer.transform.GetChild(i).gameObject;
-                heart.SetActive(i < health);
-            }
         }
     }
 }

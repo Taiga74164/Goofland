@@ -104,10 +104,10 @@ namespace Enemies
         protected bool PlayerInLineOfSight()
         {
             var playerTransform = GameManager.Instance.playerController.transform;
-            var playerDirection  = playerTransform.position - transform.position;
-            var hit = Physics2D.Raycast(transform.position, 
-                playerDirection , lineOfSight, 
-                ~LayerMask.NameToLayer("Player"));
+            var position = transform.position;
+            var playerDirection  = playerTransform.position - position;
+            var hit = Physics2D.Raycast(position, 
+                playerDirection , lineOfSight, ~LayerMask.NameToLayer("Player"));
             
             // Draw the raycast in the Scene view.
             // Debug.DrawRay(transform.position, playerDirection * lineOfSight, Color.red);
