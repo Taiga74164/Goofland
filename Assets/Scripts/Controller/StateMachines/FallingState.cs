@@ -1,6 +1,4 @@
-﻿using Managers;
-
-namespace Controller.StateMachines
+﻿namespace Controller.StateMachines
 {
     public class FallingState : Airborne
     {
@@ -18,7 +16,7 @@ namespace Controller.StateMachines
         {
             base.HandleInput();
 
-            if (InputManager.Jump.triggered && player.canParachute == true)
+            if (input.IsParachuting)
                 player.ChangeState(player.parachutingState);
 
             if (player.IsGrounded())

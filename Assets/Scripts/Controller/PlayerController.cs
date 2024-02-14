@@ -1,7 +1,6 @@
 using Controller.StateMachines;
 using Managers;
 using Objects.Scriptable;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Controller
@@ -36,28 +35,18 @@ namespace Controller
         [HideInInspector] public ParachutingState parachutingState;
 
         #region UmbrellaValues
-        [HideInInspector] public bool hasUmbrella = false;
+        [HideInInspector] public bool hasUmbrella;
 
-        private bool _canParachute = false;
-        [HideInInspector] public bool canParachute
+        private bool _canParachute;
+        public bool CanParachute
         {
-            get
-            {
-                return _canParachute;
-            }
-            set
-            {
-                if(hasUmbrella)
-                    _canParachute = value;
-                else
-                    _canParachute = false;
-            }
+            get => _canParachute;
+            set => _canParachute = hasUmbrella && value;
         }
 
         #endregion
 
         private BaseState _currentState;
-
 
         #endregion
 
@@ -134,15 +123,11 @@ namespace Controller
             };
         }
         
-        private void UpdateCoyoteTimeCounter() => 
-            CoyoteTimeCounter = IsGrounded() ? 
-                playerSettings.coyoteTime : 
-                CoyoteTimeCounter - Time.deltaTime;
+        private void UpdateCoyoteTimeCounter() => CoyoteTimeCounter = IsGrounded() ? 
+                playerSettings.coyoteTime : CoyoteTimeCounter - Time.deltaTime;
         
-        private void UpdateJumpBufferCounter() =>
-            JumpBufferCounter = InputManager.Jump.triggered ? 
-                playerSettings.jumpBufferTime : 
-                JumpBufferCounter - Time.deltaTime;
+        private void UpdateJumpBufferCounter() => JumpBufferCounter = InputManager.Jump.triggered ? 
+                playerSettings.jumpBufferTime : JumpBufferCounter - Time.deltaTime;
         
         public bool CanJump() => JumpBufferCounter > 0.0f && CoyoteTimeCounter > 0.0f;
         

@@ -26,7 +26,7 @@ namespace Controller
         
         public bool IsAttacking { get; set; }
         
-        public bool IsParachuting { get; set; }
+        public bool IsParachuting { get; private set; }
         
         private void Awake() => _playerController = GetComponent<PlayerController>();
         
@@ -49,6 +49,9 @@ namespace Controller
             
             // Update the player's falling state.
             IsFalling = _playerController.rb.velocity.y < -0.2f;
+            
+            // Update the player's parachuting state.
+            IsParachuting = InputManager.Jump.triggered && _playerController.CanParachute;
         }
     }
 }
