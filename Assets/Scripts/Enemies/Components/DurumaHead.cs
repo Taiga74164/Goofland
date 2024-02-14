@@ -51,7 +51,8 @@ namespace Enemies.Components
             
             // Destroy the last child.
             var lastChild = transform.GetChild(stacks - 1);
-            Destroy(lastChild.gameObject);
+            var stack = lastChild.GetComponent<DurumaStack>();
+            stack.Die();
         }
     }
 }

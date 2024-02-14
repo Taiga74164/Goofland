@@ -1,11 +1,31 @@
+using System;
+using System.Collections.Generic;
 using Controller;
 using JetBrains.Annotations;
+using Levels;
 using Managers;
 using UnityEngine;
 using Weapons;
+using Random = UnityEngine.Random;
 
 namespace Enemies
 {
+    /// <summary>
+    /// A struct that represents a currency drop.
+    /// </summary>
+    [Serializable]
+    public struct CurrencyDrop
+    {
+        public CoinValue coinValue;
+        public int quantity;
+        
+        public CurrencyDrop(CoinValue coinValue, int quantity)
+        {
+            this.coinValue = coinValue;
+            this.quantity = quantity;
+        }
+    }
+    
     /// <summary>
     /// Defines the base class for all enemies in the game.
     /// </summary>
@@ -19,7 +39,12 @@ namespace Enemies
         [SerializeField] protected int damage = 1;
         [SerializeField] private bool useTimer;
         [SerializeField] private float lineOfSight = 10.0f;
-
+        
+        [Header("Currency Drop Settings")]
+        [SerializeField] private List<CurrencyDrop> currencyDrops;
+        [SerializeField] private float dropForce = 5.0f;
+        [SerializeField] private float dropRadius = 1.0f;
+        
         [Header("Weaknesses")]
         [SerializeField] private bool pieWeakness;
         [SerializeField] private bool pianoWeakness;
@@ -115,7 +140,11 @@ namespace Enemies
             return hit.collider != null && hit.collider.IsPlayer();
         }
 
-        protected virtual void Die() => Destroy(gameObject);
+        protected internal virtual void Die()
+        {
+            DropCurrency();
+            Destroy(gameObject);
+        }
 
         /// <summary>
         /// Called when the enemy is hit by a weapon.
@@ -125,6 +154,33 @@ namespace Enemies
         {
             if ((weapon is Pie && pieWeakness) || (weapon is Piano && pianoWeakness))
                 Die();
+        }
+
+        /// <summary>
+        /// Drops currency when the enemy dies.
+        /// </summary>
+        private void DropCurrency()
+        {
+            foreach (var currencyDrop in currencyDrops)
+            {
+                for (var i = 0; i < currencyDrop.quantity; i++)
+                {
+                    // Create the currency prefab.
+                    var obj = PrefabManager.Create(currencyDrop.coinValue.ToCurrencyPrefab());
+                    
+                    // Scatter within a radius.
+                    var scatterPosition = Random.insideUnitSphere * dropRadius;
+                    scatterPosition.y = 0;
+                    // Set the position to the enemy's position plus a random scatter position.
+                    obj.transform.position = transform.position + scatterPosition;
+                    
+                    // Add a random force to the currency.
+                    var rbCoin = obj.GetComponent<Rigidbody2D>();
+                    var forceDirection = (Random.insideUnitSphere + Vector3.up).normalized;
+                    rbCoin.AddForce(forceDirection * dropForce, ForceMode2D.Impulse);
+                    
+                }
+            }
         }
     }
 }

@@ -76,7 +76,8 @@ namespace Weapons
             _rigidbody2D.velocity = Vector2.zero;
             _rigidbody2D.bodyType = RigidbodyType2D.Static;
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            Invoke(nameof(Die), audioSource.clip.length);
+            Die();
+            // Invoke(nameof(Die), audioSource.clip.length);
         }
     
         public void ThrowPie(Vector2 playerVelocity)
@@ -92,7 +93,7 @@ namespace Weapons
             #endregion
         }
 
-        private void Die() => Destroy(gameObject,2f);
+        private void Die() => Destroy(gameObject);
     
 #if UNITY_EDITOR
         private void OnDrawGizmos()

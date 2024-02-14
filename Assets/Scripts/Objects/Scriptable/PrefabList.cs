@@ -42,5 +42,12 @@ namespace Objects.Scriptable
         FartCloudEffect,
         DurumaDiverStack,
         Piano,
+        CoinD1,
+        CoinD4,
+        CoinD6,
+        CoinD8,
+        CoinD10,
+        CoinD12,
+        CoinD20,
     }
 }

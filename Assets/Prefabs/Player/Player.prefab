@@ -116,6 +116,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   pieController: {fileID: 0}
   inputController: {fileID: 0}
+  hasUmbrella: 0
 --- !u!114 &5675425815831273900
 MonoBehaviour:
   m_ObjectHideFlags: 0

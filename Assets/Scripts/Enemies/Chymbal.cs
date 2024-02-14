@@ -90,7 +90,7 @@ namespace Enemies
             _audioSource.volume = volume;
         }
     
-        protected override void Die()
+        protected internal override void Die()
         {
             _audioSource.Configure(deathAudioData);
             _audioSource.Play();

@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a67f8575f36dc2c4f810039d8900174f, type: 3}
+  m_Name: CoinPrefabs
+  m_EditorClassIdentifier: 
+  prefabs:
+  - type: 11
+    prefab: {fileID: 4542240243963250749, guid: 01952075c408d1e4cb8cd338076c818a, type: 3}
+    shouldPool: 0
+    initialSize: 0
+    objectRoot: 
+  - type: 12
+    prefab: {fileID: 4542240243963250749, guid: 8c09b7ba096e3164fb9e657efcfd8e92, type: 3}
+    shouldPool: 0
+    initialSize: 0
+    objectRoot: 
+  - type: 13
+    prefab: {fileID: 4542240243963250749, guid: a8a241bc205a4ca4ea3f2522ca6c06ec, type: 3}
+    shouldPool: 0
+    initialSize: 0
+    objectRoot: 
+  - type: 14
+    prefab: {fileID: 4542240243963250749, guid: 5373503cf22511c43845fa57cf791a44, type: 3}
+    shouldPool: 0
+    initialSize: 0
+    objectRoot: 
+  - type: 15
+    prefab: {fileID: 4542240243963250749, guid: 5c26d8b74ac7abd428cdeb56b9d6bf72, type: 3}
+    shouldPool: 0
+    initialSize: 0
+    objectRoot: 
+  - type: 16
+    prefab: {fileID: 4542240243963250749, guid: 50b56c63d39c4a342be17233caf8e032, type: 3}
+    shouldPool: 0
+    initialSize: 0
+    objectRoot: 
+  - type: 17
+    prefab: {fileID: 4542240243963250749, guid: f0e8710c27879164aa26670cec1584ad, type: 3}
+    shouldPool: 0
+    initialSize: 0
+    objectRoot: 

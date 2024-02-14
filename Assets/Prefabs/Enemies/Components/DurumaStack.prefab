@@ -104,6 +104,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ca9dd942c1444bb8526904aee2a0e64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  model: {fileID: 0}
+  speed: 0
+  damage: 1
+  useTimer: 0
+  lineOfSight: 10
+  currencyDrops:
+  - coinValue: 1
+    quantity: 1
+  dropForce: 10
+  dropRadius: 4
+  pieWeakness: 0
+  pianoWeakness: 0
 --- !u!50 &5093756717265513090
 Rigidbody2D:
   serializedVersion: 4

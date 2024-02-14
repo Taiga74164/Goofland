@@ -6,10 +6,13 @@ namespace Levels
     public class Coin : MonoBehaviour
     {
         public CoinValue coinValue = CoinValue.D1;
-
-        private void OnTriggerEnter2D(Collider2D collision)
+        [SerializeField] private float despawnTime = 10.0f;
+        
+        private void Start() => Destroy(gameObject, despawnTime);
+        
+        private void OnCollisionEnter2D(Collision2D other)
         {
-            if (collision.IsPlayer())
+            if (other.IsPlayer())
             {
                 CurrencyManager.Instance.AddCurrency((int)coinValue);
                 Destroy(gameObject);

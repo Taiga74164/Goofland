@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Levels;
 using Objects.Scriptable;
 using UnityEngine;
 
@@ -73,5 +74,25 @@ public static class Extensions
         audioSource.outputAudioMixerGroup = audioData.mixerGroup;
         audioSource.playOnAwake = audioData.playOnAwake;
         audioSource.loop = audioData.loop;
+    }
+    
+    /// <summary>
+    /// Converts the currency to a prefab.
+    /// </summary>
+    /// <param name="currency">The currency to convert.</param>
+    /// <returns>The prefab for the currency.</returns>
+    public static Prefabs ToCurrencyPrefab(this CoinValue currency)
+    {
+        return currency switch
+        {
+            CoinValue.D1 => Prefabs.CoinD1,
+            CoinValue.D4 => Prefabs.CoinD4,
+            CoinValue.D6 => Prefabs.CoinD6,
+            CoinValue.D8 => Prefabs.CoinD8,
+            CoinValue.D10 => Prefabs.CoinD10,
+            CoinValue.D12 => Prefabs.CoinD12,
+            CoinValue.D20 => Prefabs.CoinD20,
+            _ => Prefabs.CoinD1
+        };
     }
 }
