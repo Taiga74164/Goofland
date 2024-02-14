@@ -39,7 +39,6 @@ namespace Controller
             _lastPieThrownTime = Time.time;
         }
 
-        private bool IsPieReady() => !GameManager.IsPaused &&
-                                     Time.time - _lastPieThrownTime >= _pieCooldownDuration;
+        private bool IsPieReady() => !GameManager.IsPaused && Time.time - _lastPieThrownTime >= _pieCooldownDuration;
     }
 }

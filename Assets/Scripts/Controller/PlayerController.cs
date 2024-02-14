@@ -106,6 +106,8 @@ namespace Controller
             _currentState = state;
             _currentState.EnterState();
         }
+        
+        public BaseState GetCurrentState() => _currentState;
 
         /// <summary>
         /// Update the player's sprite based on the direction they are facing.
@@ -131,12 +133,10 @@ namespace Controller
         
         public bool CanJump() => JumpBufferCounter > 0.0f && CoyoteTimeCounter > 0.0f;
         
-        public void ResetCoyoteTimeAndJumpBufferCounter()
-        {
-            CoyoteTimeCounter = 0.0f;
-            JumpBufferCounter = 0.0f;
-        }
+        public void ResetCoyoteTimeAndJumpBufferCounter() => CoyoteTimeCounter = JumpBufferCounter = 0.0f;
 
+        public void Bounced(Vector2 force) => rb.AddForce(force);
+        
         public void TakeDamage(int damage = 1, Transform enemy = null)
         {
             // Play the hurt sound.
@@ -153,20 +153,9 @@ namespace Controller
                 rb.AddForce((transform.position - enemy.position).normalized * playerSettings.knockbackForce);
         }
 
-        public void Bounced(Vector2 force)
-        {
-            rb.AddForce(force);
-        }
-
         // ReSharper disable Unity.PerformanceAnalysis
         public bool IsGrounded() => !GameManager.IsPaused && Physics2D.OverlapCircle(
             GameObject.FindWithTag("GroundCheck").transform.position, 
             playerSettings.groundCheckRadius, playerSettings.groundLayerMask);
-
-        //returns the current state of the player
-        public BaseState GetCurrentState() 
-        {
-            return _currentState;
-        }
     }
 }
