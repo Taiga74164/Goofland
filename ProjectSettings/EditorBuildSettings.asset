@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: c78c88f3ecb36d84fb2ef435c8169be2
   - enabled: 1
-    path: Assets/Scenes/Level1Blockout.unity
-    guid: aa92e196bc408004286ebbd41ec8e740
+    path: Assets/Scenes/MechanicTestGym.unity
+    guid: 91b92f9e4620e7340a4388d1d13ec429
   m_configObjects: {}

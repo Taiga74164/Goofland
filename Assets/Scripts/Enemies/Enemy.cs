@@ -17,6 +17,7 @@ namespace Enemies
         [Header("Enemy Settings")]
         [SerializeField] protected float speed;
         [SerializeField] protected int damage = 1;
+        [SerializeField] private bool useTimer;
         [SerializeField] private float lineOfSight = 10.0f;
 
         [Header("Weaknesses")]
@@ -24,13 +25,14 @@ namespace Enemies
         [SerializeField] private bool pianoWeakness;
     
         protected Vector2 direction = Vector2.left;
-        private bool _useTimer;
+        protected Rigidbody2D rb;
         private float _turnTimer;
         private float _turnCount;
     
         protected virtual void Awake()
         {
             model = model ? model : gameObject;
+            rb = GetComponent<Rigidbody2D>();
         }
         
         protected virtual void Start() { }
@@ -41,7 +43,7 @@ namespace Enemies
         {
             if (GameManager.IsPaused) return;
         
-            if (_useTimer) Timer();
+            if (useTimer) Timer();
 
             MoveEnemy();
         }
@@ -106,6 +108,10 @@ namespace Enemies
             var hit = Physics2D.Raycast(transform.position, 
                 playerDirection , lineOfSight, 
                 ~LayerMask.NameToLayer("Player"));
+            
+            // Draw the raycast in the Scene view.
+            // Debug.DrawRay(transform.position, playerDirection * lineOfSight, Color.red);
+            
             return hit.collider != null && hit.collider.IsPlayer();
         }
 

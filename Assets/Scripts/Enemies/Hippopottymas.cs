@@ -10,12 +10,6 @@ namespace Enemies
         [SerializeField] private float chargeSpeed = 10.0f;
 
         private bool _isDisturbed;
-        private Rigidbody2D _rb;
-
-        protected override void Start()
-        {
-            _rb = GetComponent<Rigidbody2D>();
-        }
         
         protected override void Update()
         {
@@ -37,7 +31,7 @@ namespace Enemies
             var directionToPlayer = (playerPosition - transform.position).normalized;
             
             // Move towards the player.
-            _rb.velocity = new Vector2(directionToPlayer.x * chargeSpeed, _rb.velocity.y);
+            rb.velocity = new Vector2(directionToPlayer.x * chargeSpeed, rb.velocity.y);
         }
         
         protected override void MoveEnemy()

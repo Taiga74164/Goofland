@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4575226100229685933}
   - component: {fileID: 2688767248471943662}
+  - component: {fileID: -2102127833273377040}
   - component: {fileID: 5093756717265513090}
   - component: {fileID: 1061899121722098656}
   m_Layer: 0
-  m_Name: DurumaDiverStack
+  m_Name: DurumaStack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,7 +37,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0.5, y: -1.5}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &2688767248471943662
@@ -91,6 +92,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-2102127833273377040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6730984093689718686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ca9dd942c1444bb8526904aee2a0e64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!50 &5093756717265513090
 Rigidbody2D:
   serializedVersion: 4
