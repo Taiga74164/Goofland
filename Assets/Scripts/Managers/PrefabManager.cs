@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Objects.Scriptable;
 using UnityEngine;
@@ -37,6 +38,20 @@ namespace Managers
                 Debug.LogError($"Prefab {prefab} does not have component {typeof(T)}");
             
             return component;
+        }
+        
+        /// <summary>
+        /// Special singleton initializer method.
+        /// </summary>
+        public new static void Initialize()
+        {
+            var prefab = Resources.Load<GameObject>("Prefabs/Managers/[PrefabManager]");
+            if (prefab == null) throw new Exception("Missing PrefabManager prefab!");
+
+            var instance = Instantiate(prefab);
+            if (instance == null) throw new Exception("Failed to instantiate PrefabManager prefab!");
+
+            instance.name = "Managers.PrefabManager (Singleton)";
         }
 
         protected override void OnAwake()
