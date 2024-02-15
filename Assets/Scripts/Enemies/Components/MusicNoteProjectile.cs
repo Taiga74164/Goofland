@@ -1,9 +1,9 @@
-﻿using Managers;
+﻿using Controllers;
 using UnityEngine;
 
 namespace Enemies.Components
 {
-    public class MusicNoteProjectile : MonoBehaviour
+    public class MusicNoteProjectile : EnemyBase
     {
         public Vector2 direction = Vector2.left;
         [SerializeField] private float speed = 5.0f;
@@ -38,7 +38,8 @@ namespace Enemies.Components
         {
             if (!other.IsPlayer()) return;
             
-            GameManager.Instance.playerController.TakeDamage();
+            // other.gameObject.GetComponent<PlayerController>().TakeDamage();
+            other.gameObject.GetComponent<PlayerController>().DropCurrency(this);
             Destroy(gameObject);
         }
     }

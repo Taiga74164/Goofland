@@ -40,6 +40,13 @@ namespace Objects.Scriptable
         [Tooltip("The layer mask for the ground.")]
         public LayerMask groundLayerMask;
         
+        [Header("Invincibility Settings")]
+        public float invincibilityFrameDuration = 2.0f;
+        
+        [Header("Currency Drop Settings")]
+        public float dropForce = 5.0f;
+        public float scatterRadius = 1.0f;
+        
         [Header("Audio Data")]
         public AudioData jumpSoundData;
         public AudioData runSoundData;

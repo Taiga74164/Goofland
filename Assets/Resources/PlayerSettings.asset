@@ -21,6 +21,8 @@ MonoBehaviour:
   knockbackForce: 1000
   fallMultiplier: 5
   lowJumpMultiplier: 4
+  umbrellaGravityDiminisher: 0.25
+  umbrellaTime: 2.5
   coyoteTime: 0.2
   jumpBufferTime: 0.2
   maxHealth: 3
@@ -28,6 +30,8 @@ MonoBehaviour:
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  dropForce: 8
+  scatterRadius: 1
   jumpSoundData: {fileID: 11400000, guid: 868f14eb28077d6469409f8e5719ac9d, type: 2}
   runSoundData: {fileID: 11400000, guid: c017ce76d1e837b4eab7932c3ac1f04c, type: 2}
   walkSoundData: {fileID: 11400000, guid: 9045134e7407541439a2abcfdcf74fc1, type: 2}

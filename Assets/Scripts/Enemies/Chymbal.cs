@@ -42,7 +42,8 @@ namespace Enemies
             if (!collision.IsPlayer()) return;
             
             var player = collision.gameObject.GetComponent<PlayerController>();
-            player.TakeDamage(damage, transform);
+            // player.TakeDamage(damage, transform);
+            player.DropCurrency(this);
         }
         
         private void HandleAttack()

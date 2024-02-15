@@ -25,7 +25,8 @@ namespace Enemies
         {
             if (collision.IsPlayer())
             {
-                collision.gameObject.GetComponent<PlayerController>().TakeDamage();
+                // collision.gameObject.GetComponent<PlayerController>().TakeDamage();
+                collision.gameObject.GetComponent<PlayerController>().DropCurrency(this);
                 Die();
             } 
             else if (collision.gameObject.layer != ~LayerMask.NameToLayer("Player"))

@@ -1,4 +1,5 @@
 using Controllers.StateMachines;
+using Enemies;
 using Managers;
 using Objects.Scriptable;
 using UnityEngine;
@@ -36,6 +37,7 @@ namespace Controllers
         [HideInInspector] public ParachutingState parachutingState;
 
         #region UmbrellaValues
+        
         [HideInInspector] public bool hasUmbrella;
 
         private bool _canParachute;
@@ -152,6 +154,24 @@ namespace Controllers
             // Knock back the player.
             if (enemy != null)
                 rb.AddForce((transform.position - enemy.position).normalized * playerSettings.knockbackForce);
+        }
+
+        public void DropCurrency(EnemyBase enemy)
+        {
+            // Get the current currency.
+            var currentCurrency = CurrencyManager.Instance.Currency;
+            // Calculate the loss based on the enemy's damage percentage.
+            var currencyLoss = Mathf.RoundToInt(currentCurrency * (enemy.damagePercentage / 100.0f));
+            
+            // Calculate the dice drops.
+            var diceDrops = CurrencyManager.Instance.CalculateDiceDrops(currencyLoss);
+            // Drop the calculated currency.
+            foreach (var (coinValue, quantity) in diceDrops)
+                CurrencyManager.Instance.DropCurrency(coinValue, quantity, 
+                    playerSettings.dropForce, playerSettings.scatterRadius, enemy.transform.position);
+            
+            // Subtract the currency from the player.
+            CurrencyManager.Instance.RemoveCurrency(currencyLoss);
         }
 
         // ReSharper disable Unity.PerformanceAnalysis
