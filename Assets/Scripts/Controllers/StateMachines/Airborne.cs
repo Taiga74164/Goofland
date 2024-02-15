@@ -31,7 +31,8 @@ namespace Controllers.StateMachines
             // Move the player while in the air.
             player.rb.velocity = new Vector2(
                 input.MoveInput.x * 
-                player.playerSettings.movementSpeed, 
+                player.playerSettings.movementSpeed *
+                (input.IsRunning ? player.playerSettings.runSpeedMultiplier : 1.0f), 
                 player.rb.velocity.y);
         }
         
