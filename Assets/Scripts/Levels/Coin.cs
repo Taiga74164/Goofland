@@ -1,3 +1,4 @@
+using System;
 using Managers;
 using UnityEngine;
 
@@ -9,10 +10,19 @@ namespace Levels
         [SerializeField] private float despawnTime = 10.0f;
         
         private void Start() => Destroy(gameObject, despawnTime);
-        
+
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (other.IsPlayer())
+            {
+                CurrencyManager.Instance.AddCurrency((int)coinValue);
+                Destroy(gameObject);
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.IsPlayer() || other.gameObject.CompareTag("GroundCheck"))
             {
                 CurrencyManager.Instance.AddCurrency((int)coinValue);
                 Destroy(gameObject);
