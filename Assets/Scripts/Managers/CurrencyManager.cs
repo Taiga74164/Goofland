@@ -30,18 +30,23 @@ namespace Managers
         /// Calculates the number of dice drops for a given score.
         /// </summary>
         /// <param name="score">The score to calculate.</param>
+        /// <param name="roundUp">Whether to round up the score.</param>
         /// <returns>A dictionary of dice drops.</returns>
-        public Dictionary<CoinValue, int> CalculateDiceDrops(int score)
+        public Dictionary<CoinValue, int> CalculateDiceDrops(int score, bool roundUp = false)
         {
             var drops = new Dictionary<CoinValue, int>();
             var diceOrder = (CoinValue[])Enum.GetValues(typeof(CoinValue));
-
+            // Sort the dice order in descending order (highest to lowest).
+            Array.Sort(diceOrder, (a, b) => b.CompareTo(a));
+            
             foreach (var dice in diceOrder)
             {
                 // Get the value of the dice.
                 var diceValue = (int)dice;
                 // Calculate the number of dice drops.
                 var count = score / diceValue;
+                count = roundUp ? Mathf.CeilToInt((float)score / diceValue) : count;
+                
                 if (count > 0)
                 {
                     // Add the dice to the dictionary.

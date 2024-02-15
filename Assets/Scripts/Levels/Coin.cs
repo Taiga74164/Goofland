@@ -12,7 +12,7 @@ namespace Levels
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.IsPlayer() || other.gameObject.CompareTag("Coin"))
+            if (other.IsPlayer() || other.gameObject.CompareTag("Projectile"))
                 CollectCoin();
         }
 
