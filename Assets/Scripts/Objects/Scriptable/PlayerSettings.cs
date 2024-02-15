@@ -23,7 +23,7 @@ namespace Objects.Scriptable
 
         [Header("Umbrella Setting")]
         public float umbrellaGravityDiminisher = 0.25f;
-        [Tooltip("amount of time player can use the umbrella")]
+        [Tooltip("Amount of time player can use the umbrella.")]
         public float umbrellaTime = 2.5f;
     
         [Header("Coyote Time Settings")]

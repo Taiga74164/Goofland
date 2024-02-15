@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Objects.Scriptable;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ namespace Managers
 {
     public class PrefabManager : Singleton<PrefabManager>
     {
-        [SerializeField] private PrefabList list;
+        [SerializeField] private List<PrefabList> prefabLists;
 
         private readonly Dictionary<Prefabs, Prefab> _prefabs = new();
         private readonly Dictionary<Prefabs, Queue<GameObject>> _pools = new ();
@@ -42,7 +43,7 @@ namespace Managers
         {
             DontDestroyOnLoad(this);
 
-            foreach (var prefab in list.prefabs)
+            foreach (var prefab in prefabLists.SelectMany(prefabList => prefabList.prefabs))
             {
                 _prefabs.Add(prefab.type, prefab);
 

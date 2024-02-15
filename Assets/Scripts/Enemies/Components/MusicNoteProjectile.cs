@@ -36,16 +36,13 @@ namespace Enemies.Components
         
         private void OnTriggerEnter2D(Collider2D other)
         {
-            // Dirty code.
-            if (other.CompareTag("Enemy")) return;
+            // Debug.Log($"{other.name}");
+            // FYI: Please update to Unity 2022.
+            // other.transform.parent.GetComponent<PlayerController>().TakeDamage();
+            if (!other.CompareTag("GroundCheck"))
+                return;
             
-            if (other.IsPlayer())
-            {
-                // FYI: Please update to Unity 2022.
-                // other.transform.parent.GetComponent<PlayerController>().TakeDamage();
-                GameManager.Instance.playerController.TakeDamage();
-            }
-            
+            GameManager.Instance.playerController.TakeDamage();
             Destroy(gameObject);
         }
     }

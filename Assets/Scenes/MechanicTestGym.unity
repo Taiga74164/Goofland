@@ -17576,6 +17576,10 @@ PrefabInstance:
       value: Fan
       objectReference: {fileID: 0}
     - target: {fileID: 2768773677702635581, guid: a1d4f1b5cea11a64192467bdd42b0f77, type: 3}
+      propertyPath: windForce
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2768773677702635581, guid: a1d4f1b5cea11a64192467bdd42b0f77, type: 3}
       propertyPath: _windForce
       value: 7
       objectReference: {fileID: 0}

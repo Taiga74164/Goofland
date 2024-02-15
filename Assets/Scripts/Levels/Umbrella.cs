@@ -1,11 +1,11 @@
-using Controller;
+using Controllers;
 using UnityEngine;
 
 public class Umbrella : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if (collision.IsPlayer())
         {
             collision.GetComponent<PlayerController>().hasUmbrella = true;
             Destroy(gameObject);

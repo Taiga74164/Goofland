@@ -69,6 +69,7 @@ GameObject:
   - component: {fileID: 8904874713320273180}
   - component: {fileID: 8904874713320273179}
   - component: {fileID: 5675425815831273900}
+  - component: {fileID: 2224218101014198010}
   - component: {fileID: 3748090300100103364}
   - component: {fileID: 8904874713320273178}
   - component: {fileID: 5613467704402204782}
@@ -116,6 +117,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   pieController: {fileID: 0}
   inputController: {fileID: 0}
+  hasUmbrella: 0
 --- !u!114 &5675425815831273900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,6 +133,23 @@ MonoBehaviour:
   maxChargeTime: 0.7
   minForce: 5
   maxForce: 15
+--- !u!114 &2224218101014198010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8904874713320273176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac392e33d454d18bc67d11447db0765, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  magnetRadius: 5
+  magnetForce: 10
+  magnetLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!114 &3748090300100103364
 MonoBehaviour:
   m_ObjectHideFlags: 0
