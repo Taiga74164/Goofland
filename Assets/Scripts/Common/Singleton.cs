@@ -45,6 +45,20 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 
         OnAwake();
     }
+    
+    /// <summary>
+    /// Ensures an instance of the singleton exists.
+    /// </summary>
+    protected static void Initialize()
+    {
+        if (_instance != null) return;
+        _instance = FindObjectOfType<T>();
+        if (_instance != null) return;
+
+        var singletonObject = new GameObject();
+        _instance = singletonObject.AddComponent<T>();
+        singletonObject.name = typeof(T) + " (Singleton)";
+    }
 
     protected virtual void OnAwake()
     {

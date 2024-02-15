@@ -4,13 +4,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace UI
+namespace Utils
 {
     /// <summary>
     /// Provides utility functions for buttons.
     /// </summary>
     [RequireComponent(typeof(Image), typeof(Button))]
-    public class ButtonUtils : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    public class ButtonUtil : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         #region Button Hover Effect
 

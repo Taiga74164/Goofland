@@ -21,13 +21,7 @@ namespace Controllers.Components
             {
                 var hitCollider = hitColliders[i];
                 var rb = hitCollider.GetComponent<Rigidbody2D>();
-                var collision = hitCollider.GetComponent<CircleCollider2D>();
                 var direction = transform.position - hitCollider.transform.position;
-                // SHIT CODE!
-                // DO. NOT. LOOK.
-                // PLEASE UPGRADE UNITY VERSION!
-                if (Vector2.Distance(transform.position, hitCollider.transform.position) <= 1.0f)
-                    collision.isTrigger = true;
                 rb!.AddForce(direction.normalized * (magnetForce * Time.fixedDeltaTime), ForceMode2D.Impulse);
             }
         }

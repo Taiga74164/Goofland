@@ -6,11 +6,7 @@ namespace Managers
     {
         public int Currency { get; private set; }
 
-        public void AddCurrency(int amount)
-        {
-            Debug.Log($"Adding {amount} currency.");
-            Currency += amount;
-        }
+        public void AddCurrency(int amount) => Currency += amount;
 
         public void RemoveCurrency(int amount) => Currency -= Mathf.Clamp(amount, 0, Currency);
         

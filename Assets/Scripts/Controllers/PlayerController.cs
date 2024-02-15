@@ -2,6 +2,7 @@ using Controllers.StateMachines;
 using Managers;
 using Objects.Scriptable;
 using UnityEngine;
+using Utils;
 
 namespace Controllers
 {
@@ -146,7 +147,7 @@ namespace Controllers
             // Reduce the player's health.
             CurrentHealth -= damage;
             if (CurrentHealth <= 0)
-                LevelManager.RestartLevel();
+                LevelUtil.RestartLevel();
             
             // Knock back the player.
             if (enemy != null)

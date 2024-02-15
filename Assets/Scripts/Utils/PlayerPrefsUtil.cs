@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace Managers
+namespace Utils
 {
-    public static class PlayerPrefsManager
+    public static class PlayerPrefsUtil
     {
         public static float BGMVolume
         {

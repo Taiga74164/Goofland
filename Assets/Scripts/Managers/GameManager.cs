@@ -14,6 +14,11 @@ namespace Managers
             set => Instance._isPaused = value;
         }
 
+        protected override void OnAwake()
+        {
+            AudioManager.Initialize();
+        }
+
         private void Start()
         {
             SceneManager.activeSceneChanged += OnSceneChanged;

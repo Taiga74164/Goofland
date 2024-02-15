@@ -1,6 +1,7 @@
 using Managers;
 using Objects;
 using UnityEngine.UI;
+using Utils;
 
 namespace UI.Menus
 {
@@ -31,9 +32,9 @@ namespace UI.Menus
     
         private void LoadSettings()
         {
-            _bgmVolume = PlayerPrefsManager.BGMVolume;
-            _sfxVolume = PlayerPrefsManager.SFXVolume;
-            _masterVolume = PlayerPrefsManager.MasterVolume;
+            _bgmVolume = PlayerPrefsUtil.BGMVolume;
+            _sfxVolume = PlayerPrefsUtil.SFXVolume;
+            _masterVolume = PlayerPrefsUtil.MasterVolume;
         }
     
         private void UpdateUIElements()
@@ -52,10 +53,10 @@ namespace UI.Menus
     
         private void SaveSettings()
         {
-            PlayerPrefsManager.BGMVolume = _bgmVolume;
-            PlayerPrefsManager.SFXVolume = _sfxVolume;
-            PlayerPrefsManager.MasterVolume = _masterVolume;
-            PlayerPrefsManager.Save();
+            PlayerPrefsUtil.BGMVolume = _bgmVolume;
+            PlayerPrefsUtil.SFXVolume = _sfxVolume;
+            PlayerPrefsUtil.MasterVolume = _masterVolume;
+            PlayerPrefsUtil.Save();
         }
     
         public void OnBGMVolumeBarValueChanged(float value)

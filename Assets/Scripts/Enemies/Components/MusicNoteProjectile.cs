@@ -36,11 +36,7 @@ namespace Enemies.Components
         
         private void OnTriggerEnter2D(Collider2D other)
         {
-            // Debug.Log($"{other.name}");
-            // FYI: Please update to Unity 2022.
-            // other.transform.parent.GetComponent<PlayerController>().TakeDamage();
-            if (!other.CompareTag("GroundCheck"))
-                return;
+            if (!other.IsPlayer()) return;
             
             GameManager.Instance.playerController.TakeDamage();
             Destroy(gameObject);

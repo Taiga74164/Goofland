@@ -1,6 +1,8 @@
+using System;
 using Objects.Scriptable;
 using UnityEngine;
 using UnityEngine.Audio;
+using Utils;
 
 namespace Managers
 {
@@ -12,9 +14,23 @@ namespace Managers
         public AudioMixer audioMixer;
         private AudioSource _audioSource;
 
-        protected override void Awake()
+        /// <summary>
+        /// Special singleton initializer method.
+        /// </summary>
+        public new static void Initialize()
         {
-            base.Awake();
+            var prefab = Resources.Load<GameObject>("Prefabs/Managers/[AudioManager]");
+            if (prefab == null) throw new Exception("Missing AudioManager prefab!");
+
+            var instance = Instantiate(prefab);
+            if (instance == null) throw new Exception("Failed to instantiate AudioManager prefab!");
+
+            instance.name = "Managers.AudioManager (Singleton)";
+        }
+        
+        protected override void OnAwake()
+        {
+            base.OnAwake();
             _audioSource = GetComponent<AudioSource>();
             LoadVolumeSettings();
         }
@@ -39,9 +55,9 @@ namespace Managers
         
         private void LoadVolumeSettings()
         {
-            SetBGMVolume(PlayerPrefsManager.BGMVolume);
-            SetSFXVolume(PlayerPrefsManager.SFXVolume);
-            SetMasterVolume(PlayerPrefsManager.MasterVolume);
+            SetBGMVolume(PlayerPrefsUtil.BGMVolume);
+            SetSFXVolume(PlayerPrefsUtil.SFXVolume);
+            SetMasterVolume(PlayerPrefsUtil.MasterVolume);
         }
 
         public void SetMasterVolume(float value) => 
