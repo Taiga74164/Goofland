@@ -31,6 +31,8 @@ namespace Managers
             IsPaused = false;
             // Clear the menu stack when the scene changes.
             MenuManager.Instance.ClearStack();
+            // Reset currency when the scene changes.
+            CurrencyManager.Instance.ResetCurrency();
         }
     }
 }
