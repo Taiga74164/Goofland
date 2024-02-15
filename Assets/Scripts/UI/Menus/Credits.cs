@@ -1,6 +1,6 @@
 using Objects;
 
-namespace UI
+namespace UI.Menus
 {
     public class Credits : Menu
     {

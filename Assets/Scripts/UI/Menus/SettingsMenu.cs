@@ -2,7 +2,7 @@ using Managers;
 using Objects;
 using UnityEngine.UI;
 
-namespace UI
+namespace UI.Menus
 {
     public class SettingsMenu : Menu
     {

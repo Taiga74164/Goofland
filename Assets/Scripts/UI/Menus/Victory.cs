@@ -2,19 +2,17 @@ using Managers;
 using Objects;
 using UnityEngine;
 
-namespace UI
+namespace UI.Menus
 {
-    public class PauseMenu : Menu
+    public class Victory : Menu
     {
         [SerializeField] private SettingsMenu settingsMenu;
         
         private void OnEnable() => GameManager.IsPaused = true;
         
-        private void OnDisable() => GameManager.IsPaused = false;
-
+        public void OnHomeButtonClicked() => LevelManager.LoadLevel("MainMenu");
+        
         public void OnRestartButtonClicked() => LevelManager.RestartLevel();
-
-        public void OnPlayButtonClicked() => CloseMenu();
         
         public void OnSettingsButtonClicked() => settingsMenu.OpenMenu();
     }

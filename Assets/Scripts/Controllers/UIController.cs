@@ -1,5 +1,5 @@
 ﻿using Managers;
-using UI;
+using UI.Menus;
 using UnityEngine;
 
 namespace Controllers
