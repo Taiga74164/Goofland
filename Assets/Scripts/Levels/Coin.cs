@@ -12,8 +12,15 @@ namespace Levels
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (!other.IsPlayer()) return;
-            
+            if (other.IsPlayer() || other.gameObject.CompareTag("Coin"))
+                CollectCoin();
+        }
+
+        /// <summary>
+        /// Collects the coin and adds its value to the currency manager.
+        /// </summary>
+        public void CollectCoin()
+        {
             CurrencyManager.Instance.AddCurrency((int)coinValue);
             Destroy(gameObject);
         }

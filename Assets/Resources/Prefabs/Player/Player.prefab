@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac392e33d454d18bc67d11447db0765, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magnetRadius: 5
+  magnetRadius: 2
   magnetForce: 10
   magnetLayer:
     serializedVersion: 2
