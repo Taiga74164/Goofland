@@ -1,4 +1,4 @@
-﻿namespace Controller.StateMachines
+﻿namespace Controllers.StateMachines
 {
     public class IdleState : Grounded
     {

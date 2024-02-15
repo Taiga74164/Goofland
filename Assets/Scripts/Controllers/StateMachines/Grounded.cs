@@ -1,6 +1,6 @@
 ﻿using Managers;
 
-namespace Controller.StateMachines
+namespace Controllers.StateMachines
 {
     /// <summary>
     /// Hierarchy class for grounded player states.

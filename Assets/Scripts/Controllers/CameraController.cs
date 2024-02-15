@@ -1,7 +1,7 @@
 using Managers;
 using UnityEngine;
 
-namespace Controller
+namespace Controllers
 {
     public class CameraController : MonoBehaviour
     {

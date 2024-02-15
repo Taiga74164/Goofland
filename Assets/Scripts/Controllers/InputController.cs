@@ -1,7 +1,7 @@
 ﻿using Managers;
 using UnityEngine;
 
-namespace Controller
+namespace Controllers
 {
     /// <summary>
     /// Centralized input controller.

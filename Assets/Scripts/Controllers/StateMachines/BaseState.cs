@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Controller.StateMachines
+namespace Controllers.StateMachines
 {
     /// <summary>
     /// Base class for player states.

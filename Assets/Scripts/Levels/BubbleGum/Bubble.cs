@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Controllers;
 using UnityEngine;
 
 namespace Levels
@@ -21,7 +22,7 @@ namespace Levels
             if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
             {
                 Vector2 force = -collision.relativeVelocity.normalized * _explosionForce;
-                collision.gameObject.GetComponent<Controller.PlayerController>().Bounced(force);
+                collision.gameObject.GetComponent<PlayerController>().Bounced(force);
                 gameObject.SetActive(false);
             }
         }

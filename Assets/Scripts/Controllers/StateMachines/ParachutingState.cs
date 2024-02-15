@@ -1,7 +1,7 @@
 using Managers;
 using UnityEngine;
 
-namespace Controller.StateMachines
+namespace Controllers.StateMachines
 {
     public class ParachutingState : Airborne
     {

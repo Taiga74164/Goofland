@@ -1,6 +1,6 @@
 using UnityEngine;
-using Controller;
-using Controller.StateMachines;
+using Controllers;
+using Controllers.StateMachines;
 
 namespace Levels
 {

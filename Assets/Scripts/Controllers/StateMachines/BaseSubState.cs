@@ -1,4 +1,4 @@
-namespace Controller.StateMachines
+namespace Controllers.StateMachines
 {
     /// <summary>
     /// Sub state class for player states.

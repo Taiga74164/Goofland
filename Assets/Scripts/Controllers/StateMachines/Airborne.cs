@@ -1,7 +1,7 @@
 ﻿using Managers;
 using UnityEngine;
 
-namespace Controller.StateMachines
+namespace Controllers.StateMachines
 {
     /// <summary>
     /// Hierarchical class for airborne player states.

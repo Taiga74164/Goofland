@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Controller;
+using Controllers;
 using JetBrains.Annotations;
 using Levels;
 using Managers;
@@ -178,7 +178,6 @@ namespace Enemies
                     var rbCoin = obj.GetComponent<Rigidbody2D>();
                     var forceDirection = (Random.insideUnitSphere + Vector3.up).normalized;
                     rbCoin.AddForce(forceDirection * dropForce, ForceMode2D.Impulse);
-                    
                 }
             }
         }
