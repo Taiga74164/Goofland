@@ -20,8 +20,7 @@ namespace Enemies.Components
         private void OnTriggerStay2D(Collider2D other)
         {
             if (other.IsPlayer())
-                // other.GetComponent<PlayerController>().TakeDamage();
-                other.GetComponent<PlayerController>().DropCurrency(this);
+                other.GetComponent<PlayerController>().TakeDamage(enemy: this);
         }
 
 #if UNITY_EDITOR

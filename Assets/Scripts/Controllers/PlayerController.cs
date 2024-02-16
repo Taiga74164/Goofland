@@ -29,6 +29,8 @@ namespace Controllers
         public float JumpBufferCounter { get; private set; }
         public bool IsInvincible { get; private set; }
         
+        public bool IsKnockback { get; private set; }
+        
         [HideInInspector] public Rigidbody2D rb;
         [HideInInspector] public PieController pieController;
         [HideInInspector] public InputController inputController;
@@ -94,8 +96,8 @@ namespace Controllers
 
         private void Update()
         {
-            // Take damage if the player falls too far.
-            if (rb.velocity.y < -30.0f && transform.position.y < -30.0f) TakeDamage();
+            // Restart Level if the player falls too far.
+            if (rb.velocity.y < -30.0f && transform.position.y < -30.0f) LevelUtil.RestartLevel();
             
             if (GameManager.IsPaused) return;
             
@@ -142,10 +144,12 @@ namespace Controllers
         
         private void HandleInvincibility()
         {
-            if (!IsInvincible) return;
-            _invincibilityTimer -= Time.deltaTime;
-            if (_invincibilityTimer <= 0)
-                IsInvincible = false;
+            if (IsInvincible)
+            {
+                _invincibilityTimer -= Time.deltaTime;
+                if (_invincibilityTimer <= 0)
+                    IsInvincible = false;
+            }
         }
         
         private void UpdateCoyoteTimeCounter() => CoyoteTimeCounter = IsGrounded() ? 
@@ -179,23 +183,38 @@ namespace Controllers
             }
         }
         
-        public void TakeDamage(int damage = 1, Transform enemy = null)
+        public void TakeDamage(int damage = 1, EnemyBase enemy = null)
         {
+            if (IsInvincible) return;
+            
             // Play the hurt sound.
             audioSource.Configure(playerSettings.fartSoundData);
             audioSource.Play();
             
             // Reduce the player's health.
             CurrentHealth -= damage;
-            if (CurrentHealth <= 0)
-                LevelUtil.RestartLevel();
             
-            // Knock back the player.
-            if (enemy != null)
-                rb.AddForce((transform.position - enemy.position).normalized * playerSettings.knockbackForce);
+            // Get the player's direction based on the animator's orientation.
+            var direction = animator.transform.eulerAngles == Vector3.zero ? Vector3.right : Vector3.left;
+
+            // Apply the knockback force using both horizontal and vertical settings.
+            var force = new Vector2(-direction.x * playerSettings.horizontalKnockback,
+                playerSettings.verticalKnockback);
+            rb.AddForce(force, ForceMode2D.Impulse);
+
+            
+            IsKnockback = true;
+            // Reset the knockback state after a short delay.
+            TimerManager.Instance.StartTimer(0.5f, () => IsKnockback = false);
+            
+            // Drop the currency.
+            DropCurrency(enemy!);
+            
+            // Activate invincibility frames after taking damage.
+            ActivateInvincibility();
         }
 
-        public void DropCurrency(EnemyBase enemy)
+        private void DropCurrency(EnemyBase enemy)
         {
             // Get the current currency.
             var currentCurrency = CurrencyManager.Instance.Currency;
@@ -215,9 +234,6 @@ namespace Controllers
             
             // Subtract the currency from the player.
             CurrencyManager.Instance.RemoveCurrency(currencyLoss);
-
-            // Activate invincibility frames after taking damage.
-            ActivateInvincibility();
         }
         
         private void ActivateInvincibility()

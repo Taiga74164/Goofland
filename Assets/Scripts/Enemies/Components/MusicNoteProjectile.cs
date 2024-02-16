@@ -38,8 +38,7 @@ namespace Enemies.Components
         {
             if (!other.IsPlayer()) return;
             
-            // other.gameObject.GetComponent<PlayerController>().TakeDamage();
-            other.gameObject.GetComponent<PlayerController>().DropCurrency(this);
+            other.gameObject.GetComponent<PlayerController>().TakeDamage(enemy: this);
             Destroy(gameObject);
         }
     }

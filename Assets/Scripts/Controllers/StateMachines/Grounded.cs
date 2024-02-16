@@ -35,11 +35,10 @@ namespace Controllers.StateMachines
         public override void UpdateState()
         {
             base.UpdateState();
+            currentSubState?.UpdateSubState();
             
             if (player.CanJump())
                 player.ChangeState(player.jumpingState);
-            
-            currentSubState?.UpdateSubState();
         }
     }
 }

@@ -67,8 +67,7 @@ namespace Enemies
             {
                 // Deal damage to the player.
                 var player = collision.gameObject.GetComponent<PlayerController>();
-                // player.TakeDamage(damage, transform);
-                player.DropCurrency(this);
+                player.TakeDamage(enemy: this);
             }
             else if (collision.gameObject.layer != ~LayerMask.NameToLayer("Player"))
             {

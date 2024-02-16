@@ -17,8 +17,8 @@ MonoBehaviour:
   crouchSpeedMultiplier: 0.5
   jumpHeight: 8
   jumpBoostMultiplier: 1.2
-  airborneMovementSpeed: 3
-  knockbackForce: 1000
+  horizontalKnockback: 15
+  verticalKnockback: 5
   fallMultiplier: 5
   lowJumpMultiplier: 4
   umbrellaGravityDiminisher: 0.25

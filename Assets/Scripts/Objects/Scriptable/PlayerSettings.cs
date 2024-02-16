@@ -14,8 +14,8 @@ namespace Objects.Scriptable
         public float crouchSpeedMultiplier = 0.5f;
         public float jumpHeight = 8.0f;
         public float jumpBoostMultiplier = 1.2f;
-        public float airborneMovementSpeed = 3.0f;
-        public float knockbackForce;
+        public float horizontalKnockback;
+        public float verticalKnockback;
         [Tooltip("Higher value, faster fall.")]
         public float fallMultiplier = 5.0f;
         [Tooltip("Lower value, shorter jump.")]

@@ -28,6 +28,8 @@ namespace Controllers.StateMachines
         
         private void Move()
         {
+            if (player.IsKnockback) return;
+            
             // Move the player while in the air.
             player.rb.velocity = new Vector2(
                 input.MoveInput.x * 
