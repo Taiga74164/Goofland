@@ -32,7 +32,7 @@ namespace Managers
         /// <param name="score">The score to calculate.</param>
         /// <param name="roundUp">Whether to round up the score.</param>
         /// <returns>A dictionary of dice drops.</returns>
-        public Dictionary<CoinValue, int> CalculateDiceDrops(int score, bool roundUp = false)
+        public static Dictionary<CoinValue, int> CalculateDiceDrops(int score, bool roundUp = false)
         {
             var drops = new Dictionary<CoinValue, int>();
             var diceOrder = (CoinValue[])Enum.GetValues(typeof(CoinValue));
@@ -58,7 +58,7 @@ namespace Managers
 
             return drops;
         }
-        
+
         /// <summary>
         /// Drops currency at a given position.
         /// </summary>
@@ -67,7 +67,8 @@ namespace Managers
         /// <param name="dropForce">The force to apply to the currency when dropped.</param>
         /// <param name="scatterRadius">The radius to scatter the currency within.</param>
         /// <param name="position">The position to drop the currency.</param>
-        public void DropCurrency(CoinValue coinValue, int quantity,
+        /// <param name="direction">The direction to drop the currency.</param>
+        public static void DropCurrency(CoinValue coinValue, int quantity,
             float dropForce = 5.0f, float scatterRadius = 1.0f, Vector3 position = default)
         {
             for (var i = 0; i < quantity; i++)
@@ -76,14 +77,12 @@ namespace Managers
                 var obj = PrefabManager.Create(coinValue.ToCurrencyPrefab());
                     
                 // Scatter within a radius.
-                var scatterPosition = Random.insideUnitSphere * scatterRadius;
-                scatterPosition.y = 0;
-                // Set the position to the enemy's position plus a random scatter position.
-                obj.transform.position = position + scatterPosition;
+                var scatterPosition = Random.insideUnitCircle * scatterRadius;
+                obj.transform.position = position + new Vector3(scatterPosition.x, 0, scatterPosition.y);
                 
                 // Add a random force to the currency.
                 var rbCoin = obj.GetComponent<Rigidbody2D>();
-                var forceDirection = (Random.insideUnitSphere + Vector3.up).normalized;
+                var forceDirection = (Random.insideUnitCircle + Vector2.up).normalized;
                 rbCoin.AddForce(forceDirection * dropForce, ForceMode2D.Impulse);
             }
         }

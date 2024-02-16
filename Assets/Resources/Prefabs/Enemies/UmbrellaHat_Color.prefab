@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3627075415461958011}
   - component: {fileID: 8728430097011720445}
   - component: {fileID: 1067533746513534625}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: UmbrellaHat_Color
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -54,6 +54,9 @@ MonoBehaviour:
   damage: 1
   useTimer: 0
   lineOfSight: 10
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
   currencyDrops: []
   dropForce: 5
   scatterRadius: 1

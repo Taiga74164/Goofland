@@ -25,7 +25,8 @@ namespace Enemies
         [SerializeField] protected int damage = 1;
         [SerializeField] private bool useTimer;
         [SerializeField] private float lineOfSight = 10.0f;
-
+        [SerializeField] private LayerMask playerLayer;
+        
         [Header("Currency Drop Settings")]
         
         [SerializeField] private List<CurrencyDrop> currencyDrops;
@@ -116,11 +117,12 @@ namespace Enemies
         /// <returns>True if the player is in the enemy's line of sight.</returns>
         protected bool PlayerInLineOfSight()
         {
+            // Get the player's position and direction.
             var playerTransform = GameManager.Instance.playerController.transform;
             var position = transform.position;
             var playerDirection  = playerTransform.position - position;
-            var hit = Physics2D.Raycast(position, 
-                playerDirection , lineOfSight, ~LayerMask.NameToLayer("Player"));
+            // Cast a ray to check if the player is in the enemy's line of sight.
+            var hit = Physics2D.Raycast(position, playerDirection, lineOfSight, playerLayer);
             
             // Draw the raycast in the Scene view.
             // Debug.DrawRay(transform.position, playerDirection * lineOfSight, Color.red);
@@ -146,7 +148,7 @@ namespace Enemies
         
         private void DropDice()
         {
-            currencyDrops.ForEach(currencyDrop => CurrencyManager.Instance.DropCurrency(
+            currencyDrops.ForEach(currencyDrop => CurrencyManager.DropCurrency(
                 currencyDrop.coinValue, currencyDrop.quantity, dropForce, scatterRadius, transform.position));
         }
     }

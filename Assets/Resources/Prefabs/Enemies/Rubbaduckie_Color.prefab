@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4929312752538105437}
   - component: {fileID: 5613493152667963761}
   - component: {fileID: 7407669671763767819}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Rubbaduckie_Color
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -54,6 +54,9 @@ MonoBehaviour:
   damage: 1
   useTimer: 0
   lineOfSight: 10
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
   currencyDrops: []
   dropForce: 5
   scatterRadius: 1

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3989284628922936505}
   - component: {fileID: 3989284628922936502}
   - component: {fileID: 3989284628922936503}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Chymbal_Color
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -54,6 +54,9 @@ MonoBehaviour:
   damage: 1
   useTimer: 0
   lineOfSight: 10
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
   currencyDrops: []
   dropForce: 5
   scatterRadius: 1

@@ -1,4 +1,5 @@
 ﻿using Managers;
+using UnityEngine;
 
 namespace Controllers.StateMachines
 {
@@ -7,6 +8,9 @@ namespace Controllers.StateMachines
     /// </summary>
     public class Grounded : BaseState
     {
+        private bool _isInvincible;
+        private float _invincibilityFrameCounter;
+        
         protected Grounded(string name, PlayerController player) : base(name, player)
         {
         }

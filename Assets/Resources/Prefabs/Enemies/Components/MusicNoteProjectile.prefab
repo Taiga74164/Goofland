@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5159454040015583268}
   - component: {fileID: 4759678833449932387}
+  - component: {fileID: -5211897918456932474}
   - component: {fileID: 2826605416187705589}
   - component: {fileID: 6673506388833826646}
-  - component: {fileID: -5211897918456932474}
   m_Layer: 11
   m_Name: MusicNoteProjectile
   m_TagString: Untagged
@@ -87,6 +87,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-5211897918456932474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 341136308887492555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8291efd9cb99465c9fb3c17a2c4b192c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagePercentage: 5
+  direction: {x: -1, y: 0}
+  speed: 5
+  maxDistance: 5
 --- !u!50 &2826605416187705589
 Rigidbody2D:
   serializedVersion: 4
@@ -159,18 +175,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-5211897918456932474
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 341136308887492555}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8291efd9cb99465c9fb3c17a2c4b192c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  direction: {x: -1, y: 0}
-  speed: 5
-  maxDistance: 5

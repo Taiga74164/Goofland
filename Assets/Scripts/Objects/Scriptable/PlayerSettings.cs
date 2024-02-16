@@ -41,7 +41,15 @@ namespace Objects.Scriptable
         public LayerMask groundLayerMask;
         
         [Header("Invincibility Settings")]
-        public float invincibilityFrameDuration = 2.0f;
+        public float invincibilityDuration = 2.0f;
+        
+        [Header("Magnet Settings")]
+        [Tooltip("The radius of the magnet.")]
+        public float magnetRadius = 1.0f;
+        [Tooltip("The force of the magnet.")]
+        public float magnetForce = 5.0f;
+        [Tooltip("The layer mask of the magnet.")]
+        public LayerMask magnetLayer;
         
         [Header("Currency Drop Settings")]
         public float dropForce = 5.0f;

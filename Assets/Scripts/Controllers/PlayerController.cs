@@ -24,6 +24,7 @@ namespace Controllers
         public int CurrentHealth { get; private set; }
         public float CoyoteTimeCounter { get; private set; }
         public float JumpBufferCounter { get; private set; }
+        public bool IsInvincible { get; private set; }
         
         [HideInInspector] public Rigidbody2D rb;
         [HideInInspector] public PieController pieController;
@@ -50,6 +51,7 @@ namespace Controllers
         #endregion
 
         private BaseState _currentState;
+        private float _invincibilityTimer;
 
         #endregion
 
@@ -95,12 +97,20 @@ namespace Controllers
             if (GameManager.IsPaused) return;
             
             UpdatePlayerSprite();
+            HandleInvincibility();
             
             _currentState.UpdateState();
             _currentState.HandleInput();
             
             UpdateCoyoteTimeCounter();
             UpdateJumpBufferCounter();
+        }
+        
+        private void LateUpdate()
+        {
+            if (GameManager.IsPaused || IsInvincible) return;
+            
+            Magnetize();
         }
 
         public void ChangeState(BaseState state)
@@ -111,7 +121,7 @@ namespace Controllers
         }
         
         public BaseState GetCurrentState() => _currentState;
-
+        
         /// <summary>
         /// Update the player's sprite based on the direction they are facing.
         /// </summary>
@@ -128,6 +138,14 @@ namespace Controllers
             };
         }
         
+        private void HandleInvincibility()
+        {
+            if (!IsInvincible) return;
+            _invincibilityTimer -= Time.deltaTime;
+            if (_invincibilityTimer <= 0)
+                IsInvincible = false;
+        }
+        
         private void UpdateCoyoteTimeCounter() => CoyoteTimeCounter = IsGrounded() ? 
                 playerSettings.coyoteTime : CoyoteTimeCounter - Time.deltaTime;
         
@@ -139,6 +157,21 @@ namespace Controllers
         public void ResetCoyoteTimeAndJumpBufferCounter() => CoyoteTimeCounter = JumpBufferCounter = 0.0f;
 
         public void Bounced(Vector2 force) => rb.AddForce(force);
+        
+        private void Magnetize()
+        {
+            var hitColliders = new Collider2D[12];
+            var numColliders = Physics2D.OverlapCircleNonAlloc(transform.position, 
+                playerSettings.magnetRadius, hitColliders, playerSettings.magnetLayer);
+            for (var i = 0; i < numColliders; i++)
+            {
+                var hitCollider = hitColliders[i];
+                var colliderRb = hitCollider.GetComponent<Rigidbody2D>();
+                var direction = transform.position - hitCollider.transform.position;
+                colliderRb!.AddForce(direction.normalized * (playerSettings.magnetForce * Time.fixedDeltaTime),
+                    ForceMode2D.Impulse);
+            }
+        }
         
         public void TakeDamage(int damage = 1, Transform enemy = null)
         {
@@ -164,19 +197,37 @@ namespace Controllers
             var currencyLoss = Mathf.RoundToInt(currentCurrency * (enemy.damagePercentage / 100.0f));
             
             // Calculate the dice drops.
-            var diceDrops = CurrencyManager.Instance.CalculateDiceDrops(currencyLoss);
+            var diceDrops = CurrencyManager.CalculateDiceDrops(currencyLoss);
+            
             // Drop the calculated currency.
             foreach (var (coinValue, quantity) in diceDrops)
-                CurrencyManager.Instance.DropCurrency(coinValue, quantity, 
-                    playerSettings.dropForce, playerSettings.scatterRadius, enemy.transform.position);
+                CurrencyManager.DropCurrency(coinValue, quantity, playerSettings.dropForce,
+                    playerSettings.scatterRadius, enemy.transform.position);
             
             // Subtract the currency from the player.
             CurrencyManager.Instance.RemoveCurrency(currencyLoss);
+
+            // Activate invincibility frames after taking damage.
+            ActivateInvincibility();
+        }
+        
+        private void ActivateInvincibility()
+        {
+            IsInvincible = true;
+            _invincibilityTimer = playerSettings.invincibilityDuration;
         }
 
         // ReSharper disable Unity.PerformanceAnalysis
         public bool IsGrounded() => !GameManager.IsPaused && Physics2D.OverlapCircle(
             GameObject.FindWithTag("GroundCheck").transform.position, 
             playerSettings.groundCheckRadius, playerSettings.groundLayerMask);
+        
+#if UNITY_EDITOR
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, playerSettings.magnetRadius);
+        }
+#endif
     }
 }

@@ -30,6 +30,12 @@ MonoBehaviour:
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  invincibilityDuration: 2
+  magnetRadius: 1
+  magnetForce: 4
+  magnetLayer:
+    serializedVersion: 2
+    m_Bits: 1024
   dropForce: 8
   scatterRadius: 1
   jumpSoundData: {fileID: 11400000, guid: 868f14eb28077d6469409f8e5719ac9d, type: 2}
