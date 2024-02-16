@@ -25,20 +25,8 @@ namespace Managers
 
         protected override void OnAwake() => _actions = new InputActions();
 
-        #region Boilerplate
+        private void OnEnable() => _actions.Enable();
 
-        private void OnEnable()
-        {
-            // Enable the input actions.
-            _actions.Enable();
-        }
-
-        private void OnDisable()
-        {
-            // Disable the input actions.
-            _actions.Disable();
-        }
-
-        #endregion
+        private void OnDisable() => _actions.Disable();
     }
 }

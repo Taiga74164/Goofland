@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5729629414474103126}
   - component: {fileID: 4482716032093260893}
   - component: {fileID: 2854524598147413072}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Chymbal
   m_TagString: Enemy
   m_Icon: {fileID: 0}

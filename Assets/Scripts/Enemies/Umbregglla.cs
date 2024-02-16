@@ -1,6 +1,5 @@
 ﻿using Controllers;
 using Managers;
-using Objects.Scriptable;
 using UnityEngine;
 
 namespace Enemies

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8226413450823035928}
   - component: {fileID: 3437054300515219366}
   - component: {fileID: 8717433759688466066}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Hippopottymas
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -27,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8544622330260593907}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7656305200791636668
 SpriteRenderer:
@@ -99,14 +99,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79f3dbd3172d449c817c11bd40b9d1bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damagePercentage: 5
   model: {fileID: 0}
   speed: 0
   damage: 1
+  useTimer: 0
   lineOfSight: 1
+  currencyDrops: []
+  dropForce: 5
+  scatterRadius: 1
   pieWeakness: 1
-  fallingPianoWeakness: 1
+  pianoWeakness: 0
   chargeSpeed: 10
-  groundCheckTransform: {fileID: 0}
 --- !u!50 &3437054300515219366
 Rigidbody2D:
   serializedVersion: 4
@@ -124,6 +128,12 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -138,6 +148,25 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
