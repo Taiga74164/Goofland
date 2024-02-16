@@ -1,5 +1,6 @@
 using Controllers.StateMachines;
 using Enemies;
+using Levels;
 using Managers;
 using Objects.Scriptable;
 using UnityEngine;
@@ -166,6 +167,9 @@ namespace Controllers
             for (var i = 0; i < numColliders; i++)
             {
                 var hitCollider = hitColliders[i];
+                var coin = hitCollider.GetComponent<Coin>();
+                if (coin == null || coin.CanCollect) continue;
+                
                 var colliderRb = hitCollider.GetComponent<Rigidbody2D>();
                 var direction = transform.position - hitCollider.transform.position;
                 colliderRb!.AddForce(direction.normalized * (playerSettings.magnetForce * Time.fixedDeltaTime),

@@ -7,7 +7,10 @@ namespace Levels
     {
         [SerializeField] private CoinValue coinValue = CoinValue.D1;
         [SerializeField] private float despawnTime = 10.0f;
+        [SerializeField] private float collectionDelay = 2.0f;
 
+        public bool CanCollect { get; private set; }
+        
         private void Start() => Destroy(gameObject, despawnTime);
 
         private void OnCollisionEnter2D(Collision2D other)
@@ -24,6 +27,10 @@ namespace Levels
             CurrencyManager.Instance.AddCurrency((int)coinValue);
             Destroy(gameObject);
         }
+        
+        public void EnableCollection() => Invoke(nameof(AllowCollection), collectionDelay);
+        
+        private void AllowCollection() => CanCollect = true;
     }
     
     public enum CoinValue

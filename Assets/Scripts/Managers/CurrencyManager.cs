@@ -67,7 +67,6 @@ namespace Managers
         /// <param name="dropForce">The force to apply to the currency when dropped.</param>
         /// <param name="scatterRadius">The radius to scatter the currency within.</param>
         /// <param name="position">The position to drop the currency.</param>
-        /// <param name="direction">The direction to drop the currency.</param>
         public static void DropCurrency(CoinValue coinValue, int quantity,
             float dropForce = 5.0f, float scatterRadius = 1.0f, Vector3 position = default)
         {
@@ -84,6 +83,10 @@ namespace Managers
                 var rbCoin = obj.GetComponent<Rigidbody2D>();
                 var forceDirection = (Random.insideUnitCircle + Vector2.up).normalized;
                 rbCoin.AddForce(forceDirection * dropForce, ForceMode2D.Impulse);
+                
+                // Delay the collection of the currency.
+                var coin = obj.GetComponent<Coin>();
+                coin!.EnableCollection();
             }
         }
         
