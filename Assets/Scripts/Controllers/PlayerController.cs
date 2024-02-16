@@ -171,7 +171,6 @@ namespace Controllers
                 var coin = hitCollider.GetComponent<Coin>();
                 if (coin != null && coin.CanMagnetize)
                 {
-                    Debug.Log("Magnetize!");
                     var colliderRb = hitCollider.GetComponent<Rigidbody2D>();
                     var direction = transform.position - hitCollider.transform.position;
                     colliderRb!.AddForce(direction.normalized * (playerSettings.magnetForce * Time.fixedDeltaTime),
@@ -206,13 +205,13 @@ namespace Controllers
             // Calculate the dice drops.
             var diceDrops = CurrencyManager.CalculateDiceDrops(currencyLoss);
             
-            // Get the player's direction.
-            var playerDirection = GetPlayerDirection();
+            // Get the player's direction based on the animator's orientation.
+            var direction = animator.transform.eulerAngles == Vector3.zero ? Vector3.right : Vector3.left;
             
             // Drop the calculated currency.
             foreach (var (coinValue, quantity) in diceDrops)
                 CurrencyManager.DropCurrency(coinValue, quantity, playerSettings.dropForce,
-                    playerSettings.dropOffset, enemy.transform.position, -playerDirection);
+                    playerSettings.dropOffset, transform.position, direction);
             
             // Subtract the currency from the player.
             CurrencyManager.Instance.RemoveCurrency(currencyLoss);

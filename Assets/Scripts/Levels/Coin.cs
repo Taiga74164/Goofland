@@ -7,7 +7,7 @@ namespace Levels
     {
         [SerializeField] private CoinValue coinValue = CoinValue.D1;
         [SerializeField] private float despawnTime = 10.0f;
-        [SerializeField] private float collectionDelay = 1.0f;
+        [SerializeField] private float magnetizeDelay = 1.0f;
 
         public bool CanMagnetize { get; private set; } = true;
         
@@ -31,7 +31,7 @@ namespace Levels
         public void DelayMagnetization()
         {
             CanMagnetize = false;
-            TimerManager.Instance.StartTimer(collectionDelay, () => { CanMagnetize = true; });
+            TimerManager.Instance.StartTimer(magnetizeDelay, () => { CanMagnetize = true; });
         }
     }
     

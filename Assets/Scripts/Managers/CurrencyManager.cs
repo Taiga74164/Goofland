@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Levels;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Managers
 {
@@ -30,9 +29,8 @@ namespace Managers
         /// Calculates the number of dice drops for a given score.
         /// </summary>
         /// <param name="score">The score to calculate.</param>
-        /// <param name="roundUp">Whether to round up the score.</param>
         /// <returns>A dictionary of dice drops.</returns>
-        public static Dictionary<CoinValue, int> CalculateDiceDrops(int score, bool roundUp = false)
+        public static Dictionary<CoinValue, int> CalculateDiceDrops(int score)
         {
             var drops = new Dictionary<CoinValue, int>();
             var diceOrder = (CoinValue[])Enum.GetValues(typeof(CoinValue));
@@ -45,7 +43,6 @@ namespace Managers
                 var diceValue = (int)dice;
                 // Calculate the number of dice drops.
                 var count = score / diceValue;
-                count = roundUp ? Mathf.CeilToInt((float)score / diceValue) : count;
                 
                 if (count > 0)
                 {
@@ -76,17 +73,14 @@ namespace Managers
                 // Create the currency prefab.
                 var obj = PrefabManager.Create(coinValue.ToCurrencyPrefab());
                 
-                // Calculate the offset position behind the player.
-                var offsetPosition = position - direction.normalized * offset;
-                obj.transform.position = offsetPosition;
+                // Set the position of the currency.
+                var spawnPosition = position + (-direction.normalized * offset) + Vector3.up;
+                obj.transform.position = spawnPosition;
                 
-                // Scatter within a radius.
-                // var scatterPosition = Random.insideUnitCircle * scatterRadius;
-                // obj.transform.position = position + new Vector3(scatterPosition.x, 0, scatterPosition.y);
+                // Apply a force to the currency.
+                var forceDirection = new Vector2(-direction.x, 2).normalized * dropForce;
                 
-                // Add a random force to the currency.
                 var rbCoin = obj.GetComponent<Rigidbody2D>();
-                var forceDirection = new Vector2(-direction.x, 10).normalized * dropForce;
                 rbCoin.AddForce(forceDirection, ForceMode2D.Impulse);
                 
                 // Delay the collection of the currency.
@@ -100,7 +94,7 @@ namespace Managers
         public void RemoveCurrency(int amount) => Currency -= Mathf.Clamp(amount, 0, Currency);
 
         public void RemoveCurrency(float percentage) => 
-            RemoveCurrency(Mathf.RoundToInt(Currency * (percentage / 100)));
+            RemoveCurrency(Mathf.RoundToInt(Currency * (percentage / 100.0f)));
         
         public void ResetCurrency() => Currency = 0;
     }
