@@ -7,9 +7,9 @@ namespace Levels
     {
         [SerializeField] private CoinValue coinValue = CoinValue.D1;
         [SerializeField] private float despawnTime = 10.0f;
-        [SerializeField] private float collectionDelay = 2.0f;
+        [SerializeField] private float collectionDelay = 1.0f;
 
-        public bool CanCollect { get; private set; }
+        public bool CanMagnetize { get; private set; } = true;
         
         private void Start() => Destroy(gameObject, despawnTime);
 
@@ -27,10 +27,12 @@ namespace Levels
             CurrencyManager.Instance.AddCurrency((int)coinValue);
             Destroy(gameObject);
         }
-        
-        public void EnableCollection() => Invoke(nameof(AllowCollection), collectionDelay);
-        
-        private void AllowCollection() => CanCollect = true;
+
+        public void DelayMagnetization()
+        {
+            CanMagnetize = false;
+            TimerManager.Instance.StartTimer(collectionDelay, () => { CanMagnetize = true; });
+        }
     }
     
     public enum CoinValue

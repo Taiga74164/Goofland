@@ -53,7 +53,7 @@ namespace Objects.Scriptable
         
         [Header("Currency Drop Settings")]
         public float dropForce = 5.0f;
-        public float scatterRadius = 1.0f;
+        public float dropOffset = 1.0f;
         
         [Header("Audio Data")]
         public AudioData jumpSoundData;

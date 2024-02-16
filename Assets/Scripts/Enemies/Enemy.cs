@@ -31,7 +31,7 @@ namespace Enemies
         
         [SerializeField] private List<CurrencyDrop> currencyDrops;
         [SerializeField] private float dropForce = 5.0f;
-        [SerializeField] private float scatterRadius = 1.0f;
+        [SerializeField] private float dropOffset = 1.0f;
         
         [Header("Weaknesses")]
         [SerializeField] private bool pieWeakness;
@@ -148,8 +148,8 @@ namespace Enemies
         
         private void DropDice()
         {
-            currencyDrops.ForEach(currencyDrop => CurrencyManager.DropCurrency(
-                currencyDrop.coinValue, currencyDrop.quantity, dropForce, scatterRadius, transform.position));
+            currencyDrops.ForEach(currencyDrop => CurrencyManager.DropCurrency(currencyDrop.coinValue, 
+                currencyDrop.quantity, dropForce, dropOffset, transform.position, direction));
         }
     }
 }

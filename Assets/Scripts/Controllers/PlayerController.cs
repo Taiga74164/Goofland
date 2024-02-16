@@ -5,6 +5,8 @@ using Managers;
 using Objects.Scriptable;
 using UnityEngine;
 using Utils;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 namespace Controllers
 {
@@ -97,7 +99,7 @@ namespace Controllers
             
             if (GameManager.IsPaused) return;
             
-            UpdatePlayerSprite();
+            UpdatePlayerOrientation();
             HandleInvincibility();
             
             _currentState.UpdateState();
@@ -124,19 +126,18 @@ namespace Controllers
         public BaseState GetCurrentState() => _currentState;
         
         /// <summary>
-        /// Update the player's sprite based on the direction they are facing.
+        /// Update the player's orientation based on the direction they are facing.
         /// </summary>
-        private void UpdatePlayerSprite()
+        private void UpdatePlayerOrientation()
         {
             var animatorTransform = animator.transform;
-            animatorTransform.eulerAngles = inputController.MoveInput.x switch
-            {
-                // right
-                > 0 => Vector3.zero,
-                // left
-                < 0 => new Vector3(0, 180, 0),
-                _ => animatorTransform.eulerAngles
-            };
+            var direction = GetPlayerDirection();
+            if (direction == Vector3.right)
+                animatorTransform.eulerAngles = Vector3.zero;
+            else if (direction == Vector3.left)
+                animatorTransform.eulerAngles = new Vector3(0, 180, 0);
+            else
+                animatorTransform.eulerAngles = animatorTransform.eulerAngles;
         }
         
         private void HandleInvincibility()
@@ -168,12 +169,14 @@ namespace Controllers
             {
                 var hitCollider = hitColliders[i];
                 var coin = hitCollider.GetComponent<Coin>();
-                if (coin == null || coin.CanCollect) continue;
-                
-                var colliderRb = hitCollider.GetComponent<Rigidbody2D>();
-                var direction = transform.position - hitCollider.transform.position;
-                colliderRb!.AddForce(direction.normalized * (playerSettings.magnetForce * Time.fixedDeltaTime),
-                    ForceMode2D.Impulse);
+                if (coin != null && coin.CanMagnetize)
+                {
+                    Debug.Log("Magnetize!");
+                    var colliderRb = hitCollider.GetComponent<Rigidbody2D>();
+                    var direction = transform.position - hitCollider.transform.position;
+                    colliderRb!.AddForce(direction.normalized * (playerSettings.magnetForce * Time.fixedDeltaTime),
+                        ForceMode2D.Impulse);
+                }
             }
         }
         
@@ -203,10 +206,13 @@ namespace Controllers
             // Calculate the dice drops.
             var diceDrops = CurrencyManager.CalculateDiceDrops(currencyLoss);
             
+            // Get the player's direction.
+            var playerDirection = GetPlayerDirection();
+            
             // Drop the calculated currency.
             foreach (var (coinValue, quantity) in diceDrops)
                 CurrencyManager.DropCurrency(coinValue, quantity, playerSettings.dropForce,
-                    playerSettings.scatterRadius, enemy.transform.position);
+                    playerSettings.dropOffset, enemy.transform.position, -playerDirection);
             
             // Subtract the currency from the player.
             CurrencyManager.Instance.RemoveCurrency(currencyLoss);
@@ -219,6 +225,16 @@ namespace Controllers
         {
             IsInvincible = true;
             _invincibilityTimer = playerSettings.invincibilityDuration;
+        }
+        
+        private Vector3 GetPlayerDirection()
+        {
+            return inputController.MoveInput.x switch
+            {
+                > 0 => Vector3.right,
+                < 0 => Vector3.left,
+                _ => Vector3.zero
+            };
         }
 
         // ReSharper disable Unity.PerformanceAnalysis
