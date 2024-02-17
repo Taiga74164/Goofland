@@ -1,6 +1,7 @@
 using Managers;
 using Objects;
 using UnityEngine;
+using Utils;
 
 namespace UI.Menus
 {
@@ -10,9 +11,9 @@ namespace UI.Menus
         
         private void OnEnable() => GameManager.IsPaused = true;
         
-        public void OnHomeButtonClicked() => LevelManager.LoadLevel("MainMenu");
+        public void OnHomeButtonClicked() => LevelUtil.LoadLevel("MainMenu");
         
-        public void OnRestartButtonClicked() => LevelManager.RestartLevel();
+        public void OnRestartButtonClicked() => LevelUtil.RestartLevel();
         
         public void OnSettingsButtonClicked() => settingsMenu.OpenMenu();
     }

@@ -1,4 +1,3 @@
-using System;
 using Managers;
 using UnityEngine;
 
@@ -6,27 +5,33 @@ namespace Levels
 {
     public class Coin : MonoBehaviour
     {
-        public CoinValue coinValue = CoinValue.D1;
+        [SerializeField] private CoinValue coinValue = CoinValue.D1;
         [SerializeField] private float despawnTime = 10.0f;
+        [SerializeField] private float magnetizeDelay = 1.0f;
+
+        public bool CanMagnetize { get; private set; } = true;
         
         private void Start() => Destroy(gameObject, despawnTime);
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.IsPlayer())
-            {
-                CurrencyManager.Instance.AddCurrency((int)coinValue);
-                Destroy(gameObject);
-            }
+            if (other.IsPlayer() || other.gameObject.CompareTag("Projectile"))
+                CollectCoin();
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        /// <summary>
+        /// Collects the coin and adds its value to the currency manager.
+        /// </summary>
+        public void CollectCoin()
         {
-            if (other.IsPlayer() || other.gameObject.CompareTag("GroundCheck"))
-            {
-                CurrencyManager.Instance.AddCurrency((int)coinValue);
-                Destroy(gameObject);
-            }
+            CurrencyManager.Instance.AddCurrency((int)coinValue);
+            Destroy(gameObject);
+        }
+
+        public void DelayMagnetization()
+        {
+            CanMagnetize = false;
+            TimerManager.Instance.StartTimer(magnetizeDelay, () => { CanMagnetize = true; });
         }
     }
     

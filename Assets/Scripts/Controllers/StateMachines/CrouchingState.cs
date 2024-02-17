@@ -23,6 +23,8 @@ namespace Controllers.StateMachines
         
         public override void UpdateState()
         {
+            if (player.IsKnockback) return;
+            
             // Move the player.
             player.rb.velocity = new Vector2(
                 input.MoveInput.x * 

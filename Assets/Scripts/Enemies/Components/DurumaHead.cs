@@ -6,7 +6,7 @@ using Weapons;
 
 namespace Enemies.Components
 {
-    public class DurumaHead : MonoBehaviour
+    public class DurumaHead : EnemyBase
     {
         public int stacks = 3;
 
@@ -17,7 +17,7 @@ namespace Enemies.Components
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (other.IsPlayer())
-                other.gameObject.GetComponent<PlayerController>().TakeDamage(enemy: transform);
+                other.gameObject.GetComponent<PlayerController>().TakeDamage(enemy: this);
             else if (other.gameObject.GetComponent<Pie>())
                 ShedStack();
         }

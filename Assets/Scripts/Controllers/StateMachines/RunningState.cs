@@ -31,6 +31,8 @@ namespace Controllers.StateMachines
         {
             base.UpdateState();
             
+            if (player.IsKnockback) return;
+            
             // Move the player.
             player.rb.velocity = new Vector2(
                 input.MoveInput.x * 

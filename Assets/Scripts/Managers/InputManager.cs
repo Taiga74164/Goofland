@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Managers
@@ -6,57 +5,28 @@ namespace Managers
     /// <summary>
     /// Manages inputs globally for the game.
     /// </summary>
-    public class InputManager : MonoBehaviour
+    public class InputManager : Singleton<InputManager>
     {
-        private static InputActions _actions;
+        private InputActions _actions;
 
         // Player actions.
-        public static InputAction Move;
-        public static InputAction Jump;
-        public static InputAction Crouch;
-        public static InputAction Run;
-        public static InputAction Attack;
+        public static InputAction Move => Instance._actions.Player.Movement;
+        public static InputAction Jump => Instance._actions.Player.Jump;
+        public static InputAction Crouch => Instance._actions.Player.Crouch;
+        public static InputAction Run => Instance._actions.Player.Run;
+        public static InputAction Attack => Instance._actions.Player.Attack;
         // Weapon selection.
-        public static InputAction SelectPie;
-        public static InputAction SelectWaterGun;
-        public static InputAction SelectBananaPeel;
+        public static InputAction SelectPie => Instance._actions.Player.SelectPie;
+        public static InputAction SelectWaterGun => Instance._actions.Player.SelectWaterGun;
+        public static InputAction SelectBananaPeel => Instance._actions.Player.SelectBananaPeel;
         
         // User Interface actions.
-        public static InputAction Return;
+        public static InputAction Return => Instance._actions.Interface.Return;
 
-        private void Awake()
-        {
-            // Create the input actions asset.
-            _actions = new InputActions();
+        protected override void OnAwake() => _actions = new InputActions();
 
-            // Update the player actions.
-            Move = _actions.Player.Movement;
-            Jump = _actions.Player.Jump;
-            Crouch = _actions.Player.Crouch;
-            Run = _actions.Player.Run;
-            Attack = _actions.Player.Attack;
-            SelectPie = _actions.Player.SelectPie;
-            SelectWaterGun = _actions.Player.SelectWaterGun;
-            SelectBananaPeel = _actions.Player.SelectBananaPeel;
-            
-            // Update the user interface actions.
-            Return = _actions.Interface.Return;
-        }
+        private void OnEnable() => _actions.Enable();
 
-        #region Boilerplate
-
-        private void OnEnable()
-        {
-            // Enable the input actions.
-            _actions.Enable();
-        }
-
-        private void OnDisable()
-        {
-            // Disable the input actions.
-            _actions.Disable();
-        }
-
-        #endregion
+        private void OnDisable() => _actions.Disable();
     }
 }

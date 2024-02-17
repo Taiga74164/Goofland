@@ -42,7 +42,7 @@ namespace Enemies
             if (!collision.IsPlayer()) return;
             
             var player = collision.gameObject.GetComponent<PlayerController>();
-            player.TakeDamage(damage, transform);
+            player.TakeDamage(enemy: this);
         }
         
         private void HandleAttack()

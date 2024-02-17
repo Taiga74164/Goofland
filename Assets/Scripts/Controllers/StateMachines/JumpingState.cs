@@ -26,6 +26,8 @@ namespace Controllers.StateMachines
 
         private void Jump()
         {
+            if (player.IsKnockback) return;
+            
             if (!player.IsGrounded() && player.CoyoteTimeCounter <= 0.0f) return;
             
             // Increase the jump force if the player is running.

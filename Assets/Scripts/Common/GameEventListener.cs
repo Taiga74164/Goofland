@@ -40,6 +40,6 @@ public class GameEventListener : MonoBehaviour
     /// <param name="data">Data to passed with the event.</param>
     public void OnEventRaised(object data)
     {
-        response.Invoke(data);
+        response?.Invoke(data);
     }
 }

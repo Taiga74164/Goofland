@@ -14,6 +14,12 @@ namespace Managers
             set => Instance._isPaused = value;
         }
 
+        protected override void OnAwake()
+        {
+            PrefabManager.Initialize();
+            AudioManager.Initialize();
+        }
+
         private void Start()
         {
             SceneManager.activeSceneChanged += OnSceneChanged;
@@ -25,6 +31,8 @@ namespace Managers
             IsPaused = false;
             // Clear the menu stack when the scene changes.
             MenuManager.Instance.ClearStack();
+            // Reset currency when the scene changes.
+            CurrencyManager.Instance.ResetCurrency();
         }
     }
 }

@@ -1,6 +1,7 @@
 using Managers;
 using UI.Menus;
 using UnityEngine;
+using Utils;
 
 namespace UI
 {
@@ -15,7 +16,7 @@ namespace UI
         private static extern void CloseTab();
         #endif
         
-        public void OnPlayButtonClick() => LevelManager.LoadLevel(levelName);
+        public void OnPlayButtonClick() => LevelUtil.LoadLevel(levelName);
         
         public void OnSettingsButtonClicked() => settingsMenu.OpenMenu();
         

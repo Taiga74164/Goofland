@@ -14,8 +14,8 @@ namespace Objects.Scriptable
         public float crouchSpeedMultiplier = 0.5f;
         public float jumpHeight = 8.0f;
         public float jumpBoostMultiplier = 1.2f;
-        public float airborneMovementSpeed = 3.0f;
-        public float knockbackForce;
+        public float horizontalKnockback;
+        public float verticalKnockback;
         [Tooltip("Higher value, faster fall.")]
         public float fallMultiplier = 5.0f;
         [Tooltip("Lower value, shorter jump.")]
@@ -39,6 +39,21 @@ namespace Objects.Scriptable
         public float groundCheckRadius = 0.1f;
         [Tooltip("The layer mask for the ground.")]
         public LayerMask groundLayerMask;
+        
+        [Header("Invincibility Settings")]
+        public float invincibilityDuration = 2.0f;
+        
+        [Header("Magnet Settings")]
+        [Tooltip("The radius of the magnet.")]
+        public float magnetRadius = 1.0f;
+        [Tooltip("The force of the magnet.")]
+        public float magnetForce = 5.0f;
+        [Tooltip("The layer mask of the magnet.")]
+        public LayerMask magnetLayer;
+        
+        [Header("Currency Drop Settings")]
+        public float dropForce = 5.0f;
+        public float dropOffset = 1.0f;
         
         [Header("Audio Data")]
         public AudioData jumpSoundData;

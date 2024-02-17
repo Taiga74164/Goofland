@@ -1,36 +1,22 @@
-using System;
 using System.Collections.Generic;
 using Controllers;
 using JetBrains.Annotations;
-using Levels;
 using Managers;
 using UnityEngine;
 using Weapons;
-using Random = UnityEngine.Random;
 
 namespace Enemies
 {
-    /// <summary>
-    /// A struct that represents a currency drop.
-    /// </summary>
-    [Serializable]
-    public struct CurrencyDrop
+    public abstract class EnemyBase : MonoBehaviour
     {
-        public CoinValue coinValue;
-        public int quantity;
-        
-        public CurrencyDrop(CoinValue coinValue, int quantity)
-        {
-            this.coinValue = coinValue;
-            this.quantity = quantity;
-        }
+        public float damagePercentage = 5.0f;
     }
     
     /// <summary>
     /// Defines the base class for all enemies in the game.
     /// </summary>
     [RequireComponent(typeof(Rigidbody2D))]
-    public class Enemy : MonoBehaviour
+    public class Enemy : EnemyBase
     {
         [CanBeNull] public GameObject model;
     
@@ -39,11 +25,13 @@ namespace Enemies
         [SerializeField] protected int damage = 1;
         [SerializeField] private bool useTimer;
         [SerializeField] private float lineOfSight = 10.0f;
+        [SerializeField] private LayerMask playerLayer;
         
         [Header("Currency Drop Settings")]
+        
         [SerializeField] private List<CurrencyDrop> currencyDrops;
         [SerializeField] private float dropForce = 5.0f;
-        [SerializeField] private float dropRadius = 1.0f;
+        [SerializeField] private float dropOffset = 1.0f;
         
         [Header("Weaknesses")]
         [SerializeField] private bool pieWeakness;
@@ -79,7 +67,7 @@ namespace Enemies
             {
                 // Deal damage to the player.
                 var player = collision.gameObject.GetComponent<PlayerController>();
-                player.TakeDamage(damage, transform);
+                player.TakeDamage(enemy: this);
             }
             else if (collision.gameObject.layer != ~LayerMask.NameToLayer("Player"))
             {
@@ -128,11 +116,12 @@ namespace Enemies
         /// <returns>True if the player is in the enemy's line of sight.</returns>
         protected bool PlayerInLineOfSight()
         {
+            // Get the player's position and direction.
             var playerTransform = GameManager.Instance.playerController.transform;
             var position = transform.position;
             var playerDirection  = playerTransform.position - position;
-            var hit = Physics2D.Raycast(position, 
-                playerDirection , lineOfSight, ~LayerMask.NameToLayer("Player"));
+            // Cast a ray to check if the player is in the enemy's line of sight.
+            var hit = Physics2D.Raycast(position, playerDirection, lineOfSight, playerLayer);
             
             // Draw the raycast in the Scene view.
             // Debug.DrawRay(transform.position, playerDirection * lineOfSight, Color.red);
@@ -142,7 +131,7 @@ namespace Enemies
 
         protected internal virtual void Die()
         {
-            DropCurrency();
+            DropDice();
             Destroy(gameObject);
         }
 
@@ -155,31 +144,11 @@ namespace Enemies
             if ((weapon is Pie && pieWeakness) || (weapon is Piano && pianoWeakness))
                 Die();
         }
-
-        /// <summary>
-        /// Drops currency when the enemy dies.
-        /// </summary>
-        private void DropCurrency()
+        
+        private void DropDice()
         {
-            foreach (var currencyDrop in currencyDrops)
-            {
-                for (var i = 0; i < currencyDrop.quantity; i++)
-                {
-                    // Create the currency prefab.
-                    var obj = PrefabManager.Create(currencyDrop.coinValue.ToCurrencyPrefab());
-                    
-                    // Scatter within a radius.
-                    var scatterPosition = Random.insideUnitSphere * dropRadius;
-                    scatterPosition.y = 0;
-                    // Set the position to the enemy's position plus a random scatter position.
-                    obj.transform.position = transform.position + scatterPosition;
-                    
-                    // Add a random force to the currency.
-                    var rbCoin = obj.GetComponent<Rigidbody2D>();
-                    var forceDirection = (Random.insideUnitSphere + Vector3.up).normalized;
-                    rbCoin.AddForce(forceDirection * dropForce, ForceMode2D.Impulse);
-                }
-            }
+            currencyDrops.ForEach(currencyDrop => CurrencyManager.DropCurrency(currencyDrop.coinValue, 
+                currencyDrop.quantity, dropForce, dropOffset, transform.position, direction));
         }
     }
 }

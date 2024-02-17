@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - GroundCheck
+  - Coin
+  - Projectile
   layers:
   - Default
   - TransparentFX
@@ -17,9 +19,9 @@ TagManager:
   - Player
   - Projectile
   - Wall
-  - 
-  - 
-  - 
+  - Coin
+  - EnemyProjectile
+  - Enemy
   - 
   - 
   - 

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Enemies.Components
 {
-    public class FartCloudEffect : MonoBehaviour
+    public class FartCloudEffect : EnemyBase
     {
         public float fartArea;
         private CircleCollider2D _circleCollider2D;
@@ -20,7 +20,7 @@ namespace Enemies.Components
         private void OnTriggerStay2D(Collider2D other)
         {
             if (other.IsPlayer())
-                other.GetComponent<PlayerController>().TakeDamage();
+                other.GetComponent<PlayerController>().TakeDamage(enemy: this);
         }
 
 #if UNITY_EDITOR

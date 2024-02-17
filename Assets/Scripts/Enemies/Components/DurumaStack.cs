@@ -16,7 +16,7 @@ namespace Enemies.Components
         protected override void OnCollisionEnter2D(Collision2D other)
         {
             if (other.IsPlayer())
-                other.gameObject.GetComponent<PlayerController>().TakeDamage(enemy: transform);
+                other.gameObject.GetComponent<PlayerController>().TakeDamage(enemy: this);
         }
 
         protected override void MoveEnemy() { }

@@ -10,7 +10,7 @@ namespace Levels
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.CompareTag("GroundCheck"))
+            if (other.IsPlayer())
                 Trigger.Trigger();
         }
     }

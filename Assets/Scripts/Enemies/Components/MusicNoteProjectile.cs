@@ -1,9 +1,9 @@
-﻿using Managers;
+﻿using Controllers;
 using UnityEngine;
 
 namespace Enemies.Components
 {
-    public class MusicNoteProjectile : MonoBehaviour
+    public class MusicNoteProjectile : EnemyBase
     {
         public Vector2 direction = Vector2.left;
         [SerializeField] private float speed = 5.0f;
@@ -36,13 +36,9 @@ namespace Enemies.Components
         
         private void OnTriggerEnter2D(Collider2D other)
         {
-            // Debug.Log($"{other.name}");
-            // FYI: Please update to Unity 2022.
-            // other.transform.parent.GetComponent<PlayerController>().TakeDamage();
-            if (!other.CompareTag("GroundCheck"))
-                return;
+            if (!other.IsPlayer()) return;
             
-            GameManager.Instance.playerController.TakeDamage();
+            other.gameObject.GetComponent<PlayerController>().TakeDamage(enemy: this);
             Destroy(gameObject);
         }
     }
