@@ -1,7 +1,4 @@
-﻿using Controllers;
-using UnityEngine;
-
-namespace Enemies.Components
+﻿namespace Enemies.Components
 {
     public class DurumaStack : Enemy
     {

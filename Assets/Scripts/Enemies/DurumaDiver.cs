@@ -22,15 +22,15 @@ namespace Enemies
         [SerializeField] private int stacks = 2; 
 
         private float _attackTimer;
-        private Vector3 _startGroundDetectionPosition;
+        private Transform _mainGroundDetection;
 
         protected override void Start()
         {
             base.Start();
             
             // Set the start ground detection position.
-            _startGroundDetectionPosition = groundDetection.position;
-            
+            _mainGroundDetection = groundDetection;
+            Debug.Log(_mainGroundDetection.name);
             // Generate the stacks.
             GenerateStack(stacks);
         }
@@ -53,37 +53,12 @@ namespace Enemies
             else if (other.gameObject.GetComponent<Pie>())
                 ShedStack();
         }
-        
-        protected override void Patrol()
+
+        private void LateUpdate()
         {
-            base.Patrol();
-            //
-            // if (stacks <= 0)
-            // {
-            //     base.Patrol();
-            // }
-            // else
-            // {
-            //     // Move the child in the direction it is facing.
-            //     transform.Translate(direction * (speed * Time.deltaTime));
-            //     
-            //     // Get the last child in the stack container.
-            //     var lastChild = stackContainer.GetChild(stacks - 1);
-            //     // Get the last child's ground check position.
-            //     var groundPosition = lastChild.GetChild(0).position;
-            //     var groundInfo = Physics2D.Raycast(groundPosition, Vector2.down, rayLength, 
-            //         groundLayer);
-            //     var wallInfo = Physics2D.Raycast(groundPosition, direction, rayLength, turnLayer);
-            //     
-            //     Debug.DrawLine(groundPosition, groundPosition + new Vector3(direction.x, direction.y, 0) * rayLength, Color.red);
-            //     
-            //     if (!groundInfo.collider)
-            //         Turn();
-            //     if (!wallInfo.collider)
-            //         Turn();
-            // }
+            UpdateGroundDetection();
         }
-        
+
         private void HandleAttack()
         {
             if (Time.time >= _attackTimer + attackDelay && PlayerInLineOfSight() && InAttackRange())
@@ -129,21 +104,21 @@ namespace Enemies
             // Set the position of the DurumaHead to the top of the stacks.
             transform.position = new Vector3(transform.position.x, -totalHeight, transform.position.z);
             
+            // Update the ground detection of the DurumaDiver to the bottom stack's ground detection.
+            UpdateGroundDetection();
         }
 
         private void UpdateGroundDetection()
         {
             var bottomStack = GetBottomStack();
+            if (bottomStack == null)
+            {
+                groundDetection = _mainGroundDetection;
+                return;
+            }
+            
             var bottomGroundDetection = bottomStack!.GetComponent<DurumaStack>().groundDetection;
-            Debug.Log($"bottomStack: {bottomStack!.name}, bottomGroundDetection: {bottomGroundDetection}");
-            if (!bottomStack)
-            {
-                groundDetection = bottomGroundDetection;
-            }
-            else
-            {
-                groundDetection.position = _startGroundDetectionPosition;
-            }
+            groundDetection = bottomGroundDetection;
         }
         
         [CanBeNull]
@@ -155,9 +130,8 @@ namespace Enemies
             
             // Destroy the last child.
             var lastChild = GetBottomStack();
-            var stack = lastChild.GetComponent<DurumaStack>();
+            var stack = lastChild!.GetComponent<DurumaStack>();
             stack.Die();
-            UpdateGroundDetection();
         }
         
         public override void GotHit(IWeapon weapon)
