@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3127091132644828745
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 656034498768290876}
+  m_Layer: 0
+  m_Name: Ground Check
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &656034498768290876
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3127091132644828745}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.5669999, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7897555048088618765}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7897555048088618758
 GameObject:
   m_ObjectHideFlags: 0
@@ -34,6 +65,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1398874057009864654}
+  - {fileID: 656034498768290876}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &534936326728906873
@@ -49,17 +81,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damagePercentage: 5
+  damage: 1
   model: {fileID: 261724860602795949}
   speed: 0
-  damage: 1
-  useTimer: 0
+  rayLength: 1
+  groundDetection: {fileID: 656034498768290876}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  turnLayer:
+    serializedVersion: 2
+    m_Bits: 8055
   lineOfSight: 10
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
   currencyDrops: []
   dropForce: 5
-  scatterRadius: 1
+  dropOffset: 1
   pieWeakness: 0
   pianoWeakness: 0
   fallSpeed: 5

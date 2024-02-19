@@ -9,7 +9,9 @@ namespace Enemies
 {
     public abstract class EnemyBase : MonoBehaviour
     {
+        [Header("Damage Settings")]
         public float damagePercentage = 5.0f;
+        [SerializeField] protected int damage = 1;
     }
     
     /// <summary>
@@ -18,17 +20,25 @@ namespace Enemies
     [RequireComponent(typeof(Rigidbody2D))]
     public class Enemy : EnemyBase
     {
-        [CanBeNull] public GameObject model;
-    
         [Header("Enemy Settings")]
+        [CanBeNull] public GameObject model;
         [SerializeField] protected float speed;
-        [SerializeField] protected int damage = 1;
-        [SerializeField] private bool useTimer;
+        
+        [Header("Detection Settings")]
+        [Tooltip("The length at which the enemy will detect the layer.")]
+        [SerializeField]
+        protected float rayLength = 1.0f;
+        [SerializeField] protected internal Transform groundDetection;
+        [Tooltip("The ground layer.")]
+        [SerializeField]
+        protected LayerMask groundLayer;
+        [Tooltip("The layer at which the enemy will turn.")]
+        [SerializeField]
+        protected LayerMask turnLayer;
         [SerializeField] private float lineOfSight = 10.0f;
         [SerializeField] private LayerMask playerLayer;
-        
+
         [Header("Currency Drop Settings")]
-        
         [SerializeField] private List<CurrencyDrop> currencyDrops;
         [SerializeField] private float dropForce = 5.0f;
         [SerializeField] private float dropOffset = 1.0f;
@@ -36,11 +46,9 @@ namespace Enemies
         [Header("Weaknesses")]
         [SerializeField] private bool pieWeakness;
         [SerializeField] private bool pianoWeakness;
-    
-        protected Vector2 direction = Vector2.left;
+        
+        protected Vector2 direction = Vector2.right;
         protected Rigidbody2D rb;
-        private float _turnTimer;
-        private float _turnCount;
     
         protected virtual void Awake()
         {
@@ -55,41 +63,36 @@ namespace Enemies
         protected virtual void FixedUpdate()
         {
             if (GameManager.IsPaused) return;
-        
-            if (useTimer) Timer();
 
-            MoveEnemy();
+            Patrol();
         }
 
         protected virtual void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.IsPlayer())
-            {
-                // Deal damage to the player.
-                var player = collision.gameObject.GetComponent<PlayerController>();
-                player.TakeDamage(enemy: this);
-            }
-            else if (collision.gameObject.layer != ~LayerMask.NameToLayer("Player"))
-            {
-                // Turn around if the enemy hits a wall or ledge.
-                Turn();
-            }
+            if (!collision.IsPlayer()) return;
+            
+            // Deal damage to the player.
+            var player = collision.gameObject.GetComponent<PlayerController>();
+            player.TakeDamage(enemy: this);
         }
 
         /// <summary>
         /// Moves the enemy in the direction it is facing.
         /// </summary>
-        protected virtual void MoveEnemy() => transform.Translate(direction * (speed * Time.deltaTime));
-
-        /// <summary>
-        /// Moves the enemy in the opposite direction after a certain amount of time.
-        /// </summary>
-        protected virtual void Timer()
+        protected virtual void Patrol()
         {
-            _turnCount += Time.deltaTime;
-            if (!(_turnCount >= _turnTimer)) return;
-            Turn();
-            _turnCount = 0;
+            // Move the enemy in the direction it is facing.
+            transform.Translate(direction * (speed * Time.deltaTime));
+
+            var groundPosition = groundDetection.position;
+            var groundInfo = Physics2D.Raycast(groundPosition, Vector2.down, rayLength, 
+                groundLayer);
+            var wallInfo = Physics2D.Raycast(groundPosition, direction, rayLength, turnLayer);
+
+            if (!groundInfo.collider)
+                Turn();
+            if (!wallInfo.collider)
+                Turn();
         }
         
         /// <summary>
@@ -124,7 +127,7 @@ namespace Enemies
             var hit = Physics2D.Raycast(position, playerDirection, lineOfSight, playerLayer);
             
             // Draw the raycast in the Scene view.
-            // Debug.DrawRay(transform.position, playerDirection * lineOfSight, Color.red);
+            // Debug.DrawLine(transform.position, playerDirection * lineOfSight, Color.red);
             
             return hit.collider != null && hit.collider.IsPlayer();
         }
@@ -145,10 +148,8 @@ namespace Enemies
                 Die();
         }
         
-        private void DropDice()
-        {
-            currencyDrops.ForEach(currencyDrop => CurrencyManager.DropCurrency(currencyDrop.coinValue, 
-                currencyDrop.quantity, dropForce, dropOffset, transform.position, direction));
-        }
+        private void DropDice() => currencyDrops.ForEach(currencyDrop => 
+            CurrencyManager.DropCurrency(currencyDrop.coinValue, currencyDrop.quantity, 
+                dropForce, dropOffset, transform.position, direction));
     }
 }

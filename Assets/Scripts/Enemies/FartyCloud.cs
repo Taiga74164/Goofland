@@ -52,11 +52,7 @@ namespace Enemies
             Destroy(fartCloud.gameObject, exhaleDuration);
         }
 
-        protected override void MoveEnemy()
-        {
-        }
-
-        protected override void Timer()
+        protected override void Patrol()
         {
         }
         

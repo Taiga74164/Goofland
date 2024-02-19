@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &827800540216077277
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3038281542281825384}
+  m_Layer: 0
+  m_Name: Ground Check
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3038281542281825384
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827800540216077277}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.567, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4713813197721189570}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1712971198774061213
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,11 +40,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4713813197721189570}
-  - component: {fileID: 6473386722176134794}
+  - component: {fileID: 6014144611803009001}
   - component: {fileID: 3627075415461958011}
   - component: {fileID: 8728430097011720445}
   - component: {fileID: 1067533746513534625}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: UmbrellaHat_Color
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -34,9 +65,10 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2542805320932229393}
+  - {fileID: 3038281542281825384}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6473386722176134794
+--- !u!114 &6014144611803009001
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -49,18 +81,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damagePercentage: 5
+  damage: 1
   model: {fileID: 3711461025047435634}
   speed: 1
-  damage: 1
-  useTimer: 0
+  rayLength: 1
+  groundDetection: {fileID: 3038281542281825384}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  turnLayer:
+    serializedVersion: 2
+    m_Bits: 8055
   lineOfSight: 10
   playerLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   currencyDrops: []
   dropForce: 5
-  scatterRadius: 1
-  pieWeakness: 1
+  dropOffset: 1
+  pieWeakness: 0
   pianoWeakness: 0
 --- !u!50 &3627075415461958011
 Rigidbody2D:
