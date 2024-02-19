@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3436695763135192128}
   - component: {fileID: 3436695763135192135}
+  - component: {fileID: 3436695763135192132}
   - component: {fileID: 3436695763135192134}
   - component: {fileID: 3436695763135192133}
-  - component: {fileID: 3436695763135192132}
   m_Layer: 12
   m_Name: TestEnemy
   m_TagString: Enemy
@@ -87,6 +87,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3436695763135192132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3436695763135192139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73611677cdfe1c949b9f62a8eab93fbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagePercentage: 5
+  damage: 1
+  model: {fileID: 0}
+  speed: 0
+  rayLength: 1
+  groundDetection: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  turnLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  lineOfSight: 10
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  currencyDrops: []
+  dropForce: 5
+  dropOffset: 1
+  pieWeakness: 0
+  pianoWeakness: 0
 --- !u!50 &3436695763135192134
 Rigidbody2D:
   serializedVersion: 4
@@ -159,29 +192,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &3436695763135192132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3436695763135192139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73611677cdfe1c949b9f62a8eab93fbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damagePercentage: 5
-  model: {fileID: 0}
-  speed: 0
-  damage: 1
-  useTimer: 0
-  lineOfSight: 10
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  currencyDrops: []
-  dropForce: 5
-  scatterRadius: 1
-  pieWeakness: 0
-  pianoWeakness: 0

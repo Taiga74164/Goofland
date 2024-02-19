@@ -37,14 +37,6 @@ namespace Enemies
             HandleAttack();
         }
         
-        protected override void OnCollisionEnter2D(Collision2D collision)
-        {
-            if (!collision.IsPlayer()) return;
-            
-            var player = collision.gameObject.GetComponent<PlayerController>();
-            player.TakeDamage(enemy: this);
-        }
-        
         private void HandleAttack()
         {
             if (Time.time >= _nextAttackTime && PlayerInLineOfSight())
@@ -66,7 +58,7 @@ namespace Enemies
             projectile.direction = direction;
         }
         
-        protected override void MoveEnemy()
+        protected override void Patrol()
         {
         }
         

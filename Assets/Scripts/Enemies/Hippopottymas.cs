@@ -34,7 +34,7 @@ namespace Enemies
             rb.velocity = new Vector2(directionToPlayer.x * chargeSpeed, rb.velocity.y);
         }
         
-        protected override void MoveEnemy()
+        protected override void Patrol()
         {
         }
         

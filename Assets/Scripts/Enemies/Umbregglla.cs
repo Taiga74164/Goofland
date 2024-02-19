@@ -33,7 +33,7 @@ namespace Enemies
             }
         }
 
-        protected override void MoveEnemy()
+        protected override void Patrol()
         {
         }
         

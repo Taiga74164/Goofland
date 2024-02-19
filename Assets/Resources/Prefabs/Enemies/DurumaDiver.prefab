@@ -115,7 +115,7 @@ MonoBehaviour:
     m_Bits: 128
   currencyDrops: []
   dropForce: 5
-  scatterRadius: 1
+  dropOffset: 1
   pieWeakness: 1
   pianoWeakness: 0
   attackDelay: 3
@@ -147,7 +147,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1000
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
