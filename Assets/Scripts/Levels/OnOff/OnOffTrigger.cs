@@ -47,6 +47,7 @@ namespace Levels
 
         public void Trigger() 
         {
+            Debug.Log("hey");
             if(ActiveColor == OnBlock.Red)
             {
                 ActiveColor = OnBlock.Blue;

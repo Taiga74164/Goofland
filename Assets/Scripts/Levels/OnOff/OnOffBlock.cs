@@ -42,7 +42,7 @@ namespace Levels
                     Color color = _sprite.color;
                     color.a = .45f;
                     _sprite.color = color;
-                    Debug.Log(onType);
+                    
                 }
             }
         }
