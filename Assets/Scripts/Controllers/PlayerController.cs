@@ -37,7 +37,6 @@ namespace Controllers
         [HideInInspector] public IdleState idleState;
         [HideInInspector] public WalkingState walkingState;
         [HideInInspector] public RunningState runningState;
-        [HideInInspector] public CrouchingState crouchingState;
         [HideInInspector] public JumpingState jumpingState;
         [HideInInspector] public FallingState fallingState;
         [HideInInspector] public ParachutingState parachutingState;
@@ -79,7 +78,7 @@ namespace Controllers
             idleState = new IdleState(this);
             walkingState = new WalkingState(this);
             runningState = new RunningState(this);
-            crouchingState = new CrouchingState(this);
+            // crouchingState = new CrouchingState(this);
             jumpingState = new JumpingState(this);
             fallingState = new FallingState(this);
             parachutingState = new ParachutingState(this);

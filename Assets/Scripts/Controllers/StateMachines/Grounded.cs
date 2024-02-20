@@ -1,5 +1,4 @@
 ﻿using Managers;
-using UnityEngine;
 
 namespace Controllers.StateMachines
 {
@@ -19,8 +18,8 @@ namespace Controllers.StateMachines
         {
             base.HandleInput();
 
-            if (input.IsCrouching)
-                player.ChangeState(player.crouchingState);
+            // if (input.IsCrouching)
+            //     player.ChangeState(player.crouchingState);
             
             if (InputManager.Jump.IsInProgress())
                 player.ChangeState(player.jumpingState);
