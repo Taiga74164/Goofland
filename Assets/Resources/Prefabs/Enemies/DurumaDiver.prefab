@@ -82,7 +82,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damagePercentage: 5
   damage: 1
+  entityType: 0
   model: {fileID: 3711461025047435634}
+  allyPrefab: {fileID: 4327544076069486015, guid: cdbb59ff99b7f4e4786c463145426661, type: 3}
   speed: 1
   rayLength: 1
   groundDetection: {fileID: 4871647288737534932}

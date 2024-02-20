@@ -36,7 +36,7 @@ namespace Controllers
             MoveInput = InputManager.Move.ReadValue<Vector2>();
             
             // Update the player's idle state.
-            IsIdle = !IsMoving && !IsRunning && _playerController.IsGrounded();
+            IsIdle = !IsMoving && !IsRunning && !IsAttacking && !IsFalling;
             
             // Update the player's state.
             IsMoving = MoveInput != Vector2.zero || InputManager.Move.IsInProgress();
