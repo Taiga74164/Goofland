@@ -12,7 +12,7 @@ namespace Controllers
         public float maxForce = 6.0f;
         public float _pieCooldownDuration = 1.0f;
         //refactor after beta
-        [HideInInspector] public bool canBeThrown = true;
+        
 
         private Pie _pie;
         private float _chargeTime;
@@ -39,7 +39,7 @@ namespace Controllers
             pie.ThrowPie(velocity);
             
             _lastPieThrownTime = Time.time;
-            canBeThrown = false;
+
         }
 
         private bool IsPieReady() => !GameManager.IsPaused && Time.time - _lastPieThrownTime >= _pieCooldownDuration;
