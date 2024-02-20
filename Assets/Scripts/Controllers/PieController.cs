@@ -31,7 +31,7 @@ namespace Controllers
             _throwForce = Mathf.Lerp(minForce, maxForce, Mathf.Clamp01(_chargeTime / maxChargeTime));
             _throwDirection = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
 
-            var pie = PrefabManager.Create<Pie>(Prefabs.Pie);
+            var pie = PrefabManager.Create<Pie>(Prefabs.Pie, transform);
             pie.throwForce = _throwForce;
             pie.direction = _throwDirection;
 
