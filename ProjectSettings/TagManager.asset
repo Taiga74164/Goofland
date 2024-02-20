@@ -20,7 +20,7 @@ TagManager:
   - Projectile
   - Wall
   - Coin
-  - EnemyProjectile
+  - Enemy Component
   - Enemy
   - 
   - 

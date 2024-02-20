@@ -24,7 +24,7 @@ namespace Enemies
 
         private float _attackTimer;
         private Transform _mainGroundDetection;
-        // private List<Transform> _stacks = new List<Transform>();
+        private List<Transform> _stacks = new List<Transform>();
 
         protected override void Start()
         {
@@ -98,7 +98,9 @@ namespace Enemies
                 // joint.connectedBody = previousRb;
                 
                 // Add stack to the list of stacks.
-                // _stacks.Add(stack.transform);
+                _stacks.Add(stack.transform);
+                // Sort the list by the y position of the stack from highest to lowest.
+                _stacks.Sort((a, b) => b.position.y.CompareTo(a.position.y));
                 
                 // TODO: Change this when Asset and Animation is ready since it won't have a SpriteRenderer.
                 var stackHeight = stack.GetComponent<SpriteRenderer>().bounds.size.y;
@@ -126,12 +128,14 @@ namespace Enemies
 
         private void UpdateGroundDetection()
         {
-            var bottomStack = GetBottomStack();
-            if (!bottomStack)
+            if (_stacks.Count <= 0)
             {
                 groundDetection = _mainGroundDetection;
                 return;
             }
+            
+            // Get the bottom stack.
+            var bottomStack = _stacks[^1];
             
             var bottomGroundDetection = bottomStack!.GetComponent<DurumaStack>().groundDetection;
             groundDetection = bottomGroundDetection;
@@ -149,7 +153,7 @@ namespace Enemies
             var stack = lastChild!.GetComponent<DurumaStack>();
             
             // Remove the stack from the list of stacks.
-            // _stacks.Remove(lastChild);
+            _stacks.Remove(lastChild);
             
             stack.Die();
         }
