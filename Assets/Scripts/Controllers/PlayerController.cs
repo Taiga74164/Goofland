@@ -23,7 +23,7 @@ namespace Controllers
         public AudioSource audioSource;
 
         #region Properties
-        
+        public bool beenWarped;
         public int CurrentHealth { get; private set; }
         public float CoyoteTimeCounter { get; private set; }
         public float JumpBufferCounter { get; private set; }
