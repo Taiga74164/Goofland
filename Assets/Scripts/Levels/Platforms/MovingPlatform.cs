@@ -72,7 +72,7 @@ namespace Levels
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (!other.IsPlayer()) return;
+            if (!other.IsPlayer() && other.gameObject.GetComponent<Weapons.Piano>() == null) return;
             
             var playerRb = other.gameObject.GetComponent<Rigidbody2D>();
                 
