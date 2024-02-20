@@ -15,12 +15,12 @@ MonoBehaviour:
   movementSpeed: 6
   runSpeedMultiplier: 1.8
   crouchSpeedMultiplier: 0.5
-  jumpHeight: 8
+  jumpHeight: 6
   jumpBoostMultiplier: 1.2
   horizontalKnockback: 15
   verticalKnockback: 5
   fallMultiplier: 5
-  lowJumpMultiplier: 4
+  lowJumpMultiplier: 5
   umbrellaGravityDiminisher: 0.25
   umbrellaTime: 2.5
   coyoteTime: 0.2

@@ -14,10 +14,17 @@ namespace Controllers.StateMachines
             input.IsAttacking = true;
             
             player.animator.SetBool(BaseState.Attacking, true);
+            if (InputManager.Attack.IsPressed())
+            {
+                player.pieController.HandlePieThrow();
+                input.IsAttacking = false;
+            }
         }
         
         public override void UpdateSubState()
         {
+
+            /*
             if (InputManager.Attack.IsPressed())
                 player.pieController.Charging();
             
@@ -26,6 +33,7 @@ namespace Controllers.StateMachines
                 player.pieController.HandlePieThrow();
                 input.IsAttacking = false;
             };
+            */
         }
 
         public override void ExitSubState()
