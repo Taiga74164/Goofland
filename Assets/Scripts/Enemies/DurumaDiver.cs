@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Controllers;
 using Enemies.Components;
 using JetBrains.Annotations;
@@ -23,6 +24,7 @@ namespace Enemies
 
         private float _attackTimer;
         private Transform _mainGroundDetection;
+        // private List<Transform> _stacks = new List<Transform>();
 
         protected override void Start()
         {
@@ -30,7 +32,7 @@ namespace Enemies
             
             // Set the start ground detection position.
             _mainGroundDetection = groundDetection;
-            Debug.Log(_mainGroundDetection.name);
+
             // Generate the stacks.
             GenerateStack(stacks);
         }
@@ -43,7 +45,7 @@ namespace Enemies
             stacks = stackContainer.childCount;
             
             // Handle the DurumaDiver's attack.
-            HandleAttack();
+            // HandleAttack();
         }
         
         protected override void OnCollisionEnter2D(Collision2D other)
@@ -78,15 +80,26 @@ namespace Enemies
         {
             var playerPosition = GameManager.Instance.playerController.transform.position;
             var directionToPlayer = (playerPosition - transform.position).normalized;
-            rb.velocity = new Vector2(directionToPlayer.x, directionToPlayer.y) * diveSpeed;
+            Debug.Log($"Attacking!");
+            rb.velocity = directionToPlayer * diveSpeed;
         }
         
         private void GenerateStack(int count)
         {
             float totalHeight = 0;
+            // var previousRb = rb;
             for (var i = 0; i < count; i++)
             {
+                // Create a new stack.
                 var stack = PrefabManager.Create(Prefabs.DurumaDiverStack, stackContainer.transform);
+                
+                // Connect the new stack to the previous stack.
+                // var joint = stack.GetComponent<FixedJoint2D>();
+                // joint.connectedBody = previousRb;
+                
+                // Add stack to the list of stacks.
+                // _stacks.Add(stack.transform);
+                
                 // TODO: Change this when Asset and Animation is ready since it won't have a SpriteRenderer.
                 var stackHeight = stack.GetComponent<SpriteRenderer>().bounds.size.y;
 
@@ -99,6 +112,9 @@ namespace Enemies
 
                 // Add the height of the new stack to the total height.
                 totalHeight += stackHeight;
+                
+                // Set the previous rigidbody to the new stack's rigidbody.
+                // previousRb = stack.GetComponent<Rigidbody2D>();
             }
 
             // Set the position of the DurumaHead to the top of the stacks.
@@ -111,7 +127,7 @@ namespace Enemies
         private void UpdateGroundDetection()
         {
             var bottomStack = GetBottomStack();
-            if (bottomStack == null)
+            if (!bottomStack)
             {
                 groundDetection = _mainGroundDetection;
                 return;
@@ -131,6 +147,10 @@ namespace Enemies
             // Destroy the last child.
             var lastChild = GetBottomStack();
             var stack = lastChild!.GetComponent<DurumaStack>();
+            
+            // Remove the stack from the list of stacks.
+            // _stacks.Remove(lastChild);
+            
             stack.Die();
         }
         
