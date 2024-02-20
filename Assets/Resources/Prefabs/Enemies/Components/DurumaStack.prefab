@@ -134,7 +134,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damagePercentage: 5
   damage: 1
+  entityType: 0
   model: {fileID: 1025758278738916803}
+  allyPrefab: {fileID: 0}
   speed: 0
   rayLength: 1
   groundDetection: {fileID: 478445727314405674}
@@ -143,7 +145,7 @@ MonoBehaviour:
     m_Bits: 64
   turnLayer:
     serializedVersion: 2
-    m_Bits: 4727
+    m_Bits: 4294967295
   lineOfSight: 10
   playerLayer:
     serializedVersion: 2

@@ -50,7 +50,7 @@ namespace Enemies
         
         protected override void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.IsPlayer())
+            if (other.IsPlayer() && entityType == EntityType.Enemy)
                 other.gameObject.GetComponent<PlayerController>().TakeDamage(enemy: this);
             else if (other.gameObject.GetComponent<Pie>())
                 ShedStack();
