@@ -39,6 +39,8 @@ namespace Enemies
         
         private void HandleAttack()
         {
+            if (entityType is not EntityType.Enemy) return;
+            
             if (Time.time >= _nextAttackTime && PlayerInLineOfSight())
             {
                 // Turn towards the player and attack.
@@ -82,11 +84,11 @@ namespace Enemies
             _audioSource.volume = volume;
         }
     
-        protected internal override void Die()
+        protected internal override void OnHit()
         {
             _audioSource.Configure(deathAudioData);
             _audioSource.Play();
-            base.Die();
+            base.OnHit();
         }
     }
 }

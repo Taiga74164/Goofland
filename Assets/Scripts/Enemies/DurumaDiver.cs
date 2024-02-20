@@ -155,13 +155,13 @@ namespace Enemies
             // Remove the stack from the list of stacks.
             _stacks.Remove(lastChild);
             
-            stack.Die();
+            stack.OnHit();
         }
         
         public override void GotHit(IWeapon weapon)
         {
             if (weapon is Pie && stacks <= 0)
-                Die();
+                OnHit();
         }
     }
 }

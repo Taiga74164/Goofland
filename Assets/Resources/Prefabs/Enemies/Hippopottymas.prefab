@@ -133,7 +133,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damagePercentage: 5
   damage: 1
+  entityType: 0
   model: {fileID: 521849882977106016}
+  allyPrefab: {fileID: 0}
   speed: 1
   rayLength: 1
   groundDetection: {fileID: 666217592399240618}
@@ -147,7 +149,9 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
-  currencyDrops: []
+  currencyDrops:
+  - coinValue: 20
+    quantity: 1
   dropForce: 5
   dropOffset: 1
   pieWeakness: 1

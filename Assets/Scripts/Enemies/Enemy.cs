@@ -21,7 +21,11 @@ namespace Enemies
     public class Enemy : EnemyBase
     {
         [Header("Enemy Settings")]
+        [SerializeField] protected EntityType entityType = EntityType.Enemy;
+        [Tooltip("The current model of the enemy.")]
         [CanBeNull] public GameObject model;
+        [Tooltip("The ally prefab to change into after getting hit.")]
+        [CanBeNull] public GameObject allyPrefab;
         [SerializeField] protected float speed;
         
         [Header("Detection Settings")]
@@ -69,7 +73,7 @@ namespace Enemies
 
         protected virtual void OnCollisionEnter2D(Collision2D collision)
         {
-            if (!collision.IsPlayer()) return;
+            if (!collision.IsPlayer() || entityType is not EntityType.Enemy) return;
             
             // Deal damage to the player.
             var player = collision.gameObject.GetComponent<PlayerController>();
@@ -132,10 +136,30 @@ namespace Enemies
             return hit.collider != null && hit.collider.IsPlayer();
         }
 
-        protected internal virtual void Die()
+        protected internal virtual void OnHit()
         {
+            // Drop dice when the enemy is hit.
             DropDice();
-            Destroy(gameObject);
+            
+            // Play particle effects.
+            
+            // Change the enemy's state.
+            entityType = EntityType.Ally;
+            
+            // Change the model to the ally prefab.
+            if (allyPrefab != null)
+            {
+                // Instantiate the ally prefab.
+                var ally = Instantiate(allyPrefab, transform);
+                // Destroy the current model.
+                if (model) Destroy(model);
+                // Assign the new model to the ally prefab.
+                model = ally;
+                // Set the new model's position.
+                gameObject.layer = LayerMask.NameToLayer("Ally");
+                // Include the player layer in the turn layer.
+                turnLayer |= playerLayer;
+            }
         }
 
         /// <summary>
@@ -144,12 +168,20 @@ namespace Enemies
         /// <param name="weapon">The weapon type.</param>
         public virtual void GotHit(IWeapon weapon)
         {
+            if (entityType is not EntityType.Enemy) return;
+            
             if ((weapon is Pie && pieWeakness) || (weapon is Piano && pianoWeakness))
-                Die();
+                OnHit();
         }
         
         private void DropDice() => currencyDrops.ForEach(currencyDrop => 
             CurrencyManager.DropCurrency(currencyDrop.coinValue, currencyDrop.quantity, 
                 dropForce, dropOffset, transform.position, direction));
+    }
+
+    public enum EntityType
+    {
+        Enemy,
+        Ally
     }
 }

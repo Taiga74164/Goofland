@@ -14,6 +14,14 @@
 
         protected override void Turn() { }
 
+        protected internal override void OnHit()
+        {
+            // Play particle effect.
+            
+            // Destroy the enemy.
+            Destroy(gameObject);
+        }
+
         public override void GotHit(IWeapon weapon) { }
     }
 }

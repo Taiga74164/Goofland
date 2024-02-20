@@ -51,7 +51,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damagePercentage: 5
   damage: 1
+  entityType: 0
   model: {fileID: 5003136391886375003}
+  allyPrefab: {fileID: 0}
   speed: 1
   rayLength: 1
   groundDetection: {fileID: 7276669370076521754}
@@ -337,7 +339,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5003136391886375003}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 10bb966b9f1857643b7ece909079331b, type: 2}
   m_CullingMode: 0

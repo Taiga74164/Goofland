@@ -25,11 +25,11 @@ namespace Enemies
             if (collision.IsPlayer())
             {
                 collision.gameObject.GetComponent<PlayerController>().TakeDamage(enemy: this);
-                Die();
+                Destroy(gameObject);
             } 
             else if (collision.gameObject.layer != ~LayerMask.NameToLayer("Player"))
             {
-                Die();
+                Destroy(gameObject);
             }
         }
 

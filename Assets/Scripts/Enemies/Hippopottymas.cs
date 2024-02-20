@@ -50,7 +50,7 @@ namespace Enemies
                     _isDisturbed = true;
                     break;
                 case Piano:
-                    Die();
+                    OnHit();
                     break;
             }
         }

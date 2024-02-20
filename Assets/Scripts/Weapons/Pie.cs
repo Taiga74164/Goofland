@@ -81,7 +81,7 @@ namespace Weapons
             _rigidbody2D.bodyType = RigidbodyType2D.Static;
             _spriteRenderer.enabled = false;
             Die();
-            // Invoke(nameof(Die), audioSource.clip.length);
+            // Invoke(nameof(OnHit), audioSource.clip.length);
         }
     
         /// <summary>

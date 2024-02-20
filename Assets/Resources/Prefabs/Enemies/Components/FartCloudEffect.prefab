@@ -98,6 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05a71deff0be407dbf7af537a1c70164, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damagePercentage: 5
+  damage: 1
   fartArea: 0
 --- !u!58 &2282926480703544787
 CircleCollider2D:
@@ -114,7 +116,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
