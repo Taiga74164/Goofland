@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1563987815338668055}
-  - component: {fileID: 3160295551406002029}
+  - component: {fileID: 1454662652336428835}
   - component: {fileID: 1563987815338668049}
   - component: {fileID: 6304848394191484174}
   - component: {fileID: 2794808846722007045}
@@ -37,7 +37,7 @@ Transform:
   - {fileID: 7541367046395965902}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3160295551406002029
+--- !u!114 &1454662652336428835
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1563987815338668060}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73611677cdfe1c949b9f62a8eab93fbb, type: 3}
+  m_Script: {fileID: 11500000, guid: e072045da8a6415f8577641d3b41622a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damagePercentage: 5
@@ -60,16 +60,20 @@ MonoBehaviour:
     m_Bits: 64
   turnLayer:
     serializedVersion: 2
-    m_Bits: 8055
+    m_Bits: 7031
   lineOfSight: 10
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
-  currencyDrops: []
+  currencyDrops:
+  - coinValue: 1
+    quantity: 1
   dropForce: 5
   dropOffset: 1
   pieWeakness: 1
   pianoWeakness: 0
+  bounceHeight: 0.5
+  bounceSpeed: 10
 --- !u!50 &1563987815338668049
 Rigidbody2D:
   serializedVersion: 4
@@ -82,7 +86,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -202,7 +206,7 @@ Transform:
   m_GameObject: {fileID: 8004078099075061306}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.229, z: 0}
+  m_LocalPosition: {x: 0, y: -0.21, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -342,7 +346,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6269390658796696108}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 10bb966b9f1857643b7ece909079331b, type: 2}
   m_CullingMode: 0
