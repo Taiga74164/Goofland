@@ -18,9 +18,9 @@ namespace Weapons
 
         private void Update()
         {
-            if(transform.position.y < -20f)
+            if (transform.position.y < -20f)
             {
-                if(GetComponentInParent<Balloon>() != null)
+                if (GetComponentInParent<Balloon>() != null)
                     GetComponentInParent<Balloon>().Respawn();
                 
                 Destroy(gameObject);
@@ -34,12 +34,18 @@ namespace Weapons
                 other.gameObject.GetComponent<Enemy>().GotHit(this);
                 Destroy(gameObject);
             }
-                
             else if (other.gameObject.GetComponent<IBreakable>() != null)
+            {
                 Destroy(other.gameObject);
-
+            }
             else if (other.IsPlayer())
+            {
                 other.transform.SetParent(transform);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
 
         private void OnCollisionExit2D(Collision2D collision)
