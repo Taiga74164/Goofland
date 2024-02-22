@@ -31,7 +31,7 @@ namespace Controllers.StateMachines
             if (player.IsKnockback) return;
             
             // Move the player while in the air.
-            if(!player.beenWarped)
+            if (!player.beenWarped)
             {
                 player.rb.velocity = new Vector2(
                 input.MoveInput.x *
@@ -41,10 +41,10 @@ namespace Controllers.StateMachines
             }
             else
             {
-                player.rb.velocity =  new Vector2(player.rb.velocity.x +(
+                player.rb.velocity =  new Vector2(player.rb.velocity.x +
                 input.MoveInput.x *
                 player.playerSettings.movementSpeed *
-                (input.IsRunning ? player.playerSettings.runSpeedMultiplier : 1.0f)),
+                (input.IsRunning ? player.playerSettings.runSpeedMultiplier : 1.0f),
                 player.rb.velocity.y);
             }
           
@@ -56,7 +56,6 @@ namespace Controllers.StateMachines
             {
                 // If the player is falling, increase the fall speed.
                 case < 0:
-                   
                     // Apply the fall multiplier.
                     player.rb.velocity += Vector2.up * 
                                           (Physics2D.gravity.y * (player.playerSettings.fallMultiplier - 1) * 
@@ -70,7 +69,6 @@ namespace Controllers.StateMachines
                                           (Physics2D.gravity.y * (player.playerSettings.lowJumpMultiplier - 1) * 
                                            Time.deltaTime);
                     break;
-
             }
         }
     }
