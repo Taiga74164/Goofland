@@ -17871,6 +17871,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Balloon
       objectReference: {fileID: 0}
+    - target: {fileID: 7394428526219249705, guid: 171aebcbd7fc65047bc69fa2fce60a95, type: 3}
+      propertyPath: despawn
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21151,6 +21155,10 @@ PrefabInstance:
     - target: {fileID: 6209401795725417374, guid: 171aebcbd7fc65047bc69fa2fce60a95, type: 3}
       propertyPath: m_Name
       value: Balloon (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7394428526219249705, guid: 171aebcbd7fc65047bc69fa2fce60a95, type: 3}
+      propertyPath: despawn
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

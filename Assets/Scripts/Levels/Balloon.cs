@@ -1,34 +1,38 @@
-﻿using Managers;
-using Objects.Scriptable;
-using UnityEngine;
+﻿using UnityEngine;
 using Weapons;
 
 namespace Levels
 {
     public class Balloon : MonoBehaviour
     {
-        [SerializeField] private bool _respawning;
+        [Header("Balloon Settings")]
+        [SerializeField] private bool respawning;
+        
+        [Header("Piano Settings")]
+        [SerializeField] private Piano piano;
+        [SerializeField] private bool despawn;
+        
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (!other.gameObject.GetComponent<Pie>()) return;
-            var piano = PrefabManager.Create<Piano>(Prefabs.Piano);
-            piano.transform.position = transform.position;
+            
+            // Detach the piano from the balloon and drop it
+            piano.transform.SetParent(null);
+            piano.despawn = despawn;
             piano.DropPiano();
 
-            if (!_respawning)
+            if (!respawning)
+            {
                 Destroy(gameObject);
+            }
             else
             {
                 piano.transform.SetParent(gameObject.transform);
-                GetComponent<SpriteRenderer>().enabled = false;
-                GetComponent<CircleCollider2D>().enabled = false;
+                GetComponent<SpriteRenderer>().enabled = GetComponent<CircleCollider2D>().enabled = false;
             }
         }
 
-        public void Respawn()
-        {
-            GetComponent<SpriteRenderer>().enabled = true;
-            GetComponent<CircleCollider2D>().enabled = true;
-        }
+        public void Respawn() => 
+            GetComponent<SpriteRenderer>().enabled = GetComponent<CircleCollider2D>().enabled = true;
     }
 }
