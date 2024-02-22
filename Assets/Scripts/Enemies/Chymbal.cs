@@ -1,5 +1,4 @@
-﻿using Controllers;
-using Enemies.Components;
+﻿using Enemies.Components;
 using Managers;
 using Objects.Scriptable;
 using UnityEngine;

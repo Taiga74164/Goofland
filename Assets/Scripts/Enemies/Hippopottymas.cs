@@ -23,7 +23,7 @@ namespace Enemies
 
         private void Charge()
         {
-            if (!_isDisturbed) return;
+            if (!_isDisturbed || entityType is not EntityType.Enemy) return;
             
             // Get player.
             var playerPosition = GameManager.Instance.playerController.transform.position;

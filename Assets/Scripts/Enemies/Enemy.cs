@@ -56,7 +56,13 @@ namespace Enemies
     
         protected virtual void Awake()
         {
+            // Register the enemy with the entity manager.
+            EntityManager.Instance.RegisterEnemy(this);
+            
+            // Set the model to the game object if it is not set.
             model = model ? model : gameObject;
+            
+            // Get the rigidbody component.
             rb = GetComponent<Rigidbody2D>();
         }
         
@@ -145,6 +151,9 @@ namespace Enemies
             
             // Change the enemy's state.
             entityType = EntityType.Ally;
+            
+            // Unregister the enemy with the entity manager.
+            EntityManager.Instance.UnregisterEnemy(this);
             
             // Change the model to the ally prefab.
             if (allyPrefab != null)
