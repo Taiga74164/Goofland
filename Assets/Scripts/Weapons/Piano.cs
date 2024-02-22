@@ -11,20 +11,12 @@ namespace Weapons
         public bool despawn;
         
         private Rigidbody2D _rigidbody2D;
-        private EdgeCollider2D _edgeCollider2D;
-        private BoxCollider2D _boxCollider2D;
+        private bool _hasDropped;
         
         private void Awake()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _rigidbody2D.isKinematic = true;
-            
-            _edgeCollider2D = GetComponent<EdgeCollider2D>();
-            _boxCollider2D = GetComponent<BoxCollider2D>();
-            
-            // If the piano is attached to the balloon, the top side of it can only be stepped on.
-            _edgeCollider2D.enabled = true;
-            _boxCollider2D.enabled = false;
         }
 
         private void Update()
@@ -35,6 +27,15 @@ namespace Weapons
                     GetComponentInParent<Balloon>().Respawn();
                 
                 Destroy(gameObject);
+            }
+            
+            // Set the rigidbody to kinematic when the piano has stopped falling.
+            // This prevents the piano from sinking through the ground when player is jumping on it.
+            if (_hasDropped && _rigidbody2D.velocity.y >= 0.0f)
+            {
+                _rigidbody2D.velocity = Vector2.zero;
+                _rigidbody2D.isKinematic = true;
+                _hasDropped = false;
             }
         }
 
@@ -67,10 +68,8 @@ namespace Weapons
 
         public void DropPiano()
         {
-            // Reverse the colliders.
-            _edgeCollider2D.enabled = false;
-            _boxCollider2D.enabled = true;
             // Drop the piano.
+            _hasDropped = true;
             _rigidbody2D.isKinematic = false;
             _rigidbody2D.velocity = new Vector2(0.0f, -fallSpeed);
         }
