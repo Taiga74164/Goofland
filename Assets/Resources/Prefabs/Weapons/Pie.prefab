@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5c1b5ac65c02e044fbe1999cceb350a7, type: 3}
-  m_Color: {r: 0.6792453, g: 0.5119517, b: 0.31719473, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -127,6 +127,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69cb19a5957a0ff469d8e66f123221a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pieSkins:
+  - name: Default
+    sprite: {fileID: 21300000, guid: 5c1b5ac65c02e044fbe1999cceb350a7, type: 3}
+  - name: Banana
+    sprite: {fileID: 21300000, guid: b00384020e5148d45832cb22740cdd0c, type: 3}
+  - name: Blueberry
+    sprite: {fileID: 21300000, guid: 387743def842f9f409e6d266d53d8592, type: 3}
+  - name: Mint
+    sprite: {fileID: 21300000, guid: 03c26d9961c009743a4da7afc3de8e76, type: 3}
+  - name: Peach
+    sprite: {fileID: 21300000, guid: 7a1f9564c3ae85542a02accc9b020d3c, type: 3}
+  - name: Strawberry
+    sprite: {fileID: 21300000, guid: 3c385b4bc34da6042ac65aa8d8eaf21f, type: 3}
   direction: {x: 20, y: 100}
   throwForce: 10
   onImpact: {fileID: 11400000, guid: 3a81f5e22d7786d4985aacd0a3763ccd, type: 2}
@@ -168,7 +181,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.024, y: 1.024}
+    oldSize: {x: 1.6384, y: 1.6384}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
