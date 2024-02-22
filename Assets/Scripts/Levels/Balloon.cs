@@ -16,7 +16,7 @@ namespace Levels
         {
             if (!other.gameObject.GetComponent<Pie>()) return;
             
-            // Detach the piano from the balloon and drop it
+            // Detach the piano from the balloon and drop it.
             piano.transform.SetParent(null);
             piano.despawn = despawn;
             piano.DropPiano();
