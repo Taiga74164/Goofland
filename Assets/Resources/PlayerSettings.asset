@@ -29,7 +29,7 @@ MonoBehaviour:
   groundCheckRadius: 0.1
   groundLayerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 32832
   invincibilityDuration: 2
   magnetRadius: 1
   magnetForce: 4

@@ -31,7 +31,7 @@ namespace Weapons
             
             // Set the rigidbody to kinematic when the piano has stopped falling.
             // This prevents the piano from sinking through the ground when player is jumping on it.
-            if (_hasDropped && _rigidbody2D.velocity.y >= 0.0f)
+            if (_hasDropped && _rigidbody2D.velocity.y >= Mathf.Epsilon)
             {
                 _rigidbody2D.velocity = Vector2.zero;
                 _rigidbody2D.isKinematic = true;
@@ -48,20 +48,26 @@ namespace Weapons
             }
             else if (other.gameObject.GetComponent<IBreakable>() != null && !despawn)
             {
-                Destroy(other.gameObject);
+                other.gameObject.GetComponent<IBreakable>().Break();
             }
-            else if (!despawn)
+            else if (other.gameObject.CompareLayer("Platform") && !despawn)
             {
                 Destroy(gameObject);
             }
         }
 
+        private void OnCollisionExit2D(Collision2D other)
+        {
+            if (other.gameObject.CompareLayer("Weapon") && !despawn)
+                other.gameObject.GetComponent<Piano>().DropPiano();
+        }
+
         public void DropPiano()
         {
             // Drop the piano.
-            _hasDropped = true;
             _rigidbody2D.isKinematic = false;
             _rigidbody2D.velocity = new Vector2(0.0f, -fallSpeed);
+            _hasDropped = true;
         }
     }
 }

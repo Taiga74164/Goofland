@@ -132,6 +132,7 @@ MonoBehaviour:
   playerSettings: {fileID: 11400000, guid: 1cbfac974975fb14c99feea85a600b39, type: 2}
   animator: {fileID: 1634336382338436785}
   audioSource: {fileID: 2293451832235115546}
+  beenWarped: 0
   rb: {fileID: 0}
   pieController: {fileID: 0}
   inputController: {fileID: 0}
@@ -213,7 +214,7 @@ CapsuleCollider2D:
     m_Bits: 4294967295
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 2807
+    m_Bits: 35575
   m_ContactCaptureLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -248,7 +249,7 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 2807
+    m_Bits: 35575
   m_ContactCaptureLayers:
     serializedVersion: 2
     m_Bits: 4294967295
