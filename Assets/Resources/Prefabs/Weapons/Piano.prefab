@@ -125,7 +125,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 19712
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -145,7 +145,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 32896
+    m_Bits: 52608
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -190,7 +190,7 @@ EdgeCollider2D:
     m_Bits: 128
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 33024
+    m_Bits: 52480
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

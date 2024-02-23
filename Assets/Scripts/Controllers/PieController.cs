@@ -7,41 +7,37 @@ namespace Controllers
 {
     public class PieController : MonoBehaviour
     {
-        public float maxChargeTime = 3.0f;
-        public float minForce = 2.0f;
-        public float maxForce = 6.0f;
-        public float _pieCooldownDuration = 1.0f;
-        //refactor after beta
+        [SerializeField] private float throwForce = 15.0f;
+        [SerializeField] private float pieCooldownDuration = 1.0f;
         
-
         private Pie _pie;
-        private float _chargeTime;
+        private Rigidbody2D _rb;
+        private Camera _mainCamera;
         private float _lastPieThrownTime = -1.0f;
-        private Vector2 _throwDirection;
-        private float _throwForce;
 
-        public void Charge() => _chargeTime = 0.0f;
-
-        public void Charging() => _chargeTime = Mathf.Min(_chargeTime + Time.deltaTime, maxChargeTime);
+        private void Awake()
+        {
+            _rb = GetComponent<Rigidbody2D>();
+            _mainCamera = Camera.main;
+        }
 
         public void HandlePieThrow()
         {
-            if (!IsPieReady() || Camera.main == null) return;
+            if (!IsPieReady()) return;
             
-            _throwForce = Mathf.Lerp(minForce, maxForce, Mathf.Clamp01(_chargeTime / maxChargeTime));
-            _throwDirection = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
-
+            var mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            var direction = (mousePosition - transform.position).normalized;
+            
             var pie = PrefabManager.Create<Pie>(Prefabs.Pie, transform);
-            pie.throwForce = _throwForce;
-            pie.direction = _throwDirection;
+            pie.throwForce = throwForce;
+            pie.direction = direction;
 
-            var velocity = GetComponent<Rigidbody2D>().velocity;
+            var velocity = _rb.velocity;
             pie.ThrowPie(velocity);
             
             _lastPieThrownTime = Time.time;
-
         }
 
-        private bool IsPieReady() => !GameManager.IsPaused && Time.time - _lastPieThrownTime >= _pieCooldownDuration;
+        private bool IsPieReady() => !GameManager.IsPaused && Time.time - _lastPieThrownTime >= pieCooldownDuration;
     }
 }
