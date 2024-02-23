@@ -43,13 +43,13 @@ namespace Levels
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+            if (collision.gameObject.CompareLayer("Player"))
                 _player = collision.gameObject.GetComponent<PlayerController>();
         }
 
         private void OnTriggerExit2D(Collider2D collision)
         {
-            if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+            if (collision.gameObject.CompareLayer("Player"))
                 _player = null;
         }
     }

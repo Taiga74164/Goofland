@@ -16,7 +16,7 @@ namespace Levels
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.layer == LayerMask.NameToLayer("Projectile"))
+            if (collision.gameObject.CompareLayer("Projectile"))
             {
                 _bubble.gameObject.SetActive(true);
             }

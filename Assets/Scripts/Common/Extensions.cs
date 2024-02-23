@@ -19,7 +19,7 @@ public static class Extensions
 
         if (resetRotation) transform.rotation = Quaternion.identity;
     }
-    
+
     /// <summary>
     /// Updates the polygon collider shape to match the sprite's shape.
     /// </summary>
@@ -33,7 +33,7 @@ public static class Extensions
         if (collider == null || sprite == null) return;
         // Update count.
         collider.pathCount = sprite.GetPhysicsShapeCount();
-                
+
         // New paths variable.
         var path = new List<Vector2>();
 
@@ -48,21 +48,21 @@ public static class Extensions
             collider.SetPath(i, path.ToArray());
         }
     }
-    
+
     /// <summary>
     /// Returns true if the collider is a player.
     /// </summary>
     /// <param name="collider">The collider to check.</param>
     public static bool IsPlayer(this Collider2D collider)
         => collider.CompareTag("Player");
-    
+
     /// <summary>
     /// Returns true if the collision is a player.
     /// </summary>
     /// <param name="collision">The collision to check.</param>
     public static bool IsPlayer(this Collision2D collision)
         => collision.gameObject.CompareTag("Player");
-    
+
     /// <summary>
     /// Configures the audio source with the audio data.
     /// </summary>
@@ -75,7 +75,7 @@ public static class Extensions
         audioSource.playOnAwake = audioData.playOnAwake;
         audioSource.loop = audioData.loop;
     }
-    
+
     /// <summary>
     /// Converts the currency to a prefab.
     /// </summary>
@@ -95,4 +95,13 @@ public static class Extensions
             _ => Prefabs.CoinD1
         };
     }
+
+    /// <summary>
+    /// Returns true if the game object's layer matches the layer name.
+    /// </summary>
+    /// <param name="gameObject">The game object to check.</param>
+    /// <param name="layerName">The layer name to compare.</param>
+    /// <returns>true or false.</returns>
+    public static bool CompareLayer(this GameObject gameObject, string layerName)
+        => gameObject.layer == LayerMask.NameToLayer(layerName);
 }

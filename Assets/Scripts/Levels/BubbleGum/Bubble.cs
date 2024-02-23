@@ -19,7 +19,7 @@ namespace Levels
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+            if (collision.gameObject.CompareLayer("Player"))
             {
                 Vector2 force = -collision.relativeVelocity.normalized * _explosionForce;
                 collision.gameObject.GetComponent<PlayerController>().Bounced(force);

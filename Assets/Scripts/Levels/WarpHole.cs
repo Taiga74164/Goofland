@@ -48,7 +48,7 @@ namespace Levels
             //change direction of object coming out of portal
             // warpedObject.velocity = warpedObject.velocity * (warpedObject.velocity.normalized * Directions[(int)_direction]);
 
-            if (warpedObject.gameObject.layer == LayerMask.NameToLayer("Player"))
+            if (warpedObject.gameObject.CompareLayer("Player"))
             {
                 if(_direction == Direction.left || _direction == Direction.right)
                 {
