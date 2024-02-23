@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Managers;
 using Objects.Scriptable;
-using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Weapons;
@@ -18,12 +17,13 @@ namespace Controllers
         [Header("Trajectory Settings")]
         [SerializeField] private GameObject indicatorPrefab;
         [SerializeField] private float blockSize = 1.0f;
-        
+        [SerializeField] private AnimationCurve indicatorCurve;
+
         private Pie _pie;
         private Rigidbody2D _rb;
         private Camera _mainCamera;
         private float _lastPieThrownTime = -1.0f;
-        private List<GameObject> _arrows = new List<GameObject>();
+        private List<GameObject> _indicators = new List<GameObject>();
 
         private void Awake()
         {
@@ -66,8 +66,17 @@ namespace Controllers
                 // var rotation = Quaternion.LookRotation(Vector3.forward, 
                 //     CalculateTrajectoryPoint(transform.forward, force, time) - position);
                 
-                var arrow = Instantiate(indicatorPrefab, position, Quaternion.identity, transform);
-                _arrows.Add(arrow);
+                var indicator = Instantiate(indicatorPrefab, position, Quaternion.identity, transform);
+                _indicators.Add(indicator);
+                
+                // Calculate the curve value based on the current arrow and the total arrows.
+                var curveValue = indicatorCurve.Evaluate(i / (float)totalArrows);
+                
+                // Scale the arrow based on the curve value.
+                indicator.transform.localScale *= curveValue;
+                // Set the alpha of the arrow based on the curve value.
+                var spriteRenderer = indicator.GetComponent<SpriteRenderer>();
+                spriteRenderer.color = new Color(1, 1, 1, curveValue);
             }
         }
         
@@ -93,8 +102,8 @@ namespace Controllers
         
         private void ClearTrajectory()
         {
-            _arrows.ForEach(Destroy);
-            _arrows.Clear();
+            _indicators.ForEach(Destroy);
+            _indicators.Clear();
         }
 
         public void HandlePieThrow()
