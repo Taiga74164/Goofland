@@ -14,11 +14,13 @@ namespace Levels
 
         [Tooltip("the amount of force added to the player when they exit a portal")]
         [SerializeField] private float _playerExitForce;
+        private GameObject _object;
 
         private bool _active = true;
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
+
             if (collision.GetComponent<Rigidbody2D>() && _active)
             {
                 _otherPortal.Deactivate();
@@ -32,12 +34,15 @@ namespace Levels
 
         private void OnTriggerExit2D(Collider2D collision)
         {
-            _active = true;
+      
+                _active = true;
+
         }
 
-        //dosent work on playr due to player controller handling physics manually 
+  
         public void AlterDirection(Rigidbody2D warpedObject)
         {
+            _object = warpedObject.gameObject;
             warpedObject.transform.position = transform.position;
 
             var direction = Directions[(int)_direction].normalized;
@@ -50,14 +55,18 @@ namespace Levels
 
             if (warpedObject.gameObject.CompareLayer("Player"))
             {
-                if(_direction == Direction.left || _direction == Direction.right)
+                
+                if( _direction == Direction.right || _direction == Direction.left && !warpedObject.GetComponent<Controllers.PlayerController>().IsGrounded())
                 {
-                    warpedObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * -Physics2D.gravity );
+                    Debug.Log("help");
+                   // warpedObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * -Physics2D.gravity );
                     warpedObject.GetComponent<PlayerController>().beenWarped = true;
                 }
-
+       
+                
                
                 Debug.Log($"exit Warp Hole: {warpedObject.GetComponent<Rigidbody2D>().velocity}");
+                Invoke("Activate", .75f);
             }
  
         }
@@ -65,6 +74,13 @@ namespace Levels
         public void Deactivate()
         {
             _active = false;
+            GetComponent<BoxCollider2D>().enabled = false;
+        }
+
+        private void Activate()
+        {
+            //_active = true;
+            GetComponent<BoxCollider2D>().enabled = true;
         }
 
     }
