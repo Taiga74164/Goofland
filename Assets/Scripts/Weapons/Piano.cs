@@ -50,20 +50,10 @@ namespace Weapons
             {
                 Destroy(other.gameObject);
             }
-            else if (other.IsPlayer())
-            {
-                other.transform.SetParent(transform);
-            }
             else if (!despawn)
             {
                 Destroy(gameObject);
             }
-        }
-
-        private void OnCollisionExit2D(Collision2D collision)
-        {
-            if (collision.IsPlayer())
-                collision.transform.parent = null;
         }
 
         public void DropPiano()

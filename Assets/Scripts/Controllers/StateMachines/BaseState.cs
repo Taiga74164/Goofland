@@ -9,8 +9,8 @@ namespace Controllers.StateMachines
     {
         public string name;
         protected internal PlayerController player;
-        protected BaseSubState currentSubState;
         protected InputController input;
+        private BaseSubState _currentSubState;
         protected BaseState(string name, PlayerController player)
         {
             this.name = name;
@@ -30,17 +30,23 @@ namespace Controllers.StateMachines
         
         public virtual void EnterState() { }
 
-        public virtual void HandleInput() { }
+        public virtual void HandleInput()
+        {
+            _currentSubState?.HandleInput();
+        }
 
-        public virtual void UpdateState() { }
+        public virtual void UpdateState()
+        {
+            _currentSubState?.UpdateSubState();
+        }
         
         public virtual void ExitState() { }
 
         protected void ChangeSubState(BaseSubState subState)
         {
-            currentSubState?.ExitSubState();
-            currentSubState = subState;
-            currentSubState.EnterSubState();
+            _currentSubState?.ExitSubState();
+            _currentSubState = subState;
+            _currentSubState?.EnterSubState();
         }
     }
 }

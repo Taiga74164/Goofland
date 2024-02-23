@@ -31,6 +31,7 @@ namespace Controllers.StateMachines
             player.beenWarped = false;
             player.animator.SetBool(Falling, false);
         }
+        
         protected override void HandleClampFallSpeed()
         {
             base.HandleClampFallSpeed();

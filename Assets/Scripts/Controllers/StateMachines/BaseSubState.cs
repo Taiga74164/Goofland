@@ -13,7 +13,7 @@ namespace Controllers.StateMachines
         {
             this.name = name;
             this.parentState = parentState;
-            this.player = parentState.player;
+            player = parentState.player;
             input = player.inputController;
         }
         

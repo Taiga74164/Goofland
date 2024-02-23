@@ -1,6 +1,4 @@
-﻿using Managers;
-
-namespace Controllers.StateMachines
+﻿namespace Controllers.StateMachines
 {
     public class AttackingSubState : BaseSubState
     {
@@ -10,30 +8,18 @@ namespace Controllers.StateMachines
 
         public override void EnterSubState()
         {
-            player.pieController.Charge();
             input.IsAttacking = true;
             
             player.animator.SetBool(BaseState.Attacking, true);
-            if (InputManager.Attack.IsPressed())
+        }
+
+        public override void UpdateSubState()
+        {
+            if (input.IsAttacking)
             {
                 player.pieController.HandlePieThrow();
                 input.IsAttacking = false;
             }
-        }
-        
-        public override void UpdateSubState()
-        {
-
-            /*
-            if (InputManager.Attack.IsPressed())
-                player.pieController.Charging();
-            
-            InputManager.Attack.canceled += _ =>
-            {
-                player.pieController.HandlePieThrow();
-                input.IsAttacking = false;
-            };
-            */
         }
 
         public override void ExitSubState()

@@ -29,12 +29,14 @@ namespace Controllers.StateMachines
             
             if (InputManager.Attack.triggered)
                 ChangeSubState(new AttackingSubState(this));
+            
+            if (!input.IsAttacking)
+                ChangeSubState(null);
         }
         
         public override void UpdateState()
         {
             base.UpdateState();
-            currentSubState?.UpdateSubState();
             
             if (player.CanJump())
                 player.ChangeState(player.jumpingState);
