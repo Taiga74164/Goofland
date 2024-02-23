@@ -149,10 +149,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45896ec33b5b7be42aaadf79010b03d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxChargeTime: 0.01
-  minForce: 15
-  maxForce: 15
-  _pieCooldownDuration: 0.25
+  throwForce: 15
+  pieCooldownDuration: 1
+  arrowPrefab: {fileID: 6687257862037589725, guid: 8cbb80d18a0681d44b224676374588fa, type: 3}
+  blockSize: 1
+  hitLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!114 &3748090300100103364
 MonoBehaviour:
   m_ObjectHideFlags: 0

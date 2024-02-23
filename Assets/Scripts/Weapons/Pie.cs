@@ -21,8 +21,8 @@ namespace Weapons
     {
         [Header("Pie Settings")]
         public List<PieSkin> pieSkins = new List<PieSkin>();
-        public Vector2 direction = new Vector2(1, 3);
-        public float throwForce = 2.0f;
+        public Vector2 direction = new Vector2(1.0f, 3.0f);
+        public Vector2 throwForce = new Vector2(5.0f, 5.0f);
 
         [Header("Audio Settings")]
         public GameEvent onImpact;
@@ -64,7 +64,6 @@ namespace Weapons
                     _spriteRenderer.sprite = pieSkins[0].sprite;
                 }
             }
-
         }
 
         private void Update()
@@ -116,11 +115,10 @@ namespace Weapons
         /// Throws the pie in the specified direction.
         /// </summary>
         /// <param name="playerVelocity">The player's velocity to add to the pie's force.</param>
-        public void ThrowPie(Vector2 playerVelocity)
+        public void ThrowPie()
         {
             _rigidbody2D.isKinematic = false;
-            var force = direction.normalized * throwForce + (playerVelocity / 2);
-            _rigidbody2D.AddForce(force, ForceMode2D.Impulse);
+            _rigidbody2D.AddForce(throwForce, ForceMode2D.Impulse);
 
             #region Debugging
 
