@@ -24,10 +24,14 @@ namespace Levels
         /// </summary>
         private void FixedUpdate()
         {
-            if (_player?.GetCurrentState().GetType() == typeof(ParachutingState))
-                _player!.rb.AddForce(_force);
-            else
-                _player = null;
+            if(_player != null)
+            {
+                if (_player.GetCurrentState().GetType() == typeof(ParachutingState))
+                    _player!.rb.AddForce(_force);
+                else
+                    _player = null;
+            }
+
         }
 
         /// <summary>
@@ -43,13 +47,13 @@ namespace Levels
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.CompareLayer("Player"))
+            if (collision.IsPlayer())
                 _player = collision.gameObject.GetComponent<PlayerController>();
         }
 
         private void OnTriggerExit2D(Collider2D collision)
         {
-            if (collision.gameObject.CompareLayer("Player"))
+            if (collision.IsPlayer())
                 _player = null;
         }
     }

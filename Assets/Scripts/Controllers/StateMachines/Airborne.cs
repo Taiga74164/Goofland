@@ -44,11 +44,13 @@ namespace Controllers.StateMachines
             }
             else
             {
-                player.rb.velocity =  new Vector2(player.rb.velocity.x +
+                var playerVelocity =  new Vector2(player.rb.velocity.x +
                 input.MoveInput.x *
                 player.playerSettings.movementSpeed *
                 (input.IsRunning ? player.playerSettings.runSpeedMultiplier : 1.0f),
                 player.rb.velocity.y);
+                if(playerVelocity.magnitude <= player.rb.velocity.magnitude)
+                    player.rb.velocity = playerVelocity;
             }
           
         }

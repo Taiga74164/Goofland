@@ -108,6 +108,10 @@ namespace Controllers
             
             UpdateCoyoteTimeCounter();
             UpdateJumpBufferCounter();
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                rb.velocity = (new Vector2(0, 24.77f));
+            }
         }
         
         private void LateUpdate()

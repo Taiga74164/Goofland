@@ -7,8 +7,7 @@ namespace Levels
     public class Gum : MonoBehaviour
     {
         private Bubble _bubble;
-       
-
+        
         void Awake()
         {
             _bubble = GetComponentInChildren<Bubble>();

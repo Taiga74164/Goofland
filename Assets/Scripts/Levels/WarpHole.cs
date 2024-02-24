@@ -1,33 +1,27 @@
 using Controllers;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 
 namespace Levels
 {
     public class WarpHole : MonoBehaviour
     {
-        [SerializeField] private WarpHole _otherPortal;
-        private Vector3[] Directions = new Vector3[] {Vector3.left, Vector3.right, Vector3.down, Vector3.up};
-        [SerializeField] private Direction _direction;
-
-        [Tooltip("the amount of force added to the player when they exit a portal")]
-        [SerializeField] private float _playerExitForce;
+        [SerializeField] private WarpHole otherPortal;
+        [SerializeField] private Direction direction;
+        [Tooltip("The amount of force added to the player when they exit a portal.")]
+        [SerializeField] private float playerExitForce;
 
         private bool _active = true;
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.GetComponent<Rigidbody2D>() && _active)
-            {
-                _otherPortal.Deactivate();
-                //collision.gameObject.transform.position = _otherPortal.transform.position;
-                Debug.Log($"Entered Warp Hole: {collision.GetComponent<Rigidbody2D>().velocity}");
-                _otherPortal.AlterDirection(collision.GetComponent<Rigidbody2D>());
-                
-            }
-
+            if (!_active) return;
+            
+            var rb = collision.GetComponent<Rigidbody2D>();
+            if (!rb) return;
+            
+            otherPortal.Deactivate();
+            Debug.Log($"Entered Warp Hole: {rb.velocity}");
+            otherPortal.AlterDirection(rb);
         }
 
         private void OnTriggerExit2D(Collider2D collision)
@@ -35,47 +29,60 @@ namespace Levels
             _active = true;
         }
 
-        //dosent work on playr due to player controller handling physics manually 
         public void AlterDirection(Rigidbody2D warpedObject)
         {
             warpedObject.transform.position = transform.position;
 
-            var direction = Directions[(int)_direction].normalized;
+            var dir = GetDirectionVector(direction);
             var originalVelocity = warpedObject.velocity.magnitude;
 
-            warpedObject.velocity = direction * originalVelocity;
-
-            //change direction of object coming out of portal
-            // warpedObject.velocity = warpedObject.velocity * (warpedObject.velocity.normalized * Directions[(int)_direction]);
+            warpedObject.velocity = dir * originalVelocity;
 
             if (warpedObject.gameObject.CompareLayer("Player"))
             {
-                if(_direction == Direction.left || _direction == Direction.right)
+                var playerController = warpedObject.GetComponent<PlayerController>();
+                if (direction is Direction.Right || (direction is Direction.Left && !playerController.IsGrounded()))
                 {
-                    warpedObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * -Physics2D.gravity );
+                    Debug.Log("help");
+                    // warpedObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * -Physics2D.gravity );
                     warpedObject.GetComponent<PlayerController>().beenWarped = true;
                 }
 
-               
-                Debug.Log($"exit Warp Hole: {warpedObject.GetComponent<Rigidbody2D>().velocity}");
+                Debug.Log($"Exited Warp Hole: {warpedObject.GetComponent<Rigidbody2D>().velocity}");
+                Invoke(nameof(Activate), .75f);
             }
- 
         }
 
         public void Deactivate()
         {
             _active = false;
+            GetComponent<BoxCollider2D>().enabled = false;
         }
 
+        private void Activate()
+        {
+            //_active = true;
+            GetComponent<BoxCollider2D>().enabled = true;
+        }
+        
+        private Vector2 GetDirectionVector(Direction dir)
+        {
+            return dir switch
+            {
+                Direction.Left => Vector2.left,
+                Direction.Right => Vector2.right,
+                Direction.Down => Vector2.down,
+                Direction.Up => Vector2.up,
+                _ => Vector2.zero,
+            };
+        }
     }
+
     public enum Direction
     {
-        left = 0,
-        right = 1,
-        down = 2,
-        up = 3
+        Left = 0,
+        Right = 1,
+        Down = 2,
+        Up = 3
     }
-
 }
-
-

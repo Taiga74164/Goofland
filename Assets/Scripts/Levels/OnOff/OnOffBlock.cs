@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Levels
@@ -8,7 +5,7 @@ namespace Levels
     public class OnOffBlock : MonoBehaviour
     {
         [Tooltip("this blocks color")]
-        [SerializeField] private OnBlock _blockType;
+        [SerializeField] private OnBlock blockType;
 
         private BoxCollider2D _boxCollider;
         private SpriteRenderer _sprite;
@@ -25,9 +22,9 @@ namespace Levels
         /// <param name="data"></param>
         public void Switch(object data)
         {
-            if(data is OnBlock onType)
+            if (data is OnBlock onType)
             {
-                if (onType == _blockType)
+                if (onType == blockType)
                 {
                     _boxCollider.enabled = true;
                     //this will be changed once we have assets for blocks being on and off
@@ -42,7 +39,6 @@ namespace Levels
                     Color color = _sprite.color;
                     color.a = .45f;
                     _sprite.color = color;
-                    
                 }
             }
         }

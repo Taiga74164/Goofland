@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using Objects.Scriptable;
 using UnityEngine;
 
@@ -9,28 +7,19 @@ namespace Levels
     {
         public GameEvent onTrigger;
         
-        // The color that will start active when the scene is loaded  
-        [SerializeField] private OnBlock _activeColor;
+        [Tooltip("The color that will start active when the scene is loaded.")]  
+        [SerializeField] private OnBlock activeColor;
 
         private SpriteRenderer _sprite; 
         
         public OnBlock ActiveColor 
         { 
-            get 
-            { 
-                return _activeColor; 
-            } 
-            set //changes sprite color when block type is changed. likely temporary until art assets are recieved for it
-            { 
-                _activeColor = value;
-                if(value == OnBlock.Red)
-                {
-                    _sprite.color = Color.red;
-                }
-                else
-                {
-                    _sprite.color = Color.blue;
-                }
+            get => activeColor;
+            set
+            {
+                //changes sprite color when block type is changed. likely temporary until art assets are received for it
+                activeColor = value;
+                _sprite.color = value == OnBlock.Red ? Color.red : Color.blue;
             }
         }
 
@@ -47,14 +36,7 @@ namespace Levels
 
         public void Trigger() 
         {
-            if(ActiveColor == OnBlock.Red)
-            {
-                ActiveColor = OnBlock.Blue;
-            }
-            else
-            {
-                ActiveColor = OnBlock.Red;
-            }
+            ActiveColor = ActiveColor == OnBlock.Red ? OnBlock.Blue : OnBlock.Red;
             onTrigger.Raise(ActiveColor);
         }
 
@@ -65,11 +47,9 @@ namespace Levels
         }
     }   
 
-    //block colors
     public enum OnBlock
     {
         Red,
         Blue
     }
 }
-

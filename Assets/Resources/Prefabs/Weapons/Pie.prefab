@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 5c1b5ac65c02e044fbe1999cceb350a7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -141,7 +141,7 @@ MonoBehaviour:
   - name: Strawberry
     sprite: {fileID: 21300000, guid: 3c385b4bc34da6042ac65aa8d8eaf21f, type: 3}
   direction: {x: 20, y: 100}
-  throwForce: 10
+  throwForce: {x: 5, y: 5}
   onImpact: {fileID: 11400000, guid: 3a81f5e22d7786d4985aacd0a3763ccd, type: 2}
   audioSource: {fileID: 4789983632227013063}
   debug: 1

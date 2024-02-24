@@ -44,7 +44,7 @@ namespace Controllers.StateMachines
                                            Time.deltaTime);
                     input.IsJumping = false;
                     break;
-                }
             }
         }
+    }
 }
