@@ -1,5 +1,4 @@
-﻿using System;
-using Objects.Scriptable;
+﻿using Objects.Scriptable;
 using UnityEngine;
 
 namespace Levels

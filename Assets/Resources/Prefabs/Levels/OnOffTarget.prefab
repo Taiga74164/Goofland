@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onTrigger: {fileID: 11400000, guid: 09be7a2a6def00b4b9b06c3fee03e2dc, type: 2}
-  _activeColor: 0
+  activeColor: 0
 --- !u!114 &-6934536293947523702
 MonoBehaviour:
   m_ObjectHideFlags: 0

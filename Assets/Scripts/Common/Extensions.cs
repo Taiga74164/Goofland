@@ -54,14 +54,14 @@ public static class Extensions
     /// </summary>
     /// <param name="collider">The collider to check.</param>
     public static bool IsPlayer(this Collider2D collider)
-        => collider.CompareTag("Player");
+        => collider.CompareTag("Player") || collider.gameObject.CompareLayer("Player");
 
     /// <summary>
     /// Returns true if the collision is a player.
     /// </summary>
     /// <param name="collision">The collision to check.</param>
     public static bool IsPlayer(this Collision2D collision)
-        => collision.gameObject.CompareTag("Player");
+        => collision.gameObject.CompareTag("Player") || collision.gameObject.CompareLayer("Player");
 
     /// <summary>
     /// Configures the audio source with the audio data.

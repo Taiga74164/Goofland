@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Levels
@@ -18,8 +16,6 @@ namespace Levels
                 Physics2D.gravity *= -1;
             }
         }
-
-
     }
 }
 
