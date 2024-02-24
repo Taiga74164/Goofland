@@ -24,10 +24,14 @@ namespace Levels
         /// </summary>
         private void FixedUpdate()
         {
-            if (_player.GetCurrentState().GetType() == typeof(ParachutingState))
-                _player!.rb.AddForce(_force);
-            else
-                _player = null;
+            if(_player != null)
+            {
+                if (_player.GetCurrentState().GetType() == typeof(ParachutingState))
+                    _player!.rb.AddForce(_force);
+                else
+                    _player = null;
+            }
+
         }
 
         /// <summary>
