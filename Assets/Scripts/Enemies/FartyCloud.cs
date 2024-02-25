@@ -31,6 +31,8 @@ namespace Enemies
         
         private void HandleFartCloud()
         {
+            if (entityType is not EntityType.Enemy) return;
+            
             if (Time.time >= _exhaleTimer)
             {
                 ExhaleFartCloud();
