@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Controllers;
 using Enemies.Components;
 using JetBrains.Annotations;
@@ -99,8 +100,6 @@ namespace Enemies
                 
                 // Add stack to the list of stacks.
                 _stacks.Add(stack.transform);
-                // Sort the list by the y position of the stack from highest to lowest.
-                _stacks.Sort((a, b) => b.position.y.CompareTo(a.position.y));
                 
                 // TODO: Change this when Asset and Animation is ready since it won't have a SpriteRenderer.
                 var stackHeight = stack.GetComponent<SpriteRenderer>().bounds.size.y;
@@ -134,8 +133,13 @@ namespace Enemies
                 return;
             }
             
-            // Get the bottom stack.
-            var bottomStack = _stacks[^1];
+            // Sort the stacks by their y position so that the bottom stack is at the end of the list.
+            // _stacks.Sort((a, b) => b.position.y.CompareTo(a.position.y));
+            
+            // Select the stack with the lowest y position.
+            var bottomStack = _stacks.OrderBy(stack => stack.position.y).FirstOrDefault();
+            if (!bottomStack) return;
+            // Debug.Log($"{gameObject.name}: Bottom stack is {bottomStack.name}");
             
             var bottomGroundDetection = bottomStack!.GetComponent<DurumaStack>().groundDetection;
             groundDetection = bottomGroundDetection;

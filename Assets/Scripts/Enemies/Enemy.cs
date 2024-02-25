@@ -99,6 +99,8 @@ namespace Enemies
                 groundLayer);
             var wallInfo = Physics2D.Raycast(groundPosition, direction, rayLength, turnLayer);
 
+            Debug.DrawLine(transform.position, groundPosition, Color.red);
+            
             if (!groundInfo.collider)
                 Turn();
             if (!wallInfo.collider)
