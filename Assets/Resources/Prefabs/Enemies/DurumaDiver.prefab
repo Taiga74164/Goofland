@@ -93,7 +93,7 @@ MonoBehaviour:
     m_Bits: 64
   turnLayer:
     serializedVersion: 2
-    m_Bits: 39543
+    m_Bits: 35447
   lineOfSight: 10
   playerLayer:
     serializedVersion: 2
