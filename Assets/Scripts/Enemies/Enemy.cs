@@ -95,13 +95,22 @@ namespace Enemies
             transform.Translate(direction * (speed * Time.deltaTime));
 
             var groundPosition = groundDetection.position;
-            var groundInfo = Physics2D.Raycast(groundPosition, Vector2.down, rayLength, 
-                groundLayer);
+            var groundForward = groundPosition + new Vector3(direction.x * rayLength, 0, 0);
+            // We use -0.5f on the y since our tile is 0.5f in height.
+            var down = new Vector2(0, -0.5f);
+            
+            // We cast a ray from the ground detection position to the direction the enemy is facing.
+            var groundInfo = Physics2D.Raycast(groundForward, 
+                down.Add(groundForward), rayLength, groundLayer);
+            // We cast a ray from the ground detection position to the direction the enemy is facing.
             var wallInfo = Physics2D.Raycast(groundPosition, direction, rayLength, turnLayer);
+            
+            // Draw ground info.
+            Debug.DrawLine(groundForward, groundForward.Add(down), Color.yellow);
+            // Draw wall info.
+            Debug.DrawLine(groundPosition, groundPosition.Add(direction * rayLength), Color.red);
 
-            if (!groundInfo.collider)
-                Turn();
-            if (!wallInfo.collider)
+            if (!groundInfo.collider || wallInfo.collider)
                 Turn();
         }
         
@@ -183,7 +192,7 @@ namespace Enemies
                 OnHit();
         }
         
-        private void DropDice() => currencyDrops.ForEach(currencyDrop => 
+        protected void DropDice() => currencyDrops.ForEach(currencyDrop => 
             CurrencyManager.DropCurrency(currencyDrop.coinValue, currencyDrop.quantity, 
                 dropForce, dropOffset, transform.position, direction));
     }

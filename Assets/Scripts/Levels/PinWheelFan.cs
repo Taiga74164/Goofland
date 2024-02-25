@@ -24,18 +24,12 @@ namespace Levels
         /// </summary>
         private void FixedUpdate()
         {
-            if(_player != null)
-            {
-                if (_player.GetCurrentState().GetType() == typeof(ParachutingState))
-                    _player!.rb.AddForce(_force);
-                else
-                    _player = null;
-            }
-
+            if (_player && _player.GetCurrentState().GetType() == typeof(ParachutingState))
+                _player!.rb.AddForce(_force);
         }
 
         /// <summary>
-        /// Calculates force based on direction fan is facing and the inputed value.
+        /// Calculates force based on direction fan is facing and the inputted value.
         /// </summary>
         /// <param name="windValue">Value of the wind force</param>
         private void CalculateForce(float windValue)

@@ -1,4 +1,5 @@
 ﻿using Managers;
+using Objects.Scriptable;
 using UnityEngine;
 using Weapons;
 
@@ -8,22 +9,38 @@ namespace Enemies
     {
         [Header("Hippopottymas Settings")]
         [SerializeField] private float chargeSpeed = 10.0f;
-
+        [SerializeField] private GameObject disturbedModel;
+        public GameEvent onDisturbedEvent;
+        
         private bool _isDisturbed;
         
         protected override void Update()
         {
-            if (GameManager.IsPaused) return;
+            if (GameManager.IsPaused || entityType is not EntityType.Enemy) return;
 
-            if (PlayerInLineOfSight())
+            if (PlayerInLineOfSight() && !_isDisturbed)
+            {
+                onDisturbedEvent.Raise(gameObject);
                 _isDisturbed = true;
+            }
             
             Charge();
+        }
+        
+        public void OnDisturbed(object data)
+        {
+            if (data is not GameObject obj) return;
+            if (obj != gameObject) return;
+            
+            Destroy(model);
+            model = disturbedModel;
+            disturbedModel.SetActive(true);
+            _isDisturbed = true;
         }
 
         private void Charge()
         {
-            if (!_isDisturbed || entityType is not EntityType.Enemy) return;
+            if (!_isDisturbed) return;
             
             // Get player.
             var playerPosition = GameManager.Instance.playerController.transform.position;
@@ -46,7 +63,8 @@ namespace Enemies
         {
             switch (weapon)
             {
-                case Pie:
+                case Pie when !_isDisturbed:
+                    onDisturbedEvent.Raise(gameObject);
                     _isDisturbed = true;
                     break;
                 case Piano:

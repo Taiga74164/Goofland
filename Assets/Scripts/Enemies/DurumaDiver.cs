@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Controllers;
 using Enemies.Components;
 using JetBrains.Annotations;
@@ -87,36 +88,25 @@ namespace Enemies
         private void GenerateStack(int count)
         {
             float totalHeight = 0;
-            // var previousRb = rb;
             for (var i = 0; i < count; i++)
             {
                 // Create a new stack.
                 var stack = PrefabManager.Create(Prefabs.DurumaDiverStack, stackContainer.transform);
                 
-                // Connect the new stack to the previous stack.
-                // var joint = stack.GetComponent<FixedJoint2D>();
-                // joint.connectedBody = previousRb;
-                
                 // Add stack to the list of stacks.
                 _stacks.Add(stack.transform);
-                // Sort the list by the y position of the stack from highest to lowest.
-                _stacks.Sort((a, b) => b.position.y.CompareTo(a.position.y));
                 
-                // TODO: Change this when Asset and Animation is ready since it won't have a SpriteRenderer.
-                var stackHeight = stack.GetComponent<SpriteRenderer>().bounds.size.y;
-
-                // Subtract the height of the new stack from the total height.
-                totalHeight -= stackHeight;
+                // Calculate the stack's height.
+                var stackHeight = stack.GetComponent<BoxCollider2D>().size.y * stack.transform.localScale.y;
+                
+                // Calculate the total height of the DurumaDiver.
+                totalHeight -= i == 0 ? 
+                    stackHeight / 2.0f : // Position the first stack at the center of the DurumaDiver.
+                    stackHeight; // Position the subsequent stacks below the previous stack.
 
                 // Set the position of the stack.
                 stack.transform.localPosition = new Vector3(0, totalHeight, 0);
                 stack.name = $"Stack {i + 1}";
-
-                // Add the height of the new stack to the total height.
-                totalHeight += stackHeight;
-                
-                // Set the previous rigidbody to the new stack's rigidbody.
-                // previousRb = stack.GetComponent<Rigidbody2D>();
             }
 
             // Set the position of the DurumaHead to the top of the stacks.
@@ -134,8 +124,13 @@ namespace Enemies
                 return;
             }
             
-            // Get the bottom stack.
-            var bottomStack = _stacks[^1];
+            // Sort the stacks by their y position so that the bottom stack is at the end of the list.
+            // _stacks.Sort((a, b) => b.position.y.CompareTo(a.position.y));
+            
+            // Select the stack with the lowest y position.
+            var bottomStack = _stacks.OrderBy(stack => stack.position.y).FirstOrDefault();
+            if (!bottomStack) return;
+            // Debug.Log($"{gameObject.name}: Bottom stack is {bottomStack.name}");
             
             var bottomGroundDetection = bottomStack!.GetComponent<DurumaStack>().groundDetection;
             groundDetection = bottomGroundDetection;
