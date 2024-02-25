@@ -192,7 +192,7 @@ namespace Enemies
                 OnHit();
         }
         
-        private void DropDice() => currencyDrops.ForEach(currencyDrop => 
+        protected void DropDice() => currencyDrops.ForEach(currencyDrop => 
             CurrencyManager.DropCurrency(currencyDrop.coinValue, currencyDrop.quantity, 
                 dropForce, dropOffset, transform.position, direction));
     }

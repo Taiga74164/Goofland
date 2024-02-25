@@ -28,6 +28,9 @@ namespace Enemies.Components
         {
             // Play particle effect.
             
+            // Drop dice when the enemy is hit.
+            DropDice();
+            
             // Destroy the enemy.
             Destroy(gameObject);
         }
