@@ -6,7 +6,6 @@ namespace Levels
     {
         [Tooltip("this blocks color")]
         [SerializeField] private OnBlock blockType;
-        [SerializeField] private LayerMask playerLayer;
         
         private BoxCollider2D _boxCollider;
         private SpriteRenderer _sprite;
@@ -27,7 +26,9 @@ namespace Levels
             {
                 if (onType == blockType)
                 {
-                    _boxCollider.excludeLayers |= 1 << playerLayer;
+                    // Include the player layer.
+                    _boxCollider.excludeLayers &= ~(1 << LayerMask.NameToLayer("Player"));
+                    
                     //this will be changed once we have assets for blocks being on and off
                     Color color = _sprite.color;
                     color.a = 1f;
@@ -35,7 +36,8 @@ namespace Levels
                 }
                 else
                 {
-                    _boxCollider.excludeLayers &= ~(1 << playerLayer);
+                    // Exclude the player layer.
+                    _boxCollider.excludeLayers |= 1 << LayerMask.NameToLayer("Player");
                     //this will be changed once we have assets for blocks being on and off
                     Color color = _sprite.color;
                     color.a = .45f;
