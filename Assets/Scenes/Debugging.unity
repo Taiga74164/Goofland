@@ -2058,38 +2058,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5675425815831273900, guid: e0cf160916fb8584ebc15afc636b93ed, type: 3}
-      propertyPath: indicatorCurve.m_Curve.Array.data[0].time
-      value: 0.00000065378845
-      objectReference: {fileID: 0}
-    - target: {fileID: 5675425815831273900, guid: e0cf160916fb8584ebc15afc636b93ed, type: 3}
-      propertyPath: indicatorCurve.m_Curve.Array.data[1].time
-      value: 1.0003662
-      objectReference: {fileID: 0}
-    - target: {fileID: 5675425815831273900, guid: e0cf160916fb8584ebc15afc636b93ed, type: 3}
-      propertyPath: indicatorCurve.m_Curve.Array.data[0].value
-      value: 1.0000114
-      objectReference: {fileID: 0}
-    - target: {fileID: 5675425815831273900, guid: e0cf160916fb8584ebc15afc636b93ed, type: 3}
-      propertyPath: indicatorCurve.m_Curve.Array.data[1].value
-      value: -0.000011444092
-      objectReference: {fileID: 0}
-    - target: {fileID: 5675425815831273900, guid: e0cf160916fb8584ebc15afc636b93ed, type: 3}
-      propertyPath: indicatorCurve.m_Curve.Array.data[0].inSlope
-      value: -0.9996574
-      objectReference: {fileID: 0}
-    - target: {fileID: 5675425815831273900, guid: e0cf160916fb8584ebc15afc636b93ed, type: 3}
-      propertyPath: indicatorCurve.m_Curve.Array.data[1].inSlope
-      value: -0.9996574
-      objectReference: {fileID: 0}
-    - target: {fileID: 5675425815831273900, guid: e0cf160916fb8584ebc15afc636b93ed, type: 3}
-      propertyPath: indicatorCurve.m_Curve.Array.data[0].outSlope
-      value: -0.9996574
-      objectReference: {fileID: 0}
-    - target: {fileID: 5675425815831273900, guid: e0cf160916fb8584ebc15afc636b93ed, type: 3}
-      propertyPath: indicatorCurve.m_Curve.Array.data[1].outSlope
-      value: -0.9996574
-      objectReference: {fileID: 0}
     - target: {fileID: 8904874713320273179, guid: e0cf160916fb8584ebc15afc636b93ed, type: 3}
       propertyPath: onJump
       value: 
