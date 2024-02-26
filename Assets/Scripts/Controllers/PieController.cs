@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Managers;
 using Objects.Scriptable;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Weapons;
 
 namespace Controllers
@@ -17,6 +18,7 @@ namespace Controllers
         [SerializeField] private float blockSize = 1.0f;
         [SerializeField] private AnimationCurve indicatorCurve;
         
+        private PlayerInput _playerInput;
         private Rigidbody2D _rb;
         private Camera _mainCamera;
         private Vector2 _screenResolution;
@@ -25,6 +27,7 @@ namespace Controllers
 
         private void Awake()
         {
+            _playerInput = GetComponent<PlayerInput>();
             _rb = GetComponent<Rigidbody2D>();
             _mainCamera = Camera.main;
             _screenResolution = new Vector2(Screen.width, Screen.height);
@@ -53,7 +56,8 @@ namespace Controllers
             // Calculate the distance to the mouse position from the player.
             var distanceToMouse = Vector2.Distance(mousePosition, transform.position);
             // Calculate the rounded total arrows to draw based on the distance to the mouse.
-            var totalArrows = 10; //Mathf.FloorToInt(distanceToMouse / blockSize);
+            var totalArrows = _playerInput.currentControlScheme.Equals("KBM") ?
+            Mathf.FloorToInt(distanceToMouse / blockSize) : 10;
             
             for (var i = 0; i < totalArrows; i++)
             {
@@ -137,6 +141,7 @@ namespace Controllers
             var mouseInput = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
             return mouseInput;
         }
+        
         private bool IsPieReady() => !GameManager.IsPaused && Time.time - _lastPieThrownTime >= pieCooldownDuration;
     }
 }
