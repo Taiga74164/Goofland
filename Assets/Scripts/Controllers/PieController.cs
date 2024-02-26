@@ -16,10 +16,10 @@ namespace Controllers
         [SerializeField] private GameObject indicatorPrefab;
         [SerializeField] private float blockSize = 1.0f;
         [SerializeField] private AnimationCurve indicatorCurve;
-
-        private Pie _pie;
+        
         private Rigidbody2D _rb;
         private Camera _mainCamera;
+        private Vector2 _screenResolution;
         private float _lastPieThrownTime = -1.0f;
         private List<GameObject> _indicators = new List<GameObject>();
 
@@ -27,6 +27,7 @@ namespace Controllers
         {
             _rb = GetComponent<Rigidbody2D>();
             _mainCamera = Camera.main;
+            _screenResolution = new Vector2(Screen.width, Screen.height);
         }
 
         private void Update()
@@ -52,7 +53,7 @@ namespace Controllers
             // Calculate the distance to the mouse position from the player.
             var distanceToMouse = Vector2.Distance(mousePosition, transform.position);
             // Calculate the rounded total arrows to draw based on the distance to the mouse.
-            var totalArrows = Mathf.FloorToInt(distanceToMouse / blockSize);
+            var totalArrows = 10; //Mathf.FloorToInt(distanceToMouse / blockSize);
             
             for (var i = 0; i < totalArrows; i++)
             {
@@ -130,7 +131,7 @@ namespace Controllers
             // Check if controller input is detected.
             var aimInput = InputManager.Aim.ReadValue<Vector2>();
             if (aimInput != Vector2.zero)
-                return aimInput * new Vector2(Screen.width, Screen.height);
+                return aimInput * _screenResolution;
 
             // If no controller input is detected, use the mouse position.
             var mouseInput = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
