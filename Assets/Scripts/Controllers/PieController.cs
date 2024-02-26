@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Managers;
 using Objects.Scriptable;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Weapons;
 
 namespace Controllers
@@ -16,17 +17,21 @@ namespace Controllers
         [SerializeField] private GameObject indicatorPrefab;
         [SerializeField] private float blockSize = 1.0f;
         [SerializeField] private AnimationCurve indicatorCurve;
-
-        private Pie _pie;
+        [SerializeField] private bool drawMaxDistance;
+        
+        private PlayerInput _playerInput;
         private Rigidbody2D _rb;
         private Camera _mainCamera;
+        private Vector2 _screenResolution;
         private float _lastPieThrownTime = -1.0f;
         private List<GameObject> _indicators = new List<GameObject>();
 
         private void Awake()
         {
+            _playerInput = GetComponent<PlayerInput>();
             _rb = GetComponent<Rigidbody2D>();
             _mainCamera = Camera.main;
+            _screenResolution = new Vector2(Screen.width, Screen.height);
         }
 
         private void Update()
@@ -48,18 +53,19 @@ namespace Controllers
             // Calculate the direction and force of the throw.
             var direction = (mousePosition - transform.position).normalized;
             // Add the current velocity to the throw force.
-            var force = (direction.normalized * throwForce).Add(_rb.velocity / 2);
-            // Calculate the distance to the mouse position from the player.
-            var distanceToMouse = Vector2.Distance(mousePosition, transform.position);
+            var velocity = (direction.normalized * throwForce).Add(_rb.velocity / 2);
+            // Calculate the distance to the mouse. If drawMaxDistance is true, calculate the max distance.
+            var distanceToMouse = drawMaxDistance ? CalculateMaxDistance(velocity) : 
+                Vector2.Distance(mousePosition, transform.position);
             // Calculate the rounded total arrows to draw based on the distance to the mouse.
             var totalArrows = Mathf.FloorToInt(distanceToMouse / blockSize);
             
             for (var i = 0; i < totalArrows; i++)
             {
                 // Calculate the time it takes for the pie to reach the next arrow position.
-                var time = (i + 1) * blockSize / force.magnitude;
+                var time = (i + 1) * blockSize / velocity.magnitude;
                 // Calculate the trajectory point at the given time.
-                var position = CalculateTrajectoryPoint(transform.position, force, time);
+                var position = CalculateTrajectoryPoint(transform.position, velocity, time);
                 // Calculate the rotation of the arrow based on the trajectory point.
                 // var rotation = Quaternion.LookRotation(Vector3.forward, 
                 //     CalculateTrajectoryPoint(transform.forward, force, time) - position);
@@ -95,8 +101,26 @@ namespace Controllers
         private static Vector2 CalculateTrajectoryPoint(Vector2 position, Vector2 velocity, float time) 
             => position + // x0, y0
                (velocity * time) + // x*t, y*t 
-               Physics2D.gravity * (time * time) / 2; // - g*t²/2 
+               Physics2D.gravity * Mathf.Pow(time, 2) / 2; // g*t²/2 
         
+        /// <summary>
+        /// Calculate the max distance of the trajectory.
+        /// Equation: R = v^2 sin(2θ) / g
+        /// Where:
+        /// - R is the range.
+        /// - v is the initial velocity.
+        /// - theta is the angle of projection.
+        /// - g is the gravity.
+        /// </summary>
+        /// <param name="initialVelocity">The initial velocity of the object.</param>
+        /// <returns>The calculated max distance of the trajectory.</returns>
+        private static float CalculateMaxDistance(Vector2 initialVelocity)
+        {
+            var g = Mathf.Abs(Physics2D.gravity.y);
+            var angle = Mathf.Atan2(initialVelocity.y, initialVelocity.x); // 45 * Mathf.Deg2Rad; 
+            var distance = Mathf.Pow(initialVelocity.magnitude, 2) * Mathf.Sin(2 * angle) / g;
+            return distance;
+        }
         
         private void ClearTrajectory()
         {
@@ -127,15 +151,12 @@ namespace Controllers
         
         private Vector3 GetAimInput()
         {
-            // Check if controller input is detected.
             var aimInput = InputManager.Aim.ReadValue<Vector2>();
-            if (aimInput != Vector2.zero)
-                return aimInput * new Vector2(Screen.width, Screen.height);
-
-            // If no controller input is detected, use the mouse position.
-            var mouseInput = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
-            return mouseInput;
+            return _playerInput.currentControlScheme.Equals("KBM") ? 
+                _mainCamera.ScreenToWorldPoint(Input.mousePosition) : // Keyboard and mouse.
+                _mainCamera.ScreenToWorldPoint(aimInput * _screenResolution); // Gamepad.
         }
+        
         private bool IsPieReady() => !GameManager.IsPaused && Time.time - _lastPieThrownTime >= pieCooldownDuration;
     }
 }

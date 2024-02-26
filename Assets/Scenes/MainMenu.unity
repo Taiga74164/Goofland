@@ -3708,7 +3708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87c69014fc49f59449d707e8152e74f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: MechanicTestGym
+  levelName: Debugging
   settingsMenu: {fileID: 111827537}
   credits: {fileID: 43853597}
 --- !u!1 &2068615985
