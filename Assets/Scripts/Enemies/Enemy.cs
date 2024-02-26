@@ -153,6 +153,8 @@ namespace Enemies
 
         protected internal virtual void OnHit()
         {
+            if (entityType is not EntityType.Enemy) return;
+            
             // Drop dice when the enemy is hit.
             DropDice();
             
