@@ -17,27 +17,7 @@ MonoBehaviour:
     prefab: {fileID: 2795115441644652831, guid: 794b1c7f6ebc8294c8abb69649ce9f8a, type: 3}
     shouldPool: 0
     initialSize: 10
-    objectRoot: Entities/Player
-  - type: 3
-    prefab: {fileID: 2573339257355329383, guid: 7bfd8c1b4665de544afe7dcea74e9fb3, type: 3}
-    shouldPool: 0
-    initialSize: 1
-    objectRoot: Entities/Player
-  - type: 4
-    prefab: {fileID: 3983036294980726904, guid: ff74212d1731e8b46ba7553d132a8967, type: 3}
-    shouldPool: 0
-    initialSize: 0
     objectRoot: 
-  - type: 5
-    prefab: {fileID: 2573339257355329383, guid: cac04453178c5b2429c9ea9bbe936e6e, type: 3}
-    shouldPool: 0
-    initialSize: 5
-    objectRoot: Entities/Player
-  - type: 7
-    prefab: {fileID: 3998107801253273502, guid: e508024bba0cf9647ab8e2ab8bef59b6, type: 3}
-    shouldPool: 1
-    initialSize: 3
-    objectRoot: UserInterface/HUD/HealthContainer
   - type: 6
     prefab: {fileID: 341136308887492555, guid: 98f10cedc6319f247b0a0a8a18ae840a, type: 3}
     shouldPool: 0

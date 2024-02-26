@@ -45,7 +45,7 @@ namespace Managers
         /// </summary>
         public new static void Initialize()
         {
-            var prefab = Resources.Load<GameObject>("Prefabs/Managers/[PrefabManager]");
+            var prefab = Resources.Load<GameObject>("Prefabs/Managers/PrefabManager");
             if (prefab == null) throw new Exception("Missing PrefabManager prefab!");
 
             var instance = Instantiate(prefab);

@@ -19,7 +19,7 @@ namespace Managers
         /// </summary>
         public new static void Initialize()
         {
-            var prefab = Resources.Load<GameObject>("Prefabs/Managers/[AudioManager]");
+            var prefab = Resources.Load<GameObject>("Prefabs/Managers/AudioManager");
             if (prefab == null) throw new Exception("Missing AudioManager prefab!");
 
             var instance = Instantiate(prefab);
