@@ -15,10 +15,7 @@ namespace Managers
         public static InputAction Crouch => Instance._actions.Player.Crouch;
         public static InputAction Run => Instance._actions.Player.Run;
         public static InputAction Attack => Instance._actions.Player.Attack;
-        // Weapon selection.
-        public static InputAction SelectPie => Instance._actions.Player.SelectPie;
-        public static InputAction SelectWaterGun => Instance._actions.Player.SelectWaterGun;
-        public static InputAction SelectBananaPeel => Instance._actions.Player.SelectBananaPeel;
+        public static InputAction Aim => Instance._actions.Player.Aim;
         
         // User Interface actions.
         public static InputAction Return => Instance._actions.Interface.Return;

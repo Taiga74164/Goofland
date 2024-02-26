@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using Managers;
 using Objects.Scriptable;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Weapons;
 
 namespace Controllers
@@ -13,7 +12,6 @@ namespace Controllers
         [SerializeField] private float throwForce = 15.0f;
         [SerializeField] private float pieCooldownDuration = 1.0f;
 
-        [FormerlySerializedAs("arrowPrefab")]
         [Header("Trajectory Settings")]
         [SerializeField] private GameObject indicatorPrefab;
         [SerializeField] private float blockSize = 1.0f;
@@ -46,7 +44,7 @@ namespace Controllers
         private void DrawTrajectory()
         {
             // Get the mouse position in world space.
-            var mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            var mousePosition = GetAimInput();
             // Calculate the direction and force of the throw.
             var direction = (mousePosition - transform.position).normalized;
             // Add the current velocity to the throw force.
@@ -111,7 +109,7 @@ namespace Controllers
             if (!IsPieReady()) return;
             
             // Get the mouse position in world space.
-            var mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            var mousePosition = GetAimInput();
             // Calculate the direction and force of the throw.
             var direction = (mousePosition - transform.position).normalized;
             // Add the current velocity to the throw force.
@@ -126,7 +124,18 @@ namespace Controllers
             // Update the last time a pie was thrown.
             _lastPieThrownTime = Time.time;
         }
+        
+        private Vector3 GetAimInput()
+        {
+            // Check if controller input is detected.
+            var aimInput = InputManager.Aim.ReadValue<Vector2>();
+            if (aimInput != Vector2.zero)
+                return aimInput * new Vector2(Screen.width, Screen.height);
 
+            // If no controller input is detected, use the mouse position.
+            var mouseInput = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            return mouseInput;
+        }
         private bool IsPieReady() => !GameManager.IsPaused && Time.time - _lastPieThrownTime >= pieCooldownDuration;
     }
 }

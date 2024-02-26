@@ -38,9 +38,9 @@ namespace Controllers
         private void Start()
         {
             // Set up input action references.
-            _selectPie = InputManager.SelectPie;
-            _selectWaterGun = InputManager.SelectWaterGun;
-            _selectBananaPeel = InputManager.SelectBananaPeel;
+            // _selectPie = InputManager.SelectPie;
+            // _selectWaterGun = InputManager.SelectWaterGun;
+            // _selectBananaPeel = InputManager.SelectBananaPeel;
             
             // Listen for input actions to select weapons.
             _selectPie.performed += _ => SelectWeapon(WeaponType.Pie);

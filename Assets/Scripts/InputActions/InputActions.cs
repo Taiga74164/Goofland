@@ -73,33 +73,6 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""SelectPie"",
-                    ""type"": ""Button"",
-                    ""id"": ""3dff87dc-32d6-480b-a84e-1b2cac779637"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""SelectWaterGun"",
-                    ""type"": ""Button"",
-                    ""id"": ""b5700c1e-504c-439d-a195-1577c1846e9d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""SelectBananaPeel"",
-                    ""type"": ""Button"",
-                    ""id"": ""fd2f9239-1960-4a77-ac1b-3444bc3200da"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Parachute"",
                     ""type"": ""Button"",
                     ""id"": ""f2bcecd6-85dd-4fb7-9932-982812fc2324"",
@@ -107,6 +80,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Aim"",
+                    ""type"": ""Value"",
+                    ""id"": ""c723d862-27fb-4bda-9f43-4ae73da7c54b"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -124,7 +106,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""up"",
                     ""id"": ""5845c923-d29e-4192-8b5b-02f5da8f1906"",
-                    ""path"": ""<Keyboard>/w"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -135,7 +117,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""down"",
                     ""id"": ""8338cb54-2d6c-4b54-936d-7e3fa56a081c"",
-                    ""path"": ""<Keyboard>/s"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -179,7 +161,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""up"",
                     ""id"": ""1a70ef7b-c6d1-4d07-a237-c3c495bdb46b"",
-                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -190,7 +172,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""down"",
                     ""id"": ""91888ef1-2e6e-423c-823c-fe5b1f399b0d"",
-                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -234,7 +216,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""up"",
                     ""id"": ""0aaa0361-02ec-4a9f-86fe-99f5ab809abb"",
-                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -245,7 +227,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""down"",
                     ""id"": ""0df42982-25ab-4ab6-a13c-a452a9573f6c"",
-                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -289,6 +271,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e029cf5a-0b3b-4db3-8e01-1d280ebcd274"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0d96ff8d-6235-4eaf-9e1a-b3bc8a9ec9a8"",
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -311,7 +304,29 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""887793de-e648-48cd-8308-5dac86ca75fe"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Run"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cda6d148-7954-40ed-8ab1-4e91e34234a4"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Run"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""34f33e25-7966-4ef9-a9bf-55bf9c6a5fe4"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -343,34 +358,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ad0db155-0dd9-4098-8609-20f45bf92f91"",
-                    ""path"": ""<Keyboard>/1"",
+                    ""id"": ""784baaf5-61ff-4614-871c-283570820493"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""SelectPie"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""2dbde3e9-97e6-4200-ac8d-00e920e1a2c0"",
-                    ""path"": ""<Keyboard>/2"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SelectWaterGun"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""4fbac87c-96bc-4085-9c57-11755e3a1bb8"",
-                    ""path"": ""<Keyboard>/3"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SelectBananaPeel"",
+                    ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -417,6 +410,61 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Parachute"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Controller(RightStick)"",
+                    ""id"": ""80556de1-be05-41a0-8d49-f7dc96b371b7"",
+                    ""path"": ""2DVector(mode=2)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""027de6d4-fdbd-487a-b9ec-e8ab71dd5358"",
+                    ""path"": ""<Gamepad>/rightStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""71d14bcc-0ffa-4994-9722-227776f3e8f1"",
+                    ""path"": ""<Gamepad>/rightStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""5c7a0827-8615-400c-a0b6-5ce5c20d30fc"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""4118c7f5-c20d-4827-9103-02026ab8d9de"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -469,10 +517,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
         m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
-        m_Player_SelectPie = m_Player.FindAction("SelectPie", throwIfNotFound: true);
-        m_Player_SelectWaterGun = m_Player.FindAction("SelectWaterGun", throwIfNotFound: true);
-        m_Player_SelectBananaPeel = m_Player.FindAction("SelectBananaPeel", throwIfNotFound: true);
         m_Player_Parachute = m_Player.FindAction("Parachute", throwIfNotFound: true);
+        m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
         // Interface
         m_Interface = asset.FindActionMap("Interface", throwIfNotFound: true);
         m_Interface_Return = m_Interface.FindAction("Return", throwIfNotFound: true);
@@ -542,10 +588,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Crouch;
     private readonly InputAction m_Player_Run;
     private readonly InputAction m_Player_Attack;
-    private readonly InputAction m_Player_SelectPie;
-    private readonly InputAction m_Player_SelectWaterGun;
-    private readonly InputAction m_Player_SelectBananaPeel;
     private readonly InputAction m_Player_Parachute;
+    private readonly InputAction m_Player_Aim;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
@@ -555,10 +599,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
         public InputAction @Run => m_Wrapper.m_Player_Run;
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
-        public InputAction @SelectPie => m_Wrapper.m_Player_SelectPie;
-        public InputAction @SelectWaterGun => m_Wrapper.m_Player_SelectWaterGun;
-        public InputAction @SelectBananaPeel => m_Wrapper.m_Player_SelectBananaPeel;
         public InputAction @Parachute => m_Wrapper.m_Player_Parachute;
+        public InputAction @Aim => m_Wrapper.m_Player_Aim;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -583,18 +625,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Attack.started += instance.OnAttack;
             @Attack.performed += instance.OnAttack;
             @Attack.canceled += instance.OnAttack;
-            @SelectPie.started += instance.OnSelectPie;
-            @SelectPie.performed += instance.OnSelectPie;
-            @SelectPie.canceled += instance.OnSelectPie;
-            @SelectWaterGun.started += instance.OnSelectWaterGun;
-            @SelectWaterGun.performed += instance.OnSelectWaterGun;
-            @SelectWaterGun.canceled += instance.OnSelectWaterGun;
-            @SelectBananaPeel.started += instance.OnSelectBananaPeel;
-            @SelectBananaPeel.performed += instance.OnSelectBananaPeel;
-            @SelectBananaPeel.canceled += instance.OnSelectBananaPeel;
             @Parachute.started += instance.OnParachute;
             @Parachute.performed += instance.OnParachute;
             @Parachute.canceled += instance.OnParachute;
+            @Aim.started += instance.OnAim;
+            @Aim.performed += instance.OnAim;
+            @Aim.canceled += instance.OnAim;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -614,18 +650,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Attack.started -= instance.OnAttack;
             @Attack.performed -= instance.OnAttack;
             @Attack.canceled -= instance.OnAttack;
-            @SelectPie.started -= instance.OnSelectPie;
-            @SelectPie.performed -= instance.OnSelectPie;
-            @SelectPie.canceled -= instance.OnSelectPie;
-            @SelectWaterGun.started -= instance.OnSelectWaterGun;
-            @SelectWaterGun.performed -= instance.OnSelectWaterGun;
-            @SelectWaterGun.canceled -= instance.OnSelectWaterGun;
-            @SelectBananaPeel.started -= instance.OnSelectBananaPeel;
-            @SelectBananaPeel.performed -= instance.OnSelectBananaPeel;
-            @SelectBananaPeel.canceled -= instance.OnSelectBananaPeel;
             @Parachute.started -= instance.OnParachute;
             @Parachute.performed -= instance.OnParachute;
             @Parachute.canceled -= instance.OnParachute;
+            @Aim.started -= instance.OnAim;
+            @Aim.performed -= instance.OnAim;
+            @Aim.canceled -= instance.OnAim;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -696,10 +726,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnCrouch(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
-        void OnSelectPie(InputAction.CallbackContext context);
-        void OnSelectWaterGun(InputAction.CallbackContext context);
-        void OnSelectBananaPeel(InputAction.CallbackContext context);
         void OnParachute(InputAction.CallbackContext context);
+        void OnAim(InputAction.CallbackContext context);
     }
     public interface IInterfaceActions
     {
