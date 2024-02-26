@@ -18,7 +18,7 @@ namespace Managers
         public static InputAction Aim => Instance._actions.Player.Aim;
         
         // User Interface actions.
-        public static InputAction Return => Instance._actions.Interface.Return;
+        public static InputAction Return => Instance._actions.UI.Return;
 
         protected override void OnAwake() => _actions = new InputActions();
 

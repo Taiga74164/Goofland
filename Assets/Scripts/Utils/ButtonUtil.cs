@@ -10,7 +10,7 @@ namespace Utils
     /// Provides utility functions for buttons.
     /// </summary>
     [RequireComponent(typeof(Image), typeof(Button))]
-    public class ButtonUtil : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    public class ButtonUtil : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler
     {
         #region Button Hover Effect
 
@@ -28,16 +28,19 @@ namespace Utils
         
         #endregion
         
+        private void Awake()
+        {
+            // Load the audio data from the Resources folder.
+            _mouseClickData = Resources.Load<AudioData>("SoundData/Mouse_Click");
+            _mouseSelectData = Resources.Load<AudioData>("SoundData/Selection_Sound");
+        }
+        
         private void Start()
         {
             _targetScale = _originalScale;
             
             // This is to make sure that the button is not clickable when it is invisible.
             GetComponent<Image>().alphaHitTestMinimumThreshold = 1.0f;
-            
-            // Load the audio data from the Resources folder.
-            _mouseClickData = Resources.Load<AudioData>("SoundData/Mouse_Click");
-            _mouseSelectData = Resources.Load<AudioData>("SoundData/Selection_Sound");
             
             // Play the audio when the button is clicked.
             GetComponent<Button>().onClick.AddListener(() => AudioManager.Instance.PlayAudio(_mouseClickData));
@@ -51,12 +54,20 @@ namespace Utils
             transform.localScale = Vector3.Lerp(transform.localScale, _targetScale, LerpSpeed * Time.deltaTime);
         }
         
-        public void OnPointerEnter(PointerEventData eventData)
+        public void OnPointerEnter(PointerEventData eventData) => OnButtonEnter(ScaleFactor);
+    
+        public void OnPointerExit(PointerEventData eventData) => OnButtonExit();
+        
+        public void OnSelect(BaseEventData eventData) => OnButtonEnter(ScaleFactor);
+
+        public void OnDeselect(BaseEventData eventData) => OnButtonExit();
+        
+        private void OnButtonEnter(float scaleFactor)
         {
-            _targetScale = _originalScale * ScaleFactor;
+            _targetScale = _originalScale * scaleFactor;
             AudioManager.Instance.PlayAudio(_mouseSelectData);
         }
-    
-        public void OnPointerExit(PointerEventData eventData) => _targetScale = _originalScale;
+        
+        private void OnButtonExit() => _targetScale = _originalScale;
     }
 }

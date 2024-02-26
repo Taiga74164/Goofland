@@ -9,7 +9,17 @@ namespace UI.Menus
     {
         [SerializeField] private SettingsMenu settingsMenu;
         
-        private void OnEnable() => GameManager.IsPaused = true;
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            GameManager.IsPaused = true;
+        }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+            GameManager.IsPaused = false;
+        }
         
         public void OnHomeButtonClicked() => LevelUtil.LoadLevel("MainMenu");
         

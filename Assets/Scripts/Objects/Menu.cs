@@ -1,4 +1,7 @@
-﻿using Managers;
+﻿using JetBrains.Annotations;
+using Managers;
+using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Objects
 {
@@ -18,11 +21,18 @@ namespace Objects
     /// </summary>
     public abstract class Menu : Menu<Menu>
     {
+        [Header("Menu Settings")]
+        [CanBeNull] public GameObject firstSelected;
+        
         protected virtual void Update()
         {
             HandleInput();
         }
-    
+
+        protected virtual void OnEnable() => EventSystem.current.SetSelectedGameObject(firstSelected);
+        
+        protected virtual void OnDisable() => EventSystem.current.SetSelectedGameObject(null);
+
         /// <summary>
         /// Checks if the menu is open.
         /// </summary>

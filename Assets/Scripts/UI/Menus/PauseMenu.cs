@@ -8,10 +8,18 @@ namespace UI.Menus
     public class PauseMenu : Menu
     {
         [SerializeField] private SettingsMenu settingsMenu;
-        
-        private void OnEnable() => GameManager.IsPaused = true;
-        
-        private void OnDisable() => GameManager.IsPaused = false;
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            GameManager.IsPaused = true;
+        }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+            GameManager.IsPaused = false;
+        }
 
         public void OnRestartButtonClicked() => LevelUtil.RestartLevel();
 
