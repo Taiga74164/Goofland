@@ -148,13 +148,26 @@ namespace Controllers
             // Update the last time a pie was thrown.
             _lastPieThrownTime = Time.time;
         }
-        
+
         private Vector3 GetAimInput()
         {
             var aimInput = InputManager.Aim.ReadValue<Vector2>();
-            return _playerInput.currentControlScheme.Equals("KBM") ? 
-                _mainCamera.ScreenToWorldPoint(Input.mousePosition) : // Keyboard and mouse.
-                _mainCamera.ScreenToWorldPoint(aimInput * _screenResolution); // Gamepad.
+            if (_playerInput.currentControlScheme.Equals("KBM"))
+            {
+                // Keyboard and mouse.
+                return _mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            }
+            else
+            {
+                // Gamepad.
+                Debug.Log($"Aim Input: {aimInput.x}, {aimInput.y}");
+                var width = Mathf.Clamp((aimInput.x + 1) / 2.0f * _screenResolution.x, 0f, 
+                    _screenResolution.x);
+                var height = Mathf.Clamp((aimInput.y + 1) / 2.0f * _screenResolution.y, 0f, 
+                    _screenResolution.y);
+                var aimPosition = new Vector3(width, height, _mainCamera.nearClipPlane);
+                return _mainCamera.ScreenToWorldPoint(aimPosition);
+            }
         }
         
         private bool IsPieReady() => !GameManager.IsPaused && Time.time - _lastPieThrownTime >= pieCooldownDuration;
