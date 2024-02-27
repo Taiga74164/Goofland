@@ -256,13 +256,9 @@ namespace Controllers
         }
 
         // ReSharper disable Unity.PerformanceAnalysis
-        public bool IsGrounded()
-        {
-            var groundCheckPosition = GameObject.FindWithTag("GroundCheck").transform.position;
-            var col = Physics2D.OverlapCircle(groundCheckPosition,
-                playerSettings.groundCheckRadius, playerSettings.groundLayerMask);
-            return !GameManager.IsPaused && col && (col!.excludeLayers.value & (1 << gameObject.layer)) == 0;
-        }
+        public bool IsGrounded() => !GameManager.IsPaused && Physics2D.OverlapCircle(
+            GameObject.FindWithTag("GroundCheck").transform.position, 
+            playerSettings.groundCheckRadius, playerSettings.groundLayerMask);
         
 #if UNITY_EDITOR
         private void OnDrawGizmos()
