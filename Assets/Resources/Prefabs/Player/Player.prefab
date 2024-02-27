@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8904874713210243244}
   - component: {fileID: 3249508081240106401}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ground Check
   m_TagString: GroundCheck
   m_Icon: {fileID: 0}
@@ -218,7 +218,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 
+  m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!50 &8904874713320273178
@@ -436,6 +436,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Squeak_body_facing_right
       objectReference: {fileID: 0}
+    - target: {fileID: -8653719598885068355, guid: ff94598aa55da99458d89b90663d78ca, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -8572579353772939703, guid: ff94598aa55da99458d89b90663d78ca, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -8505888782790627420, guid: ff94598aa55da99458d89b90663d78ca, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -7650514191994245161, guid: ff94598aa55da99458d89b90663d78ca, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: ff94598aa55da99458d89b90663d78ca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -475,6 +491,58 @@ PrefabInstance:
     - target: {fileID: -7552582706839291426, guid: ff94598aa55da99458d89b90663d78ca, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7021592429636828876, guid: ff94598aa55da99458d89b90663d78ca, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -6608947767402744295, guid: ff94598aa55da99458d89b90663d78ca, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -4166942940820618126, guid: ff94598aa55da99458d89b90663d78ca, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -3791090343160364947, guid: ff94598aa55da99458d89b90663d78ca, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -3150802451925380634, guid: ff94598aa55da99458d89b90663d78ca, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -1963488512707278499, guid: ff94598aa55da99458d89b90663d78ca, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769465101944927738, guid: ff94598aa55da99458d89b90663d78ca, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3071239643665847111, guid: ff94598aa55da99458d89b90663d78ca, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832355356753391839, guid: ff94598aa55da99458d89b90663d78ca, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4186293685540359485, guid: ff94598aa55da99458d89b90663d78ca, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5441347384018321203, guid: ff94598aa55da99458d89b90663d78ca, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5450252642234775983, guid: ff94598aa55da99458d89b90663d78ca, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8356694727402588011, guid: ff94598aa55da99458d89b90663d78ca, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

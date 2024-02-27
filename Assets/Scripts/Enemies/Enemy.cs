@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Controllers;
 using JetBrains.Annotations;
 using Managers;
@@ -177,8 +178,11 @@ namespace Enemies
                 model = ally;
                 // Set the new model's position.
                 gameObject.layer = LayerMask.NameToLayer("Ally");
-                // Include the player layer in the turn layer.
-                turnLayer |= playerLayer;
+                // Include the player layer in the excluded layers of the rigidbody.
+                rb.excludeLayers |= playerLayer;
+                // Include Projectile layer in the excluded layers of the collider.
+                gameObject.GetComponents<Collider2D>().ToList().ForEach(col => 
+                    col.excludeLayers |= 1 << LayerMask.NameToLayer("Projectile"));
             }
         }
 

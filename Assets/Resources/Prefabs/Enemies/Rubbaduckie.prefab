@@ -62,7 +62,7 @@ MonoBehaviour:
     m_Bits: 64
   turnLayer:
     serializedVersion: 2
-    m_Bits: 13175
+    m_Bits: 12919
   lineOfSight: 10
   playerLayer:
     serializedVersion: 2
@@ -74,7 +74,7 @@ MonoBehaviour:
   dropOffset: 1
   pieWeakness: 1
   pianoWeakness: 0
-  bounceHeight: 0.5
+  bounceHeight: 0.3
   bounceSpeed: 10
 --- !u!50 &1563987815338668049
 Rigidbody2D:
