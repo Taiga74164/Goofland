@@ -1962,6 +1962,10 @@ PrefabInstance:
       propertyPath: OutputAudioMixerGroup
       value: 
       objectReference: {fileID: -5388765665678994932, guid: 6b885a192e05b3d4dac2c81155d11090, type: 2}
+    - target: {fileID: 1254634459250561640, guid: e0cf160916fb8584ebc15afc636b93ed, type: 3}
+      propertyPath: m_DefaultActionMap
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 1768298607370541275, guid: e0cf160916fb8584ebc15afc636b93ed, type: 3}
       propertyPath: maxForce
       value: 15

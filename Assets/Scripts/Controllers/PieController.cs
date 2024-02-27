@@ -7,6 +7,7 @@ using Weapons;
 
 namespace Controllers
 {
+    [RequireComponent(typeof(PlayerInput))]
     public class PieController : MonoBehaviour
     {
         [Header("Pie Settings")]
@@ -23,6 +24,7 @@ namespace Controllers
         private Rigidbody2D _rb;
         private Camera _mainCamera;
         private Vector2 _screenResolution;
+        private Vector2 _aimInput;
         private float _lastPieThrownTime = -1.0f;
         private List<GameObject> _indicators = new List<GameObject>();
 
@@ -151,24 +153,23 @@ namespace Controllers
 
         private Vector3 GetAimInput()
         {
-            var aimInput = InputManager.Aim.ReadValue<Vector2>();
             if (_playerInput.currentControlScheme.Equals("KBM"))
             {
-                // Keyboard and mouse.
-                return _mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+                return _mainCamera.ScreenToWorldPoint(_aimInput); // Keyboard and mouse.
             }
             else
             {
                 // Gamepad.
-                Debug.Log($"Aim Input: {aimInput.x}, {aimInput.y}");
-                var width = Mathf.Clamp((aimInput.x + 1) / 2.0f * _screenResolution.x, 0f, 
+                var width = Mathf.Clamp((_aimInput.x + 1) / 2.0f * _screenResolution.x, 0f, 
                     _screenResolution.x);
-                var height = Mathf.Clamp((aimInput.y + 1) / 2.0f * _screenResolution.y, 0f, 
+                var height = Mathf.Clamp((_aimInput.y + 1) / 2.0f * _screenResolution.y, 0f, 
                     _screenResolution.y);
                 var aimPosition = new Vector3(width, height, _mainCamera.nearClipPlane);
                 return _mainCamera.ScreenToWorldPoint(aimPosition);
             }
         }
+
+        private void OnAim(InputValue value) => _aimInput =  value.Get<Vector2>();
         
         private bool IsPieReady() => !GameManager.IsPaused && Time.time - _lastPieThrownTime >= pieCooldownDuration;
     }

@@ -391,6 +391,17 @@
                 },
                 {
                     "name": "",
+                    "id": "1f25d9b7-334a-4296-96b6-7d4f67bfee66",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KBM",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "247e4028-3044-496d-b23d-8f591d2fb04d",
                     "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
