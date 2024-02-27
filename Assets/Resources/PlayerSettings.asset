@@ -21,6 +21,7 @@ MonoBehaviour:
   verticalKnockback: 5
   fallMultiplier: 5
   lowJumpMultiplier: 5
+  maxVelocity: 20
   umbrellaGravityDiminisher: 0.25
   umbrellaTime: 2.5
   coyoteTime: 0.2

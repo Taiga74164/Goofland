@@ -19,6 +19,7 @@ namespace Controllers.StateMachines
             
             if (!input.IsAttacking)
                 ChangeSubState(null);
+           
         }
 
         public override void UpdateState()

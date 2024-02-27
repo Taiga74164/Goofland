@@ -20,6 +20,7 @@ namespace Objects.Scriptable
         public float fallMultiplier = 5.0f;
         [Tooltip("Lower value, shorter jump.")]
         public float lowJumpMultiplier = 4.0f;
+        public float maxVelocity = 20f;
 
         [Header("Umbrella Setting")]
         public float umbrellaGravityDiminisher = 0.25f;
