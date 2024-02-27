@@ -144,9 +144,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e41f19fae69fef1468735d7f57e4fc7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _otherPortal: {fileID: 4858546592200862212}
-  _direction: 0
-  _playerExitForce: 3
+  otherPortal: {fileID: 4858546592200862212}
+  direction: 0
+  playerExitForce: 0
 --- !u!1 &766706123277303933
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,6 +492,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e41f19fae69fef1468735d7f57e4fc7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _otherPortal: {fileID: 8299861286079206693}
-  _direction: 0
-  _playerExitForce: 3
+  otherPortal: {fileID: 8299861286079206693}
+  direction: 0
+  playerExitForce: 0
