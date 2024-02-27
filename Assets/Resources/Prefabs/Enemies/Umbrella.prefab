@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 656034498768290876}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Ground Check
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 22528
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -145,7 +145,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 22528
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -176,6 +176,14 @@ PrefabInstance:
     - target: {fileID: -8653719598885068355, guid: 47fb59b0814c50142931dc5d07d18da6, type: 3}
       propertyPath: m_Name
       value: Umbregglla_
+      objectReference: {fileID: 0}
+    - target: {fileID: -8653719598885068355, guid: 47fb59b0814c50142931dc5d07d18da6, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: -8371271770644745228, guid: 47fb59b0814c50142931dc5d07d18da6, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 47fb59b0814c50142931dc5d07d18da6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -216,6 +224,22 @@ PrefabInstance:
     - target: {fileID: -7552582706839291426, guid: 47fb59b0814c50142931dc5d07d18da6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1254581540170834182, guid: 47fb59b0814c50142931dc5d07d18da6, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186579502030774118, guid: 47fb59b0814c50142931dc5d07d18da6, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5441347384018321203, guid: 47fb59b0814c50142931dc5d07d18da6, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6657172934103095844, guid: 47fb59b0814c50142931dc5d07d18da6, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8744054551747790896}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Ground Check
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 22528
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -149,7 +149,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 22528
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -191,6 +191,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Farty_Cloudy
       objectReference: {fileID: 0}
+    - target: {fileID: -8653719598885068355, guid: a43effb0fe341d74a982453360fadd6f, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: a43effb0fe341d74a982453360fadd6f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -230,6 +234,30 @@ PrefabInstance:
     - target: {fileID: -7552582706839291426, guid: a43effb0fe341d74a982453360fadd6f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6627991806376485586, guid: a43effb0fe341d74a982453360fadd6f, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: -2800833785596649667, guid: a43effb0fe341d74a982453360fadd6f, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769465101944927738, guid: a43effb0fe341d74a982453360fadd6f, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718258549375222303, guid: a43effb0fe341d74a982453360fadd6f, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5134594687710688998, guid: a43effb0fe341d74a982453360fadd6f, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8328028354583737442, guid: a43effb0fe341d74a982453360fadd6f, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

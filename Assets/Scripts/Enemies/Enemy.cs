@@ -181,8 +181,12 @@ namespace Enemies
                 var ally = Instantiate(allyPrefab, transform);
                 // Destroy the current model.
                 if (model) Destroy(model);
+                // Store the current model's euler angles.
+                var eulerAngles = model!.transform.eulerAngles;
                 // Assign the new model to the ally prefab.
                 model = ally;
+                // Set the new model's euler angles.
+                model!.transform.eulerAngles = eulerAngles;
                 // Set the new model's position.
                 gameObject.layer = LayerMask.NameToLayer("Ally");
                 // Include the player layer in the excluded layers of the rigidbody.
