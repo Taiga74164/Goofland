@@ -23,6 +23,11 @@ namespace Controllers.StateMachines
 
             if (player.IsGrounded())
                 player.ChangeState(input.IsMoving ? player.walkingState : player.idleState);
+            if (player.rb.velocity.magnitude > player.playerSettings.maxVelocity)
+            {
+                player.rb.velocity = player.rb.velocity.normalized * player.playerSettings.maxVelocity;
+                Debug.Log("done");
+            }
         }
         
         public override void ExitState()

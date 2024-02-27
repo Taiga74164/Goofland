@@ -48,6 +48,13 @@ namespace Controllers.StateMachines
             
             if (input.IsParachuting)
                 player.ChangeState(player.parachutingState);
+            if(player.rb.velocity.magnitude > player.playerSettings.maxVelocity)
+            {
+                player.rb.velocity = player.rb.velocity * player.playerSettings.maxVelocity;
+                Debug.Log("done");
+            }
+            
+
         }
         
         public override void ExitState()
