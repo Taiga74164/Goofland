@@ -13,7 +13,14 @@ namespace Controllers.StateMachines
         protected Grounded(string name, PlayerController player) : base(name, player)
         {
         }
-        
+
+        public override void EnterState()
+        {
+            base.EnterState();
+            
+            InputManager.Jump.started += _ => player.ChangeState(player.jumpingState);
+        }
+
         public override void HandleInput()
         {
             base.HandleInput();
@@ -21,9 +28,6 @@ namespace Controllers.StateMachines
             // if (input.IsCrouching)
             //     player.ChangeState(player.crouchingState);
             
-            if (InputManager.Jump.IsInProgress())
-                player.ChangeState(player.jumpingState);
-
             if (input.IsFalling)
                 player.ChangeState(player.fallingState);
             
