@@ -21,6 +21,8 @@ namespace Enemies
 
         protected override void Start()
         {
+            base.Start();
+            
             // Get the audio source component and configure it.
             _audioSource = GetComponent<AudioSource>();
             _audioSource.Configure(audioData);

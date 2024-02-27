@@ -54,6 +54,7 @@ namespace Enemies
         
         protected Vector2 direction = Vector2.right;
         protected Rigidbody2D rb;
+        protected Transform playerTransform;
     
         protected virtual void Awake()
         {
@@ -66,8 +67,12 @@ namespace Enemies
             // Get the rigidbody component.
             rb = GetComponent<Rigidbody2D>();
         }
-        
-        protected virtual void Start() { }
+
+        protected virtual void Start()
+        {
+            // Get the player's transform.
+            playerTransform = GameManager.Instance.playerController.transform;
+        }
 
         protected virtual void Update() { }
 
@@ -139,6 +144,8 @@ namespace Enemies
         /// <returns>True if the player is in the enemy's line of sight.</returns>
         protected bool PlayerInLineOfSight()
         {
+            if (entityType is not EntityType.Enemy) return false;
+            
             // Get the player's position and direction.
             var playerTransform = GameManager.Instance.playerController.transform;
             var position = transform.position;

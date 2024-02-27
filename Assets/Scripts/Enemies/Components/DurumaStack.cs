@@ -5,7 +5,9 @@ namespace Enemies.Components
     public class DurumaStack : Enemy
     {
         protected override void Start()
-        {             
+        {
+            base.Start();
+            
             AdjustGroundDetectionPosition();
         }
 
