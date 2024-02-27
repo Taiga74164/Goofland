@@ -6,6 +6,7 @@ namespace Levels
     {
         public void Break()
         {
+            Destroy(gameObject);
         }
     }
 }
