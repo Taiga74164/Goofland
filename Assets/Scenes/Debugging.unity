@@ -19181,6 +19181,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 3_Banana
       objectReference: {fileID: 0}
+    - target: {fileID: 5226531580966850213, guid: 8ef2eb387805ef04bb3422562cae8b2d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5493843645340776005, guid: 8ef2eb387805ef04bb3422562cae8b2d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -23521,7 +23525,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9185594432423958578, guid: c31e9ef6aca169c44b05dbfd9ae60c12, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.796317
+      value: -9.796185
       objectReference: {fileID: 0}
     - target: {fileID: 9185594432423958578, guid: c31e9ef6aca169c44b05dbfd9ae60c12, type: 3}
       propertyPath: m_LocalPosition.y
