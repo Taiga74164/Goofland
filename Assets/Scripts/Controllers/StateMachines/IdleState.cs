@@ -13,5 +13,11 @@
             if (input.IsMoving)
                 player.ChangeState(player.walkingState);
         }
+        public override void UpdateState()
+        {
+            base.UpdateState();
+            if (!player.IsGrounded())
+                player.ChangeState(player.fallingState);
+        }
     }
 }

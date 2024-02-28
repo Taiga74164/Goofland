@@ -5,6 +5,7 @@ using Managers;
 using Objects.Scriptable;
 using UnityEngine;
 using Utils;
+using static UnityEditor.Experimental.GraphView.GraphView;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
@@ -58,7 +59,9 @@ namespace Controllers
         private float _invincibilityTimer;
 
         #endregion
-
+        #region Sean Cursed code
+        public float YVelocity { get; set; }
+        #endregion
         private void Awake()
         {
             // Set the player controller global reference.
@@ -103,7 +106,7 @@ namespace Controllers
             UpdatePlayerOrientation();
             HandleInvincibility();
             
-            _currentState.UpdateState();
+            
             _currentState.HandleInput();
             
             UpdateCoyoteTimeCounter();
@@ -113,7 +116,12 @@ namespace Controllers
                 rb.velocity = (new Vector2(0, 24.77f));
             }
         }
-        
+        private void FixedUpdate()
+        {
+            _currentState.UpdateState();
+            rb.velocity = new Vector2(rb.velocity.x, YVelocity);
+        }
+
         private void LateUpdate()
         {
             if (GameManager.IsPaused || IsInvincible) return;
@@ -123,6 +131,7 @@ namespace Controllers
 
         public void ChangeState(BaseState state)
         {
+            Debug.LogFormat("Current state is {0}", state.GetType().ToString());
             _currentState?.ExitState();
             _currentState = state;
             _currentState.EnterState();
@@ -259,7 +268,9 @@ namespace Controllers
         public bool IsGrounded() => !GameManager.IsPaused && Physics2D.OverlapCircle(
             GameObject.FindWithTag("GroundCheck").transform.position, 
             playerSettings.groundCheckRadius, playerSettings.groundLayerMask);
-        
+        public bool WallCheck() => Physics2D.OverlapCircle(GameObject.FindWithTag("WallCheck").transform.position,
+            playerSettings.groundCheckRadius * 2f, playerSettings.groundLayerMask);
+
 #if UNITY_EDITOR
         private void OnDrawGizmos()
         {

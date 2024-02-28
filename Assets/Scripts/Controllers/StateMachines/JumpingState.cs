@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace Controllers.StateMachines
 {
@@ -34,8 +35,8 @@ namespace Controllers.StateMachines
             var jumpForce = player.playerSettings.jumpHeight;
             if (input.IsRunning)
                 jumpForce *= player.playerSettings.jumpBoostMultiplier;
-            
-            player.rb.velocity = new Vector2(player.rb.velocity.x, jumpForce);
+
+            player.YVelocity = jumpForce;
             player.ResetCoyoteTimeAndJumpBufferCounter();
         }
         
@@ -49,9 +50,10 @@ namespace Controllers.StateMachines
             if (input.IsParachuting)
                 player.ChangeState(player.parachutingState);
             
-            if (player.rb.velocity.magnitude > player.playerSettings.maxVelocity)
+            if (player.rb.velocity.x > player.playerSettings.maxVelocity)
             {
-                player.rb.velocity *= player.playerSettings.maxVelocity;
+                player.rb.velocity = new Vector2(player.playerSettings.maxVelocity, player.rb.velocity.y);
+               // player.rb.velocity *= player.playerSettings.maxVelocity;
                 Debug.Log("done");
             }
         }

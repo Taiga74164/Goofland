@@ -24,10 +24,9 @@ namespace Controllers.StateMachines
             if (player.IsGrounded())
                 player.ChangeState(input.IsMoving ? player.walkingState : player.idleState);
             
-            if (player.rb.velocity.magnitude > player.playerSettings.maxVelocity)
+            if (player.rb.velocity.x > player.playerSettings.maxVelocity)
             {
-                player.rb.velocity = player.rb.velocity.normalized * player.playerSettings.maxVelocity;
-                Debug.Log("done");
+                player.rb.velocity = new (player.playerSettings.maxVelocity, player.rb.velocity.y);
             }
         }
         
@@ -45,10 +44,14 @@ namespace Controllers.StateMachines
             {
                 case > 0 when InputManager.Jump.IsPressed():
                     // Apply the low jump multiplier.
-                    player.rb.velocity -= Vector2.down *
-                                          (Physics2D.gravity.y * (player.playerSettings.fallMultiplier - 1) *
-                                           Time.deltaTime);
+                    // player.rb.velocity -= Vector2.down *
+                    player.YVelocity +=
+                                           (Physics2D.gravity.y * (player.playerSettings.fallMultiplier - 1) *
+                                           Time.fixedDeltaTime);
                     input.IsJumping = false;
+                    break;
+                default:
+                    player.YVelocity += Physics2D.gravity.y * Time.fixedDeltaTime;
                     break;
             }
         }
