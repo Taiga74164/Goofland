@@ -1,4 +1,6 @@
-﻿namespace Controllers.StateMachines
+﻿using UnityEngine;
+
+namespace Controllers.StateMachines
 {
     public class IdleState : Grounded
     {
@@ -12,12 +14,16 @@
             
             if (input.IsMoving)
                 player.ChangeState(player.walkingState);
+            
+            if (!player.IsGrounded())
+                player.ChangeState(player.fallingState);
         }
+        
         public override void UpdateState()
         {
             base.UpdateState();
-            if (!player.IsGrounded())
-                player.ChangeState(player.fallingState);
+            
+            player.rb.velocity = new Vector2(0 , player.rb.velocity.y);
         }
     }
 }

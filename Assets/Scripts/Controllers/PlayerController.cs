@@ -5,9 +5,6 @@ using Managers;
 using Objects.Scriptable;
 using UnityEngine;
 using Utils;
-using static UnityEditor.Experimental.GraphView.GraphView;
-using Vector2 = UnityEngine.Vector2;
-using Vector3 = UnityEngine.Vector3;
 
 namespace Controllers
 {
@@ -131,7 +128,7 @@ namespace Controllers
 
         public void ChangeState(BaseState state)
         {
-            Debug.LogFormat("Current state is {0}", state.GetType().ToString());
+            Debug.Log($"Changing state to {state.name}");
             _currentState?.ExitState();
             _currentState = state;
             _currentState.EnterState();
@@ -268,15 +265,13 @@ namespace Controllers
         public bool IsGrounded() => !GameManager.IsPaused && Physics2D.OverlapCircle(
             GameObject.FindWithTag("GroundCheck").transform.position, 
             playerSettings.groundCheckRadius, playerSettings.groundLayerMask);
-        public bool WallCheck() => Physics2D.OverlapCircle(GameObject.FindWithTag("WallCheck").transform.position,
-            playerSettings.groundCheckRadius * 2f, playerSettings.groundLayerMask);
 
-#if UNITY_EDITOR
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(transform.position, playerSettings.magnetRadius);
-        }
-#endif
+// #if UNITY_EDITOR
+//         private void OnDrawGizmos()
+//         {
+//             Gizmos.color = Color.yellow;
+//             Gizmos.DrawWireSphere(transform.position, playerSettings.magnetRadius);
+//         }
+// #endif
     }
 }

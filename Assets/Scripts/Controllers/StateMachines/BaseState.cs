@@ -40,6 +40,11 @@ namespace Controllers.StateMachines
             _currentSubState?.UpdateSubState();
         }
         
+        public virtual void FixedUpdateState()
+        {
+            _currentSubState?.FixedUpdateSubState();
+        }
+        
         public virtual void ExitState() { }
 
         protected void ChangeSubState(BaseSubState subState)
