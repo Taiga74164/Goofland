@@ -1,5 +1,6 @@
 ﻿using Managers;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace Controllers.StateMachines
 {
@@ -50,12 +51,12 @@ namespace Controllers.StateMachines
                 player.playerSettings.movementSpeed *
                 (input.IsRunning ? player.playerSettings.runSpeedMultiplier : 1.0f),
                 player.rb.velocity.y);
-                if(playerVelocity.magnitude <= player.rb.velocity.magnitude)
-                    player.rb.velocity = playerVelocity;
+                //if(playerVelocity.magnitude <= player.rb.velocity.magnitude)
+                  //  player.rb.velocity = playerVelocity;
             }
           
         }
-        
+
         protected virtual void HandleClampFallSpeed()
         {
             switch (player.rb.velocity.y)
@@ -63,17 +64,20 @@ namespace Controllers.StateMachines
                 // If the player is falling, increase the fall speed.
                 case < 0:
                     // Apply the fall multiplier.
-                    player.rb.velocity += Vector2.up * 
+                    player.YVelocity +=
                                           (Physics2D.gravity.y * (player.playerSettings.fallMultiplier - 1) * 
-                                           Time.deltaTime);
+                                           Time.fixedDeltaTime);
                     input.IsJumping = false;
                     break;
                 // If the player is jumping and the jump button is released, decrease the jump speed.
                 case > 0 when !InputManager.Jump.IsPressed():
                     // Apply the low jump multiplier.
-                    player.rb.velocity += Vector2.up * 
+                    player.YVelocity +=
                                           (Physics2D.gravity.y * (player.playerSettings.lowJumpMultiplier - 1) * 
-                                           Time.deltaTime);
+                                           Time.fixedDeltaTime);
+                    break;
+                default:
+                    player.YVelocity +=  Physics2D.gravity.y * Time.fixedDeltaTime;
                     break;
             }
         }

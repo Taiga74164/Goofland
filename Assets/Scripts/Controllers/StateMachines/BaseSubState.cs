@@ -23,6 +23,8 @@ namespace Controllers.StateMachines
         
         public virtual void UpdateSubState() { }
         
+        public virtual void FixedUpdateSubState() { }
+        
         public virtual void ExitSubState() { }
     }
 }

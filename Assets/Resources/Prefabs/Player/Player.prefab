@@ -64,7 +64,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.6065421}
+  m_Offset: {x: -0.012206793, y: 0.04851675}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -75,7 +75,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.2141776}
+  m_Size: {x: 0.2850299, y: 0.09812689}
   m_EdgeRadius: 0
 --- !u!1 &8904874713320273176
 GameObject:
@@ -236,8 +236,8 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_GravityScale: 0
+  m_Material: {fileID: 6200000, guid: 476ccf468faa099449ae2c5f993584b8, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 1024
@@ -281,7 +281,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.0009639263, y: 0.0995636}
-  m_Size: {x: 0.7, y: 1.1808729}
+  m_Size: {x: 0.47, y: 1.1808729}
   m_Direction: 0
 --- !u!61 &5853635685906316266
 BoxCollider2D:
@@ -315,7 +315,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0039942265, y: -0.49911737}
+  m_Offset: {x: -0.0042164326, y: -0.49911737}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -326,7 +326,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3970971, y: 0.10163212}
+  m_Size: {x: 0.22702646, y: 0.10163212}
   m_EdgeRadius: 0
 --- !u!82 &2293451832235115546
 AudioSource:
