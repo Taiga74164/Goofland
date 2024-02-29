@@ -19,8 +19,11 @@ namespace Controllers
         [SerializeField] private float blockSize = 1.0f;
         [SerializeField] private AnimationCurve indicatorCurve;
         [SerializeField] private bool drawMaxDistance;
-        
-        private PlayerInput _playerInput;
+
+        [SerializeField] private Transform _squeakBody;
+
+        //private PlayerInput _playerInput;
+        private InputController _inputController;
         private Rigidbody2D _rb;
         private Camera _mainCamera;
         private Vector2 _screenResolution;
@@ -30,7 +33,8 @@ namespace Controllers
 
         private void Awake()
         {
-            _playerInput = GetComponent<PlayerInput>();
+            //_playerInput = GetComponent<PlayerInput>();
+            _inputController = GetComponent<InputController>();
             _rb = GetComponent<Rigidbody2D>();
             _mainCamera = Camera.main;
             _screenResolution = new Vector2(Screen.width, Screen.height);
@@ -43,22 +47,22 @@ namespace Controllers
             // Clear the trajectory if the pie is not ready.
             ClearTrajectory();
             
-            // Draw the trajectory if the pie is ready.
+            //Draw the trajectory if the pie is ready.
             if (IsPieReady())
                 DrawTrajectory();
         }
 
+        
         private void DrawTrajectory()
         {
             // Get the mouse position in world space.
-            var mousePosition = GetAimInput();
+            
             // Calculate the direction and force of the throw.
-            var direction = (mousePosition - transform.position).normalized;
+            var direction = (GetAimInput());
             // Add the current velocity to the throw force.
             var velocity = (direction.normalized * throwForce).Add(_rb.velocity / 2);
             // Calculate the distance to the mouse. If drawMaxDistance is true, calculate the max distance.
-            var distanceToMouse = drawMaxDistance ? CalculateMaxDistance(velocity) : 
-                Vector2.Distance(mousePosition, transform.position);
+            var distanceToMouse = CalculateMaxDistance(velocity);
             // Calculate the rounded total arrows to draw based on the distance to the mouse.
             var totalArrows = Mathf.FloorToInt(distanceToMouse / blockSize);
             
@@ -135,9 +139,9 @@ namespace Controllers
             if (!IsPieReady()) return;
             
             // Get the mouse position in world space.
-            var mousePosition = GetAimInput();
+            //var mousePosition = GetAimInput();
             // Calculate the direction and force of the throw.
-            var direction = (mousePosition - transform.position).normalized;
+            var direction = GetAimInput();
             // Add the current velocity to the throw force.
             var force = (direction.normalized * throwForce).Add(_rb.velocity / 2);
             
@@ -151,8 +155,28 @@ namespace Controllers
             _lastPieThrownTime = Time.time;
         }
 
-        private Vector3 GetAimInput()
+        private Vector2 GetAimInput()
         {
+
+            //might want to change this to a state machine similar to how the playe works
+           Vector2 forwardDirection = _squeakBody.right;
+            float x = forwardDirection.x;
+
+            if (_inputController.IsAimingUp)
+                return Vector2.up;
+
+            else if (_inputController.IsAimingDown)
+                return Vector2.down;
+
+            else if (_inputController.IsAngleUp)
+                return new Vector2(x, 1);
+
+            else if (_inputController.IsAngleDown)
+                return new Vector2(x, -1);
+
+            else
+                return forwardDirection;
+            /*
             if (_playerInput.currentControlScheme.Equals("KBM"))
             {
                 return _mainCamera.ScreenToWorldPoint(_aimInput); // Keyboard and mouse.
@@ -167,6 +191,7 @@ namespace Controllers
                 var aimPosition = new Vector3(width, height, _mainCamera.nearClipPlane);
                 return _mainCamera.ScreenToWorldPoint(aimPosition);
             }
+            */
         }
 
         private void OnAim(InputValue value) => _aimInput =  value.Get<Vector2>();

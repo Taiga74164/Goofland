@@ -89,6 +89,42 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""AngleUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""1aaffea6-5da3-4098-99f0-3245b661aec3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AngleDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""7f27aa0b-30be-499e-8d60-c50424018f9f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AimUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""0dd99ded-815d-42a6-9b0c-faad49640fd8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AimDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""d596b8a1-8328-4bbe-b04f-edad0921bff3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -128,7 +164,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""left"",
                     ""id"": ""2b43e42f-cd7c-42e0-819e-df7be0273781"",
-                    ""path"": ""<Keyboard>/a"",
+                    ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KBM"",
@@ -139,7 +175,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""right"",
                     ""id"": ""a0a99c77-65fb-458f-9b35-89c371b5a506"",
-                    ""path"": ""<Keyboard>/d"",
+                    ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KBM"",
@@ -260,7 +296,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""2deb67de-8ea8-4e6c-bffb-fcd7e4217240"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Keyboard>/z"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KBM"",
@@ -315,7 +351,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""74972716-feaf-466b-94ac-1084673ed7a5"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Keyboard>/x"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KBM"",
@@ -325,19 +361,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""9bb420d4-9a33-4a19-bbb5-064d11df152f"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Attack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""784baaf5-61ff-4614-871c-283570820493"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""id"": ""c6302046-7d7a-4347-a23e-fba345ac0ce9"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -358,17 +383,6 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""66d374e2-0cd4-406e-914f-b40112467f84"",
-                    ""path"": ""<Keyboard>/c"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Crouch"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""130f4014-757f-43b0-b341-bc94268afd94"",
                     ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
@@ -381,7 +395,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""984db8bd-5891-41bd-baff-b0c86d2d1f35"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Keyboard>/z"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KBM"",
@@ -424,8 +438,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""247e4028-3044-496d-b23d-8f591d2fb04d"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""id"": ""9a7ac541-4066-4305-91d6-975046e22396"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -435,12 +449,111 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""9a7ac541-4066-4305-91d6-975046e22396"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""id"": ""283a8fc3-e8d8-494a-9510-12b3a7ba2f21"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Jump"",
+                    ""action"": ""AngleUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b090c3d5-3c2c-493c-b686-350c0ccfe3d7"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KBM"",
+                    ""action"": ""AngleUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7556ec01-a461-491b-841c-4ef303f94ce0"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""AngleDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ed853c30-eaef-44bc-a680-efbc30a7b53d"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KBM"",
+                    ""action"": ""AngleDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8e91306f-9b16-4053-80ce-484d831ab4c1"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""AimUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1c5a7aec-cbb2-4127-8166-7a8bb8a6b64e"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""AimUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cba749ed-977e-4264-bfdf-8102035fd0a5"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KBM"",
+                    ""action"": ""AimUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2f4a322e-256b-4d87-8ad8-0be67f1a8632"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""AimDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b6822950-a833-46e9-b364-9289d8f7f4f9"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""AimDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7021878b-b3cb-47e8-a33f-2d0ef52669f1"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KBM"",
+                    ""action"": ""AimDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -783,6 +896,10 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_Parachute = m_Player.FindAction("Parachute", throwIfNotFound: true);
         m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
+        m_Player_AngleUp = m_Player.FindAction("AngleUp", throwIfNotFound: true);
+        m_Player_AngleDown = m_Player.FindAction("AngleDown", throwIfNotFound: true);
+        m_Player_AimUp = m_Player.FindAction("AimUp", throwIfNotFound: true);
+        m_Player_AimDown = m_Player.FindAction("AimDown", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Return = m_UI.FindAction("Return", throwIfNotFound: true);
@@ -857,6 +974,10 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Attack;
     private readonly InputAction m_Player_Parachute;
     private readonly InputAction m_Player_Aim;
+    private readonly InputAction m_Player_AngleUp;
+    private readonly InputAction m_Player_AngleDown;
+    private readonly InputAction m_Player_AimUp;
+    private readonly InputAction m_Player_AimDown;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
@@ -868,6 +989,10 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
         public InputAction @Parachute => m_Wrapper.m_Player_Parachute;
         public InputAction @Aim => m_Wrapper.m_Player_Aim;
+        public InputAction @AngleUp => m_Wrapper.m_Player_AngleUp;
+        public InputAction @AngleDown => m_Wrapper.m_Player_AngleDown;
+        public InputAction @AimUp => m_Wrapper.m_Player_AimUp;
+        public InputAction @AimDown => m_Wrapper.m_Player_AimDown;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -898,6 +1023,18 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Aim.started += instance.OnAim;
             @Aim.performed += instance.OnAim;
             @Aim.canceled += instance.OnAim;
+            @AngleUp.started += instance.OnAngleUp;
+            @AngleUp.performed += instance.OnAngleUp;
+            @AngleUp.canceled += instance.OnAngleUp;
+            @AngleDown.started += instance.OnAngleDown;
+            @AngleDown.performed += instance.OnAngleDown;
+            @AngleDown.canceled += instance.OnAngleDown;
+            @AimUp.started += instance.OnAimUp;
+            @AimUp.performed += instance.OnAimUp;
+            @AimUp.canceled += instance.OnAimUp;
+            @AimDown.started += instance.OnAimDown;
+            @AimDown.performed += instance.OnAimDown;
+            @AimDown.canceled += instance.OnAimDown;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -923,6 +1060,18 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Aim.started -= instance.OnAim;
             @Aim.performed -= instance.OnAim;
             @Aim.canceled -= instance.OnAim;
+            @AngleUp.started -= instance.OnAngleUp;
+            @AngleUp.performed -= instance.OnAngleUp;
+            @AngleUp.canceled -= instance.OnAngleUp;
+            @AngleDown.started -= instance.OnAngleDown;
+            @AngleDown.performed -= instance.OnAngleDown;
+            @AngleDown.canceled -= instance.OnAngleDown;
+            @AimUp.started -= instance.OnAimUp;
+            @AimUp.performed -= instance.OnAimUp;
+            @AimUp.canceled -= instance.OnAimUp;
+            @AimDown.started -= instance.OnAimDown;
+            @AimDown.performed -= instance.OnAimDown;
+            @AimDown.canceled -= instance.OnAimDown;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1037,6 +1186,10 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnParachute(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
+        void OnAngleUp(InputAction.CallbackContext context);
+        void OnAngleDown(InputAction.CallbackContext context);
+        void OnAimUp(InputAction.CallbackContext context);
+        void OnAimDown(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
