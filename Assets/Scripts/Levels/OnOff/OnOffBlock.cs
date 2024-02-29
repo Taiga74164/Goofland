@@ -9,6 +9,8 @@ namespace Levels
         
         private BoxCollider2D _boxCollider;
         private SpriteRenderer _sprite;
+        [SerializeField]  private Sprite _onSprite;
+        [SerializeField] private Sprite _offSprite;
 
         private void Awake()
         {
@@ -30,18 +32,14 @@ namespace Levels
                     _boxCollider.excludeLayers &= ~(1 << LayerMask.NameToLayer("Player"));
                     
                     //this will be changed once we have assets for blocks being on and off
-                    Color color = _sprite.color;
-                    color.a = 1f;
-                    _sprite.color = color;
+                    _sprite.sprite = _onSprite;
                 }
                 else
                 {
                     // Exclude the player layer.
                     _boxCollider.excludeLayers |= 1 << LayerMask.NameToLayer("Player");
                     //this will be changed once we have assets for blocks being on and off
-                    Color color = _sprite.color;
-                    color.a = .45f;
-                    _sprite.color = color;
+                    _sprite.sprite = _offSprite;
                 }
             }
         }
