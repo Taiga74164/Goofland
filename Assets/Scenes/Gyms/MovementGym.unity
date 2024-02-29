@@ -1681,7 +1681,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5675425815831273900, guid: e0cf160916fb8584ebc15afc636b93ed, type: 3}
       propertyPath: throwForce
-      value: 30
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5675425815831273900, guid: e0cf160916fb8584ebc15afc636b93ed, type: 3}
       propertyPath: _squeakBody

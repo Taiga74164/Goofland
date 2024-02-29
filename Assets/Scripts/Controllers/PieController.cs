@@ -45,7 +45,8 @@ namespace Controllers
             if (GameManager.IsPaused) return;
             
             // Clear the trajectory if the pie is not ready.
-            ClearTrajectory();
+            if(!IsPieReady())
+                ClearTrajectory();
             
             //Draw the trajectory if the pie is ready.
             if (IsPieReady())
@@ -60,12 +61,11 @@ namespace Controllers
             // Calculate the direction and force of the throw.
             var direction = (GetAimInput());
             // Add the current velocity to the throw force.
-            var velocity = (direction.normalized * throwForce).Add(_rb.velocity / 2);
+            var velocity = (direction * throwForce);
             // Calculate the distance to the mouse. If drawMaxDistance is true, calculate the max distance.
-            var distanceToMouse = CalculateMaxDistance(velocity);
+            var maxDistance = CalculateMaxDistance(velocity);
             // Calculate the rounded total arrows to draw based on the distance to the mouse.
-            var totalArrows = Mathf.FloorToInt(distanceToMouse / blockSize);
-            
+            var totalArrows = Mathf.Abs((Mathf.FloorToInt(maxDistance / blockSize)));
             for (var i = 0; i < totalArrows; i++)
             {
                 // Calculate the time it takes for the pie to reach the next arrow position.
@@ -122,8 +122,12 @@ namespace Controllers
         /// <returns>The calculated max distance of the trajectory.</returns>
         private static float CalculateMaxDistance(Vector2 initialVelocity)
         {
+            var xValue = initialVelocity.x;
+            if (xValue == 0)
+                xValue = initialVelocity.y;
+                    
             var g = Mathf.Abs(Physics2D.gravity.y);
-            var angle = Mathf.Atan2(initialVelocity.y, initialVelocity.x); // 45 * Mathf.Deg2Rad; 
+            var angle = Mathf.Atan2(initialVelocity.y, xValue); // 45 * Mathf.Deg2Rad; 
             var distance = Mathf.Pow(initialVelocity.magnitude, 2) * Mathf.Sin(2 * angle) / g;
             return distance;
         }
@@ -157,9 +161,9 @@ namespace Controllers
 
         private Vector2 GetAimInput()
         {
-
+            ClearTrajectory();
             //might want to change this to a state machine similar to how the playe works
-           Vector2 forwardDirection = _squeakBody.right;
+            Vector2 forwardDirection = _squeakBody.right;
             float x = forwardDirection.x;
 
             if (_inputController.IsAimingUp)
@@ -176,22 +180,6 @@ namespace Controllers
 
             else
                 return forwardDirection;
-            /*
-            if (_playerInput.currentControlScheme.Equals("KBM"))
-            {
-                return _mainCamera.ScreenToWorldPoint(_aimInput); // Keyboard and mouse.
-            }
-            else
-            {
-                // Gamepad.
-                var width = Mathf.Clamp((_aimInput.x + 1) / 2.0f * _screenResolution.x, 0f, 
-                    _screenResolution.x);
-                var height = Mathf.Clamp((_aimInput.y + 1) / 2.0f * _screenResolution.y, 0f, 
-                    _screenResolution.y);
-                var aimPosition = new Vector3(width, height, _mainCamera.nearClipPlane);
-                return _mainCamera.ScreenToWorldPoint(aimPosition);
-            }
-            */
         }
 
         private void OnAim(InputValue value) => _aimInput =  value.Get<Vector2>();
