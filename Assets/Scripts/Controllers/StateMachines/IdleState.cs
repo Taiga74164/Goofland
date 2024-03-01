@@ -19,9 +19,9 @@ namespace Controllers.StateMachines
                 player.ChangeState(player.fallingState);
         }
         
-        public override void UpdateState()
+        public override void FixedUpdateState()
         {
-            base.UpdateState();
+            base.FixedUpdateState();
             
             player.rb.velocity = new Vector2(0 , player.rb.velocity.y);
         }

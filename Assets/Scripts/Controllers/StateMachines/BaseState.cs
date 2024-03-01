@@ -34,12 +34,12 @@ namespace Controllers.StateMachines
         {
             _currentSubState?.HandleInput();
         }
-
+        
         public virtual void UpdateState()
         {
             _currentSubState?.UpdateSubState();
         }
-        
+
         public virtual void FixedUpdateState()
         {
             _currentSubState?.FixedUpdateSubState();

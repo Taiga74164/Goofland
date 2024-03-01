@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Managers;
+
 namespace Controllers.StateMachines
 {
     public class FallingState : Airborne
@@ -32,8 +33,11 @@ namespace Controllers.StateMachines
         
         public override void ExitState()
         {
+            // Set the beenWarped flag to false.
+            if (player.beenWarped)
+                player.beenWarped = false;
+            
             // Set the falling animation to false.
-            player.beenWarped = false;
             player.animator.SetBool(Falling, false);
         }
         
@@ -42,16 +46,11 @@ namespace Controllers.StateMachines
             base.HandleClampFallSpeed();
             switch (player.rb.velocity.y)
             {
-                case > 0 when InputManager.Jump.IsPressed():
+                case > 0 when InputManager.Jump.IsPressed() && input.IsJumping:
                     // Apply the low jump multiplier.
-                    // player.rb.velocity -= Vector2.down *
-                    player.YVelocity +=
-                                           (Physics2D.gravity.y * (player.playerSettings.fallMultiplier - 1) *
-                                           Time.fixedDeltaTime);
+                    player.YVelocity += Physics2D.gravity.y * (player.playerSettings.fallMultiplier - 1) * 
+                                        Time.fixedDeltaTime;
                     input.IsJumping = false;
-                    break;
-                default:
-                    player.YVelocity += Physics2D.gravity.y * Time.fixedDeltaTime;
                     break;
             }
         }

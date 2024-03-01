@@ -48,7 +48,7 @@ namespace Controllers
             IsCrouching = InputManager.Crouch.IsPressed() && _playerController.IsGrounded();
             
             // Update the player's falling state.
-            IsFalling = _playerController.rb.velocity.y < -0.2f;
+            IsFalling = _playerController.rb.velocity.y < 0 && !_playerController.IsGrounded();
             
             // Update the player's parachuting state.
             IsParachuting = InputManager.Jump.triggered && _playerController.CanParachute;

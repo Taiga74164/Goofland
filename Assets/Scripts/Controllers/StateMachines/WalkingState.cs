@@ -27,9 +27,9 @@ namespace Controllers.StateMachines
                 player.ChangeState(player.idleState);
         }
 
-        public override void UpdateState()
+        public override void FixedUpdateState()
         {
-            base.UpdateState();
+            base.FixedUpdateState();
             
             if (player.IsKnockback) return;
             

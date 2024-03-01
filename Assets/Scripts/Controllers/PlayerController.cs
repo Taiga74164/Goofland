@@ -103,19 +103,15 @@ namespace Controllers
             UpdatePlayerOrientation();
             HandleInvincibility();
             
-            
+            _currentState.UpdateState();
             _currentState.HandleInput();
             
             UpdateCoyoteTimeCounter();
             UpdateJumpBufferCounter();
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                rb.velocity = (new Vector2(0, 24.77f));
-            }
         }
         private void FixedUpdate()
         {
-            _currentState.UpdateState();
+            _currentState.FixedUpdateState();
             rb.velocity = new Vector2(rb.velocity.x, YVelocity);
         }
 

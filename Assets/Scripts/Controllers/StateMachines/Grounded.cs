@@ -38,9 +38,9 @@ namespace Controllers.StateMachines
                 ChangeSubState(null);
         }
         
-        public override void UpdateState()
+        public override void FixedUpdateState()
         {
-            base.UpdateState();
+            base.FixedUpdateState();
             
             if (player.CanJump())
                 player.ChangeState(player.jumpingState);

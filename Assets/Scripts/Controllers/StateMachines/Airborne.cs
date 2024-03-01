@@ -1,6 +1,5 @@
 ﻿using Managers;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace Controllers.StateMachines
 {
@@ -9,6 +8,7 @@ namespace Controllers.StateMachines
     /// </summary>
     public class Airborne : Grounded
     {
+        protected float velocityY;
         protected Airborne(string name, PlayerController player) : base(name, player)
         {
         }
@@ -20,15 +20,15 @@ namespace Controllers.StateMachines
             
             if (!input.IsAttacking)
                 ChangeSubState(null);
-           
         }
 
-        public override void UpdateState()
+        public override void FixedUpdateState()
         {
-            base.UpdateState();
+            base.FixedUpdateState();
 
             Move();
             HandleClampFallSpeed();
+            player.rb.velocity = new Vector2(player.rb.velocity.x, velocityY);
         }
         
         private void Move()
@@ -64,17 +64,15 @@ namespace Controllers.StateMachines
                 // If the player is falling, increase the fall speed.
                 case < 0:
                     // Apply the fall multiplier.
-                    player.YVelocity +=
-                                          (Physics2D.gravity.y * (player.playerSettings.fallMultiplier - 1) * 
-                                           Time.fixedDeltaTime);
+                    player.YVelocity += Physics2D.gravity.y * (player.playerSettings.fallMultiplier - 1) * 
+                                        Time.fixedDeltaTime;
                     input.IsJumping = false;
                     break;
                 // If the player is jumping and the jump button is released, decrease the jump speed.
                 case > 0 when !InputManager.Jump.IsPressed():
                     // Apply the low jump multiplier.
-                    player.YVelocity +=
-                                          (Physics2D.gravity.y * (player.playerSettings.lowJumpMultiplier - 1) * 
-                                           Time.fixedDeltaTime);
+                    player.YVelocity += Physics2D.gravity.y * (player.playerSettings.lowJumpMultiplier - 1) * 
+                                        Time.fixedDeltaTime;
                     break;
                 default:
                     player.YVelocity +=  Physics2D.gravity.y * Time.fixedDeltaTime;
