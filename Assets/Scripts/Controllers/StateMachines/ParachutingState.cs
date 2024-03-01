@@ -33,8 +33,8 @@ namespace Controllers.StateMachines
         protected override void HandleClampFallSpeed()
         {
             // Apply gravity diminisher 
-            player.rb.velocity += Vector2.up * (Physics2D.gravity.y *
-                                                (player.playerSettings.umbrellaGravityDiminisher - 1) * Time.deltaTime);
+            player.YVelocity += Physics2D.gravity.y * (player.playerSettings.umbrellaGravityDiminisher - 1) * 
+                                Time.fixedDeltaTime;
             input.IsJumping = false;   
         }
         

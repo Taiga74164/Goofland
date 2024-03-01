@@ -28,7 +28,7 @@ namespace Controllers.StateMachines
 
             Move();
             HandleClampFallSpeed();
-            player.rb.velocity = new Vector2(player.rb.velocity.x, velocityY);
+            // player.rb.velocity = new Vector2(player.rb.velocity.x, velocityY);
         }
         
         private void Move()
@@ -54,7 +54,6 @@ namespace Controllers.StateMachines
                 //if(playerVelocity.magnitude <= player.rb.velocity.magnitude)
                   //  player.rb.velocity = playerVelocity;
             }
-          
         }
 
         protected virtual void HandleClampFallSpeed()

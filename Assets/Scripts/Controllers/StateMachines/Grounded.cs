@@ -24,11 +24,8 @@ namespace Controllers.StateMachines
         public override void HandleInput()
         {
             base.HandleInput();
-
-            // if (input.IsCrouching)
-            //     player.ChangeState(player.crouchingState);
             
-            if (input.IsFalling)
+            if (!player.IsGrounded())
                 player.ChangeState(player.fallingState);
             
             if (InputManager.Attack.triggered)

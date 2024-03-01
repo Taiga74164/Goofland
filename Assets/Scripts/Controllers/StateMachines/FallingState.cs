@@ -50,7 +50,6 @@ namespace Controllers.StateMachines
                     // Apply the low jump multiplier.
                     player.YVelocity += Physics2D.gravity.y * (player.playerSettings.fallMultiplier - 1) * 
                                         Time.fixedDeltaTime;
-                    input.IsJumping = false;
                     break;
             }
         }

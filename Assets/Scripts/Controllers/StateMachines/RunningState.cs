@@ -42,8 +42,6 @@ namespace Controllers.StateMachines
             // Play the running sound.
             if (!input.IsJumping && player.IsGrounded() &&!player.audioSource.isPlaying)
                 player.audioSource.Play();
-            if (!player.IsGrounded())
-                player.ChangeState(player.fallingState);
         }
         
         public override void ExitState()
