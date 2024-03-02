@@ -3,7 +3,7 @@ using Managers;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Objects
+namespace UI
 {
     /// <summary>
     /// Represents a generic Singleton Menu.
