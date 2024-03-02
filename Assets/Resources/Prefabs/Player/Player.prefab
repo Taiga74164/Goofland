@@ -179,7 +179,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   drawMaxDistance: 0
-  _squeakBody: {fileID: 0}
+  _squeakBody: {fileID: 2139498507712806911}
 --- !u!114 &3748090300100103364
 MonoBehaviour:
   m_ObjectHideFlags: 0

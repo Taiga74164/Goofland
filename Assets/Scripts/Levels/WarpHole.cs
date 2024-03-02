@@ -1,5 +1,6 @@
 using Controllers;
 using UnityEngine;
+using System.Collections;
 
 namespace Levels
 {
@@ -26,43 +27,48 @@ namespace Levels
 
         private void OnTriggerExit2D(Collider2D collision)
         {
-            _active = true;
+            Activate();
         }
 
         public void AlterDirection(Rigidbody2D warpedObject)
         {
-            warpedObject.transform.position = transform.position;
+           warpedObject.transform.position = transform.position;
 
             var dir = GetDirectionVector(direction);
             var originalVelocity = warpedObject.velocity.magnitude;
 
             warpedObject.velocity = dir * originalVelocity;
 
+
             if (warpedObject.gameObject.CompareLayer("Player"))
             {
                 var playerController = warpedObject.GetComponent<PlayerController>();
                 if (direction is Direction.Right || (direction is Direction.Left && !playerController.IsGrounded()))
                 {
-                    Debug.Log("help");
+                    
                     // warpedObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * -Physics2D.gravity );
                     warpedObject.GetComponent<PlayerController>().beenWarped = true;
                 }
+                else if (direction is Direction.Up && !playerController.IsGrounded())
+                {
+                    warpedObject.AddForce(new Vector2(0, playerExitForce));
+                }
 
                 Debug.Log($"Exited Warp Hole: {warpedObject.GetComponent<Rigidbody2D>().velocity}");
-                Invoke(nameof(Activate), .75f);
+                Invoke(nameof(Activate), .5f);
             }
         }
 
         public void Deactivate()
         {
             _active = false;
-            GetComponent<BoxCollider2D>().enabled = false;
+           
         }
 
         private void Activate()
         {
-            //_active = true;
-            GetComponent<BoxCollider2D>().enabled = true;
+            _active = true;
+            
         }
         
         private Vector2 GetDirectionVector(Direction dir)
@@ -76,7 +82,14 @@ namespace Levels
                 _ => Vector2.zero,
             };
         }
+        private IEnumerator Move(Rigidbody2D warpedObject)
+        {
+            warpedObject.transform.Translate(transform.position);
+            yield return new WaitUntil(() => warpedObject.transform.position == transform.position);
+        }
+
     }
+
 
     public enum Direction
     {

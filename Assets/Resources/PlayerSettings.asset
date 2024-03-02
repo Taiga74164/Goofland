@@ -15,7 +15,7 @@ MonoBehaviour:
   movementSpeed: 6
   runSpeedMultiplier: 1.1
   crouchSpeedMultiplier: 0.5
-  jumpHeight: 6
+  jumpHeight: 6.5
   jumpBoostMultiplier: 1.2
   horizontalKnockback: 15
   verticalKnockback: 5
