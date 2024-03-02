@@ -15,7 +15,7 @@ MonoBehaviour:
   movementSpeed: 6
   runSpeedMultiplier: 1.1
   crouchSpeedMultiplier: 0.5
-  jumpHeight: 6
+  jumpHeight: 6.5
   jumpBoostMultiplier: 1.2
   horizontalKnockback: 15
   verticalKnockback: 5
@@ -30,7 +30,7 @@ MonoBehaviour:
   groundCheckRadius: 0.1
   groundLayerMask:
     serializedVersion: 2
-    m_Bits: 32832
+    m_Bits: 64
   invincibilityDuration: 2
   magnetRadius: 1
   magnetForce: 4
