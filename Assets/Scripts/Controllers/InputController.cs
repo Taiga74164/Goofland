@@ -59,10 +59,10 @@ namespace Controllers
             IsParachuting = InputManager.Jump.triggered && _playerController.CanParachute;
 
             //Update players aiming inputs
-            IsAimingUp = InputManager.AimUp.IsPressed(); 
-            IsAimingDown = InputManager.AimDown.IsPressed() && !IsAngleDown;
             IsAngleUp = InputManager.AngleUp.IsPressed();
             IsAngleDown = InputManager.AngleDown.IsPressed() || (InputManager.AimDown.IsPressed() && _playerController.IsGrounded());
+            IsAimingUp = InputManager.AimUp.IsPressed() && !IsAngleUp;
+            IsAimingDown = InputManager.AimDown.IsPressed() && !IsAngleDown;
         }
     }
 }
