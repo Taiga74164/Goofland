@@ -33,7 +33,6 @@ namespace Controllers
 
         private void Awake()
         {
-            //_playerInput = GetComponent<PlayerInput>();
             _inputController = GetComponent<InputController>();
             _rb = GetComponent<Rigidbody2D>();
             _mainCamera = Camera.main;
@@ -62,9 +61,9 @@ namespace Controllers
             var direction = (GetAimInput());
             // Add the current velocity to the throw force.
             var velocity = (direction * throwForce);
-            // Calculate the distance to the mouse. If drawMaxDistance is true, calculate the max distance.
+            // Calculate maximum distance of the pie throw
             var maxDistance = CalculateMaxDistance(velocity);
-            // Calculate the rounded total arrows to draw based on the distance to the mouse.
+            // Calculate the rounded total arrows to draw based on the angle and throw force
             var totalArrows = Mathf.Abs((Mathf.FloorToInt(maxDistance / blockSize)));
             for (var i = 0; i < totalArrows; i++)
             {
@@ -142,8 +141,6 @@ namespace Controllers
         {
             if (!IsPieReady()) return;
             
-            // Get the mouse position in world space.
-            //var mousePosition = GetAimInput();
             // Calculate the direction and force of the throw.
             var direction = GetAimInput();
             // Add the current velocity to the throw force.
@@ -159,10 +156,11 @@ namespace Controllers
             _lastPieThrownTime = Time.time;
         }
 
+        //gets the input of the player and returns the appropriate angle
         private Vector2 GetAimInput()
         {
             ClearTrajectory();
-            //might want to change this to a state machine similar to how the playe works
+            //might want to change this to a state machine similar to how the player works
             Vector2 forwardDirection = _squeakBody.right;
             float x = forwardDirection.x;
 
