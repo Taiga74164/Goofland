@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cc6a32f0c7156a143822c7042fb0b8ec
+guid: 7f0f2a33735926143a6b351ceab58570
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Stone_Tile_Sheet_3_0
+      name: Stone_Tile_Sheet_6_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 03f6aebf4bbbc9a408442c11e7595f07
-      internalID: -2003337830
+      spriteID: 4d6c0034d4cb40144b761e36d65f97ac
+      internalID: -934363872
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Stone_Tile_Sheet_3_1
+      name: Stone_Tile_Sheet_6_1
       rect:
         serializedVersion: 2
         x: 200
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0687f1987e4cb2542a7230401c144b85
-      internalID: -1691980444
+      spriteID: 37ebba4d3131ac94780d200956bac592
+      internalID: 2025876402
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Stone_Tile_Sheet_3_2
+      name: Stone_Tile_Sheet_6_2
       rect:
         serializedVersion: 2
         x: 400
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 51dc46500cd332649a73ea19e9cb7dcb
-      internalID: -132787654
+      spriteID: fdff30bbbab01c74eb70313d3147ea5a
+      internalID: -1856872579
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Stone_Tile_Sheet_3_3
+      name: Stone_Tile_Sheet_6_3
       rect:
         serializedVersion: 2
         x: 600
@@ -187,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 641523bcc8d9ee746ad3a6332672ebb8
-      internalID: -50810130
+      spriteID: 95cb18db667acc245a3c7d813acff56d
+      internalID: 1981184281
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Stone_Tile_Sheet_3_4
+      name: Stone_Tile_Sheet_6_4
       rect:
         serializedVersion: 2
         x: 800
@@ -208,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b407c522c5abf4c4fb45539ffd0635a4
-      internalID: -1090280969
+      spriteID: aa74849862fca0d42af99f2cb50917c3
+      internalID: -117902267
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Stone_Tile_Sheet_3_5
+      name: Stone_Tile_Sheet_6_5
       rect:
         serializedVersion: 2
         x: 0
@@ -229,14 +229,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a0849358ba2834a408577d590fb90f7d
-      internalID: -61244831
+      spriteID: d975f69a9b8878043884545bca200e5b
+      internalID: 186869835
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Stone_Tile_Sheet_3_6
+      name: Stone_Tile_Sheet_6_6
       rect:
         serializedVersion: 2
         x: 200
@@ -250,14 +250,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ee46df7b11e969429175fed0f41b04f
-      internalID: -1343983433
+      spriteID: f6d5ae63971011f4592c89850c8e7e50
+      internalID: 91499291
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Stone_Tile_Sheet_3_7
+      name: Stone_Tile_Sheet_6_7
       rect:
         serializedVersion: 2
         x: 400
@@ -271,14 +271,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 529a77f29a8185847ad43867f7f595cf
-      internalID: -588235332
+      spriteID: 88a66f1d7be9e0049a627916497bbace
+      internalID: -871936730
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Stone_Tile_Sheet_3_8
+      name: Stone_Tile_Sheet_6_8
       rect:
         serializedVersion: 2
         x: 600
@@ -292,14 +292,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 48893205cbc35064395c41317592cb34
-      internalID: -935191704
+      spriteID: 5e7149114aba72646a178d2b9f8f9d2b
+      internalID: -1950985022
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Stone_Tile_Sheet_3_9
+      name: Stone_Tile_Sheet_6_9
       rect:
         serializedVersion: 2
         x: 800
@@ -313,14 +313,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2cb3b006134ee1049b10feb38b5e0c40
-      internalID: -2522010
+      spriteID: e32e0c575021b00429c501fdfbd79f1c
+      internalID: 1989548526
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Stone_Tile_Sheet_3_10
+      name: Stone_Tile_Sheet_6_10
       rect:
         serializedVersion: 2
         x: 0
@@ -334,14 +334,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d28e06c7f269e664a93a5135b94001a9
-      internalID: -3722177
+      spriteID: 845c8ed452c21b84086b1b02ab20c0bd
+      internalID: 1469590831
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Stone_Tile_Sheet_3_11
+      name: Stone_Tile_Sheet_6_11
       rect:
         serializedVersion: 2
         x: 200
@@ -355,14 +355,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a18d715a2d4b3d43bbac1fbaf04bc67
-      internalID: 303905974
+      spriteID: 45d9220636821f54ab7da47a38283ae0
+      internalID: -112722482
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Stone_Tile_Sheet_3_12
+      name: Stone_Tile_Sheet_6_12
       rect:
         serializedVersion: 2
         x: 400
@@ -376,14 +376,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f49729acdf639e94dbba43eb457cef44
-      internalID: 637267403
+      spriteID: 265b3b6dd220a314c9606d7d9795a8f3
+      internalID: 933571954
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Stone_Tile_Sheet_3_13
+      name: Stone_Tile_Sheet_6_13
       rect:
         serializedVersion: 2
         x: 600
@@ -397,14 +397,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3175c64e2f6c9724caa58ce046a28280
-      internalID: 1250549741
+      spriteID: 1aef2598079f29f4bac0c1a588ac0036
+      internalID: 1009584482
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Stone_Tile_Sheet_3_14
+      name: Stone_Tile_Sheet_6_14
       rect:
         serializedVersion: 2
         x: 800
@@ -418,14 +418,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f36f6187a1659d46aa2ddfacdf60236
-      internalID: 818974865
+      spriteID: e5f98a7618b1059428f1711661d4f13d
+      internalID: -2120982957
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Stone_Tile_Sheet_3_15
+      name: Stone_Tile_Sheet_6_15
       rect:
         serializedVersion: 2
         x: 0
@@ -439,14 +439,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a22b0502636fa34988919303935cfef
-      internalID: -2143692542
+      spriteID: 9a714f7492566444aacfedcbbbd123c7
+      internalID: -118052907
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Stone_Tile_Sheet_3_16
+      name: Stone_Tile_Sheet_6_16
       rect:
         serializedVersion: 2
         x: 200
@@ -460,14 +460,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 18319c9e04e0ec84e9eb07cc9e4068c4
-      internalID: -1863465502
+      spriteID: a74d7357b3f2b6541bf90afd99c6426f
+      internalID: -1589323283
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Stone_Tile_Sheet_3_17
+      name: Stone_Tile_Sheet_6_17
       rect:
         serializedVersion: 2
         x: 400
@@ -481,14 +481,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 952a80b7b98e2f047b59a1040809cbbd
-      internalID: -1418987779
+      spriteID: da7434b47d4f70c468e4e20776b28e13
+      internalID: 361753575
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Stone_Tile_Sheet_3_18
+      name: Stone_Tile_Sheet_6_18
       rect:
         serializedVersion: 2
         x: 600
@@ -502,14 +502,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0564fe7ace636304bbb8d2d2cc39376c
-      internalID: -454562233
+      spriteID: 5865e37c23826544eaf6997ad6c537d6
+      internalID: -59659448
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Stone_Tile_Sheet_3_19
+      name: Stone_Tile_Sheet_6_19
       rect:
         serializedVersion: 2
         x: 800
@@ -523,14 +523,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 424fb1423efaaf34986c4f5c15e4399a
-      internalID: -1778740853
+      spriteID: d3f57ec0556d4af4ca5cccc4f600beac
+      internalID: 1395654239
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Stone_Tile_Sheet_3_20
+      name: Stone_Tile_Sheet_6_20
       rect:
         serializedVersion: 2
         x: 0
@@ -544,14 +544,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1b76cfd5107d82a4f8f8b59206212bc5
-      internalID: -760171257
+      spriteID: 5d02f7d36000acc44ac0d4f59ed8bdea
+      internalID: 1532560234
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Stone_Tile_Sheet_3_21
+      name: Stone_Tile_Sheet_6_21
       rect:
         serializedVersion: 2
         x: 200
@@ -565,14 +565,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c34736adcd5a3847a6a5d6991de019c
-      internalID: 72085034
+      spriteID: de3eb1f4d39827e408f59fd0d2b0af03
+      internalID: -1659616135
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Stone_Tile_Sheet_3_22
+      name: Stone_Tile_Sheet_6_22
       rect:
         serializedVersion: 2
         x: 600
@@ -586,14 +586,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fe0fbf89caba90240aca22a672e93c9d
-      internalID: 1048124960
+      spriteID: e76b9b1f7ac79d74583754fe9767cde7
+      internalID: 238991185
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Stone_Tile_Sheet_3_23
+      name: Stone_Tile_Sheet_6_23
       rect:
         serializedVersion: 2
         x: 800
@@ -607,8 +607,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 561ffe89757fa364bb63619890f18118
-      internalID: -1295659640
+      spriteID: 6d169438e51fa62459210120b6df25e0
+      internalID: -1858172678
       vertices: []
       indices: 
       edges: []
@@ -624,30 +624,30 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Stone_Tile_Sheet_3_0: -2003337830
-      Stone_Tile_Sheet_3_1: -1691980444
-      Stone_Tile_Sheet_3_10: -3722177
-      Stone_Tile_Sheet_3_11: 303905974
-      Stone_Tile_Sheet_3_12: 637267403
-      Stone_Tile_Sheet_3_13: 1250549741
-      Stone_Tile_Sheet_3_14: 818974865
-      Stone_Tile_Sheet_3_15: -2143692542
-      Stone_Tile_Sheet_3_16: -1863465502
-      Stone_Tile_Sheet_3_17: -1418987779
-      Stone_Tile_Sheet_3_18: -454562233
-      Stone_Tile_Sheet_3_19: -1778740853
-      Stone_Tile_Sheet_3_2: -132787654
-      Stone_Tile_Sheet_3_20: -760171257
-      Stone_Tile_Sheet_3_21: 72085034
-      Stone_Tile_Sheet_3_22: 1048124960
-      Stone_Tile_Sheet_3_23: -1295659640
-      Stone_Tile_Sheet_3_3: -50810130
-      Stone_Tile_Sheet_3_4: -1090280969
-      Stone_Tile_Sheet_3_5: -61244831
-      Stone_Tile_Sheet_3_6: -1343983433
-      Stone_Tile_Sheet_3_7: -588235332
-      Stone_Tile_Sheet_3_8: -935191704
-      Stone_Tile_Sheet_3_9: -2522010
+      Stone_Tile_Sheet_6_0: -934363872
+      Stone_Tile_Sheet_6_1: 2025876402
+      Stone_Tile_Sheet_6_10: 1469590831
+      Stone_Tile_Sheet_6_11: -112722482
+      Stone_Tile_Sheet_6_12: 933571954
+      Stone_Tile_Sheet_6_13: 1009584482
+      Stone_Tile_Sheet_6_14: -2120982957
+      Stone_Tile_Sheet_6_15: -118052907
+      Stone_Tile_Sheet_6_16: -1589323283
+      Stone_Tile_Sheet_6_17: 361753575
+      Stone_Tile_Sheet_6_18: -59659448
+      Stone_Tile_Sheet_6_19: 1395654239
+      Stone_Tile_Sheet_6_2: -1856872579
+      Stone_Tile_Sheet_6_20: 1532560234
+      Stone_Tile_Sheet_6_21: -1659616135
+      Stone_Tile_Sheet_6_22: 238991185
+      Stone_Tile_Sheet_6_23: -1858172678
+      Stone_Tile_Sheet_6_3: 1981184281
+      Stone_Tile_Sheet_6_4: -117902267
+      Stone_Tile_Sheet_6_5: 186869835
+      Stone_Tile_Sheet_6_6: 91499291
+      Stone_Tile_Sheet_6_7: -871936730
+      Stone_Tile_Sheet_6_8: -1950985022
+      Stone_Tile_Sheet_6_9: 1989548526
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
