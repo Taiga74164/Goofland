@@ -27,6 +27,11 @@ namespace Controllers
         public bool IsAttacking { get; set; }
         
         public bool IsParachuting { get; private set; }
+
+        public bool IsAimingUp { get; private set; }
+        public bool IsAimingDown { get; private set; }
+        public bool IsAngleUp { get; private set; }
+        public bool IsAngleDown { get; private set; }
         
         private void Awake() => _playerController = GetComponent<PlayerController>();
         
@@ -52,6 +57,12 @@ namespace Controllers
             
             // Update the player's parachuting state.
             IsParachuting = InputManager.Jump.triggered && _playerController.CanParachute;
+
+            //Update players aiming inputs
+            IsAngleUp = InputManager.AngleUp.IsPressed();
+            IsAngleDown = InputManager.AngleDown.IsPressed() || (InputManager.AimDown.IsPressed() && _playerController.IsGrounded());
+            IsAimingUp = InputManager.AimUp.IsPressed() && !IsAngleUp;
+            IsAimingDown = InputManager.AimDown.IsPressed() && !IsAngleDown;
         }
     }
 }

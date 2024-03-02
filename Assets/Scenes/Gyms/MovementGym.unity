@@ -852,6 +852,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &482169448 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2139498507712806911, guid: e0cf160916fb8584ebc15afc636b93ed, type: 3}
+  m_PrefabInstance: {fileID: 696557561}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &501900830
 GameObject:
   m_ObjectHideFlags: 0
@@ -1674,6 +1679,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5675425815831273900, guid: e0cf160916fb8584ebc15afc636b93ed, type: 3}
+      propertyPath: throwForce
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5675425815831273900, guid: e0cf160916fb8584ebc15afc636b93ed, type: 3}
+      propertyPath: _squeakBody
+      value: 
+      objectReference: {fileID: 482169448}
     - target: {fileID: 8904874713320273179, guid: e0cf160916fb8584ebc15afc636b93ed, type: 3}
       propertyPath: onJump
       value: 
