@@ -51,6 +51,9 @@ namespace Controllers.StateMachines
                     player.YVelocity += Physics2D.gravity.y * (player.playerSettings.fallMultiplier - 1) * 
                                         Time.fixedDeltaTime;
                     break;
+                default:
+                    player.YVelocity += Physics2D.gravity.y * Time.fixedDeltaTime;
+                    break;
             }
         }
     }

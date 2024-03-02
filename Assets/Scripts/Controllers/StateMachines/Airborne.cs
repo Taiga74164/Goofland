@@ -40,16 +40,14 @@ namespace Controllers.StateMachines
             {
                 player.rb.velocity = new Vector2(
                 input.MoveInput.x *
-                player.playerSettings.movementSpeed *
-                (input.IsRunning ? player.playerSettings.runSpeedMultiplier : 1.0f),
+                player.playerSettings.movementSpeed,
                 player.rb.velocity.y);
             }
             else
             {
                 var playerVelocity =  new Vector2(player.rb.velocity.x +
                 input.MoveInput.x *
-                player.playerSettings.movementSpeed *
-                (input.IsRunning ? player.playerSettings.runSpeedMultiplier : 1.0f),
+                player.playerSettings.movementSpeed,
                 player.rb.velocity.y);
                 //if(playerVelocity.magnitude <= player.rb.velocity.magnitude)
                   //  player.rb.velocity = playerVelocity;

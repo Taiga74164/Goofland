@@ -1,3 +1,4 @@
+using Managers;
 using UnityEngine;
 
 namespace Controllers.StateMachines
@@ -32,16 +33,22 @@ namespace Controllers.StateMachines
 
         public virtual void HandleInput()
         {
+            if (GameManager.IsPaused) return;
+            
             _currentSubState?.HandleInput();
         }
         
         public virtual void UpdateState()
         {
+            if (GameManager.IsPaused) return;
+            
             _currentSubState?.UpdateSubState();
         }
 
         public virtual void FixedUpdateState()
         {
+            if (GameManager.IsPaused) return;
+            
             _currentSubState?.FixedUpdateSubState();
         }
         

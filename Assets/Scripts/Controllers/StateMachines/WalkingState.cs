@@ -21,10 +21,17 @@ namespace Controllers.StateMachines
         {
             base.HandleInput();
             
-            if (input.IsRunning)
-                player.ChangeState(player.runningState);
-            else if (input.IsIdle)
+            if (input.IsIdle)
                 player.ChangeState(player.idleState);
+        }
+
+        public override void UpdateState()
+        {
+            base.UpdateState();
+            
+            // Play the walking sound.
+            if (!input.IsJumping && player.IsGrounded() &&!player.audioSource.isPlaying)
+                player.audioSource.Play();
         }
 
         public override void FixedUpdateState()
@@ -38,10 +45,6 @@ namespace Controllers.StateMachines
                 input.MoveInput.x *
                 player.playerSettings.movementSpeed, 
                 player.rb.velocity.y);
-            
-            // Play the walking sound.
-            if (!input.IsJumping && player.IsGrounded() &&!player.audioSource.isPlaying)
-                player.audioSource.Play();
         }
         
         public override void ExitState()

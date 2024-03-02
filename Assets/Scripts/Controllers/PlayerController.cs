@@ -59,6 +59,7 @@ namespace Controllers
         #region Sean Cursed code
         public float YVelocity { get; set; }
         #endregion
+        
         private void Awake()
         {
             // Set the player controller global reference.
@@ -109,8 +110,11 @@ namespace Controllers
             UpdateCoyoteTimeCounter();
             UpdateJumpBufferCounter();
         }
+        
         private void FixedUpdate()
         {
+            if (GameManager.IsPaused) return;
+            
             _currentState.FixedUpdateState();
             rb.velocity = new Vector2(rb.velocity.x, YVelocity);
         }
@@ -124,7 +128,7 @@ namespace Controllers
 
         public void ChangeState(BaseState state)
         {
-            Debug.Log($"Changing state to {state.name}");
+            // Debug.Log($"Changing state to {state.name}");
             _currentState?.ExitState();
             _currentState = state;
             _currentState.EnterState();

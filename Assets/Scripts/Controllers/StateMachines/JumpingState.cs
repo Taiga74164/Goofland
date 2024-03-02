@@ -31,10 +31,7 @@ namespace Controllers.StateMachines
             
             if (!player.IsGrounded() && player.CoyoteTimeCounter <= 0.0f) return;
             
-            // Increase the jump force if the player is running.
             var jumpForce = player.playerSettings.jumpHeight;
-            if (input.IsRunning)
-                jumpForce *= player.playerSettings.jumpBoostMultiplier;
 
             player.YVelocity = jumpForce;
             player.ResetCoyoteTimeAndJumpBufferCounter();
