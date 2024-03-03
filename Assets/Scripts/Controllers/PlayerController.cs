@@ -96,7 +96,7 @@ namespace Controllers
         private void Update()
         {
             // Restart Level if the player falls too far.
-            if (rb.velocity.y < -30.0f && transform.position.y < -30.0f) LevelUtil.RestartLevel();
+            if (rb.velocity.y < Physics2D.gravity.y && transform.position.y < -30.0f) LevelUtil.RestartLevel();
             
             if (GameManager.IsPaused) return;
             

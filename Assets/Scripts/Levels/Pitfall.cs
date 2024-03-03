@@ -1,3 +1,4 @@
+using Controllers;
 using UnityEngine;
 
 namespace Levels
@@ -8,9 +9,8 @@ namespace Levels
         
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (!other.IsPlayer()) return;
+            if (!other.GetComponent<PlayerController>()) return;
             
-            // other.GetComponent<PlayerController>().TakeDamage();
             var respawnPosition = respawnPoint.position;
             var newRespawn = new Vector2(respawnPosition.x, respawnPosition.y + 2.0f);
             other.transform.position = Vector2.Lerp(other.transform.position, newRespawn, 5.0f);
