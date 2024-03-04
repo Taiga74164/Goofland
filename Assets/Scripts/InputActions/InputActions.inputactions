@@ -284,50 +284,6 @@
                 },
                 {
                     "name": "",
-                    "id": "95b84ecd-d4cd-403e-8bec-f2f8cf6c8cfe",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Run",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "dd0a3e2a-b7b9-4f59-bcc8-e9aa257b5eb8",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Run",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a7a357f5-16e4-49a9-9a8a-89c7a5a56a19",
-                    "path": "<Keyboard>/shift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "KBM",
-                    "action": "Run",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "34f33e25-7966-4ef9-a9bf-55bf9c6a5fe4",
-                    "path": "<Gamepad>/leftStickPress",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Run",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "74972716-feaf-466b-94ac-1084673ed7a5",
                     "path": "<Keyboard>/j",
                     "interactions": "",
