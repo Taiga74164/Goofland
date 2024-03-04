@@ -50,10 +50,7 @@ namespace Weapons
             {
                 other.gameObject.GetComponent<IBreakable>().Break();
             }
-            else if (other.gameObject.CompareLayer("Platform") && !despawn)
-            {
-                Destroy(gameObject);
-            }
+
         }
 
         private void OnCollisionExit2D(Collision2D other)
