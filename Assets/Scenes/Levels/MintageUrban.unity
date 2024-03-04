@@ -6513,7 +6513,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9185594432423958578, guid: c31e9ef6aca169c44b05dbfd9ae60c12, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 76.483696
+      value: 76.50994
       objectReference: {fileID: 0}
     - target: {fileID: 9185594432423958578, guid: c31e9ef6aca169c44b05dbfd9ae60c12, type: 3}
       propertyPath: m_LocalPosition.y
@@ -15594,6 +15594,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 891230722}
     m_Modifications:
+    - target: {fileID: 3170056666969714448, guid: b456759b2fdf03548a27a4582ec832a1, type: 3}
+      propertyPath: parallaxEffectMultiplier
+      value: 0.0625
+      objectReference: {fileID: 0}
     - target: {fileID: 5226531580966850213, guid: b456759b2fdf03548a27a4582ec832a1, type: 3}
       propertyPath: m_Name
       value: 4_Mintage

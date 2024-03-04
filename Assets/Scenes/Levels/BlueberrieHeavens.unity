@@ -11455,7 +11455,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9185594432423958578, guid: c31e9ef6aca169c44b05dbfd9ae60c12, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 206.00342
+      value: 206.02995
       objectReference: {fileID: 0}
     - target: {fileID: 9185594432423958578, guid: c31e9ef6aca169c44b05dbfd9ae60c12, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11514,6 +11514,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1794786210}
     m_Modifications:
+    - target: {fileID: 4309962600940819288, guid: 1358129e6c2a8954390c40f010cc72c2, type: 3}
+      propertyPath: parallaxEffectMultiplier
+      value: 0.0625
+      objectReference: {fileID: 0}
     - target: {fileID: 5226531580966850213, guid: 1358129e6c2a8954390c40f010cc72c2, type: 3}
       propertyPath: m_Name
       value: 5_Blueberrie
