@@ -328,7 +328,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9185594432423958578, guid: c31e9ef6aca169c44b05dbfd9ae60c12, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.2986107
+      value: -7.2720838
       objectReference: {fileID: 0}
     - target: {fileID: 9185594432423958578, guid: c31e9ef6aca169c44b05dbfd9ae60c12, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11646,6 +11646,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 174204229}
     m_Modifications:
+    - target: {fileID: 25090123513690688, guid: 8ef2eb387805ef04bb3422562cae8b2d, type: 3}
+      propertyPath: parallaxEffectMultiplier
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1519923428541219576, guid: 8ef2eb387805ef04bb3422562cae8b2d, type: 3}
+      propertyPath: parallaxEffectMultiplier
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3804922414951806414, guid: 8ef2eb387805ef04bb3422562cae8b2d, type: 3}
+      propertyPath: parallaxEffectMultiplier
+      value: 0.125
+      objectReference: {fileID: 0}
     - target: {fileID: 5226531580966850213, guid: 8ef2eb387805ef04bb3422562cae8b2d, type: 3}
       propertyPath: m_Name
       value: 1_Strawberry
@@ -11688,6 +11700,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5493843645340776005, guid: 8ef2eb387805ef04bb3422562cae8b2d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6988546098787155557, guid: 8ef2eb387805ef04bb3422562cae8b2d, type: 3}
+      propertyPath: parallaxEffectMultiplier
+      value: 0.0625
+      objectReference: {fileID: 0}
+    - target: {fileID: 7492249045564344023, guid: 8ef2eb387805ef04bb3422562cae8b2d, type: 3}
+      propertyPath: parallaxEffectMultiplier
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
