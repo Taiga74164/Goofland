@@ -3,16 +3,14 @@ using UnityEngine.EventSystems;
 
 namespace UI
 {
-    public class TabMenu : Menu
+    public class TabMenu : MonoBehaviour
     {
         public UDictionary<GameObject, GameObject> tabDictionary;
 
         private GameObject _currentTabContent;
         
-        protected override void OnEnable()
+        private void OnEnable()
         {
-            base.OnEnable();
-            
             if (_currentTabContent == null && tabDictionary.Count > 0)
                 SetTab();
             else
@@ -27,7 +25,7 @@ namespace UI
             // Set the first tab as the current tab
             var currentTabButton = EventSystem.current.currentSelectedGameObject;
             if (currentTabButton == null)
-                currentTabButton = firstSelected;
+                currentTabButton = tabDictionary.Keys[0];
             
             // Return if the tab is not in the dictionary or the tab is already the current tab
             if (!tabDictionary.ContainsKey(currentTabButton!) || tabDictionary[currentTabButton] == _currentTabContent)

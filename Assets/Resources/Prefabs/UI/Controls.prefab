@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3714988813420885049}
   - component: {fileID: 4988553966758548171}
   - component: {fileID: 4222402232804599459}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Switch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 1773952017796651261}
   - component: {fileID: 6268090300751904534}
   - component: {fileID: 6784883444929501187}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Switch_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,7 +230,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2340329830732508153}
-  m_Layer: 0
+  - component: {fileID: 3712258446555611095}
+  m_Layer: 5
   m_Name: Controls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,6 +262,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3712258446555611095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1508217619294767758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b71e7af98724bf79c816fec024ed718, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstSelected: {fileID: 7245472588902237314}
 --- !u!1 &2360569391932934371
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,7 +285,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6180006391335275952}
   - component: {fileID: 5959885678742199127}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Tabs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -338,7 +352,7 @@ GameObject:
   - component: {fileID: 1229575345556141842}
   - component: {fileID: 8066884055138366230}
   - component: {fileID: 5037583775763002184}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -472,7 +486,7 @@ GameObject:
   - component: {fileID: 485328668893356252}
   - component: {fileID: 7154958226397547563}
   - component: {fileID: 5524439544849378422}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -606,7 +620,7 @@ GameObject:
   - component: {fileID: 2202295844993372214}
   - component: {fileID: 7758729178594367442}
   - component: {fileID: 693499913066236122}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -742,7 +756,7 @@ GameObject:
   - component: {fileID: 3378435614314808764}
   - component: {fileID: 129204362139189191}
   - component: {fileID: 8542875320181929503}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: XBox_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -911,7 +925,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 399.99994, y: 450}
+  m_AnchoredPosition: {x: 490, y: 450}
   m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5886372936469724014
@@ -996,8 +1010,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+      - m_Target: {fileID: 3712258446555611095}
+        m_TargetAssemblyTypeName: UI.Menu, Assembly-CSharp
         m_MethodName: OnBackPressed
         m_Mode: 1
         m_Arguments:
@@ -1033,7 +1047,7 @@ GameObject:
   - component: {fileID: 282777022038476852}
   - component: {fileID: 7841345151691424953}
   - component: {fileID: 2398010071050924992}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PlayStation_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1177,7 +1191,7 @@ GameObject:
   - component: {fileID: 8728766916705116557}
   - component: {fileID: 5178930626395650328}
   - component: {fileID: 4720814037224807790}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: TabContents
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1256,7 +1270,7 @@ GameObject:
   - component: {fileID: 2867254649590638029}
   - component: {fileID: 3116899146910820895}
   - component: {fileID: 7469279063782450441}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: XBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1406,7 +1420,7 @@ GameObject:
   - component: {fileID: 7678189303333398376}
   - component: {fileID: 5104476851405288233}
   - component: {fileID: 5612369497303942625}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PlayStation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1481,7 +1495,7 @@ GameObject:
   - component: {fileID: 6988308165188513933}
   - component: {fileID: 4422229762929301994}
   - component: {fileID: 3307259568851821479}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1555,7 +1569,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2049746724315852953}
   - component: {fileID: 2158397654591288652}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: TabMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1595,7 +1609,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16f2e73b43694023906c03eb35ded267, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstSelected: {fileID: 7245472588902237314}
   tabDictionary:
     keys:
     - {fileID: 7245472588902237314}
@@ -1620,7 +1633,7 @@ GameObject:
   - component: {fileID: 7521367456529188510}
   - component: {fileID: 6215853720183985258}
   - component: {fileID: 7333734623165218072}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: KeyBoard_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1764,13 +1777,13 @@ GameObject:
   - component: {fileID: 3867889667476629470}
   - component: {fileID: 7027656407825519582}
   - component: {fileID: 1625077949696826641}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Keyboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3867889667476629470
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1839,7 +1852,7 @@ GameObject:
   - component: {fileID: 367959938286922498}
   - component: {fileID: 5382066925622268547}
   - component: {fileID: 2652800314481213175}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CloudImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1915,7 +1928,7 @@ GameObject:
   - component: {fileID: 7177945207478923360}
   - component: {fileID: 1617027865642156305}
   - component: {fileID: 5290747135370286977}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ControlsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2049,7 +2062,7 @@ GameObject:
   - component: {fileID: 8103965455739548814}
   - component: {fileID: 6664610615365845472}
   - component: {fileID: 1089601289673367536}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

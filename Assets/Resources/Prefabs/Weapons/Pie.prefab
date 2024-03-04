@@ -142,6 +142,7 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: b2c7ada6db112fe43bf92f3083b7ae73, type: 3}
   direction: {x: 20, y: 100}
   throwForce: {x: 5, y: 5}
+  destructionTime: 2
   onImpact: {fileID: 11400000, guid: 3a81f5e22d7786d4985aacd0a3763ccd, type: 2}
   audioSource: {fileID: 4789983632227013063}
   debug: 1
@@ -200,7 +201,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -5388765665678994932, guid: 6b885a192e05b3d4dac2c81155d11090, type: 2}
-  m_audioClip: {fileID: 8300000, guid: fc49d59cd7c47ad41b3985d3c600f373, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 12bc2affb5b2ccc4f869d7eb4b8549db, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

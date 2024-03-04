@@ -9,7 +9,8 @@ namespace UI
         public string levelName = "Main";
         [SerializeField] private SettingsMenu settingsMenu;
         [SerializeField] private Credits credits;
-        
+        [SerializeField] private Controls controls;
+
         #if UNITY_WEBGL
         [DllImport("__Internal")]
         private static extern void CloseTab();
@@ -20,6 +21,8 @@ namespace UI
         public void OnSettingsButtonClicked() => settingsMenu.OpenMenu();
         
         public void OnCreditsButtonClicked() => credits.OpenMenu();
+        
+        public void OnControlsButtonClicked() => controls.OpenMenu();
 
         public void OnQuitButtonClicked()
         {
