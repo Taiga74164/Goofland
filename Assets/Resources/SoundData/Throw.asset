@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 623d13fb76d0411c988414b705ba7e51, type: 3}
   m_Name: Throw
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: 90d667eff2c5d2d49bd5e91510769ea1, type: 3}
+  clip: {fileID: 8300000, guid: 12bc2affb5b2ccc4f869d7eb4b8549db, type: 3}
   mixerGroup: {fileID: -5388765665678994932, guid: 6b885a192e05b3d4dac2c81155d11090, type: 2}
   playOnAwake: 0
   loop: 0

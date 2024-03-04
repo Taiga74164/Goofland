@@ -1,54 +1,45 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace UI
 {
-    public class TabMenu : Menu
+    public class TabMenu : MonoBehaviour
     {
-        [SerializeField] private List<GameObject> tabs;
-        [SerializeField] private List<GameObject> tabPanels;
+        public UDictionary<GameObject, GameObject> tabDictionary;
 
-        private int _currentTab;
-
-        protected override void OnEnable()
+        private GameObject _currentTabContent;
+        
+        private void OnEnable()
         {
-            base.OnEnable();
-            SetTab(_currentTab);
+            if (_currentTabContent == null && tabDictionary.Count > 0)
+                SetTab();
+            else
+                DisplayTabContent();
         }
         
         /// <summary>
-        /// Activates the tab at the given index.
+        /// Set the first tab as the current tab.
         /// </summary>
-        /// <param name="index">The index of the tab to activate.</param>
-        public void SetTab(int index)
+        public void SetTab()
         {
-            // If the index is out of range or the same as the current tab, return.
-            if (index < 0 || index >= tabs.Count || index == _currentTab) return;
+            // Set the first tab as the current tab
+            var currentTabButton = EventSystem.current.currentSelectedGameObject;
+            if (currentTabButton == null)
+                currentTabButton = tabDictionary.Keys[0];
             
-            // Deactivate all tab panels and activate the one at the given index.
-            tabPanels.ForEach(panel => panel.SetActive(false));
-            tabPanels[index].SetActive(true);
+            // Return if the tab is not in the dictionary or the tab is already the current tab
+            if (!tabDictionary.ContainsKey(currentTabButton!) || tabDictionary[currentTabButton] == _currentTabContent)
+                return;
             
-            // Update the current tab.
-            _currentTab = index;
+            // Set the current tab and update the tab
+            _currentTabContent = tabDictionary[currentTabButton];
+            DisplayTabContent();
         }
         
         /// <summary>
-        /// Activates the next tab.
+        /// Display the current tab content and hide the rest.
         /// </summary>
-        public void NextTab()
-        {
-            var nextTab = (_currentTab + 1) % tabs.Count;
-            SetTab(nextTab);
-        }
-        
-        /// <summary>
-        /// Activates the previous tab.
-        /// </summary>
-        public void PreviousTab()
-        {
-            var previousTab = (_currentTab - 1 + tabs.Count) % tabs.Count;
-            SetTab(previousTab);
-        }
+        private void DisplayTabContent() =>
+            tabDictionary.Values.ForEach(tab => tab.SetActive(tab == _currentTabContent));
     }
 }

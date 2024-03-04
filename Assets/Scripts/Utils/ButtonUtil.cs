@@ -32,7 +32,7 @@ namespace Utils
         {
             // Load the audio data from the Resources folder.
             _mouseClickData = Resources.Load<AudioData>("SoundData/Mouse_Click");
-            _mouseSelectData = Resources.Load<AudioData>("SoundData/Selection_Sound");
+            _mouseSelectData = Resources.Load<AudioData>("SoundData/Mouse_Hover");
         }
         
         private void Start()

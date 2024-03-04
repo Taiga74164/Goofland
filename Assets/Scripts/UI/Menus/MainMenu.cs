@@ -1,25 +1,27 @@
-using UI.Menus;
 using UnityEngine;
-using Utils;
 
-namespace UI
+namespace UI.Menus
 {
     public class MainMenu : MonoBehaviour
     {
         public string levelName = "Main";
+        [SerializeField] private LevelSelectMenu levelSelectMenu;
         [SerializeField] private SettingsMenu settingsMenu;
         [SerializeField] private Credits credits;
-        
+        [SerializeField] private Controls controls;
+
         #if UNITY_WEBGL
         [DllImport("__Internal")]
         private static extern void CloseTab();
         #endif
         
-        public void OnPlayButtonClick() => LevelUtil.LoadLevel(levelName);
+        public void OnPlayButtonClick() => levelSelectMenu.OpenMenu();
         
         public void OnSettingsButtonClicked() => settingsMenu.OpenMenu();
         
         public void OnCreditsButtonClicked() => credits.OpenMenu();
+        
+        public void OnControlsButtonClicked() => controls.OpenMenu();
 
         public void OnQuitButtonClicked()
         {
