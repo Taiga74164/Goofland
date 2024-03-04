@@ -23,6 +23,8 @@ namespace Weapons
         public List<PieSkin> pieSkins = new List<PieSkin>();
         public Vector2 direction = new Vector2(1.0f, 3.0f);
         public Vector2 throwForce = new Vector2(5.0f, 5.0f);
+        [Tooltip("how long before the pie destroys itself")]
+        public float destructionTime = 2f;
 
         [Header("Audio Settings")]
         public GameEvent onImpact;
@@ -36,6 +38,7 @@ namespace Weapons
         private const float SpawnOffSet = 0.1f;
         private Rigidbody2D _rigidbody2D;
         private SpriteRenderer _spriteRenderer;
+        private float timer = 0;
         
         private void Awake()
         {
@@ -77,6 +80,12 @@ namespace Weapons
             var shouldFlip = moveDirection.x < 0;
             _spriteRenderer.flipY = shouldFlip;
             transform.Rotate(0, 0, shouldFlip ? 90 : -90);
+
+            timer += Time.deltaTime;
+            if (timer >= destructionTime)
+                Die();
+            if (!_spriteRenderer.isVisible)
+                Die();
         }
         
         private void LateUpdate()
