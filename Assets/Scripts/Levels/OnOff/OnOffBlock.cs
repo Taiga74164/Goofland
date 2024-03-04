@@ -29,16 +29,15 @@ namespace Levels
                 if (onType == blockType)
                 {
                     // Include the player layer.
-                    _boxCollider.excludeLayers &= ~(1 << LayerMask.NameToLayer("Player"));
-                    
-                    //this will be changed once we have assets for blocks being on and off
+                    _boxCollider.enabled = true;
+
                     _sprite.sprite = _onSprite;
                 }
                 else
                 {
                     // Exclude the player layer.
-                    _boxCollider.excludeLayers |= 1 << LayerMask.NameToLayer("Player");
-                    //this will be changed once we have assets for blocks being on and off
+                    _boxCollider.enabled = false;
+
                     _sprite.sprite = _offSprite;
                 }
             }

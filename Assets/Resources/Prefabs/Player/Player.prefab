@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   throwForce: 15
-  pieCooldownDuration: 1
+  pieCooldownDuration: 0.5
   indicatorPrefab: {fileID: 6687257862037589725, guid: 8cbb80d18a0681d44b224676374588fa, type: 3}
   blockSize: 1
   indicatorCurve:
