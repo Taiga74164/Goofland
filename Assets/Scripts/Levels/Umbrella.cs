@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class Umbrella : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!collision.IsPlayer()) return;
+        if (!other.GetComponent<PlayerController>()) return;
         
-        collision.GetComponent<PlayerController>().hasUmbrella = true;
+        other.GetComponent<PlayerController>().hasUmbrella = true;
         Destroy(gameObject);
     }
 }
