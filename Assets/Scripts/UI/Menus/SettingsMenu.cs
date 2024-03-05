@@ -16,6 +16,7 @@ namespace UI.Menus
 
         protected override void Awake()
         {
+           
             bgmVolumeBar.onValueChanged.AddListener(OnBGMVolumeBarValueChanged);
             sfxVolumeBar.onValueChanged.AddListener(OnSFXVolumeBarValueChanged);
             masterVolumeBar.onValueChanged.AddListener(OnMasterVolumeBarValueChanged);

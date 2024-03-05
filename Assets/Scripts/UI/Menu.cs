@@ -12,7 +12,7 @@ namespace UI
     public abstract class Menu<T> : Singleton<T> where T : Menu<T>
     {
         public void Open() => gameObject.SetActive(true);
-
+        
         public void Close() => gameObject.SetActive(false);
     }
 

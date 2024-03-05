@@ -2,6 +2,9 @@
 {
     public class Controls : Menu
     {
-        
+        protected override void Awake()
+        {
+
+        }
     }
 }
