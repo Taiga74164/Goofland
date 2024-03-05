@@ -18,9 +18,16 @@ namespace UI
             HandleInput();
         }
 
-        protected virtual void OnEnable() => EventSystem.current.SetSelectedGameObject(firstSelected);
-        
-        protected virtual void OnDisable() => EventSystem.current.SetSelectedGameObject(null);
+        protected virtual void OnEnable()
+        {
+            EventSystem.current.SetSelectedGameObject(firstSelected);
+        }
+
+        protected virtual void OnDisable()
+        {
+            if (EventSystem.current != null)
+                EventSystem.current.SetSelectedGameObject(null);
+        }
 
         /// <summary>
         /// Checks if the menu is open.

@@ -1,10 +1,10 @@
 using UnityEngine;
+using Utils;
 
 namespace UI.Menus
 {
     public class MainMenu : MonoBehaviour
     {
-        public string levelName = "Main";
         [SerializeField] private LevelSelectMenu levelSelectMenu;
         [SerializeField] private SettingsMenu settingsMenu;
         [SerializeField] private Credits credits;
@@ -14,7 +14,7 @@ namespace UI.Menus
         [DllImport("__Internal")]
         private static extern void CloseTab();
         #endif
-        
+
         public void OnPlayButtonClick() => levelSelectMenu.OpenMenu();
         
         public void OnSettingsButtonClicked() => settingsMenu.OpenMenu();

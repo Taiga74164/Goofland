@@ -12,9 +12,14 @@ namespace Managers
         [Header("Transition Settings")]
         [SerializeField] [CanBeNull] private GameObject transitionPrefab;
         [SerializeField] [CanBeNull] private Material transitionMaterial;
+        [SerializeField] [CanBeNull] private GameObject fadeOverlayPrefab;
         [SerializeField] private float transitionDuration = 1.0f;
         
         private Image _transitionImage;
+        private Image _fadeOverlay;
+        private GraphicRaycaster _graphicRaycaster;
+        private static readonly int MaskTex = Shader.PropertyToID("_MaskTex");
+        private static readonly int DissolveAmount = Shader.PropertyToID("_DissolveAmount");
         
         /// <summary>
         /// Special singleton initializer method.
@@ -46,8 +51,8 @@ namespace Managers
             scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
             scaler.referenceResolution = new Vector2(1920, 1080);
             
-            // Add GraphicRaycaster for UI raycasting.
-            canvasObj.AddComponent<GraphicRaycaster>();
+            // Add GraphicRaycaster for UI input.
+            _graphicRaycaster = canvasObj.AddComponent<GraphicRaycaster>();
             
             // Create an Image if transitionPrefab is not set.
             if (transitionPrefab == null)
@@ -71,29 +76,61 @@ namespace Managers
                 _transitionImage.material = transitionMaterial;
                 _transitionImage.enabled = false;
             }
+            
+            // Create the fade overlay Image
+            if (fadeOverlayPrefab == null)
+            {
+                var fadeObj = new GameObject("FadeOverlay");
+                fadeObj.transform.SetParent(canvas.transform, false);
+                fadeObj.transform.localPosition = Vector3.zero;
+                fadeObj.transform.localScale = Vector3.one;
+                    
+                _fadeOverlay = fadeObj.AddComponent<Image>();
+                _fadeOverlay.color = Color.black;
+                _fadeOverlay.enabled = false;
+            }
+            else
+            {
+                var fadeObj = Instantiate(fadeOverlayPrefab, canvas.transform);
+                fadeObj.name = "FadeOverlay";
+                _fadeOverlay = fadeObj.GetComponent<Image>();
+                _fadeOverlay.enabled = false;
+            }
         }
         
         public void LoadScene(string sceneName, TransitionType transitionType = TransitionType.None) 
             => StartCoroutine(TransitionToScene(sceneName, transitionType));
         
         public void LoadScene(string sceneName, TransitionType transitionType, Sprite transitionSprite, 
-            bool fullScreen = true, Vector2 size = default)
+            bool fullScreen = true, Vector2 size = default, Texture2D mask = null)
         {
-            // Set the transition Image to full screen.
             if (fullScreen)
             {
+                // Set the transition Image to full screen.
                 _transitionImage.rectTransform.anchorMin = Vector2.zero;
                 _transitionImage.rectTransform.anchorMax = Vector2.one;
                 _transitionImage.rectTransform.sizeDelta = Vector2.zero;
+                // Set the fade overlay to full screen.
+                _fadeOverlay.rectTransform.anchorMin = Vector2.zero;
+                _fadeOverlay.rectTransform.anchorMax = Vector2.one;
+                _fadeOverlay.rectTransform.sizeDelta = Vector2.zero;
             }
             else
             {
+                // Set the transition Image to the specified size.
                 _transitionImage.rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
                 _transitionImage.rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
                 _transitionImage.rectTransform.sizeDelta = size == default ? new Vector2(1920, 1080) : size;
                 _transitionImage.rectTransform.anchoredPosition = Vector2.zero;
+                // Set the fade overlay to the specified size.
+                _fadeOverlay.rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
+                _fadeOverlay.rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
+                _fadeOverlay.rectTransform.sizeDelta = size == default ? new Vector2(1920, 1080) : size;
+                _fadeOverlay.rectTransform.anchoredPosition = Vector2.zero;
             }
-            
+
+            _transitionImage.material.SetTexture(MaskTex, mask != null ? mask : null);
+
             _transitionImage.sprite = transitionSprite;
             StartCoroutine(TransitionToScene(sceneName, transitionType));
         }
@@ -102,10 +139,16 @@ namespace Managers
         {
             // Start Transition.
             yield return StartCoroutine(PerformTransition(transitionType, true));
+            // Enable Graphic Raycaster to block input.
+            _graphicRaycaster.enabled = true;
+            
             // Load Scene.
             LevelUtil.LoadLevel(sceneName);
+            
             // End Transition.
             yield return StartCoroutine(PerformTransition(transitionType, false));
+            // Disable Graphic Raycaster to allow input.
+            _graphicRaycaster.enabled = false;
         }
         
         private IEnumerator PerformTransition(TransitionType transitionType, bool isEntering)
@@ -127,10 +170,13 @@ namespace Managers
                     yield return StartCoroutine(VerticalSlideTransition(isEntering));
                     break;
                 case TransitionType.Zoom:
-                    yield return StartCoroutine(ZoomTransition(!isEntering));
+                    yield return StartCoroutine(ZoomTransition(isEntering));
                     break;
                 case TransitionType.Dissolve:
                     yield return StartCoroutine(DissolveTransition(isEntering));
+                    break;
+                case TransitionType.ZoomAndFade:
+                    yield return StartCoroutine(ZoomAndFadeTransition(isEntering));
                     break;
             }
             
@@ -147,18 +193,26 @@ namespace Managers
             var end = isEntering ? 0.0f : 1.0f;
             var t = 0.0f;
             
+            _transitionImage.enabled = true;
+            
             while (t <= transitionDuration)
             {
                 t += Time.deltaTime;
                 
-                // Set Alpha.
-                material.SetFloat("_Cutoff", Mathf.Lerp(start, end, t));
-                // Set Color.
-                material.SetColor("_FadeColor",
-                    Color.Lerp(fadeColor == default ? Color.white : fadeColor, Color.clear, t));
+                // // Set Alpha.
+                // material.SetFloat("_Cutoff", Mathf.Lerp(start, end, t));
+                // // Set Color.
+                // material.SetColor("_FadeColor",
+                //     Color.Lerp(fadeColor == default ? Color.white : fadeColor, Color.clear, t));
+                
+                var alpha = Mathf.Lerp(start, end, t);
+                _transitionImage.color = new Color(0, 0, 0, alpha);
                 
                 yield return null;
             }
+            
+            // Reset Alpha.
+            _transitionImage.color = new Color(0, 0, 0, end);
         }
         
         private IEnumerator HorizontalSlideTransition(bool isEntering)
@@ -198,11 +252,11 @@ namespace Managers
         
         private IEnumerator ZoomTransition(bool isEntering)
         {
-            var start = isEntering ? 1.0f : 0.0f;
-            var end = isEntering ? 0.0f : 1.0f;
+            var startScale = isEntering ? Vector3.zero : Vector3.one;
+            var endScale = isEntering ? Vector3.one : Vector3.zero;
             var t = 0.0f;
-            var startScale = Vector3.one * start;
-            var endScale = Vector3.one * end;
+            
+            _transitionImage.enabled = true;
             
             while (t <= transitionDuration)
             {
@@ -212,6 +266,9 @@ namespace Managers
                 _transitionImage.rectTransform.localScale = Vector3.Lerp(startScale, endScale, t);
                 yield return null;
             }
+            
+            // Reset Scale.
+            _transitionImage.rectTransform.localScale = endScale;
         }
         
         private IEnumerator DissolveTransition(bool isEntering)
@@ -228,13 +285,43 @@ namespace Managers
                 // Set Alpha.
                 // transitionImage.material.SetFloat("_Cutoff", Mathf.Lerp(start, end, t));
                 // Set Dissolve Amount.
-                material.SetFloat("_DissolveAmount", Mathf.Lerp(start, end, t));
+                material.SetFloat(DissolveAmount, Mathf.Lerp(start, end, t));
                 
                 yield return null;
             }
             
             // Reset Dissolve Amount.
-            material.SetFloat("_DissolveAmount", end);
+            material.SetFloat(DissolveAmount, end);
+        }
+        
+        private IEnumerator ZoomAndFadeTransition(bool isEntering)
+        {
+            // Zoom Transition.
+            var startScale = isEntering ? Vector3.zero : Vector3.one;
+            var endScale = isEntering ? Vector3.one : Vector3.zero;
+            // Fade Transition.
+            var startColor = isEntering ? new Color(0, 0, 0, 0) : new Color(0, 0, 0, 1);
+            var endColor = isEntering ? new Color(0, 0, 0, 1) : new Color(0, 0, 0, 0);
+            
+            var t = 0.0f;
+            _transitionImage.enabled = true;
+            _fadeOverlay.enabled = true;
+            
+            while (t <= transitionDuration)
+            {
+                t += Time.deltaTime;
+                
+                // Set Scale.
+                _transitionImage.rectTransform.localScale = Vector3.Lerp(startScale, endScale, t);
+                // Set Fade Color.
+                _fadeOverlay.color = Color.Lerp(startColor, endColor, t);
+                
+                yield return null;
+            }
+            
+            // Reset Scale and Fade Color.
+            _transitionImage.rectTransform.localScale = endScale;
+            _fadeOverlay.color = endColor;
         }
         
         public enum TransitionType
@@ -245,6 +332,7 @@ namespace Managers
             VerticalSlide,
             Zoom,
             Dissolve,
+            ZoomAndFade,
         }
     }
 }
