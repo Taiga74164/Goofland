@@ -150,6 +150,10 @@ PrefabInstance:
       value: Piano
       objectReference: {fileID: 0}
     - target: {fileID: 6960229510693548168, guid: bbea7e6dc3b849b4b88d7f99760d891b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6960229510693548168, guid: bbea7e6dc3b849b4b88d7f99760d891b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
