@@ -17,6 +17,7 @@ namespace Managers
         
         private Image _transitionImage;
         private Image _fadeOverlay;
+        private GraphicRaycaster _graphicRaycaster;
         private static readonly int MaskTex = Shader.PropertyToID("_MaskTex");
         private static readonly int DissolveAmount = Shader.PropertyToID("_DissolveAmount");
         
@@ -50,8 +51,8 @@ namespace Managers
             scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
             scaler.referenceResolution = new Vector2(1920, 1080);
             
-            // Add GraphicRaycaster for UI raycasting.
-            canvasObj.AddComponent<GraphicRaycaster>();
+            // Add GraphicRaycaster for UI input.
+            _graphicRaycaster = canvasObj.AddComponent<GraphicRaycaster>();
             
             // Create an Image if transitionPrefab is not set.
             if (transitionPrefab == null)
@@ -138,10 +139,16 @@ namespace Managers
         {
             // Start Transition.
             yield return StartCoroutine(PerformTransition(transitionType, true));
+            // Enable Graphic Raycaster to block input.
+            _graphicRaycaster.enabled = true;
+            
             // Load Scene.
             LevelUtil.LoadLevel(sceneName);
+            
             // End Transition.
             yield return StartCoroutine(PerformTransition(transitionType, false));
+            // Disable Graphic Raycaster to allow input.
+            _graphicRaycaster.enabled = false;
         }
         
         private IEnumerator PerformTransition(TransitionType transitionType, bool isEntering)

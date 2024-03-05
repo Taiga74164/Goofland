@@ -30,8 +30,6 @@ namespace UI.Menus
         
         public void OnEnterLevel()
         {
-            var button = EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
-            
             Sprite transitionSprite = null;
             if (sceneSprites.TryGetValue(_levelName, out var sprite))
                 transitionSprite = sprite;

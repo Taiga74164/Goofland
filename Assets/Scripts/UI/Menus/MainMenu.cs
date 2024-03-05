@@ -1,4 +1,5 @@
 using UnityEngine;
+using Utils;
 
 namespace UI.Menus
 {
@@ -13,7 +14,7 @@ namespace UI.Menus
         [DllImport("__Internal")]
         private static extern void CloseTab();
         #endif
-        
+
         public void OnPlayButtonClick() => levelSelectMenu.OpenMenu();
         
         public void OnSettingsButtonClicked() => settingsMenu.OpenMenu();
