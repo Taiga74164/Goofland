@@ -15,28 +15,86 @@ namespace Enemies
         [Tooltip("The area of effect of the fart cloud.")]
         [SerializeField] private float areaOfEffect = 1.0f;
 
-        private float _exhaleTimer;
+        [Header("FartyCloud Audio Settings")]
+        [SerializeField] private AudioData inhaleAudioData;
+        [SerializeField] private AudioData exhaleAudioData;
         
+        private float _exhaleCooldown;
+        private bool _isExhaling;
+        private bool _canInhale = true;
+
+        protected override void Start()
+        {
+            base.Start();
+            
+            // Set the exhale timer.
+            _exhaleCooldown = exhaleDelay;
+        }
+
         protected override void Update()
         {
-            if (GameManager.IsPaused) return;
+            base.Update();
+
+            if (PlayerInLineOfSight())
+            {
+                // Turn the enemy if the player is in line of sight.
+                Turn();
             
-            // Turn the enemy if the player is in line of sight.
-            if (!PlayerInLineOfSight()) return;
-            Turn();
-            
-            // Handle the exhale of fart clouds.
-            HandleFartCloud();
+                // Handle the exhale of fart clouds.
+                HandleFartCloud();
+            }
+            else
+            {
+                _isExhaling = false;
+                _canInhale = true;
+            }
         }
         
         private void HandleFartCloud()
         {
             if (entityType is not EntityType.Enemy) return;
             
-            if (Time.time >= _exhaleTimer)
+            // TODO: Fix SFX audio bug.
+            
+            // Decrement the exhale timer.
+            _exhaleCooldown -= Time.deltaTime;
+            
+            if (_exhaleCooldown <= 0 && !_isExhaling)
             {
+                _isExhaling = true;
+                _canInhale = false;
+                
+                // Play the exhale audio.
+                if (audioSource.isPlaying)
+                    audioSource.Stop();
+                audioSource.PlayOneShot(exhaleAudioData.clip);
+                
+                // Exhale a fart cloud.
                 ExhaleFartCloud();
-                _exhaleTimer = Time.time + exhaleDelay + exhaleDuration;
+                
+                // Set the next exhale time.
+                _exhaleCooldown = exhaleDelay + exhaleDuration;
+            }
+            else if (_isExhaling)
+            {
+                _canInhale = false;
+            }
+            else
+            {
+                if (_canInhale)
+                {
+                    // Play the inhale audio once after exhaling is done.
+                    if (audioSource.isPlaying)
+                        audioSource.Stop();
+                    audioSource.PlayOneShot(inhaleAudioData.clip);
+                    _canInhale = false;
+                }
+            }
+            
+            if (_exhaleCooldown <= exhaleDelay)
+            {
+                _isExhaling = false;
+                _canInhale = true;
             }
         }
         

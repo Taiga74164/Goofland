@@ -22,6 +22,9 @@ namespace Enemies
         [SerializeField] private Transform stackContainer;
         [Tooltip("The number of stacks the DurumaDiver has.")]
         [SerializeField] private int stacks = 2; 
+        
+        [Header("DurumaDiver Audio Settings")]
+        [SerializeField] private AudioData attackAudioData;
 
         private float _attackCooldown;
         private Transform _mainGroundDetection;
@@ -43,7 +46,7 @@ namespace Enemies
 
         protected override void Update()
         {
-            if (GameManager.IsPaused) return;
+            base.Update();
             
             // Update the number of stacks.
             stacks = stackContainer.childCount;
@@ -55,9 +58,14 @@ namespace Enemies
         protected override void OnCollisionEnter2D(Collision2D other)
         {
             if (other.IsPlayer() && entityType == EntityType.Enemy)
+            {
                 other.gameObject.GetComponent<PlayerController>().TakeDamage(enemy: this);
+                audioSource.PlayOneShot(attackAudioData.clip);
+            }
             else if (other.gameObject.GetComponent<Pie>())
+            {
                 ShedStack();
+            }
         }
 
         private void LateUpdate()

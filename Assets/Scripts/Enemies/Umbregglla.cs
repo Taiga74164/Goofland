@@ -11,7 +11,7 @@ namespace Enemies
         
         protected override void Update()
         {
-            if (GameManager.IsPaused) return;
+            base.Update();
             
             // Turn towards the player.
             Turn();

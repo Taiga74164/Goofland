@@ -11,24 +11,12 @@ namespace Enemies
         [Tooltip("The delay between attacks.")]
         [SerializeField] private float attackInterval = 3.0f;
         [SerializeField] private GameObject noteSpawnPoint;
-    
-        [Header("Audio Settings")]
-        [SerializeField] private AudioData audioData;
-        [SerializeField] private AudioData deathAudioData;
-        [SerializeField] private float maxProximityDistance = 10.0f;
         
         private float _attackCooldown;
-        private AudioSource _audioSource;
-
+        
         protected override void Start()
         {
             base.Start();
-            
-            // Get the audio source component and configure it.
-            _audioSource = GetComponent<AudioSource>();
-            _audioSource.Configure(audioData);
-            _audioSource.Play();
-            _audioSource.volume = 0.0f;
             
             // Set the next attack time.
             _attackCooldown = attackInterval;
@@ -36,9 +24,8 @@ namespace Enemies
 
         protected override void Update()
         {
-            if (GameManager.IsPaused) return;
-
-            HandleProximity();
+            base.Update();
+            
             HandleAttack();
         }
         
@@ -84,21 +71,6 @@ namespace Enemies
             // Set the direction and model rotation.
             direction = playerIsRight ? Vector2.right : Vector2.left;
             model!.transform.eulerAngles = playerIsRight ? Vector3.zero : new Vector3(0, 180, 0);
-        }
-        
-        private void HandleProximity()
-        {
-            var playerTransform = GameManager.Instance.playerController.transform;
-            var distance = Vector3.Distance(transform.position, playerTransform.position);
-            var volume = Mathf.Clamp01(1 - distance / maxProximityDistance);
-            _audioSource.volume = volume;
-        }
-    
-        protected internal override void OnHit()
-        {
-            _audioSource.Configure(deathAudioData);
-            _audioSource.Play();
-            base.OnHit();
         }
     }
 }
