@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Controllers;
 using Managers;
 using UnityEngine;
 
@@ -72,7 +73,7 @@ namespace Levels
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (!other.IsPlayer() && other.gameObject.GetComponent<Weapons.Piano>() == null) return;
+            if (!other.gameObject.GetComponent<PlayerController>() && !other.gameObject.GetComponent<Weapons.Piano>()) return;
             
             var playerRb = other.gameObject.GetComponent<Rigidbody2D>();
                 
@@ -88,7 +89,7 @@ namespace Levels
 
         private void OnCollisionExit2D(Collision2D other)
         {
-            if (!other.IsPlayer()) return;
+            if (!other.gameObject.GetComponent<PlayerController>()) return;
             
             var playerRb = other.gameObject.GetComponent<Rigidbody2D>();
             RemovePlayerFromPlatform(playerRb);

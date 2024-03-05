@@ -36,7 +36,7 @@ namespace Enemies.Components
         
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (!other.IsPlayer()) return;
+            if (!other.gameObject.GetComponent<PlayerController>()) return;
             
             other.gameObject.GetComponent<PlayerController>().TakeDamage(enemy: this);
             Destroy(gameObject);
