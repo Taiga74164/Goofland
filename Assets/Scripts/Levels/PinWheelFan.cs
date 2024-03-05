@@ -12,14 +12,14 @@ namespace Levels
         [Tooltip("Only used if fan is vertical.")]
         [SerializeField] private float upwardsForce = 5.0f;
 
+        [SerializeField] private bool isSideways;
+        
         private Vector2 _force; // Force that will be added to the player.
         private PlayerController _player;
 
         private void Awake()
         {
-
-            maxDistance = GetComponent<BoxCollider2D>().bounds.max.y;// Mathf.Max(, GetComponent<BoxCollider2D>().bounds.max.x);
-            Debug.LogFormat("Max distance is {0}", maxDistance);
+            maxDistance = isSideways ? GetComponent<BoxCollider2D>().bounds.max.x : GetComponent<BoxCollider2D>().bounds.max.y;
             CalculateForce(windForce);
         }
 
@@ -32,9 +32,8 @@ namespace Levels
             {
 
                 float distance = Mathf.Min((_player.transform.position - transform.position).magnitude, maxDistance);
-                Debug.LogFormat("Distance is initially {0}", distance);
                 distance = 1.0f - distance / maxDistance;
-                Debug.LogFormat("Distance is {0}", distance);
+                
                 CalculateForce(windForce, distance);
                 _player!.rb.AddForce(_force);
             }
@@ -48,8 +47,16 @@ namespace Levels
         private void CalculateForce(float windValue, float distance = 1.0f)
         {
             _force = (transform.right * windValue) * distance;
-            if (_force.x != 0)
-                _force += new Vector2(0, upwardsForce) * distance;
+            if (isSideways)
+            {
+                var smoothDistance = Mathf.SmoothStep(0, 1, distance);
+                _force = transform.right * windValue * smoothDistance;
+            }
+            else
+            {
+                // The fan is vertical, apply the upwards force.
+                _force += Vector2.up * upwardsForce * distance;
+            }
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
