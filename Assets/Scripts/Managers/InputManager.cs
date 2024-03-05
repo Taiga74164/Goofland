@@ -30,7 +30,7 @@ namespace Managers
 
         private void OnEnable() => _actions.Enable();
 
-        private void OnDisable() => _actions.Disable();
+        private void OnDisable() => _actions?.Disable();
         
         /// <summary>
         /// Special singleton initializer method.
