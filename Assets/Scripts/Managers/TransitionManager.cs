@@ -97,9 +97,9 @@ namespace Managers
                 _fadeOverlay.enabled = false;
             }
         }
-        
-        public void LoadScene(string sceneName, TransitionType transitionType = TransitionType.None) 
-            => StartCoroutine(TransitionToScene(sceneName, transitionType));
+
+        public void LoadScene(string sceneName, TransitionType transitionType = TransitionType.None) =>
+            StartCoroutine(TransitionToScene(sceneName, transitionType));
         
         public void LoadScene(string sceneName, TransitionType transitionType, Sprite transitionSprite, 
             bool fullScreen = true, Vector2 size = default, Texture2D mask = null)

@@ -15,7 +15,7 @@ namespace Managers
             set
             {
                 Instance._isPaused = value;
-                Time.timeScale = value ? 0.0f : 1.0f;
+                // Time.timeScale = value ? 0.0f : 1.0f;
                 // Instance.HandleRigidbodies(value);
             }
         }
