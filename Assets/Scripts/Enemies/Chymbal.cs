@@ -17,7 +17,7 @@ namespace Enemies
         [SerializeField] private AudioData deathAudioData;
         [SerializeField] private float maxProximityDistance = 10.0f;
         
-        private float _nextAttackTime;
+        private float _attackCooldown;
         private AudioSource _audioSource;
 
         protected override void Start()
@@ -29,6 +29,9 @@ namespace Enemies
             _audioSource.Configure(audioData);
             _audioSource.Play();
             _audioSource.volume = 0.0f;
+            
+            // Set the next attack time.
+            _attackCooldown = attackInterval;
         }
 
         protected override void Update()
@@ -43,14 +46,17 @@ namespace Enemies
         {
             if (entityType is not EntityType.Enemy) return;
             
-            if (Time.time >= _nextAttackTime && PlayerInLineOfSight())
+            // Decrement the next attack time.
+            _attackCooldown -= Time.deltaTime;
+            
+            if (_attackCooldown <= 0 && PlayerInLineOfSight())
             {
                 // Turn towards the player and attack.
                 Turn();
                 Attack();
                 
                 // Set the next attack time.
-                _nextAttackTime = Time.time + attackInterval;
+                _attackCooldown = attackInterval;
             }
         }
 

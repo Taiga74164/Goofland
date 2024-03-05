@@ -23,7 +23,7 @@ namespace Enemies
         [Tooltip("The number of stacks the DurumaDiver has.")]
         [SerializeField] private int stacks = 2; 
 
-        private float _attackTimer;
+        private float _attackCooldown;
         private Transform _mainGroundDetection;
         private List<Transform> _stacks = new List<Transform>();
 
@@ -36,6 +36,9 @@ namespace Enemies
 
             // Generate the stacks.
             GenerateStack(stacks);
+            
+            // Set the next attack time.
+            _attackCooldown = attackDelay;
         }
 
         protected override void Update()
@@ -64,10 +67,17 @@ namespace Enemies
 
         private void HandleAttack()
         {
-            if (Time.time >= _attackTimer + attackDelay && PlayerInLineOfSight() && InAttackRange())
+            if (entityType is not EntityType.Enemy) return;
+            
+            // Decrement the next attack time.
+            _attackCooldown -= Time.deltaTime;
+            
+            if (_attackCooldown <= 0 && PlayerInLineOfSight() && InAttackRange())
             {
                 Attack();
-                _attackTimer = Time.time;
+                
+                // Set the next attack time.
+                _attackCooldown = attackDelay;
             }
         }
         

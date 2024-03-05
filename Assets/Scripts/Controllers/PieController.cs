@@ -27,7 +27,7 @@ namespace Controllers
         private Camera _mainCamera;
         private Vector2 _screenResolution;
         private Vector2 _aimInput;
-        private float _lastPieThrownTime = -1.0f;
+        private float _pieThrowCooldown;
         private List<GameObject> _indicators = new List<GameObject>();
 
         private void Awake()
@@ -41,6 +41,10 @@ namespace Controllers
         private void Update()
         {
             if (GameManager.IsPaused) return;
+            
+            // Update the pie throw cooldown.
+            if (_pieThrowCooldown > 0.0f)
+                _pieThrowCooldown -= Time.deltaTime;
             
             // Clear the trajectory if the pie is not ready.
             if(!IsPieReady())
@@ -152,7 +156,7 @@ namespace Controllers
             pie.ThrowPie();
             
             // Update the last time a pie was thrown.
-            _lastPieThrownTime = Time.time;
+            _pieThrowCooldown = pieCooldownDuration;
         }
 
         //gets the input of the player and returns the appropriate angle
@@ -181,6 +185,6 @@ namespace Controllers
 
         private void OnAim(InputValue value) => _aimInput =  value.Get<Vector2>();
         
-        private bool IsPieReady() => !GameManager.IsPaused && Time.time - _lastPieThrownTime >= pieCooldownDuration;
+        private bool IsPieReady() => !GameManager.IsPaused && _pieThrowCooldown <= 0.0f;
     }
 }
