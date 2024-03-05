@@ -1,5 +1,4 @@
 using Controllers;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Managers
