@@ -3232,13 +3232,17 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 696557562}
+    - target: {fileID: 8192056891355772940, guid: c31e9ef6aca169c44b05dbfd9ae60c12, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 50262eed6dce7154ea373070a0e92a37, type: 3}
     - target: {fileID: 8822511845890785637, guid: c31e9ef6aca169c44b05dbfd9ae60c12, type: 3}
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
     - target: {fileID: 9185594432423958578, guid: c31e9ef6aca169c44b05dbfd9ae60c12, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.298321
+      value: -8.29841
       objectReference: {fileID: 0}
     - target: {fileID: 9185594432423958578, guid: c31e9ef6aca169c44b05dbfd9ae60c12, type: 3}
       propertyPath: m_LocalPosition.y
