@@ -6,6 +6,7 @@ namespace UI.Menus
 {
     public class Victory : Menu
     {
+        [Header("Victory Menu")]
         [SerializeField] private SettingsMenu settingsMenu;
         
         protected override void OnEnable()

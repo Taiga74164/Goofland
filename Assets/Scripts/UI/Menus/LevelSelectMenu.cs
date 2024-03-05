@@ -1,7 +1,5 @@
 ﻿using Managers;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 namespace UI.Menus
 {

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Managers;
+using UnityEngine;
 
 namespace Controllers.StateMachines
 {
@@ -10,6 +11,8 @@ namespace Controllers.StateMachines
         
         public override void EnterState()
         {
+            if (GameManager.IsPaused) return;
+            
             input.IsJumping = true;
             
             player.CanParachute = true;
@@ -30,10 +33,7 @@ namespace Controllers.StateMachines
             
             if (!player.IsGrounded() && player.CoyoteTimeCounter <= 0.0f) return;
             
-            // Increase the jump force if the player is running.
             var jumpForce = player.playerSettings.jumpHeight;
-            if (input.IsRunning)
-                jumpForce *= player.playerSettings.jumpBoostMultiplier;
             
             player.rb.velocity = new Vector2(player.rb.velocity.x, jumpForce);
             player.ResetCoyoteTimeAndJumpBufferCounter();

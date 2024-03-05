@@ -1,4 +1,5 @@
 using Managers;
+using UnityEngine;
 using UnityEngine.UI;
 using Utils;
 
@@ -6,6 +7,7 @@ namespace UI.Menus
 {
     public class SettingsMenu : Menu
     {
+        [Header("Settings Menu")]
         public Slider bgmVolumeBar;
         public Slider sfxVolumeBar;
         public Slider masterVolumeBar;
