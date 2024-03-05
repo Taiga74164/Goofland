@@ -1,3 +1,5 @@
+using System;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Managers
@@ -29,5 +31,19 @@ namespace Managers
         private void OnEnable() => _actions.Enable();
 
         private void OnDisable() => _actions.Disable();
+        
+        /// <summary>
+        /// Special singleton initializer method.
+        /// </summary>
+        public new static void Initialize()
+        {
+            var prefab = Resources.Load<GameObject>("Prefabs/Managers/InputManager");
+            if (prefab == null) throw new Exception("Missing InputManager prefab!");
+
+            var instance = Instantiate(prefab);
+            if (instance == null) throw new Exception("Failed to instantiate InputManager prefab!");
+
+            instance.name = "Managers.InputManager (Singleton)";
+        }
     }
 }
