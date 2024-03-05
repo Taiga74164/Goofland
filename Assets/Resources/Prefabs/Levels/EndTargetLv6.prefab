@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 0.675, y: 2.2625, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3052335439743353653}
+  m_Father: {fileID: 5060074918709607412}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &2215622219972658680
 CircleCollider2D:
@@ -96,7 +96,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 656413008954967668}
   - {fileID: 1917507577168905782}
   - {fileID: 5060074918709607412}
   m_Father: {fileID: 0}
@@ -215,7 +214,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 656413008954967668}
   m_Father: {fileID: 3052335439743353653}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2351727385604212968
