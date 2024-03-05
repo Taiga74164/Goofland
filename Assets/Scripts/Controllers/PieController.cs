@@ -7,7 +7,6 @@ using Weapons;
 
 namespace Controllers
 {
-    [RequireComponent(typeof(PlayerInput))]
     public class PieController : MonoBehaviour
     {
         [Header("Pie Settings")]

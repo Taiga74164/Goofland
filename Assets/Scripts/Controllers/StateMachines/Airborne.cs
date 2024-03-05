@@ -6,7 +6,7 @@ namespace Controllers.StateMachines
     /// <summary>
     /// Hierarchical class for airborne player states.
     /// </summary>
-    public class Airborne : Grounded
+    public class Airborne : BaseState
     {
         protected Airborne(string name, PlayerController player) : base(name, player)
         {
@@ -19,7 +19,6 @@ namespace Controllers.StateMachines
             
             if (!input.IsAttacking)
                 ChangeSubState(null);
-           
         }
 
         public override void UpdateState()
@@ -53,7 +52,6 @@ namespace Controllers.StateMachines
                 if(playerVelocity.magnitude <= player.rb.velocity.magnitude)
                     player.rb.velocity = playerVelocity;
             }
-          
         }
         
         protected virtual void HandleClampFallSpeed()

@@ -1,4 +1,5 @@
 ﻿using Managers;
+using UnityEngine.InputSystem;
 
 namespace Controllers.StateMachines
 {
@@ -14,19 +15,10 @@ namespace Controllers.StateMachines
         {
         }
 
-        public override void EnterState()
-        {
-            base.EnterState();
-            
-            InputManager.Jump.started += _ => player.ChangeState(player.jumpingState);
-        }
-
         public override void HandleInput()
         {
             base.HandleInput();
-
-            // if (input.IsCrouching)
-            //     player.ChangeState(player.crouchingState);
+            
             
             if (input.IsFalling)
                 player.ChangeState(player.fallingState);

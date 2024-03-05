@@ -4,6 +4,7 @@ using Levels;
 using Managers;
 using Objects.Scriptable;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Utils;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
@@ -90,6 +91,9 @@ namespace Controllers
 
         private void Start()
         {
+            // Subscribe to the jump input event.
+            InputManager.Jump.started += JumpStarted;
+            
             // Set the player's health.
             CurrentHealth = playerSettings.maxHealth;
             InWind = false;
@@ -118,6 +122,10 @@ namespace Controllers
             
             Magnetize();
         }
+
+        private void OnDisable() => InputManager.Jump.started -= JumpStarted;
+        
+        private void JumpStarted(InputAction.CallbackContext context) => ChangeState(jumpingState);
 
         public void ChangeState(BaseState state)
         {
@@ -259,13 +267,5 @@ namespace Controllers
         public bool IsGrounded() => !GameManager.IsPaused && Physics2D.OverlapCircle(
             GameObject.FindWithTag("GroundCheck").transform.position, 
             playerSettings.groundCheckRadius, playerSettings.groundLayerMask);
-        
-#if UNITY_EDITOR
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(transform.position, playerSettings.magnetRadius);
-        }
-#endif
     }
 }
