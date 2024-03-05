@@ -14,14 +14,16 @@ namespace Levels
 
         private Vector2 _force; // Force that will be added to the player.
         private PlayerController _player;
-
+        public bool sideways;
         private void Awake()
         {
 
             maxDistance = GetComponent<BoxCollider2D>().bounds.max.y;// Mathf.Max(, GetComponent<BoxCollider2D>().bounds.max.x);
-            Debug.LogFormat("Max distance is {0}", maxDistance);
-            CalculateForce(windForce);
+            //Debug.LogFormat("Max distance is {0}", maxDistance);
+            
+            //CalculateForce(windForce);
         }
+
 
         /// <summary>
         /// Force will only be applied if player is parachuting
@@ -30,15 +32,14 @@ namespace Levels
         {
             if (_player && _player.GetCurrentState().GetType() == typeof(ParachutingState))
             {
-
                 float distance = Mathf.Min((_player.transform.position - transform.position).magnitude, maxDistance);
-                Debug.LogFormat("Distance is initially {0}", distance);
+                //Debug.LogFormat("Distance is initially {0}", distance);
                 distance = 1.0f - distance / maxDistance;
-                Debug.LogFormat("Distance is {0}", distance);
+                //Debug.LogFormat("Distance is {0}", distance);
                 CalculateForce(windForce, distance);
                 _player!.rb.AddForce(_force);
+         
             }
-
         }
 
         /// <summary>
@@ -48,20 +49,32 @@ namespace Levels
         private void CalculateForce(float windValue, float distance = 1.0f)
         {
             _force = (transform.right * windValue) * distance;
-            if (_force.x != 0)
+            if (sideways)
+            {
                 _force += new Vector2(0, upwardsForce) * distance;
+                _player.InWind = true;
+            }
+                
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.IsPlayer())
+            {
                 _player = collision.gameObject.GetComponent<PlayerController>();
+            }
+                
         }
 
         private void OnTriggerExit2D(Collider2D collision)
         {
             if (collision.IsPlayer())
+            {
+                if (_player != null)
+                    _player.InWind = false;
                 _player = null;
+            }
+                
         }
     }
 }

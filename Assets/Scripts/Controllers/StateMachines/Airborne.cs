@@ -33,22 +33,30 @@ namespace Controllers.StateMachines
         private void Move()
         {
             if (player.IsKnockback) return;
-            
+
             // Move the player while in the air.
-            if (!player.beenWarped)
+            if (player.GetCurrentState() == player.parachutingState && player.InWind)
+            {
+                var playerVelocity = new Vector2(player.rb.velocity.x +
+                input.MoveInput.x *
+                player.playerSettings.movementSpeed,
+                0);
+                if (playerVelocity.magnitude <= player.rb.velocity.magnitude)
+                    player.rb.velocity = playerVelocity;
+
+            }
+            else if (!player.beenWarped)
             {
                 player.rb.velocity = new Vector2(
                 input.MoveInput.x *
-                player.playerSettings.movementSpeed *
-                (input.IsRunning ? player.playerSettings.runSpeedMultiplier : 1.0f),
+                player.playerSettings.movementSpeed,
                 player.rb.velocity.y);
             }
             else
             {
                 var playerVelocity =  new Vector2(player.rb.velocity.x +
                 input.MoveInput.x *
-                player.playerSettings.movementSpeed *
-                (input.IsRunning ? player.playerSettings.runSpeedMultiplier : 1.0f),
+                player.playerSettings.movementSpeed,
                 player.rb.velocity.y);
                 if(playerVelocity.magnitude <= player.rb.velocity.magnitude)
                     player.rb.velocity = playerVelocity;
