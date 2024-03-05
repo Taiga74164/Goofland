@@ -228,7 +228,8 @@ namespace Controllers
             // Get the current currency.
             var currentCurrency = CurrencyManager.Instance.Currency;
             // Calculate the loss based on the enemy's damage percentage.
-            var currencyLoss = Mathf.RoundToInt(currentCurrency * (enemy.damagePercentage / 100.0f));
+            var rawLoss = currentCurrency * (enemy.damagePercentage / 100.0f);
+            var currencyLoss = rawLoss > 0 ? Mathf.CeilToInt(rawLoss) : 0;
             
             // Calculate the dice drops.
             var diceDrops = CurrencyManager.CalculateDiceDrops(currencyLoss);
@@ -243,6 +244,8 @@ namespace Controllers
             
             // Subtract the currency from the player.
             CurrencyManager.Instance.RemoveCurrency(currencyLoss);
+            
+            // Restart the level if the player has no currency.
             if (CurrencyManager.Instance.Currency <= 0)
                 LevelUtil.RestartLevel();
         }
