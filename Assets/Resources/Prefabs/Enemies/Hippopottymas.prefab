@@ -81,7 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79f3dbd3172d449c817c11bd40b9d1bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagePercentage: 5
+  damagePercentage: 10
   damage: 1
   entityType: 0
   model: {fileID: 4623182431783644711}
@@ -101,7 +101,7 @@ MonoBehaviour:
     m_Bits: 128
   currencyDrops:
   - coinValue: 20
-    quantity: 1
+    quantity: 6
   dropForce: 5
   dropOffset: 1
   pieWeakness: 1

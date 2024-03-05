@@ -97,7 +97,9 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
-  currencyDrops: []
+  currencyDrops:
+  - coinValue: 4
+    quantity: 5
   dropForce: 5
   dropOffset: 1
   pieWeakness: 0

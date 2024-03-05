@@ -59,6 +59,9 @@ namespace Enemies
             if (data is not GameObject obj) return;
             if (obj != gameObject) return;
             
+            // Update the damage percentage when disturbed.
+            damagePercentage = 20.0f;
+            
             // Destroy the current model and replace it with the disturbed model.
             Destroy(model);
             model = disturbedModel;
