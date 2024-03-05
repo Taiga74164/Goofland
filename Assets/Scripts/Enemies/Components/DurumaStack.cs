@@ -17,8 +17,6 @@ namespace Enemies.Components
             var colliderBottom = boxCollider.offset.y - (boxCollider.size.y / 2);
             groundDetection.localPosition = new Vector2(groundDetection.localPosition.x, colliderBottom);
         }
-        
-        protected override void Update() { }
 
         protected override void FixedUpdate() { }
 

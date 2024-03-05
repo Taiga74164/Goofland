@@ -17,7 +17,9 @@ namespace Enemies
         
         protected override void Update()
         {
-            if (GameManager.IsPaused || entityType is not EntityType.Enemy) return;
+            base.Update();
+            
+            if (entityType is not EntityType.Enemy) return;
 
             if (PlayerInLineOfSight() && !_isDisturbed)
             {

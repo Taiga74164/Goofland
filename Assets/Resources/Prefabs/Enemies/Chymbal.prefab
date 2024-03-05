@@ -77,11 +77,11 @@ MonoBehaviour:
   dropOffset: 1
   pieWeakness: 1
   pianoWeakness: 0
+  defaultAudioData: {fileID: 11400000, guid: 335485979f88d644487985da19ed2822, type: 2}
+  deathAudioData: {fileID: 0}
+  maxProximityDistance: 10
   attackInterval: 3
   noteSpawnPoint: {fileID: 7758298172796097947}
-  audioData: {fileID: 11400000, guid: 969c3bbac8ba2ea4981635e050b65a81, type: 2}
-  deathAudioData: {fileID: 11400000, guid: 7d5168932bc5d474ea12ffa12fb031ae, type: 2}
-  maxProximityDistance: 10
 --- !u!50 &957172202727210057
 Rigidbody2D:
   serializedVersion: 4
@@ -104,10 +104,10 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 22528
+    m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!61 &5729629414474103126
 BoxCollider2D:
@@ -198,7 +198,7 @@ AudioSource:
   m_GameObject: {fileID: 957172202727210052}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -5388765665678994932, guid: 6b885a192e05b3d4dac2c81155d11090, type: 2}
   m_audioClip: {fileID: 8300000, guid: 8abfd05c3efb69341926e76bc45dc8d7, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1

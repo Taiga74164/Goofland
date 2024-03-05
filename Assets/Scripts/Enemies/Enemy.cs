@@ -3,7 +3,9 @@ using System.Linq;
 using Controllers;
 using JetBrains.Annotations;
 using Managers;
+using Objects.Scriptable;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Weapons;
 
 namespace Enemies
@@ -31,15 +33,12 @@ namespace Enemies
         
         [Header("Detection Settings")]
         [Tooltip("The length at which the enemy will detect the layer.")]
-        [SerializeField]
-        protected float rayLength = 1.0f;
+        [SerializeField] protected float rayLength = 1.0f;
         [SerializeField] protected internal Transform groundDetection;
         [Tooltip("The ground layer.")]
-        [SerializeField]
-        protected LayerMask groundLayer;
+        [SerializeField] protected LayerMask groundLayer;
         [Tooltip("The layer at which the enemy will turn.")]
-        [SerializeField]
-        protected LayerMask turnLayer;
+        [SerializeField] protected LayerMask turnLayer;
         [SerializeField] private float lineOfSight = 10.0f;
         [SerializeField] private LayerMask playerLayer;
 
@@ -52,10 +51,16 @@ namespace Enemies
         [SerializeField] private bool pieWeakness;
         [SerializeField] private bool pianoWeakness;
         
+        [Header("Audio Settings")]
+        [SerializeField] [CanBeNull] private AudioData defaultAudioData;
+        [SerializeField] [CanBeNull] private AudioData deathAudioData;
+        [SerializeField] private float maxProximityDistance = 10.0f;
+        
         protected Vector2 direction = Vector2.right;
         protected Rigidbody2D rb;
         protected Transform playerTransform;
-    
+        protected AudioSource audioSource;
+        
         protected virtual void Awake()
         {
             // Register the enemy with the entity manager.
@@ -72,9 +77,21 @@ namespace Enemies
         {
             // Get the player's transform.
             playerTransform = GameManager.Instance.playerController.transform;
+            
+            // Get the audio source component and configure it.
+            audioSource = GetComponent<AudioSource>();
+            if (!defaultAudioData) return;
+            audioSource.Configure(defaultAudioData);
+            audioSource.Play();
+            audioSource.volume = 0.0f;
         }
 
-        protected virtual void Update() { }
+        protected virtual void Update()
+        {
+            if (GameManager.IsPaused) return;
+
+            HandleProximity();
+        }
 
         protected virtual void FixedUpdate()
         {
@@ -146,8 +163,7 @@ namespace Enemies
         {
             if (entityType is not EntityType.Enemy) return false;
             
-            // Get the player's position and direction.
-            var playerTransform = GameManager.Instance.playerController.transform;
+            // Get the enemy's position.
             var position = transform.position;
             var playerDirection  = playerTransform.position - position;
             // Cast a ray to check if the player is in the enemy's line of sight.
@@ -158,10 +174,25 @@ namespace Enemies
             
             return hit.collider != null && hit.collider.IsPlayer();
         }
-
+        
+        private void HandleProximity()
+        {
+            var distance = Vector3.Distance(transform.position, playerTransform.position);
+            var volume = Mathf.Clamp01(1 - distance / maxProximityDistance);
+            audioSource.volume = volume;
+        }
+        
         protected internal virtual void OnHit()
         {
             if (entityType is not EntityType.Enemy) return;
+            
+            // Play the death audio.
+            if (deathAudioData)
+            {
+                audioSource.Stop();
+                audioSource.Configure(deathAudioData);
+                audioSource.Play();
+            }
             
             // Drop dice when the enemy is hit.
             DropDice();

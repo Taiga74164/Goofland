@@ -17,7 +17,7 @@ namespace Enemies
 
         protected override void Update()
         {
-            if (GameManager.IsPaused) return;
+            base.Update();
             
             if (!_isGrounded)
                 CheckForGround();
