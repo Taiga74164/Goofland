@@ -1072,11 +1072,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 276558031284205468, guid: 171aebcbd7fc65047bc69fa2fce60a95, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.31
+      value: -0.99560004
       objectReference: {fileID: 0}
     - target: {fileID: 276558031284205468, guid: 171aebcbd7fc65047bc69fa2fce60a95, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.5166302
+      value: -1.0688056
       objectReference: {fileID: 0}
     - target: {fileID: 276558031284205468, guid: 171aebcbd7fc65047bc69fa2fce60a95, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1132,6 +1132,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 116458527189307318, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 116458527189307318, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
+      propertyPath: m_Size.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 116458527189307318, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
+      propertyPath: m_DrawMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1875345188150603466, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1875345188150603466, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
+      propertyPath: m_Size.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1875345188150603466, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
+      propertyPath: m_SpriteTilingProperty.drawMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1875345188150603466, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1875345188150603466, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7512072205002242726, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
       propertyPath: m_Name
       value: WoodPlatform (2)
@@ -1142,15 +1174,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8208995649855340657, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8208995649855340657, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 23.56
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 8208995649855340657, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.47
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 8208995649855340657, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1294,6 +1326,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5358123577991648503, guid: 30a4ec1df40fb4b409ca309f24fa75fa, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.16002584
+      objectReference: {fileID: 0}
+    - target: {fileID: 5827884664286688836, guid: 30a4ec1df40fb4b409ca309f24fa75fa, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.838151
+      objectReference: {fileID: 0}
     - target: {fileID: 8544622330260593907, guid: 30a4ec1df40fb4b409ca309f24fa75fa, type: 3}
       propertyPath: m_Name
       value: Hippopottymas (8)
@@ -1329,7 +1369,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9185594432423958578, guid: c31e9ef6aca169c44b05dbfd9ae60c12, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.796235
+      value: -9.796299
       objectReference: {fileID: 0}
     - target: {fileID: 9185594432423958578, guid: c31e9ef6aca169c44b05dbfd9ae60c12, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6296,21 +6336,53 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 116458527189307318, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
+      propertyPath: m_Size.x
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 116458527189307318, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
+      propertyPath: m_Size.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 116458527189307318, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
+      propertyPath: m_DrawMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1875345188150603466, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
+      propertyPath: m_Size.x
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1875345188150603466, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
+      propertyPath: m_Size.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1875345188150603466, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
+      propertyPath: m_SpriteTilingProperty.drawMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1875345188150603466, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1875345188150603466, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7512072205002242726, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
       propertyPath: m_Name
       value: WoodPlatform (3)
       objectReference: {fileID: 0}
     - target: {fileID: 8208995649855340657, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8208995649855340657, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
       propertyPath: m_LocalScale.y
-      value: 5.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8208995649855340657, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 84
+      value: 83.75
       objectReference: {fileID: 0}
     - target: {fileID: 8208995649855340657, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7910,17 +7982,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 116458527189307318, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
+      propertyPath: m_Size.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 116458527189307318, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
+      propertyPath: m_Size.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 116458527189307318, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
+      propertyPath: m_DrawMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1875345188150603466, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
+      propertyPath: m_Size.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1875345188150603466, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
+      propertyPath: m_Size.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1875345188150603466, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
+      propertyPath: m_SpriteTilingProperty.drawMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1875345188150603466, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1875345188150603466, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7512072205002242726, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
       propertyPath: m_Name
       value: WoodPlatform (1)
       objectReference: {fileID: 0}
     - target: {fileID: 8208995649855340657, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8208995649855340657, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8208995649855340657, guid: 92470013eb8efe447a9b8fb2ba5390b8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9074,7 +9178,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 978723002890033119, guid: 30a4ec1df40fb4b409ca309f24fa75fa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.30912948
+      value: -1.1781509
       objectReference: {fileID: 0}
     - target: {fileID: 978723002890033119, guid: 30a4ec1df40fb4b409ca309f24fa75fa, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9589,7 +9693,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 978723002890033119, guid: 30a4ec1df40fb4b409ca309f24fa75fa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.37126613
+      value: -1.1781509
       objectReference: {fileID: 0}
     - target: {fileID: 978723002890033119, guid: 30a4ec1df40fb4b409ca309f24fa75fa, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9998,6 +10102,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstSelected: {fileID: 1330039570}
   settingsMenu: {fileID: 886018168}
+  credits: {fileID: 0}
+  controls: {fileID: 0}
 --- !u!224 &1897446891
 RectTransform:
   m_ObjectHideFlags: 0

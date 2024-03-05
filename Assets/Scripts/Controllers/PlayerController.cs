@@ -235,6 +235,8 @@ namespace Controllers
             
             // Subtract the currency from the player.
             CurrencyManager.Instance.RemoveCurrency(currencyLoss);
+            if (CurrencyManager.Instance.Currency <= 0)
+                LevelUtil.RestartLevel();
         }
         
         private void ActivateInvincibility()
