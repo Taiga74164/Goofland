@@ -4,7 +4,6 @@ namespace UI.Menus
 {
     public class MainMenu : MonoBehaviour
     {
-        public string levelName = "Main";
         [SerializeField] private LevelSelectMenu levelSelectMenu;
         [SerializeField] private SettingsMenu settingsMenu;
         [SerializeField] private Credits credits;
