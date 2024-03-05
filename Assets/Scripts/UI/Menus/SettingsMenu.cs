@@ -14,9 +14,8 @@ namespace UI.Menus
         private float _sfxVolume;
         private float _masterVolume;
 
-        protected override void Awake()
+        private void Awake()
         {
-           
             bgmVolumeBar.onValueChanged.AddListener(OnBGMVolumeBarValueChanged);
             sfxVolumeBar.onValueChanged.AddListener(OnSFXVolumeBarValueChanged);
             masterVolumeBar.onValueChanged.AddListener(OnMasterVolumeBarValueChanged);

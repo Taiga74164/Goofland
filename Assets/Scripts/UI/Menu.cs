@@ -6,20 +6,9 @@ using UnityEngine.EventSystems;
 namespace UI
 {
     /// <summary>
-    /// Represents a generic Singleton Menu.
-    /// </summary>
-    /// <typeparam name="T">Type of the specific menu class.</typeparam>
-    public abstract class Menu<T> : Singleton<T> where T : Menu<T>
-    {
-        public void Open() => gameObject.SetActive(true);
-        
-        public void Close() => gameObject.SetActive(false);
-    }
-
-    /// <summary>
     /// Base class for all menus.
     /// </summary>
-    public abstract class Menu : Menu<Menu>
+    public abstract class Menu : MonoBehaviour
     {
         [Header("Menu Settings")]
         [CanBeNull] public GameObject firstSelected;
@@ -37,7 +26,11 @@ namespace UI
         /// Checks if the menu is open.
         /// </summary>
         public bool IsOpen => MenuManager.Instance.IsMenuOpen(this);
-    
+        
+        public void Open() => gameObject.SetActive(true);
+        
+        public void Close() => gameObject.SetActive(false);
+        
         /// <summary>
         /// Requests the MenuManager to open the menu.
         /// </summary>
