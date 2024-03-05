@@ -36,6 +36,7 @@ namespace Levels
                 
                 CalculateForce(windForce, distance);
                 _player!.rb.AddForce(_force);
+                _player.rb.velocity = new Vector2(_player.rb.velocity.x, 0);
             }
 
         }

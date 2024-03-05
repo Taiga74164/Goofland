@@ -70923,7 +70923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac1de09f65e6dca44b37596d32674f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  victory: {fileID: 0}
+  victory: {fileID: 680375622}
 --- !u!1001 &1600175760
 PrefabInstance:
   m_ObjectHideFlags: 0
