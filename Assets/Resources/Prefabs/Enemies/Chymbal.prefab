@@ -78,6 +78,7 @@ MonoBehaviour:
   pieWeakness: 1
   pianoWeakness: 0
   attackInterval: 3
+  noteSpawnPoint: {fileID: 7758298172796097947}
   audioData: {fileID: 11400000, guid: 969c3bbac8ba2ea4981635e050b65a81, type: 2}
   deathAudioData: {fileID: 11400000, guid: 7d5168932bc5d474ea12ffa12fb031ae, type: 2}
   maxProximityDistance: 10
@@ -198,7 +199,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 8abfd05c3efb69341926e76bc45dc8d7, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -442,6 +443,11 @@ PrefabInstance:
 --- !u!4 &7661212873622306913 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: 0fc79c89932aed946866f28900c535a9, type: 3}
+  m_PrefabInstance: {fileID: 9042610742938679743}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7758298172796097947 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1645728778077301796, guid: 0fc79c89932aed946866f28900c535a9, type: 3}
   m_PrefabInstance: {fileID: 9042610742938679743}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &8834375063699658754 stripped

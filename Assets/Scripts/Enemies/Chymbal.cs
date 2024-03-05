@@ -10,6 +10,7 @@ namespace Enemies
         [Header("Attack Settings")]
         [Tooltip("The delay between attacks.")]
         [SerializeField] private float attackInterval = 3.0f;
+        [SerializeField] private GameObject noteSpawnPoint;
     
         [Header("Audio Settings")]
         [SerializeField] private AudioData audioData;
@@ -57,6 +58,8 @@ namespace Enemies
         {
             // Create a music note projectile.
             var projectile = PrefabManager.Create<MusicNoteProjectile>(Prefabs.MusicNoteProjectile, transform);
+            // Set the projectile's position.
+            projectile.transform.position = noteSpawnPoint.transform.position;
             // Set the projectile's direction.
             projectile.direction = direction;
         }
