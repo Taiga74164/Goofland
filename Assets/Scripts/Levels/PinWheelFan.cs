@@ -18,8 +18,8 @@ namespace Levels
         private void Awake()
         {
 
-            maxDistance = GetComponent<BoxCollider2D>().bounds.max.y;// Mathf.Max(, GetComponent<BoxCollider2D>().bounds.max.x);
-            //Debug.LogFormat("Max distance is {0}", maxDistance);
+            maxDistance = sideways ? GetComponent<BoxCollider2D>().bounds.size.x : GetComponent<BoxCollider2D>().bounds.size.y;
+            Debug.Log($"Max distance is {maxDistance} from: {gameObject.transform.parent.name}");
             
             //CalculateForce(windForce);
         }
@@ -54,7 +54,6 @@ namespace Levels
                 _force += new Vector2(0, upwardsForce) * distance;
                 _player.InWind = true;
             }
-                
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
