@@ -58,7 +58,7 @@ namespace UI
         /// </summary>
         private void HandleInput()
         {
-            if (InputManager.Return.WasReleasedThisFrame())
+            if (InputManager.Return.WasReleasedThisFrame() || InputManager.Cancel.WasReleasedThisFrame())
                 CloseMenu();
         }
     }

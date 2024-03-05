@@ -15,7 +15,6 @@ namespace Managers
         public static InputAction Crouch => Instance._actions.Player.Crouch;
         public static InputAction Run => Instance._actions.Player.Run;
         public static InputAction Attack => Instance._actions.Player.Attack;
-        //public static InputAction Aim => Instance._actions.Player.Aim;
         public static InputAction AimUp => Instance._actions.Player.AimUp;
         public static InputAction AimDown => Instance._actions.Player.AimDown;
         public static InputAction AngleUp => Instance._actions.Player.AngleUp;
@@ -23,6 +22,7 @@ namespace Managers
 
         // User Interface actions.
         public static InputAction Return => Instance._actions.UI.Return;
+        public static InputAction Cancel => Instance._actions.UI.Cancel;
 
         protected override void OnAwake() => _actions = new InputActions();
 

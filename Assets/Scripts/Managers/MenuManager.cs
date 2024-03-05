@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UI;
+using UnityEngine.EventSystems;
 
 namespace Managers
 {
@@ -41,6 +42,9 @@ namespace Managers
             // Open the menu.
             menu.Open();
             
+            // Set the first selected object.
+            EventSystem.current.SetSelectedGameObject(menu.firstSelected);
+            
             // Add the menu to the stack.
             _menuStack.Push(menu);
         }
@@ -58,7 +62,11 @@ namespace Managers
             
             // Open the previous menu.
             if (_menuStack.Count > 0)
+            {
                 _menuStack.Peek().Open();
+                // Set the first selected object.
+                EventSystem.current.SetSelectedGameObject(_menuStack.Peek().firstSelected);
+            }
         }
     }
 }

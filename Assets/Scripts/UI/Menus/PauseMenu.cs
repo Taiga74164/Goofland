@@ -6,6 +6,7 @@ namespace UI.Menus
 {
     public class PauseMenu : Menu
     {
+        [Header("Pause Menu")]
         [SerializeField] private SettingsMenu settingsMenu;
         [SerializeField] private Credits credits;
         [SerializeField] private Controls controls;
