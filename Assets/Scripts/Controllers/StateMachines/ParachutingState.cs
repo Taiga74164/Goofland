@@ -12,7 +12,7 @@ namespace Controllers.StateMachines
         public override void EnterState()
         {
             // Set the falling animation.
-            player.animator.SetBool(Falling, true);
+            player.animator.SetBool("Gliding", true);
             player.CanParachute = false;
 
             // Prevents player velocity from exceeding the slowdown of the glide.
@@ -41,7 +41,7 @@ namespace Controllers.StateMachines
         public override void ExitState()
         {
             // Set the falling animation to false.
-            player.animator.SetBool(Falling, false);
+            player.animator.SetBool("Gliding", false);
         }
     }
 }
