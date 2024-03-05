@@ -51,6 +51,7 @@ namespace Controllers
             get => _canParachute;
             set => _canParachute = hasUmbrella && value;
         }
+        public bool InWind = false;
 
         #endregion
 
@@ -91,6 +92,7 @@ namespace Controllers
         {
             // Set the player's health.
             CurrentHealth = playerSettings.maxHealth;
+            InWind = false;
         }
 
         private void Update()
