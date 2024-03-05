@@ -18,6 +18,7 @@ namespace Managers
         {
             PrefabManager.Initialize();
             AudioManager.Initialize();
+            TransitionManager.Initialize();
         }
 
         private void Start()

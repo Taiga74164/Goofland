@@ -7,6 +7,8 @@ namespace UI.Menus
     public class PauseMenu : Menu
     {
         [SerializeField] private SettingsMenu settingsMenu;
+        [SerializeField] private Credits credits;
+        [SerializeField] private Controls controls;
 
         protected override void OnEnable()
         {
@@ -25,5 +27,9 @@ namespace UI.Menus
         public void OnPlayButtonClicked() => CloseMenu();
         
         public void OnSettingsButtonClicked() => settingsMenu.OpenMenu();
+        
+        public void OnCreditsButtonClicked() => credits.OpenMenu();
+        
+        public void OnControlsButtonClicked() => controls.OpenMenu();
     }
 }
