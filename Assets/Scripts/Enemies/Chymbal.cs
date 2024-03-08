@@ -26,6 +26,8 @@ namespace Enemies
         {
             base.Update();
             
+            if (GameManager.IsPaused) return;
+            
             HandleAttack();
         }
         

@@ -15,6 +15,7 @@ namespace Enemies.Components
         private Rigidbody2D _rb;
         private Vector2 _startPosition;
         private SpriteRenderer _spriteRenderer;
+        private Chymbal _chymbal;
         
         private void Start()
         {
@@ -33,6 +34,9 @@ namespace Enemies.Components
             // Set the sprite based on the direction.
             _spriteRenderer.sprite = direction.x < 0 ? leftSprite : rightSprite;
             
+            // Get the chymbal component.
+            _chymbal = GetComponentInParent<Chymbal>();
+            
             // Set the velocity of the projectile.
             _rb.velocity = direction * speed;
         }
@@ -42,6 +46,8 @@ namespace Enemies.Components
             // If the projectile has traveled the maximum distance, destroy it.
             if (Vector2.Distance(_startPosition, transform.position) >= maxDistance)
                 Destroy(gameObject);
+            
+            if (_chymbal.entityType is not EntityType.Enemy) Destroy(gameObject);
         }
         
         private void OnTriggerEnter2D(Collider2D other)

@@ -36,6 +36,8 @@ namespace Enemies
         {
             base.Update();
             
+            if (GameManager.IsPaused) return;
+            
             if (entityType is not EntityType.Enemy) return;
             
             // Check if the player is in the disturbed range and not already disturbed, raise the event.
