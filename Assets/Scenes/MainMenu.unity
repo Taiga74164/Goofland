@@ -4211,6 +4211,50 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 214841572}
     m_Modifications:
+    - target: {fileID: 7405184923647818882, guid: e83f6c79ca4d6464a849c1ceb76d951b, type: 3}
+      propertyPath: m_text
+      value: 'Project Manager: Jay W
+
+
+        Programmers: Joaquin S, Blake L
+
+
+        Game
+        Designers: Autumn M, Blake L
+
+
+        Artist: Jay W
+
+
+        User Interface:
+        Cansu G
+
+
+        Composer: Jay W
+
+
+        Quality Control: Tara D R
+
+
+        Special
+        thanks: Sean Lynch & Megan Theam'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7405184923647818882, guid: e83f6c79ca4d6464a849c1ceb76d951b, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 05b7205a458af7943ac09b081992099d, type: 2}
+    - target: {fileID: 7405184923647818882, guid: e83f6c79ca4d6464a849c1ceb76d951b, type: 3}
+      propertyPath: m_lineSpacing
+      value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7405184923647818882, guid: e83f6c79ca4d6464a849c1ceb76d951b, type: 3}
+      propertyPath: m_characterSpacing
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7405184923647818882, guid: e83f6c79ca4d6464a849c1ceb76d951b, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7772321321204505289, guid: e83f6c79ca4d6464a849c1ceb76d951b, type: 3}
       propertyPath: m_Name
       value: Credits
