@@ -134,9 +134,23 @@ namespace Managers
             _transitionImage.sprite = transitionSprite;
             StartCoroutine(TransitionToScene(sceneName, transitionType));
         }
-        
+
+        public void RespawnTransition()
+        {
+            
+            // Set the fade overlay to full screen.
+            _fadeOverlay.rectTransform.anchorMin = Vector2.zero;
+            _fadeOverlay.rectTransform.anchorMax = Vector2.one;
+            _fadeOverlay.rectTransform.sizeDelta = Vector2.zero;
+            
+            // Transition In.
+            StartCoroutine(StartRespawnTransition());
+        }
+
         private IEnumerator TransitionToScene(string sceneName, TransitionType transitionType)
         {
+            // Pause the game.
+            GameManager.IsPaused = true;
             // Start Transition.
             yield return StartCoroutine(PerformTransition(transitionType, true));
             // Enable Graphic Raycaster to block input.
@@ -149,6 +163,22 @@ namespace Managers
             yield return StartCoroutine(PerformTransition(transitionType, false));
             // Disable Graphic Raycaster to allow input.
             _graphicRaycaster.enabled = false;
+            // Unpause the game.
+            GameManager.IsPaused = false;
+        }
+        
+        private IEnumerator StartRespawnTransition()
+        {
+            // Pause the game.
+            GameManager.IsPaused = true;
+            // Enable Graphic Raycaster to block input.
+            _graphicRaycaster.enabled = true;
+            // Start Transition.
+            yield return StartCoroutine(FadeTransition(true));
+            // Disable Graphic Raycaster to allow input.
+            _graphicRaycaster.enabled = false;
+            // Unpause the game.
+            GameManager.IsPaused = false;
         }
         
         private IEnumerator PerformTransition(TransitionType transitionType, bool isEntering)
@@ -193,7 +223,7 @@ namespace Managers
             var end = isEntering ? 0.0f : 1.0f;
             var t = 0.0f;
             
-            _transitionImage.enabled = true;
+            _fadeOverlay.enabled = true;
             
             while (t <= transitionDuration)
             {
@@ -206,13 +236,13 @@ namespace Managers
                 //     Color.Lerp(fadeColor == default ? Color.white : fadeColor, Color.clear, t));
                 
                 var alpha = Mathf.Lerp(start, end, t);
-                _transitionImage.color = new Color(0, 0, 0, alpha);
+                _fadeOverlay.color = new Color(0, 0, 0, alpha);
                 
                 yield return null;
             }
             
             // Reset Alpha.
-            _transitionImage.color = new Color(0, 0, 0, end);
+            _fadeOverlay.color = new Color(0, 0, 0, end);
         }
         
         private IEnumerator HorizontalSlideTransition(bool isEntering)
