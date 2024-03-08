@@ -1,5 +1,7 @@
 ﻿using System.Collections;
+using Managers;
 using Objects.Scriptable;
+using Unity.VisualScripting;
 using UnityEngine;
 using Weapons;
 
@@ -93,23 +95,15 @@ namespace Enemies
             StartCoroutine(DelayedCharge());
             
             // Play the disturbed audio.
-            StartCoroutine(PlayDisturbedSFX());
+            AudioManager.Instance.PlayOneShotAudio(flushAudioData, transform.position);
         }
         
         private IEnumerator DelayedCharge()
         {
             _delayedCharge = true;
-            yield return new WaitForSeconds(screamAudioData.clip.length + flushAudioData.clip.length);
+            yield return new WaitForSeconds(flushAudioData.clip.length);
             _delayedCharge = false;
-        }
-        
-        private IEnumerator PlayDisturbedSFX()
-        {
-            audioSource.Configure(screamAudioData);
-            audioSource.Play();
-            yield return new WaitForSeconds(screamAudioData.clip.length);
-            audioSource.Configure(flushAudioData);
-            audioSource.Play();
+            AudioManager.Instance.PlayOneShotAudio(screamAudioData, transform.position);
         }
 
         private void Charge()
