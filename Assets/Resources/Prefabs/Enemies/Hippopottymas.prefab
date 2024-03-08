@@ -96,7 +96,7 @@ MonoBehaviour:
   turnLayer:
     serializedVersion: 2
     m_Bits: 33344
-  lineOfSight: 1
+  lineOfSight: 5
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -112,6 +112,7 @@ MonoBehaviour:
   maxProximityDistance: 10
   chargeSpeed: 6
   disturbedModel: {fileID: 4185020546026300099}
+  disturbedDistance: 1
   onDisturbedEvent: {fileID: 11400000, guid: 3a471f31d84473e428a2306b40551d41, type: 2}
   runAudioData: {fileID: 11400000, guid: 9b1162761b8abe649babc7856dedf4ef, type: 2}
   screamAudioData: {fileID: 11400000, guid: 9a9e58e95e5038c4d85ad608e8c16b29, type: 2}

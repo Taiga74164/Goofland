@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using Managers;
 using Objects.Scriptable;
 using UnityEngine;
 using Weapons;
@@ -11,6 +10,7 @@ namespace Enemies
         [Header("Hippopottymas Settings")]
         [SerializeField] private float chargeSpeed = 10.0f;
         [SerializeField] private GameObject disturbedModel;
+        [SerializeField] private float disturbedDistance = 1.0f;
         public GameEvent onDisturbedEvent;
         
         [Header("Hippopottymas Audio Settings")]
@@ -20,19 +20,33 @@ namespace Enemies
         
         private bool _isDisturbed;
         private bool _canCharge;
+        private bool _delayedCharge;
+        private Vector3 _initialPosition;
+        
+        protected override void Start()
+        {
+            base.Start();
+            
+            _initialPosition = transform.position;
+        }
         
         protected override void Update()
         {
             base.Update();
             
             if (entityType is not EntityType.Enemy) return;
-
-            if (PlayerInLineOfSight() && !_isDisturbed)
+            
+            // Check if the player is in the disturbed range and not already disturbed, raise the event.
+            if (IsInDisturbedRange() && !_isDisturbed)
             {
                 onDisturbedEvent.Raise(gameObject);
                 _isDisturbed = true;
             }
-
+            else if (!PlayerInLineOfSight())
+            {
+                ReturnToInitialPosition();
+            }
+            
             if (!_isDisturbed) return;
             UpdateChargeCondition();
             Charge();
@@ -57,9 +71,9 @@ namespace Enemies
 
             Debug.DrawLine(groundForward, groundForward.Add(down * rayLength), Color.yellow);
             Debug.DrawLine(groundPosition, groundPosition.Add(checkDirection * rayLength), Color.red);
-    
+            
             // Update charge condition based on ground and wall checks.
-            _canCharge = groundInfo.collider && !wallInfo.collider;
+            _canCharge = groundInfo.collider && !wallInfo.collider && PlayerInLineOfSight();
         }
         
         public void OnDisturbed(object data)
@@ -75,8 +89,18 @@ namespace Enemies
             model = disturbedModel;
             disturbedModel.SetActive(true);
             
+            // Start the delayed charge.
+            StartCoroutine(DelayedCharge());
+            
             // Play the disturbed audio.
             StartCoroutine(PlayDisturbedSFX());
+        }
+        
+        private IEnumerator DelayedCharge()
+        {
+            _delayedCharge = true;
+            yield return new WaitForSeconds(screamAudioData.clip.length + flushAudioData.clip.length);
+            _delayedCharge = false;
         }
         
         private IEnumerator PlayDisturbedSFX()
@@ -90,7 +114,7 @@ namespace Enemies
 
         private void Charge()
         {
-            if (!_canCharge)
+            if (!_canCharge || _delayedCharge)
             {
                 // Stop Running Audio
                 if (audioSource.isPlaying && audioSource.clip == runAudioData.clip) audioSource.Stop();
@@ -122,6 +146,29 @@ namespace Enemies
                 > 0 => Vector3.zero,
                 _ => model!.transform.eulerAngles
             };
+        }
+        
+        private bool IsInDisturbedRange()
+        {
+            if (entityType is not EntityType.Enemy) return false;
+            
+            // Get the enemy's position.
+            var position = transform.position;
+            var playerDirection  = playerTransform.position - position;
+            // Cast a ray to check if the player is in the enemy's line of sight.
+            var hit = Physics2D.Raycast(position, playerDirection, disturbedDistance, playerLayer);
+            
+            return hit.collider != null && hit.collider.IsPlayer();
+        }
+
+        private void ReturnToInitialPosition()
+        {
+            if (Vector3.Distance(transform.position, _initialPosition) < 0.1f) return;
+            
+            var directionToInitialPosition = (_initialPosition - transform.position).normalized;
+            directionToInitialPosition.y = 0;
+            transform.Translate(directionToInitialPosition * (chargeSpeed * Time.deltaTime));
+            Flip(directionToInitialPosition.x);
         }
         
         protected override void Patrol()
