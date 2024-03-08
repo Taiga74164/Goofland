@@ -56,7 +56,7 @@ namespace Controllers
             IsFalling = _playerController.rb.velocity.y < -0.2f && !_playerController.IsGrounded();
             
             // Update the player's parachuting state.
-            IsParachuting = InputManager.Jump.triggered && _playerController.CanParachute;
+            IsParachuting = InputManager.Jump.WasPressedThisFrame() && _playerController.CanParachute;
 
             //Update players aiming inputs
             IsAngleUp = InputManager.AngleUp.IsPressed();

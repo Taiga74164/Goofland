@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Managers;
+
 namespace Controllers.StateMachines
 {
     public class FallingState : Airborne
@@ -10,6 +11,8 @@ namespace Controllers.StateMachines
         
         public override void EnterState()
         {
+            player.CanParachute = true;
+            
             // Set the falling animation.
             player.animator.SetBool(Falling, true);
         }
@@ -20,8 +23,7 @@ namespace Controllers.StateMachines
 
             if (input.IsParachuting)
                 player.ChangeState(player.parachutingState);
-
-            if (player.IsGrounded())
+            else if (player.IsGrounded())
                 player.ChangeState(input.IsMoving ? player.walkingState : player.idleState);
             
             if (player.rb.velocity.magnitude > player.playerSettings.maxVelocity)

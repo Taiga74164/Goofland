@@ -43,8 +43,8 @@ namespace Controllers
         public bool HasUmbrella { get; set; }
         public bool CanParachute
         {
-            get => _canParachute;
-            set => _canParachute = HasUmbrella && value;
+            get => _canParachute && HasUmbrella;
+            set => _canParachute = value;
         }
         
         #endregion

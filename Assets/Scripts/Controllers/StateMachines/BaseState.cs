@@ -24,6 +24,7 @@ namespace Controllers.StateMachines
         protected static readonly int Running = Animator.StringToHash("Running");
         protected static readonly int Jumping = Animator.StringToHash("Jumping");
         protected static readonly int Falling = Animator.StringToHash("Falling");
+        protected static readonly int Gliding = Animator.StringToHash("Gliding");
         protected internal static readonly int Attacking = Animator.StringToHash("Attacking");
 
         #endregion

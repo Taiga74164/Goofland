@@ -11,8 +11,9 @@ namespace Controllers.StateMachines
 
         public override void EnterState()
         {
-            // Set the falling animation.
-            player.animator.SetBool(Falling, true);
+            // Set the gliding animation.
+            player.animator.SetBool(Gliding, true);
+            
             player.CanParachute = false;
             
             // Play the parachute audio.
@@ -43,11 +44,10 @@ namespace Controllers.StateMachines
         
         public override void ExitState()
         {
-            // Set the falling animation to false.
-            player.animator.SetBool(Falling, false);
+            player.CanParachute = true;
+            
+            // Set the gliding animation to false.
+            player.animator.SetBool(Gliding, false);
         }
     }
 }
-
-
-
