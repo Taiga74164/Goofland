@@ -18,8 +18,6 @@ namespace Controllers
         [SerializeField] private float blockSize = 1.0f;
         [SerializeField] private AnimationCurve indicatorCurve;
         [SerializeField] private bool drawMaxDistance;
-
-        [SerializeField] private Transform _squeakBody;
         
         private PlayerController _playerController;
         private InputController _inputController;
@@ -167,7 +165,7 @@ namespace Controllers
         {
             ClearTrajectory();
             //might want to change this to a state machine similar to how the player works
-            Vector2 forwardDirection = _squeakBody.right;
+            var forwardDirection = _playerController.animator.transform.right;
             float x = forwardDirection.x;
 
             if (_inputController.IsAimingUp)
