@@ -32,6 +32,8 @@ namespace Enemies
         protected override void Update()
         {
             base.Update();
+            
+            if (GameManager.IsPaused) return;
 
             if (!PlayerInLineOfSight()) return;
             

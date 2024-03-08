@@ -48,6 +48,8 @@ namespace Enemies
         {
             base.Update();
             
+            if (GameManager.IsPaused) return;
+            
             // Update the number of stacks.
             stacks = stackContainer.childCount;
             

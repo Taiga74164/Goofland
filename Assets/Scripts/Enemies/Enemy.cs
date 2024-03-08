@@ -23,7 +23,7 @@ namespace Enemies
     public class Enemy : EnemyBase
     {
         [Header("Enemy Settings")]
-        [SerializeField] protected EntityType entityType = EntityType.Enemy;
+        public EntityType entityType = EntityType.Enemy;
         [Tooltip("The current model of the enemy.")]
         [CanBeNull] public GameObject model;
         [Tooltip("The ally prefab to change into after getting hit.")]

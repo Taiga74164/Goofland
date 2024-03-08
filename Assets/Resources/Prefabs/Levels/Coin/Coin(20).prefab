@@ -145,10 +145,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba107eeb21c685f47aa2012b47e61218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinValue: 1
+  coinValue: 20
   despawnTime: 10
   magnetizeDelay: 1
-  pickupAudioData: {fileID: 11400000, guid: 8cee1850d0926d44ca00818fb272b41c, type: 2}
   flipAudioData: {fileID: 11400000, guid: 097e1969915fc91459764467ad4e0899, type: 2}
 --- !u!50 &4614511155599700342
 Rigidbody2D:

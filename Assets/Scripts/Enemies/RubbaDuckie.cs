@@ -1,4 +1,5 @@
-﻿using Objects.Scriptable;
+﻿using Managers;
+using Objects.Scriptable;
 using UnityEngine;
 
 namespace Enemies
@@ -21,6 +22,8 @@ namespace Enemies
         protected override void Update()
         {
             base.Update();
+            
+            if (GameManager.IsPaused) return;
             
             if (!_isGrounded)
                 CheckForGround();
