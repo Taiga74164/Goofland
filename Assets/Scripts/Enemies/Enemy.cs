@@ -5,7 +5,6 @@ using JetBrains.Annotations;
 using Managers;
 using Objects.Scriptable;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Weapons;
 
 namespace Enemies

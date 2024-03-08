@@ -105,7 +105,7 @@ MonoBehaviour:
   dropOffset: 1
   pieWeakness: 0
   pianoWeakness: 0
-  defaultAudioData: {fileID: 0}
+  defaultAudioData: {fileID: 11400000, guid: b8dc65689695ac8489d93f6e733f5243, type: 2}
   deathAudioData: {fileID: 0}
   maxProximityDistance: 10
   fallSpeed: 5

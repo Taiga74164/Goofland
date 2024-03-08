@@ -82,6 +82,7 @@ MonoBehaviour:
   maxProximityDistance: 10
   bounceHeight: 0.3
   bounceSpeed: 10
+  bounceAudioData: {fileID: 11400000, guid: db8c886dad8c40a4084a8fa39d88ff77, type: 2}
 --- !u!50 &1563987815338668049
 Rigidbody2D:
   serializedVersion: 4

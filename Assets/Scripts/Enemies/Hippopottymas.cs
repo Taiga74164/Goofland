@@ -1,4 +1,5 @@
-﻿using Managers;
+﻿using System.Collections;
+using Managers;
 using Objects.Scriptable;
 using UnityEngine;
 using Weapons;
@@ -11,6 +12,11 @@ namespace Enemies
         [SerializeField] private float chargeSpeed = 10.0f;
         [SerializeField] private GameObject disturbedModel;
         public GameEvent onDisturbedEvent;
+        
+        [Header("Hippopottymas Audio Settings")]
+        [SerializeField] private AudioData runAudioData;
+        [SerializeField] private AudioData screamAudioData;
+        [SerializeField] private AudioData flushAudioData;
         
         private bool _isDisturbed;
         private bool _canCharge;
@@ -68,11 +74,28 @@ namespace Enemies
             Destroy(model);
             model = disturbedModel;
             disturbedModel.SetActive(true);
+            
+            // Play the disturbed audio.
+            StartCoroutine(PlayDisturbedSFX());
+        }
+        
+        private IEnumerator PlayDisturbedSFX()
+        {
+            audioSource.Configure(screamAudioData);
+            audioSource.Play();
+            yield return new WaitForSeconds(screamAudioData.clip.length);
+            audioSource.Configure(flushAudioData);
+            audioSource.Play();
         }
 
         private void Charge()
         {
-            if (!_canCharge) return;
+            if (!_canCharge)
+            {
+                // Stop Running Audio
+                if (audioSource.isPlaying && audioSource.clip == runAudioData.clip) audioSource.Stop();
+                return;
+            }
             
             // Get player position.
             var playerPosition = playerTransform.position;
@@ -84,8 +107,13 @@ namespace Enemies
             transform.Translate(directionToPlayer * (chargeSpeed * Time.deltaTime));
             // Flip the model based on the direction to the player.
             Flip(directionToPlayer.x);
+                
+            // Play the run audio.
+            if (audioSource.isPlaying) return;
+            audioSource.Configure(runAudioData);
+            audioSource.Play();
         }
-
+        
         private void Flip(float directionX)
         {
             model!.transform.eulerAngles = directionX switch
@@ -112,6 +140,8 @@ namespace Enemies
                     break;
                 case Piano:
                     OnHit();
+                    StopAllCoroutines();
+                    audioSource.Stop();
                     break;
             }
         }

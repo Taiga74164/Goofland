@@ -39,10 +39,10 @@ namespace Managers
         {
             var prefab = Resources.Load<GameObject>("Prefabs/Managers/InputManager");
             if (prefab == null) throw new Exception("Missing InputManager prefab!");
-
+            
             var instance = Instantiate(prefab);
             if (instance == null) throw new Exception("Failed to instantiate InputManager prefab!");
-
+            
             instance.name = "Managers.InputManager (Singleton)";
         }
     }

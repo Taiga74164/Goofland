@@ -20,8 +20,6 @@ namespace Enemies
         [SerializeField] private AudioData exhaleAudioData;
         
         private float _exhaleCooldown;
-        private bool _isExhaling;
-        private bool _canInhale = true;
 
         protected override void Start()
         {
@@ -35,66 +33,37 @@ namespace Enemies
         {
             base.Update();
 
-            if (PlayerInLineOfSight())
-            {
-                // Turn the enemy if the player is in line of sight.
-                Turn();
+            if (!PlayerInLineOfSight()) return;
             
-                // Handle the exhale of fart clouds.
-                HandleFartCloud();
-            }
-            else
-            {
-                _isExhaling = false;
-                _canInhale = true;
-            }
+            // Turn the enemy if the player is in line of sight.
+            Turn();
+            
+            // Handle the exhale of fart clouds.
+            HandleFartCloud();
         }
         
         private void HandleFartCloud()
         {
             if (entityType is not EntityType.Enemy) return;
             
-            // TODO: Fix SFX audio bug.
-            
             // Decrement the exhale timer.
             _exhaleCooldown -= Time.deltaTime;
             
-            if (_exhaleCooldown <= 0 && !_isExhaling)
+            if (_exhaleCooldown <= 0)
             {
-                _isExhaling = true;
-                _canInhale = false;
-                
-                // Play the exhale audio.
-                if (audioSource.isPlaying)
-                    audioSource.Stop();
-                audioSource.PlayOneShot(exhaleAudioData.clip);
-                
                 // Exhale a fart cloud.
                 ExhaleFartCloud();
                 
                 // Set the next exhale time.
                 _exhaleCooldown = exhaleDelay + exhaleDuration;
             }
-            else if (_isExhaling)
-            {
-                _canInhale = false;
-            }
             else
             {
-                if (_canInhale)
-                {
-                    // Play the inhale audio once after exhaling is done.
-                    if (audioSource.isPlaying)
-                        audioSource.Stop();
-                    audioSource.PlayOneShot(inhaleAudioData.clip);
-                    _canInhale = false;
-                }
-            }
-            
-            if (_exhaleCooldown <= exhaleDelay)
-            {
-                _isExhaling = false;
-                _canInhale = true;
+                if (audioSource.clip == inhaleAudioData.clip || !(_exhaleCooldown <= exhaleDuration)) return;
+                
+                // Play the inhale audio.
+                audioSource.Configure(inhaleAudioData);
+                audioSource.Play();
             }
         }
         
@@ -110,6 +79,10 @@ namespace Enemies
             
             // Destroy the fart cloud after the exhale duration.
             Destroy(fartCloud.gameObject, exhaleDuration);
+            
+            // Play the exhale audio.
+            audioSource.Configure(exhaleAudioData);
+            audioSource.Play();
         }
 
         protected override void Patrol()

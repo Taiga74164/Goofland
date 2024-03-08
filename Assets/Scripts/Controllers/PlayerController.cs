@@ -29,7 +29,6 @@ namespace Controllers
         public float CoyoteTimeCounter { get; private set; }
         public float JumpBufferCounter { get; private set; }
         public bool IsInvincible { get; private set; }
-        
         public bool IsKnockback { get; private set; }
         
         [HideInInspector] public Rigidbody2D rb;
@@ -52,7 +51,6 @@ namespace Controllers
             get => _canParachute;
             set => _canParachute = hasUmbrella && value;
         }
-        public bool InWind = false;
 
         #endregion
 
@@ -96,7 +94,6 @@ namespace Controllers
             
             // Set the player's health.
             CurrentHealth = playerSettings.maxHealth;
-            InWind = false;
         }
 
         private void Update()

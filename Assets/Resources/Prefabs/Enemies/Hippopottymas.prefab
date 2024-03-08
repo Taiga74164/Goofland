@@ -113,6 +113,9 @@ MonoBehaviour:
   chargeSpeed: 10
   disturbedModel: {fileID: 4185020546026300099}
   onDisturbedEvent: {fileID: 11400000, guid: 3a471f31d84473e428a2306b40551d41, type: 2}
+  runAudioData: {fileID: 11400000, guid: 9b1162761b8abe649babc7856dedf4ef, type: 2}
+  screamAudioData: {fileID: 11400000, guid: 9a9e58e95e5038c4d85ad608e8c16b29, type: 2}
+  flushAudioData: {fileID: 11400000, guid: 3f9cd35ae1b65ff4c8258af55afb7335, type: 2}
 --- !u!114 &7709725265032627860
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,4 +1,4 @@
-﻿using Managers;
+﻿using Objects.Scriptable;
 using UnityEngine;
 
 namespace Enemies
@@ -10,6 +10,9 @@ namespace Enemies
         [SerializeField] private float bounceHeight = 0.5f;
         [Tooltip("The speed at which the duck will bounce.")]
         [SerializeField] private float bounceSpeed = 10.0f;
+        
+        [Header("RubbaDuckie Audio Settings")]
+        [SerializeField] private AudioData bounceAudioData;
         
         private float _startY;
         private float _bounceTimer;
@@ -47,12 +50,23 @@ namespace Enemies
         private void Bounce()
         {
             // Update the bounce timer.
+            var oldSin = Mathf.Sin(_bounceTimer);
             _bounceTimer += Time.deltaTime * bounceSpeed;
+            var newSin = Mathf.Sin(_bounceTimer);
+            
             // Calculate the new Y position of the duck.
             var newY = _startY + Mathf.Sin(_bounceTimer) * bounceHeight;
             
             // Update the position of the duck.
             transform.position = new Vector2(transform.position.x, newY);
+            
+            // Check if the duck has just started bouncing.
+            if (oldSin <= 0 && newSin >= 0 && _isGrounded)
+                audioSource.PlayOneShot(bounceAudioData.clip);
+            
+            // Check if the duck has finished bouncing.
+            if (_bounceTimer <= 0 && !_isGrounded)
+                _isGrounded = false;
         }
     }
 }
