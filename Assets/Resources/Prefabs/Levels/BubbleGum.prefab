@@ -28,12 +28,12 @@ Transform:
   m_GameObject: {fileID: 2264050102015762226}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.002, y: -0.011, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2264050102495721563}
-  m_Father: {fileID: 2264050104050128263}
+  m_Father: {fileID: 1857958132111465549}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2264050102015762231
 SpriteRenderer:
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: c4f53f619b4027c489a9441d40d5926b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -99,6 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 023d83eb2a8468a40b60469aa78c86af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inflateAudioData: {fileID: 11400000, guid: dc68cc146e221214db18bf06582dc118, type: 2}
+  gumBallMachineAudioData: {fileID: 11400000, guid: 69197ed6976edce46b4be8a54b704b2b, type: 2}
 --- !u!61 &2264050102015762230
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -218,7 +220,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 6914f6e8fef35244f95a44f020c07ec7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -243,6 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionForce: 1000
+  popAudioData: {fileID: 11400000, guid: 041660c81bd41574d97bbf84098421fd, type: 2}
 --- !u!58 &2264050102495721560
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -307,7 +310,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2264050102015762225}
   - {fileID: 1857958132111465549}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -340,7 +342,8 @@ Transform:
   m_LocalPosition: {x: -0.002, y: 0.011, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2264050102015762225}
   m_Father: {fileID: 2264050104050128263}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2584936010593187247
@@ -383,7 +386,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cbdcbda8d55e4b843837787f14499ce8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

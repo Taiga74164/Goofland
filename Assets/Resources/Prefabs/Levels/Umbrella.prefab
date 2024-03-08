@@ -143,3 +143,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5261e2e5df271d1498183e2d90d53086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupAudioData: {fileID: 11400000, guid: 8cee1850d0926d44ca00818fb272b41c, type: 2}

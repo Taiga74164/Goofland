@@ -14,7 +14,7 @@ namespace Controllers.StateMachines
             player.animator.SetBool(Walking, true);
             
             // Configure the audio source
-            player.audioSource.Configure(player.playerSettings.walkSoundData);
+            player.audioSource.Configure(player.playerSettings.walkAudioData);
         }
         
         public override void HandleInput()

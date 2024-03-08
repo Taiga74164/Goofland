@@ -15,5 +15,5 @@ MonoBehaviour:
   clip: {fileID: 8300000, guid: 19df68b8eea151e4186cdbb0d8299b71, type: 3}
   mixerGroup: {fileID: -5388765665678994932, guid: 6b885a192e05b3d4dac2c81155d11090, type: 2}
   playOnAwake: 0
-  loop: 0
-    
+  loop: 1
+  volume: 1

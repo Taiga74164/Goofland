@@ -1,22 +1,34 @@
 using Managers;
+using Objects.Scriptable;
 using UnityEngine;
 
 namespace Levels
 {
     public class Coin : MonoBehaviour
     {
+        [Header("Coin Settings")]
         [SerializeField] private CoinValue coinValue = CoinValue.D1;
         [SerializeField] private float despawnTime = 10.0f;
         [SerializeField] private float magnetizeDelay = 1.0f;
 
-        public bool CanMagnetize { get; private set; } = true;
+        [Header("Audio Settings")]
+        [SerializeField] private AudioData flipAudioData;
         
+        public bool CanMagnetize { get; private set; } = true;
+
         private void Start() => Destroy(gameObject, despawnTime);
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.IsPlayer() || other.gameObject.CompareTag("Projectile"))
+            if (other.IsPlayer())
+            {
                 CollectCoin();
+            }
+            else if (other.gameObject.CompareTag("Projectile"))
+            {
+                AudioManager.Instance.PlayOneShotAudio(flipAudioData, transform.position, false);
+                CollectCoin();
+            }
         }
 
         /// <summary>

@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 623d13fb76d0411c988414b705ba7e51, type: 3}
-  m_Name: Mouse_Click
+  m_Name: Dice_Pickup
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: be32ae21d8853e6468ba0f99c7f3a66f, type: 3}
+  clip: {fileID: 8300000, guid: b5df2a7fa721c4b44b8f243a62d2bae9, type: 3}
   mixerGroup: {fileID: -5388765665678994932, guid: 6b885a192e05b3d4dac2c81155d11090, type: 2}
   playOnAwake: 0
   loop: 0
+  volume: 1
+    

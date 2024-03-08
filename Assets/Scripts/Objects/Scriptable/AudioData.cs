@@ -20,5 +20,9 @@ namespace Objects.Scriptable
         
         [Tooltip("Should the audio loop.")]
         public bool loop;
+        
+        [Tooltip("The volume of the audio.")]
+        [Range(0.0f, 1.0f)]
+        public float volume = 1.0f;
     }
 }

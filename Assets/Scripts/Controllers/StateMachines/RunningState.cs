@@ -14,7 +14,7 @@ namespace Controllers.StateMachines
             player.animator.SetBool(Running, true);
             
             // Configure the audio source
-            player.audioSource.Configure(player.playerSettings.runSoundData);
+            player.audioSource.Configure(player.playerSettings.runAudioData);
         }
         
         public override void HandleInput()

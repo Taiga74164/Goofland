@@ -39,7 +39,9 @@ MonoBehaviour:
     m_Bits: 1024
   dropForce: 5
   dropOffset: 1
-  jumpSoundData: {fileID: 11400000, guid: e731ef6faeca28242bff4b0f7c12fb4d, type: 2}
-  runSoundData: {fileID: 0}
-  walkSoundData: {fileID: 11400000, guid: 4c2439d46d3164d459d41498f55e8913, type: 2}
-  fartSoundData: {fileID: 11400000, guid: c151ae296a7cea44a98a2918cdd240fb, type: 2}
+  jumpAudioData: {fileID: 11400000, guid: 293de88c7d8a05b458a61f5fe97e6faf, type: 2}
+  runAudioData: {fileID: 0}
+  walkAudioData: {fileID: 11400000, guid: 4c2439d46d3164d459d41498f55e8913, type: 2}
+  umbrellaAudioData: {fileID: 11400000, guid: 7722246292682af40b03c7ab15c5ffd6, type: 2}
+  fartAudioData: {fileID: 11400000, guid: c151ae296a7cea44a98a2918cdd240fb, type: 2}
+  attackAudioData: {fileID: 11400000, guid: 742b3489eaa295f4b9fb9896afc2e038, type: 2}

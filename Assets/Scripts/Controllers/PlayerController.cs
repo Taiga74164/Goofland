@@ -186,7 +186,7 @@ namespace Controllers
             if (IsInvincible) return;
             
             // Play the hurt sound.
-            audioSource.Configure(playerSettings.fartSoundData);
+            audioSource.Configure(playerSettings.fartAudioData);
             audioSource.Play();
             
             // Reduce the player's health.

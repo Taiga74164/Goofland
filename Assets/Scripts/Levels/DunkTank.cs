@@ -1,15 +1,21 @@
-﻿using UnityEngine;
+﻿using Managers;
+using Objects.Scriptable;
+using UnityEngine;
 
 namespace Levels
 {
     public class DunkTank : MonoBehaviour, ITrigger
     {
-        public Target dunkTarget;
+        [Tooltip("Dunk Tank Settings")]
+        [SerializeField] private Target dunkTarget;
         [Tooltip("The object to be dunked (e.g., enemy or person).")]
-        public GameObject dunkedObject;
+        [SerializeField] private GameObject dunkedObject;
         [Tooltip("The position to which the dunked object should be moved.")]
-        public Transform dunkedPosition;
+        [SerializeField] private Transform dunkedPosition;
 
+        [Header("Audio Settings")]
+        [SerializeField] private AudioData dunkAudioData;
+        
         private void Start() => dunkedObject.SetActive(false);
 
         public void Trigger()
@@ -20,6 +26,9 @@ namespace Levels
 
             // Disable the dunk target to prevent repeated dunking.
             dunkTarget.gameObject.SetActive(false);
+            
+            // Play the dunk sound.
+            AudioManager.Instance.PlayOneShotAudio(dunkAudioData, transform.position, false);
         }
     }
 }

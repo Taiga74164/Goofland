@@ -6,6 +6,7 @@ using Managers;
 using Objects.Scriptable;
 using UnityEngine;
 using Utils;
+using Random = UnityEngine.Random;
 
 namespace Weapons
 {
@@ -21,19 +22,12 @@ namespace Weapons
     {
         [Header("Pie Settings")]
         public List<PieSkin> pieSkins = new List<PieSkin>();
-        public Vector2 direction = new Vector2(1.0f, 3.0f);
         public Vector2 throwForce = new Vector2(5.0f, 5.0f);
         [Tooltip("how long before the pie destroys itself")]
         public float destructionTime = 2f;
 
         [Header("Audio Settings")]
-        public GameEvent onImpact;
-        [SerializeField] private AudioSource audioSource;
-
-        [Header("Debugging")]
-        public bool debug;
-        private Vector3 _initialPosition;
-        private float _travelDistance;
+        [SerializeField] private List<AudioData> splatAudioDatas;
         
         private const float SpawnOffSet = 0.1f;
         private Rigidbody2D _rigidbody2D;
@@ -83,9 +77,9 @@ namespace Weapons
 
             timer += Time.deltaTime;
             if (timer >= destructionTime)
-                Die();
+                Destroy(gameObject);
             if (!_spriteRenderer.isVisible)
-                Die();
+                Destroy(gameObject);
         }
         
         private void LateUpdate()
@@ -93,57 +87,34 @@ namespace Weapons
             if (GameManager.IsPaused) return;
         
             // Destroy the pie if it falls off the map.
-            if (transform.position.y < -100.0f) Die();
-
-            #region Debugging
-
-            if (debug) _travelDistance = Vector3.Distance(_initialPosition, transform.position);
-
-            #endregion
+            if (transform.position.y < -100.0f) Destroy(gameObject);
         }
     
         private void OnCollisionEnter2D(Collision2D other)
         {
-            // Play the impact sound.
-            onImpact.Raise(audioSource);
-            
             if (other.gameObject.CompareTag("Enemy"))
                 other.gameObject.GetComponent<Enemy>().GotHit(this);
             else if (other.gameObject.CompareTag("Coin"))
                 other.gameObject.GetComponent<Coin>().CollectCoin();
-        
+            
+            // Play a random audio clip from the list.
+            var randomIndex = Random.Range(0, splatAudioDatas.Count - 1);
+            AudioManager.Instance.PlayOneShotAudio(splatAudioDatas[randomIndex], transform.position);
+            
             // Stop the pie from moving on impact.
             _rigidbody2D.velocity = Vector2.zero;
             _rigidbody2D.bodyType = RigidbodyType2D.Static;
             _spriteRenderer.enabled = false;
-            Die();
-            // Invoke(nameof(OnHit), audioSource.clip.length);
+            Destroy(gameObject);
         }
     
         /// <summary>
         /// Throws the pie in the specified direction.
         /// </summary>
-        /// <param name="playerVelocity">The player's velocity to add to the pie's force.</param>
         public void ThrowPie()
         {
             _rigidbody2D.isKinematic = false;
             _rigidbody2D.AddForce(throwForce, ForceMode2D.Impulse);
-
-            #region Debugging
-
-            if (debug) _initialPosition = transform.position;
-
-            #endregion
         }
-
-        private void Die() => Destroy(gameObject);
-    
-#if UNITY_EDITOR
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(_initialPosition, transform.position);
-        }
-#endif
     }
 }

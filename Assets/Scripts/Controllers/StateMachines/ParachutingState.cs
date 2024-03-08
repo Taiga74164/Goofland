@@ -14,6 +14,9 @@ namespace Controllers.StateMachines
             // Set the falling animation.
             player.animator.SetBool(Falling, true);
             player.CanParachute = false;
+            
+            // Play the parachute audio.
+            player.audioSource.PlayOneShot(player.playerSettings.umbrellaAudioData.clip);
 
             // Prevents player velocity from exceeding the slowdown of the glide.
             player.rb.velocity = Vector2.zero;

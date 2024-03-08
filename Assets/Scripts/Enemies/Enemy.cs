@@ -39,7 +39,7 @@ namespace Enemies
         [Tooltip("The layer at which the enemy will turn.")]
         [SerializeField] protected LayerMask turnLayer;
         [SerializeField] private float lineOfSight = 10.0f;
-        [SerializeField] private LayerMask playerLayer;
+        [SerializeField] protected LayerMask playerLayer;
 
         [Header("Currency Drop Settings")]
         [SerializeField] private List<CurrencyDrop> currencyDrops;
@@ -174,6 +174,9 @@ namespace Enemies
             return hit.collider != null && hit.collider.IsPlayer();
         }
         
+        /// <summary>
+        /// Handles the proximity of the player to the enemy.
+        /// </summary>
         private void HandleProximity()
         {
             var distance = Vector3.Distance(transform.position, playerTransform.position);

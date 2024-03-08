@@ -4,7 +4,7 @@ using Managers;
 using Objects.Scriptable;
 using UnityEngine;
 
-namespace Objects
+namespace Levels
 {
     [Serializable]
     public struct SpawnData

@@ -140,12 +140,14 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: b091ecdc5fcc3394098114751cee4065, type: 3}
   - name: Strawberry
     sprite: {fileID: 21300000, guid: b2c7ada6db112fe43bf92f3083b7ae73, type: 3}
-  direction: {x: 20, y: 100}
   throwForce: {x: 5, y: 5}
   destructionTime: 2
-  onImpact: {fileID: 11400000, guid: 3a81f5e22d7786d4985aacd0a3763ccd, type: 2}
-  audioSource: {fileID: 4789983632227013063}
-  debug: 1
+  splatAudioDatas:
+  - {fileID: 11400000, guid: 6d0a809664775954388ca364e8708578, type: 2}
+  - {fileID: 11400000, guid: 7d99fba23a155af45a228af75da66b58, type: 2}
+  - {fileID: 11400000, guid: 9306ecb0d50f3e444bf336257d7f2a93, type: 2}
+  - {fileID: 11400000, guid: e8138ba657fa870448414826f1078b2a, type: 2}
+  - {fileID: 11400000, guid: 603ba6871692c18489a506c256966b0a, type: 2}
 --- !u!61 &1972078411033555684
 BoxCollider2D:
   m_ObjectHideFlags: 0

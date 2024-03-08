@@ -74,6 +74,7 @@ public static class Extensions
         audioSource.outputAudioMixerGroup = audioData.mixerGroup;
         audioSource.playOnAwake = audioData.playOnAwake;
         audioSource.loop = audioData.loop;
+        audioSource.volume = audioData.volume;
     }
 
     /// <summary>

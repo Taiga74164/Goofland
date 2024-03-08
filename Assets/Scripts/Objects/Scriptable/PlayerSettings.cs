@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Objects.Scriptable
 {
@@ -57,9 +58,11 @@ namespace Objects.Scriptable
         public float dropOffset = 1.0f;
         
         [Header("Audio Data")]
-        public AudioData jumpSoundData;
-        public AudioData runSoundData;
-        public AudioData walkSoundData;
-        public AudioData fartSoundData;
+        public AudioData jumpAudioData;
+        public AudioData runAudioData;
+        public AudioData walkAudioData;
+        public AudioData umbrellaAudioData;
+        public AudioData fartAudioData;
+        public AudioData attackAudioData;
     }
 }

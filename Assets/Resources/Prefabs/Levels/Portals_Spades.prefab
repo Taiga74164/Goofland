@@ -148,6 +148,8 @@ MonoBehaviour:
   otherPortal: {fileID: 4858546592200862212}
   direction: 0
   playerExitForce: 100
+  warpInAudioData: {fileID: 11400000, guid: a905b5cb9cdb01c41b0564f04ba49cab, type: 2}
+  warpOutAudioData: {fileID: 11400000, guid: 4c1d0d982e7c57149b6efed0fb5dfc96, type: 2}
 --- !u!1 &766706123277303933
 GameObject:
   m_ObjectHideFlags: 0
@@ -871,3 +873,5 @@ MonoBehaviour:
   otherPortal: {fileID: 8299861286079206693}
   direction: 0
   playerExitForce: 100
+  warpInAudioData: {fileID: 11400000, guid: a905b5cb9cdb01c41b0564f04ba49cab, type: 2}
+  warpOutAudioData: {fileID: 11400000, guid: 4c1d0d982e7c57149b6efed0fb5dfc96, type: 2}

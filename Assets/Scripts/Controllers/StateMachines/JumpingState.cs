@@ -23,7 +23,7 @@ namespace Controllers.StateMachines
             Jump();
             
             // Configure the audio source and play the jump sound.
-            player.audioSource.Configure(player.playerSettings.jumpSoundData);
+            player.audioSource.Configure(player.playerSettings.jumpAudioData);
             player.audioSource.Play();
         }
 

@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using Managers;
+using Objects.Scriptable;
+using UnityEngine;
 using Weapons;
 
 namespace Levels
@@ -12,6 +15,9 @@ namespace Levels
         [SerializeField] private Piano piano;
         [SerializeField] private bool despawn;
         
+        [Header("Audio Settings")]
+        [SerializeField] private List<AudioData> balloonAudioDatas;
+        
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (!other.gameObject.GetComponent<Pie>()) return;
@@ -20,10 +26,14 @@ namespace Levels
             piano.transform.SetParent(null);
             piano.despawn = despawn;
             piano.DropPiano();
+            
+            // Play a random audio clip from the list.
+            var randomIndex = Random.Range(0, balloonAudioDatas.Count - 1);
+            AudioManager.Instance.PlayOneShotAudio(balloonAudioDatas[randomIndex], transform.position);
 
             if (!respawning)
             {
-                Destroy(gameObject);
+                Destroy(gameObject, balloonAudioDatas[randomIndex].clip.length);
             }
             else
             {

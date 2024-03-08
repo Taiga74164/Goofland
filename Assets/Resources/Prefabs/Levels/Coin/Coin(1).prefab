@@ -147,6 +147,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coinValue: 1
   despawnTime: 10
+  magnetizeDelay: 1
+  pickupAudioData: {fileID: 11400000, guid: 8cee1850d0926d44ca00818fb272b41c, type: 2}
+  flipAudioData: {fileID: 11400000, guid: 097e1969915fc91459764467ad4e0899, type: 2}
 --- !u!50 &8439774697512516506
 Rigidbody2D:
   serializedVersion: 4

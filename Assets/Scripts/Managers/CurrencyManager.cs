@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Levels;
+using Objects.Scriptable;
 using UnityEngine;
 
 namespace Managers
@@ -25,6 +26,14 @@ namespace Managers
     {
         public int Currency { get; private set; }
 
+        private AudioData _dropAudioData;
+
+        private void Start()
+        {
+            _dropAudioData = Resources.Load<AudioData>("AudioData/SFX/Dice_Roll");
+            if (!_dropAudioData) Debug.LogError("AudioData/SFX/Dice_Roll not found!");
+        }
+        
         /// <summary>
         /// Calculates the number of dice drops for a given score.
         /// </summary>
@@ -87,6 +96,9 @@ namespace Managers
                 var coin = obj.GetComponent<Coin>();
                 coin!.DelayMagnetization();
             }
+            
+            // Play the currency drop sound.
+            AudioManager.Instance.PlayOneShotAudio(Instance._dropAudioData, position);
         }
         
         public void AddCurrency(int amount) => Currency += amount;

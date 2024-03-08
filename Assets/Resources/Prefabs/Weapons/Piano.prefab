@@ -103,6 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallSpeed: 10
   despawn: 0
+  crashAudioData: {fileID: 11400000, guid: 40dc4f161a8364141900da3550f41ccc, type: 2}
 --- !u!50 &15689376316092505
 Rigidbody2D:
   serializedVersion: 4

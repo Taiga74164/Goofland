@@ -1,5 +1,7 @@
 ﻿using Enemies;
 using Levels;
+using Managers;
+using Objects.Scriptable;
 using UnityEngine;
 
 namespace Weapons
@@ -7,8 +9,12 @@ namespace Weapons
     [RequireComponent(typeof(Rigidbody2D))]
     public class Piano : MonoBehaviour, IWeapon
     {
+        [Header("Piano Settings")]
         [SerializeField] private float fallSpeed = 10.0f;
         public bool despawn;
+        
+        [Header("Audio Settings")]
+        [SerializeField] private AudioData crashAudioData;
         
         private Rigidbody2D _rigidbody2D;
         private bool _hasDropped;
@@ -50,7 +56,10 @@ namespace Weapons
             {
                 other.gameObject.GetComponent<IBreakable>().Break();
             }
-
+            else if (other.gameObject.CompareLayer("Platform"))
+            {
+                AudioManager.Instance.PlayOneShotAudio(crashAudioData, transform.position);
+            }
         }
 
         private void OnCollisionExit2D(Collision2D other)

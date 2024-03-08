@@ -27,7 +27,7 @@ namespace Managers
         {
             PrefabManager.Initialize();
             AudioManager.Initialize();
-            InputManager.Initialize();
+            // InputManager.Initialize();
             TransitionManager.Initialize();
         }
 

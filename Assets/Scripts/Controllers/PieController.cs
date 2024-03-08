@@ -152,7 +152,6 @@ namespace Controllers
             // Create a new pie and throw it.
             var pie = PrefabManager.Create<Pie>(Prefabs.Pie, transform);
             pie.throwForce = force;
-            pie.direction = direction;
             pie.ThrowPie();
             
             // Update the last time a pie was thrown.
