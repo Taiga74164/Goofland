@@ -26,6 +26,9 @@ namespace Weapons
         [Tooltip("how long before the pie destroys itself")]
         public float destructionTime = 2f;
 
+        [Header("Effects")]
+        public List<ParticleSystem> effects = new List<ParticleSystem>();
+
         [Header("Audio Settings")]
         [SerializeField] private List<AudioData> splatAudioDatas;
         
@@ -105,6 +108,7 @@ namespace Weapons
             _rigidbody2D.velocity = Vector2.zero;
             _rigidbody2D.bodyType = RigidbodyType2D.Static;
             _spriteRenderer.enabled = false;
+            Instantiate(effects[Random.Range(0, effects.Count - 1)],transform.position,new Quaternion(0,0,0,0));
             Destroy(gameObject);
         }
     
