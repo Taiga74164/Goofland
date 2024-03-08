@@ -7,7 +7,7 @@ public class Umbrella : MonoBehaviour
     {
         if (!other.GetComponent<PlayerController>()) return;
         
-        other.GetComponent<PlayerController>().hasUmbrella = true;
+        other.GetComponent<PlayerController>().HasUmbrella = true;
         Destroy(gameObject);
     }
 }

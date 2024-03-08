@@ -47,7 +47,7 @@ namespace Levels
                 {
                     
                     // warpedObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * -Physics2D.gravity );
-                    warpedObject.GetComponent<PlayerController>().beenWarped = true;
+                    warpedObject.GetComponent<PlayerController>().BeenWarped = true;
                 }
                 else if (direction is Direction.Up && !playerController.IsGrounded())
                 {

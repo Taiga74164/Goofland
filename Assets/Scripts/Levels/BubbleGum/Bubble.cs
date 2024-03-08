@@ -22,7 +22,7 @@ namespace Levels
             if (collision.IsPlayer())
             {
                 Vector2 force = -collision.relativeVelocity.normalized * explosionForce;
-                collision.gameObject.GetComponent<PlayerController>().Bounced(force);
+                collision.gameObject.GetComponent<PlayerController>().Bounce(force);
                 gameObject.SetActive(false);
             }
         }

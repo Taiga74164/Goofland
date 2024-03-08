@@ -23,14 +23,6 @@ namespace Controllers
         [Header("Audio Settings")]
         public AudioSource audioSource;
 
-        #region Properties
-        public bool beenWarped;
-        public int CurrentHealth { get; private set; }
-        public float CoyoteTimeCounter { get; private set; }
-        public float JumpBufferCounter { get; private set; }
-        public bool IsInvincible { get; private set; }
-        public bool IsKnockback { get; private set; }
-        
         [HideInInspector] public Rigidbody2D rb;
         [HideInInspector] public PieController pieController;
         [HideInInspector] public InputController inputController;
@@ -40,25 +32,27 @@ namespace Controllers
         [HideInInspector] public JumpingState jumpingState;
         [HideInInspector] public FallingState fallingState;
         [HideInInspector] public ParachutingState parachutingState;
-
-        #region UmbrellaValues
         
-        [HideInInspector] public bool hasUmbrella;
-
-        private bool _canParachute;
+        #region Properties
+        public int CurrentHealth { get; private set; }
+        public float CoyoteTimeCounter { get; private set; }
+        public float JumpBufferCounter { get; private set; }
+        public bool IsInvincible { get; private set; }
+        public bool IsKnockback { get; private set; }
+        public bool BeenWarped { get; set; }
+        public bool HasUmbrella { get; set; }
         public bool CanParachute
         {
             get => _canParachute;
-            set => _canParachute = hasUmbrella && value;
+            set => _canParachute = HasUmbrella && value;
         }
-
+        
         #endregion
-
+        
         private BaseState _currentState;
         private float _invincibilityTimer;
-
-        #endregion
-
+        private bool _canParachute;
+        
         private void Awake()
         {
             // Set the player controller global reference.
@@ -150,12 +144,10 @@ namespace Controllers
         
         private void HandleInvincibility()
         {
-            if (IsInvincible)
-            {
-                _invincibilityTimer -= Time.deltaTime;
-                if (_invincibilityTimer <= 0)
-                    IsInvincible = false;
-            }
+            if (!IsInvincible) return;
+            _invincibilityTimer -= Time.deltaTime;
+            if (_invincibilityTimer <= 0)
+                IsInvincible = false;
         }
         
         private void UpdateCoyoteTimeCounter() => CoyoteTimeCounter = IsGrounded() ? 
@@ -168,7 +160,7 @@ namespace Controllers
         
         public void ResetCoyoteTimeAndJumpBufferCounter() => CoyoteTimeCounter = JumpBufferCounter = 0.0f;
 
-        public void Bounced(Vector2 force) => rb.AddForce(force);
+        public void Bounce(Vector2 force) => rb.AddForce(force);
         
         private void Magnetize()
         {

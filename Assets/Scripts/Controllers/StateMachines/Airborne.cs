@@ -34,7 +34,7 @@ namespace Controllers.StateMachines
             if (player.IsKnockback) return;
             
             // Move the player while in the air.
-            if (!player.beenWarped)
+            if (!player.BeenWarped)
             {
                 player.rb.velocity = new Vector2(
                 input.MoveInput.x *

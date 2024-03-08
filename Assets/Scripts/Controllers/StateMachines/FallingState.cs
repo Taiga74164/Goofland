@@ -34,7 +34,7 @@ namespace Controllers.StateMachines
         public override void ExitState()
         {
             // Set the falling animation to false.
-            player.beenWarped = false;
+            player.BeenWarped = false;
             player.animator.SetBool(Falling, false);
         }
         
