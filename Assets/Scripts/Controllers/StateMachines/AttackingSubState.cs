@@ -10,9 +10,6 @@
         {
             input.IsAttacking = true;
             
-            // Play the attacking audio.
-            player.audioSource.PlayOneShot(player.playerSettings.attackAudioData.clip);
-            
             // Set the attacking animation to true.
             player.animator.SetBool(BaseState.Attacking, true);
         }

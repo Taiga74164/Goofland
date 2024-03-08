@@ -20,8 +20,8 @@ namespace Controllers
         [SerializeField] private bool drawMaxDistance;
 
         [SerializeField] private Transform _squeakBody;
-
-        //private PlayerInput _playerInput;
+        
+        private PlayerController _playerController;
         private InputController _inputController;
         private Rigidbody2D _rb;
         private Camera _mainCamera;
@@ -32,6 +32,7 @@ namespace Controllers
 
         private void Awake()
         {
+            _playerController = GetComponent<PlayerController>();
             _inputController = GetComponent<InputController>();
             _rb = GetComponent<Rigidbody2D>();
             _mainCamera = Camera.main;
@@ -153,6 +154,9 @@ namespace Controllers
             var pie = PrefabManager.Create<Pie>(Prefabs.Pie, transform);
             pie.throwForce = force;
             pie.ThrowPie();
+            
+            // Play the attacking audio.
+            AudioManager.Instance.PlayOneShotAudio(_playerController.playerSettings.attackAudioData, transform.position);
             
             // Update the last time a pie was thrown.
             _pieThrowCooldown = pieCooldownDuration;
