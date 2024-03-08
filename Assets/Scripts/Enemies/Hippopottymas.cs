@@ -86,16 +86,18 @@ namespace Enemies
             // Update the damage percentage when disturbed.
             damagePercentage = 20.0f;
             
-            // Destroy the current model and replace it with the disturbed model.
-            Destroy(model);
-            model = disturbedModel;
-            disturbedModel.SetActive(true);
+            // Play the disturbed audio.
+            AudioManager.Instance.PlayOneShotAudio(flushAudioData, transform.position);
+            TimerManager.Instance.StartTimer(flushAudioData.clip.length, () =>
+            {
+                // Destroy the current model and replace it with the disturbed model.
+                Destroy(model);
+                model = disturbedModel;
+                disturbedModel.SetActive(true);
+            });
             
             // Start the delayed charge.
             StartCoroutine(DelayedCharge());
-            
-            // Play the disturbed audio.
-            AudioManager.Instance.PlayOneShotAudio(flushAudioData, transform.position);
         }
         
         private IEnumerator DelayedCharge()
