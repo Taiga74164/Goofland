@@ -1,3 +1,4 @@
+using Managers;
 using UnityEngine.SceneManagement;
 
 namespace Utils
@@ -11,5 +12,8 @@ namespace Utils
         public static void LoadLevel(string levelName) => SceneManager.LoadScene(levelName);
         
         public static void RestartLevel() => LoadLevel(SceneManager.GetActiveScene().buildIndex);
+        
+        public static void RestartLevel(TransitionManager.TransitionType transitionType) =>
+            TransitionManager.Instance.LoadScene(SceneManager.GetActiveScene().name, transitionType);
     }
 }

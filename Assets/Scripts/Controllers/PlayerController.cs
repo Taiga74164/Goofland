@@ -93,7 +93,8 @@ namespace Controllers
         private void Update()
         {
             // Restart Level if the player falls too far.
-            if (rb.velocity.y < Physics2D.gravity.y && transform.position.y < -30.0f) LevelUtil.RestartLevel();
+            if (rb.velocity.y < Physics2D.gravity.y && transform.position.y < -30.0f)
+                LevelUtil.RestartLevel(TransitionManager.TransitionType.ZoomAndFade);
             
             if (GameManager.IsPaused) return;
             
@@ -236,7 +237,7 @@ namespace Controllers
             
             // Restart the level if the player has no currency.
             if (CurrencyManager.Instance.Currency <= 0)
-                LevelUtil.RestartLevel();
+                LevelUtil.RestartLevel(TransitionManager.TransitionType.ZoomAndFade);
         }
         
         private void ActivateInvincibility()

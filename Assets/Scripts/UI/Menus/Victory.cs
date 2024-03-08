@@ -21,9 +21,10 @@ namespace UI.Menus
             GameManager.IsPaused = false;
         }
         
-        public void OnHomeButtonClicked() => LevelUtil.LoadLevel("MainMenu");
+        public void OnHomeButtonClicked() => 
+            TransitionManager.Instance.LoadScene("MainMenu", TransitionManager.TransitionType.ZoomAndFade);
         
-        public void OnRestartButtonClicked() => LevelUtil.RestartLevel();
+        public void OnRestartButtonClicked() => LevelUtil.RestartLevel(TransitionManager.TransitionType.ZoomAndFade);
         
         public void OnSettingsButtonClicked() => settingsMenu.OpenMenu();
     }

@@ -26,7 +26,7 @@ namespace UI.Menus
         public void OnHomeButtonClicked()
             => TransitionManager.Instance.LoadScene("MainMenu", TransitionManager.TransitionType.ZoomAndFade);
 
-        public void OnRestartButtonClicked() => LevelUtil.RestartLevel();
+        public void OnRestartButtonClicked() => LevelUtil.RestartLevel(TransitionManager.TransitionType.ZoomAndFade);
 
         public void OnPlayButtonClicked() => CloseMenu();
         
