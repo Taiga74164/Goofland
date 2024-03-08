@@ -110,7 +110,7 @@ MonoBehaviour:
   defaultAudioData: {fileID: 0}
   deathAudioData: {fileID: 0}
   maxProximityDistance: 10
-  chargeSpeed: 10
+  chargeSpeed: 6
   disturbedModel: {fileID: 4185020546026300099}
   onDisturbedEvent: {fileID: 11400000, guid: 3a471f31d84473e428a2306b40551d41, type: 2}
   runAudioData: {fileID: 11400000, guid: 9b1162761b8abe649babc7856dedf4ef, type: 2}
