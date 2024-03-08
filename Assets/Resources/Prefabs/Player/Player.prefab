@@ -133,11 +133,9 @@ MonoBehaviour:
   playerSettings: {fileID: 11400000, guid: 1cbfac974975fb14c99feea85a600b39, type: 2}
   animator: {fileID: 1634336382338436785}
   audioSource: {fileID: 2293451832235115546}
-  beenWarped: 0
   rb: {fileID: 0}
   pieController: {fileID: 0}
   inputController: {fileID: 0}
-  hasUmbrella: 0
 --- !u!114 &5675425815831273900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   throwForce: 15
-  pieCooldownDuration: 0.5
+  pieCooldownDuration: 0.1
   indicatorPrefab: {fileID: 6687257862037589725, guid: 8cbb80d18a0681d44b224676374588fa, type: 3}
   blockSize: 1
   indicatorCurve:
