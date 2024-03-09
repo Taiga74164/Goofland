@@ -159,7 +159,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0000076293945, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &36238053
@@ -1325,7 +1325,7 @@ GameObject:
   - component: {fileID: 419459782}
   - component: {fileID: 419459781}
   m_Layer: 5
-  m_Name: Image
+  m_Name: LevelSelectionHeader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3161,7 +3161,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1538416969
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3197,10 +3197,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstSelected: {fileID: 281027689}
-  sceneSprites:
-    keys: []
-    values: []
-  transitionSize: {x: 1920, y: 2485}
 --- !u!1 &1573222016
 GameObject:
   m_ObjectHideFlags: 0
@@ -3296,8 +3292,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+      - m_Target: {fileID: 1538416970}
+        m_TargetAssemblyTypeName: UI.Menu, Assembly-CSharp
         m_MethodName: OnBackPressed
         m_Mode: 1
         m_Arguments:
@@ -3944,6 +3940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87c69014fc49f59449d707e8152e74f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelName: Main
   levelSelectMenu: {fileID: 1538416970}
   settingsMenu: {fileID: 111827537}
   credits: {fileID: 43853597}
