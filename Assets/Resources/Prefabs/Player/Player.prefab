@@ -132,6 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSettings: {fileID: 11400000, guid: 1cbfac974975fb14c99feea85a600b39, type: 2}
   animator: {fileID: 1705029418137704487}
+  particleEffect: {fileID: 2734160270298392345, guid: f9c145173a361a0458801337d22ab182, type: 3}
   audioSource: {fileID: 2293451832235115546}
   rb: {fileID: 0}
   pieController: {fileID: 0}
@@ -177,7 +178,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   drawMaxDistance: 0
-  _squeakBody: {fileID: 0}
 --- !u!114 &3748090300100103364
 MonoBehaviour:
   m_ObjectHideFlags: 0

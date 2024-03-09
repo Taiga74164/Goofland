@@ -66,6 +66,7 @@ namespace Weapons
                 }
             }
 
+            //set splat effect based on current level
             foreach(var splat in splatEffects)
             {
                 if(levelName.Contains(splat.name))

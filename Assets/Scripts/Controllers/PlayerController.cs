@@ -19,7 +19,10 @@ namespace Controllers
         
         [Header("Animation Settings")]
         public Animator animator;
-        
+
+        [Header("Particle Effects")]
+        public ParticleSystem particleEffect;
+
         [Header("Audio Settings")]
         public AudioSource audioSource;
 
@@ -189,6 +192,9 @@ namespace Controllers
             // Play the hurt sound.
             audioSource.Configure(playerSettings.fartAudioData);
             audioSource.Play();
+
+            //instatiate particle effect
+            Instantiate(particleEffect, transform.position, Quaternion.identity);
             
             // Reduce the player's health.
             CurrentHealth -= damage;
