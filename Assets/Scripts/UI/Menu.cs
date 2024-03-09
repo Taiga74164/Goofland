@@ -13,6 +13,8 @@ namespace UI
         [Header("Menu Settings")]
         [CanBeNull] public GameObject firstSelected;
         
+        private GameObject _lastSelected;
+        
         protected virtual void Update()
         {
             HandleInput();
@@ -20,13 +22,18 @@ namespace UI
 
         protected virtual void OnEnable()
         {
-            EventSystem.current.SetSelectedGameObject(firstSelected);
+            // Keep track of the last selected game object.
+            _lastSelected = EventSystem.current.currentSelectedGameObject;
+            // Set the first selected game object if it's not null.
+            if (firstSelected != null) EventSystem.current.SetSelectedGameObject(firstSelected);
         }
 
         protected virtual void OnDisable()
         {
-            if (EventSystem.current != null)
-                EventSystem.current.SetSelectedGameObject(null);
+            // Set the last selected game object if it's not null.
+            if (_lastSelected != null) EventSystem.current.SetSelectedGameObject(_lastSelected);
+            // Clear the last selected game object.
+            _lastSelected = null;
         }
 
         /// <summary>

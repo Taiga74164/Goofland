@@ -140,28 +140,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Project Manager: Jay W
-
-
-    Programmers: Joaquin S, Blake L
-
-
-    Game
-    Designers: Autumn M, Blake L
-
-
-    Artists: Jay W, Tara D R
-
-
-    User Interface:
-    Cansu G
-
-
-    Music Composer: Jay W
-
-
-    Special thanks: Sean Lynch and Megan
-    Theam'
+  m_text: "Jay Wong: \nProject Manager, Artist, Sound, Music, Game Design\r\n\nJoaquin
+    Soriano: \nLead Programmer\r\n\nBlake Laprade: \nProgrammer, Game Design\r\n\nAutumn
+    McClinchey: \nUnity Animator, Game Design\r\n\nCansu Guc: \nUser Interface\r\n\nTara
+    Din Reinwald: \nQuality Control\n\nSpecial thanks: \nSean Lynch and Megan Theam"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 05b7205a458af7943ac09b081992099d, type: 2}
   m_sharedMaterial: {fileID: -5571567102015074194, guid: 05b7205a458af7943ac09b081992099d, type: 2}
@@ -188,7 +170,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
+  m_fontSize: 26
   m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
@@ -200,7 +182,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: -30
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -364,7 +346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3019608, g: 0.50980395, b: 0.047058824, a: 0.43137255}
+  m_Color: {r: 0.047058824, g: 0.40553662, b: 0.50980395, a: 0.43137255}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -712,7 +694,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a33417110a0049d438428f0aa9ba2f74, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1facd549373f9a84d89482335a850f4a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -735,10 +717,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 3234997129442393228}
+    m_SelectOnDown: {fileID: 3234997129442393228}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1

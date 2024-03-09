@@ -22,8 +22,7 @@ namespace UI.Menus
             base.OnDisable();
             GameManager.IsPaused = false;
         }
-
-
+        
         public void SetLevelName(string levelName) => _levelName = levelName;
         
         public void OnEnterLevel()

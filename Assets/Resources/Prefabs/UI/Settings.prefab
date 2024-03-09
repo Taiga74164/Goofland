@@ -511,7 +511,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a33417110a0049d438428f0aa9ba2f74, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1facd549373f9a84d89482335a850f4a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -534,10 +534,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 6773609867855404314}
+    m_SelectOnDown: {fileID: 6773609866681914353}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -1142,7 +1142,7 @@ GameObject:
   - component: {fileID: 6773609866681914358}
   - component: {fileID: 6773609866681914353}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: BGMSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1183,10 +1183,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 2963294671947137339}
+    m_SelectOnDown: {fileID: 6773609866839933658}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -1394,7 +1394,7 @@ GameObject:
   - component: {fileID: 6773609866839933659}
   - component: {fileID: 6773609866839933658}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: SFXSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1435,10 +1435,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 6773609866681914353}
+    m_SelectOnDown: {fileID: 6773609867855404314}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -1891,8 +1891,8 @@ RectTransform:
   m_Children:
   - {fileID: 6773609868106401362}
   - {fileID: 2963294671046751390}
-  - {fileID: 2963294671947137338}
   - {fileID: 2963294671720776681}
+  - {fileID: 2963294671947137338}
   - {fileID: 2963294670805315611}
   - {fileID: 2963294670949295553}
   - {fileID: 2963294671322950332}
@@ -2155,7 +2155,7 @@ GameObject:
   - component: {fileID: 6773609867855404315}
   - component: {fileID: 6773609867855404314}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: MasterVolumeSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2196,10 +2196,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 6773609866839933658}
+    m_SelectOnDown: {fileID: 2963294671947137339}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
