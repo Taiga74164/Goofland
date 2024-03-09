@@ -110,6 +110,7 @@ MonoBehaviour:
   defaultAudioData: {fileID: 0}
   deathAudioData: {fileID: 0}
   maxProximityDistance: 10
+  particleEffect: {fileID: 245937180721638203, guid: b5e90abea4fcad246a8bc4735182f1d4, type: 3}
   chargeSpeed: 6
   disturbedModel: {fileID: 7580950415529541021}
   disturbedDistance: 1

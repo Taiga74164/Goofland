@@ -19,7 +19,7 @@ namespace Levels
         [SerializeField] private List<AudioData> balloonAudioDatas;
 
         [Header("Particle Effect")]
-        public ParticleSystem effect;
+        [SerializeField] private ParticleSystem effect;
         
         private void OnCollisionEnter2D(Collision2D other)
         {

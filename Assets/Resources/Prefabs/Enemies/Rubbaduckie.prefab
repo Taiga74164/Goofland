@@ -80,6 +80,7 @@ MonoBehaviour:
   defaultAudioData: {fileID: 0}
   deathAudioData: {fileID: 0}
   maxProximityDistance: 10
+  particleEffect: {fileID: 4671992955122546557, guid: 89d942ce22a730a44b143ef1d57c0b13, type: 3}
   bounceHeight: 0.3
   bounceSpeed: 10
   bounceAudioData: {fileID: 11400000, guid: db8c886dad8c40a4084a8fa39d88ff77, type: 2}

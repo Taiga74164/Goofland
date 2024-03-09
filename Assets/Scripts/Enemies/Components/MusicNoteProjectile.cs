@@ -12,6 +12,9 @@ namespace Enemies.Components
         [SerializeField] private Sprite leftSprite;
         [SerializeField] private Sprite rightSprite;
         
+        [Header("Particle Effects")]
+        [SerializeField] private ParticleSystem effect;
+        
         private Rigidbody2D _rb;
         private Vector2 _startPosition;
         private SpriteRenderer _spriteRenderer;
@@ -54,7 +57,9 @@ namespace Enemies.Components
         {
             if (!other.gameObject.GetComponent<PlayerController>()) return;
             
-            other.gameObject.GetComponent<PlayerController>().TakeDamage(enemy: this);
+            var player = other.gameObject.GetComponent<PlayerController>();
+            player.TakeDamage(enemy: this);
+            Instantiate(effect, player.transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

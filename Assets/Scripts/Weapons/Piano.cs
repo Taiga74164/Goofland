@@ -15,6 +15,9 @@ namespace Weapons
         
         [Header("Audio Settings")]
         [SerializeField] private AudioData crashAudioData;
+
+        [Header("Particle Effects")]
+        [SerializeField] private ParticleSystem effect;
         
         private Rigidbody2D _rigidbody2D;
         private bool _hasDropped;
@@ -58,7 +61,9 @@ namespace Weapons
             }
             else if (other.gameObject.CompareLayer("Platform"))
             {
-                AudioManager.Instance.PlayOneShotAudio(crashAudioData, transform.position);
+                var position = transform.position;
+                AudioManager.Instance.PlayOneShotAudio(crashAudioData, position);
+                Instantiate(effect, position, Quaternion.identity);
             }
         }
 

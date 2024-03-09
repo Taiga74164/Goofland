@@ -110,6 +110,7 @@ MonoBehaviour:
   defaultAudioData: {fileID: 0}
   deathAudioData: {fileID: 0}
   maxProximityDistance: 10
+  particleEffect: {fileID: 5067776250864601232, guid: 24667e6e8cdaf214c81cbc3e28ffc2ef, type: 3}
   exhaleDuration: 3
   exhaleDelay: 3
   areaOfEffect: 1

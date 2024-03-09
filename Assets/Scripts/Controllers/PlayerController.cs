@@ -194,7 +194,7 @@ namespace Controllers
             audioSource.Play();
 
             // Create a particle effect.
-            Instantiate(particleEffect, transform.position, Quaternion.identity);
+            // Instantiate(particleEffect, transform.position, Quaternion.identity);
             
             // Reduce the player's health.
             CurrentHealth -= damage;

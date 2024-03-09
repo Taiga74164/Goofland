@@ -55,6 +55,9 @@ namespace Enemies
         [SerializeField] [CanBeNull] private AudioData deathAudioData;
         [SerializeField] private float maxProximityDistance = 10.0f;
         
+        [Header("Particle Effects")]
+        [SerializeField] private ParticleSystem particleEffect;
+        
         protected Vector2 direction = Vector2.right;
         protected Rigidbody2D rb;
         protected Transform playerTransform;
@@ -113,6 +116,7 @@ namespace Enemies
             // Deal damage to the player.
             var player = collision.gameObject.GetComponent<PlayerController>();
             player.TakeDamage(enemy: this);
+            Instantiate(particleEffect, player.transform.position, Quaternion.identity);
         }
 
         /// <summary>

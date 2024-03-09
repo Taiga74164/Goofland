@@ -101,6 +101,7 @@ MonoBehaviour:
   damagePercentage: 5
   damage: 1
   fartArea: 0
+  effect: {fileID: 5067776250864601232, guid: 24667e6e8cdaf214c81cbc3e28ffc2ef, type: 3}
 --- !u!58 &2282926480703544787
 CircleCollider2D:
   m_ObjectHideFlags: 0

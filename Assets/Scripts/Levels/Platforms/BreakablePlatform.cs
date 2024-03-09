@@ -10,7 +10,7 @@ namespace Levels
         [SerializeField] private AudioData breakAudioData;
 
         [Header("Particle Effects")]
-        public ParticleSystem effect;
+        [SerializeField] private ParticleSystem effect;
         
         public void Break()
         {

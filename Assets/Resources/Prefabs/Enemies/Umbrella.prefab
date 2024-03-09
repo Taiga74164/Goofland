@@ -108,6 +108,7 @@ MonoBehaviour:
   defaultAudioData: {fileID: 11400000, guid: b8dc65689695ac8489d93f6e733f5243, type: 2}
   deathAudioData: {fileID: 0}
   maxProximityDistance: 10
+  particleEffect: {fileID: 730644727008548965, guid: deb511d17d9e52b498e678b70840c086, type: 3}
   fallSpeed: 5
 --- !u!50 &7897555048088618763
 Rigidbody2D:

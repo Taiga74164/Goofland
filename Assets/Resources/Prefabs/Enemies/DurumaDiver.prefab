@@ -111,6 +111,7 @@ MonoBehaviour:
   defaultAudioData: {fileID: 11400000, guid: 59a3015dc6170fa4696c971fc8d56113, type: 2}
   deathAudioData: {fileID: 0}
   maxProximityDistance: 10
+  particleEffect: {fileID: 5094108275375559411, guid: 13cae13c26137314dae35740e6f4072e, type: 3}
   attackDelay: 3
   attackRange: 2
   diveSpeed: 5
