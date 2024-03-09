@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4509875158981834856}
   - component: {fileID: 1043737133890948140}
   m_Layer: 0
-  m_Name: SplatParticleStraw
+  m_Name: SplatParticle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4777,7 +4777,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a626309ecfddd604792536a4317f2aca, type: 2}
+  - {fileID: 2100000, guid: 24ee42734c2d3d64aaa4e095331fae39, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4797,7 +4797,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 20
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0

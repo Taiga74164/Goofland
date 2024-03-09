@@ -130,25 +130,24 @@ MonoBehaviour:
   pieSkins:
   - name: Default
     sprite: {fileID: 21300000, guid: 5c1b5ac65c02e044fbe1999cceb350a7, type: 3}
-  - name: Banana
-    sprite: {fileID: 21300000, guid: a09017c1169154142baa71a059274aa5, type: 3}
-  - name: Blueberry
-    sprite: {fileID: 21300000, guid: 0b141ce440a5e114ea1a28f51f9022d9, type: 3}
-  - name: Mint
-    sprite: {fileID: 21300000, guid: 8cc70e86b5848084b809e411b926c0ea, type: 3}
-  - name: Peach
-    sprite: {fileID: 21300000, guid: b091ecdc5fcc3394098114751cee4065, type: 3}
+    splatEffect: {fileID: 2244319927068065525, guid: 536f47675d42740459899f0f001fdf78, type: 3}
   - name: Strawberry
     sprite: {fileID: 21300000, guid: b2c7ada6db112fe43bf92f3083b7ae73, type: 3}
+    splatEffect: {fileID: 4509875158981834856, guid: 14f1067323b590345aacb56d5f4648ff, type: 3}
+  - name: Peach
+    sprite: {fileID: 21300000, guid: b091ecdc5fcc3394098114751cee4065, type: 3}
+    splatEffect: {fileID: 4509875158981834856, guid: 6aff7558ff3474c41aef46d5c450a04b, type: 3}
+  - name: Banana
+    sprite: {fileID: 21300000, guid: a09017c1169154142baa71a059274aa5, type: 3}
+    splatEffect: {fileID: 901166223184143968, guid: df9ad4356bad08d47b9a92f778d09384, type: 3}
+  - name: Mint
+    sprite: {fileID: 21300000, guid: 8cc70e86b5848084b809e411b926c0ea, type: 3}
+    splatEffect: {fileID: 1033643708764782635, guid: 5e08b677b95f9d64cbc55b961158afaa, type: 3}
+  - name: Blueberry
+    sprite: {fileID: 21300000, guid: 0b141ce440a5e114ea1a28f51f9022d9, type: 3}
+    splatEffect: {fileID: 1033643708764782635, guid: 4b424fcea32f7364299f762d4bb550a9, type: 3}
   throwForce: {x: 5, y: 5}
   destructionTime: 2
-  effects:
-  - {fileID: 4509875158981834856, guid: 14f1067323b590345aacb56d5f4648ff, type: 3}
-  - {fileID: 2116909894116597197, guid: 58db4a8170ea12147bc9d6971ffc9481, type: 3}
-  - {fileID: 901166223184143968, guid: df9ad4356bad08d47b9a92f778d09384, type: 3}
-  - {fileID: 2589549257024651615, guid: b71e537fde904ff419477a6569259228, type: 3}
-  - {fileID: 1033643708764782635, guid: 4b424fcea32f7364299f762d4bb550a9, type: 3}
-  - {fileID: 2244319927068065525, guid: 536f47675d42740459899f0f001fdf78, type: 3}
   splatAudioDatas:
   - {fileID: 11400000, guid: 6d0a809664775954388ca364e8708578, type: 2}
   - {fileID: 11400000, guid: 7d99fba23a155af45a228af75da66b58, type: 2}

@@ -15,6 +15,7 @@ namespace Weapons
     {
         public string name;
         public Sprite sprite;
+        public ParticleSystem splatEffect;
     }
     
     [RequireComponent(typeof(Rigidbody2D))]
@@ -23,12 +24,9 @@ namespace Weapons
         [Header("Pie Settings")]
         public List<PieSkin> pieSkins = new List<PieSkin>();
         public Vector2 throwForce = new Vector2(5.0f, 5.0f);
-        [Tooltip("how long before the pie destroys itself")]
-        public float destructionTime = 2f;
-
-        [Header("Effects")]
-        public List<ParticleSystem> splatEffects = new List<ParticleSystem>();
-        public ParticleSystem effect;
+        [Tooltip("How long before the pie destroys itself.")]
+        public float destructionTime = 2.0f;
+        
 
         [Header("Audio Settings")]
         [SerializeField] private List<AudioData> splatAudioDatas;
@@ -36,6 +34,7 @@ namespace Weapons
         private const float SpawnOffSet = 0.1f;
         private Rigidbody2D _rigidbody2D;
         private SpriteRenderer _spriteRenderer;
+        private ParticleSystem _effect;
         private float timer = 0;
         
         private void Awake()
@@ -50,33 +49,21 @@ namespace Weapons
             // Get the sprite renderer.
             _spriteRenderer = GetComponent<SpriteRenderer>();
             
-            // Set Pie skin based on the current level.
+            // Set Pie skin and effect based on the current level name.
             var levelName = LevelUtil.CurrentLevelName;
             foreach (var skin in pieSkins)
             {
                 if (levelName.Contains(skin.name))
                 {
                     _spriteRenderer.sprite = skin.sprite;
+                    _effect = skin.splatEffect;
                     break;
                 }
                 else
                 {
                     // Set the default pie skin.
                     _spriteRenderer.sprite = pieSkins[0].sprite;
-                }
-            }
-
-            //set splat effect based on current level
-            foreach(var splat in splatEffects)
-            {
-                if(levelName.Contains(splat.name))
-                {
-                    effect = splat;
-                    break;
-                }
-                else
-                {
-                    effect = splatEffects[0];
+                    _effect = pieSkins[0].splatEffect;
                 }
             }
         }
@@ -117,13 +104,14 @@ namespace Weapons
             
             // Play a random audio clip from the list.
             var randomIndex = Random.Range(0, splatAudioDatas.Count - 1);
-            AudioManager.Instance.PlayOneShotAudio(splatAudioDatas[randomIndex], transform.position);
+            var position = transform.position;
+            AudioManager.Instance.PlayOneShotAudio(splatAudioDatas[randomIndex], position);
             
             // Stop the pie from moving on impact.
             _rigidbody2D.velocity = Vector2.zero;
             _rigidbody2D.bodyType = RigidbodyType2D.Static;
             _spriteRenderer.enabled = false;
-            Instantiate(effect, transform.position,new Quaternion(0,0,0,0));
+            Instantiate(_effect, position, Quaternion.identity);
             Destroy(gameObject);
         }
     
