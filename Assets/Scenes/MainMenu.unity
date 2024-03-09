@@ -3791,10 +3791,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 214841572}
     m_Modifications:
+    - target: {fileID: 1144037508939248306, guid: e83f6c79ca4d6464a849c1ceb76d951b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -131
+      objectReference: {fileID: 0}
+    - target: {fileID: 2593422349637146445, guid: e83f6c79ca4d6464a849c1ceb76d951b, type: 3}
+      propertyPath: m_Color.b
+      value: 0.50980395
+      objectReference: {fileID: 0}
+    - target: {fileID: 2593422349637146445, guid: e83f6c79ca4d6464a849c1ceb76d951b, type: 3}
+      propertyPath: m_Color.g
+      value: 0.40553662
+      objectReference: {fileID: 0}
+    - target: {fileID: 2593422349637146445, guid: e83f6c79ca4d6464a849c1ceb76d951b, type: 3}
+      propertyPath: m_Color.r
+      value: 0.047058824
+      objectReference: {fileID: 0}
     - target: {fileID: 5662122828527267750, guid: e83f6c79ca4d6464a849c1ceb76d951b, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 1facd549373f9a84d89482335a850f4a, type: 3}
+    - target: {fileID: 7405184923647818882, guid: e83f6c79ca4d6464a849c1ceb76d951b, type: 3}
+      propertyPath: m_text
+      value: "Jay Wong: \nProject Manager, Artist, Sound, Music, Game Design\r\n\nJoaquin
+        Soriano: \nLead Programmer\r\n\nBlake Laprade: \nProgrammer, Game Design\r\n\nAutumn
+        McClinchey: \nUnity Animator, Game Design\r\n\nCansu Guc: \nUser Interface\r\n\nTara
+        Din Reinwald: \nQuality Control\n\nSpecial thanks: \nSean Lynch and Megan
+        Theam"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7405184923647818882, guid: e83f6c79ca4d6464a849c1ceb76d951b, type: 3}
+      propertyPath: m_fontSize
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 7405184923647818882, guid: e83f6c79ca4d6464a849c1ceb76d951b, type: 3}
+      propertyPath: m_lineSpacing
+      value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7405184923647818882, guid: e83f6c79ca4d6464a849c1ceb76d951b, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 26
+      objectReference: {fileID: 0}
     - target: {fileID: 7772321321204505289, guid: e83f6c79ca4d6464a849c1ceb76d951b, type: 3}
       propertyPath: m_Name
       value: Credits
