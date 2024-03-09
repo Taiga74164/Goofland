@@ -27,7 +27,8 @@ namespace Weapons
         public float destructionTime = 2f;
 
         [Header("Effects")]
-        public List<ParticleSystem> effects = new List<ParticleSystem>();
+        public List<ParticleSystem> splatEffects = new List<ParticleSystem>();
+        public ParticleSystem effect;
 
         [Header("Audio Settings")]
         [SerializeField] private List<AudioData> splatAudioDatas;
@@ -62,6 +63,19 @@ namespace Weapons
                 {
                     // Set the default pie skin.
                     _spriteRenderer.sprite = pieSkins[0].sprite;
+                }
+            }
+
+            foreach(var splat in splatEffects)
+            {
+                if(levelName.Contains(splat.name))
+                {
+                    effect = splat;
+                    break;
+                }
+                else
+                {
+                    effect = splatEffects[0];
                 }
             }
         }
@@ -108,7 +122,7 @@ namespace Weapons
             _rigidbody2D.velocity = Vector2.zero;
             _rigidbody2D.bodyType = RigidbodyType2D.Static;
             _spriteRenderer.enabled = false;
-            Instantiate(effects[Random.Range(0, effects.Count - 1)],transform.position,new Quaternion(0,0,0,0));
+            Instantiate(effect,transform.position,new Quaternion(0,0,0,0));
             Destroy(gameObject);
         }
     

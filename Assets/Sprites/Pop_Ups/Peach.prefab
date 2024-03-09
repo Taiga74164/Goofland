@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2116909894116597197}
   - component: {fileID: 6356798433289587015}
   m_Layer: 0
-  m_Name: SplatParticle2
+  m_Name: Peach
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
