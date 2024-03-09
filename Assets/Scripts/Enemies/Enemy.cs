@@ -59,6 +59,7 @@ namespace Enemies
         protected Rigidbody2D rb;
         protected Transform playerTransform;
         protected AudioSource audioSource;
+        protected Animator animator;
         
         protected virtual void Awake()
         {
@@ -70,6 +71,9 @@ namespace Enemies
             
             // Get the rigidbody component.
             rb = GetComponent<Rigidbody2D>();
+            
+            // Get the animator component.
+            animator = model!.GetComponent<Animator>();
         }
 
         protected virtual void Start()
@@ -89,6 +93,9 @@ namespace Enemies
         {
             if (GameManager.IsPaused) return;
 
+            if (!animator)
+                animator = model!.GetComponent<Animator>();
+            
             HandleProximity();
         }
 
@@ -200,6 +207,9 @@ namespace Enemies
             DropDice();
             
             // Play particle effects.
+            
+            // Set all animator parameters to false.
+            animator.parameters.ToList().ForEach(param => animator.SetBool(param.name, false));
             
             // Change the enemy's state.
             entityType = EntityType.Ally;

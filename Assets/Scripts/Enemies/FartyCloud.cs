@@ -66,11 +66,23 @@ namespace Enemies
                 // Play the inhale audio.
                 audioSource.Configure(inhaleAudioData);
                 audioSource.Play();
+                
+                // Set the inhale animation.
+                animator.SetBool("Exhale", false);
+                animator.SetBool("Inhale", true);
             }
         }
         
         private void ExhaleFartCloud()
         {
+            // Play the exhale audio.
+            audioSource.Configure(exhaleAudioData);
+            audioSource.Play();
+            
+            // Set the exhale animation.
+            animator.SetBool("Inhale", false);
+            animator.SetBool("Exhale", true);
+            
             var playerPosition = GameManager.Instance.playerController.transform.position;
             // Create a fart cloud.
             var fartCloud = PrefabManager.Create<FartCloudEffect>(Prefabs.FartCloudEffect, transform);
@@ -81,10 +93,6 @@ namespace Enemies
             
             // Destroy the fart cloud after the exhale duration.
             Destroy(fartCloud.gameObject, exhaleDuration);
-            
-            // Play the exhale audio.
-            audioSource.Configure(exhaleAudioData);
-            audioSource.Play();
         }
 
         protected override void Patrol()

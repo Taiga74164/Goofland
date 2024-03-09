@@ -237,6 +237,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hippopottymas (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8544622330260593907, guid: 30a4ec1df40fb4b409ca309f24fa75fa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -330,6 +334,10 @@ PrefabInstance:
     - target: {fileID: 8544622330260593907, guid: 30a4ec1df40fb4b409ca309f24fa75fa, type: 3}
       propertyPath: m_Name
       value: Hippopottymas (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8544622330260593907, guid: 30a4ec1df40fb4b409ca309f24fa75fa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -653,6 +661,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hippopottymas
       objectReference: {fileID: 0}
+    - target: {fileID: 8544622330260593907, guid: 30a4ec1df40fb4b409ca309f24fa75fa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -714,6 +726,10 @@ PrefabInstance:
     - target: {fileID: 8544622330260593907, guid: 30a4ec1df40fb4b409ca309f24fa75fa, type: 3}
       propertyPath: m_Name
       value: Hippopottymas (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8544622330260593907, guid: 30a4ec1df40fb4b409ca309f24fa75fa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -25928,6 +25944,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hippopottymas (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8544622330260593907, guid: 30a4ec1df40fb4b409ca309f24fa75fa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -26055,6 +26075,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hippopottymas (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8544622330260593907, guid: 30a4ec1df40fb4b409ca309f24fa75fa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -26139,6 +26163,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7959477954262098146, guid: 1ad516b87f12b1f42ae34896137ac882, type: 3}
   m_PrefabInstance: {fileID: 836404011}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &881728352
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 978723002890033119, guid: d2d379ea655f13943b199ff6c2ca3f42, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.5822687
+      objectReference: {fileID: 0}
+    - target: {fileID: 978723002890033119, guid: d2d379ea655f13943b199ff6c2ca3f42, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.692386
+      objectReference: {fileID: 0}
+    - target: {fileID: 978723002890033119, guid: d2d379ea655f13943b199ff6c2ca3f42, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 978723002890033119, guid: d2d379ea655f13943b199ff6c2ca3f42, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 978723002890033119, guid: d2d379ea655f13943b199ff6c2ca3f42, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 978723002890033119, guid: d2d379ea655f13943b199ff6c2ca3f42, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 978723002890033119, guid: d2d379ea655f13943b199ff6c2ca3f42, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 978723002890033119, guid: d2d379ea655f13943b199ff6c2ca3f42, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 978723002890033119, guid: d2d379ea655f13943b199ff6c2ca3f42, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 978723002890033119, guid: d2d379ea655f13943b199ff6c2ca3f42, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8544622330260593907, guid: d2d379ea655f13943b199ff6c2ca3f42, type: 3}
+      propertyPath: m_Name
+      value: FartyCloud
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d2d379ea655f13943b199ff6c2ca3f42, type: 3}
 --- !u!1001 &896920647
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26264,6 +26345,10 @@ PrefabInstance:
     - target: {fileID: 8544622330260593907, guid: 30a4ec1df40fb4b409ca309f24fa75fa, type: 3}
       propertyPath: m_Name
       value: Hippopottymas (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8544622330260593907, guid: 30a4ec1df40fb4b409ca309f24fa75fa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -26797,6 +26882,10 @@ PrefabInstance:
     - target: {fileID: 8544622330260593907, guid: 30a4ec1df40fb4b409ca309f24fa75fa, type: 3}
       propertyPath: m_Name
       value: Hippopottymas (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8544622330260593907, guid: 30a4ec1df40fb4b409ca309f24fa75fa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -28028,6 +28117,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hippopottymas (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 8544622330260593907, guid: 30a4ec1df40fb4b409ca309f24fa75fa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -28399,6 +28492,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hippopottymas (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 8544622330260593907, guid: 30a4ec1df40fb4b409ca309f24fa75fa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -28574,6 +28671,10 @@ PrefabInstance:
     - target: {fileID: 8544622330260593907, guid: 30a4ec1df40fb4b409ca309f24fa75fa, type: 3}
       propertyPath: m_Name
       value: Hippopottymas (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8544622330260593907, guid: 30a4ec1df40fb4b409ca309f24fa75fa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -29131,7 +29232,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9185594432423958578, guid: c31e9ef6aca169c44b05dbfd9ae60c12, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.796363
+      value: -9.796357
       objectReference: {fileID: 0}
     - target: {fileID: 9185594432423958578, guid: c31e9ef6aca169c44b05dbfd9ae60c12, type: 3}
       propertyPath: m_LocalPosition.y
@@ -29854,3 +29955,4 @@ SceneRoots:
   - {fileID: 2133475089}
   - {fileID: 304343442}
   - {fileID: 1823611266}
+  - {fileID: 881728352}

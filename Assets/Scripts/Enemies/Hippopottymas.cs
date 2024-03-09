@@ -23,6 +23,7 @@ namespace Enemies
         private bool _isDisturbed;
         private bool _canCharge;
         private bool _delayedCharge;
+        private bool _isReturning;
         private Vector3 _initialPosition;
         
         protected override void Start()
@@ -46,14 +47,20 @@ namespace Enemies
                 onDisturbedEvent.Raise(gameObject);
                 _isDisturbed = true;
             }
-            else if (!PlayerInLineOfSight())
+            
+            if (!PlayerInLineOfSight())
             {
+                _isReturning = true;
                 ReturnToInitialPosition();
             }
+            else
+            {
+                _isReturning = false;
+                if (!_isDisturbed) return;
+                UpdateChargeCondition();
+                Charge();
+            }
             
-            if (!_isDisturbed) return;
-            UpdateChargeCondition();
-            Charge();
         }
         
         private void UpdateChargeCondition()
@@ -112,12 +119,18 @@ namespace Enemies
 
         private void Charge()
         {
-            if (!_canCharge || _delayedCharge)
+            if (!_canCharge || _delayedCharge || _isReturning)
             {
                 // Stop Running Audio
                 if (audioSource.isPlaying && audioSource.clip == runAudioData.clip) audioSource.Stop();
                 return;
             }
+            
+            // Set the walk back animator parameter to false.
+            animator.SetBool("WalkBack", false);
+            // Set the rush animator parameter to true.
+            animator!.SetBool("Rush", true);
+            
             
             // Get player position.
             var playerPosition = playerTransform.position;
@@ -161,7 +174,18 @@ namespace Enemies
 
         private void ReturnToInitialPosition()
         {
-            if (Vector3.Distance(transform.position, _initialPosition) < 0.1f) return;
+            // Check if the enemy has returned to its initial position.
+            if (Vector3.Distance(transform.position, _initialPosition) < 0.1f)
+            {
+                // Set the idle animator parameter to true.
+                // TODO: needs an idle animation.
+                return;
+            }
+            
+            // Set the rush animator parameter to false.
+            animator.SetBool("Rush", false);
+            // Set the walk back animator parameter to true.
+            animator!.SetBool("WalkBack", true);
             
             var directionToInitialPosition = (_initialPosition - transform.position).normalized;
             directionToInitialPosition.y = 0;
