@@ -20,7 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/MintageUrban.unity
     guid: fc3dc6c9f0e9c5b4a81425c78388ae63
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Levels/BlueberrieHeavens.unity
     guid: 30dfe007a862fc9459ce03b60aa70ac0
   - enabled: 0
