@@ -123,7 +123,7 @@ namespace Weapons
             _rigidbody2D.velocity = Vector2.zero;
             _rigidbody2D.bodyType = RigidbodyType2D.Static;
             _spriteRenderer.enabled = false;
-            Instantiate(effect,transform.position,new Quaternion(0,0,0,0));
+            Instantiate(effect, transform.position,new Quaternion(0,0,0,0));
             Destroy(gameObject);
         }
     
