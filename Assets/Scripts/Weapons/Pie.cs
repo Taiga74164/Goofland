@@ -111,7 +111,10 @@ namespace Weapons
             _rigidbody2D.velocity = Vector2.zero;
             _rigidbody2D.bodyType = RigidbodyType2D.Static;
             _spriteRenderer.enabled = false;
+            
+            // Create the splat effect.
             Instantiate(_effect, position, Quaternion.identity);
+            
             Destroy(gameObject);
         }
     

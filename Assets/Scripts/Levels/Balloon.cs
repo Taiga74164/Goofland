@@ -20,6 +20,7 @@ namespace Levels
 
         [Header("Particle Effect")]
         public ParticleSystem effect;
+        
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (!other.gameObject.GetComponent<Pie>()) return;
@@ -31,9 +32,10 @@ namespace Levels
             
             // Play a random audio clip from the list.
             var randomIndex = Random.Range(0, balloonAudioDatas.Count - 1);
-            AudioManager.Instance.PlayOneShotAudio(balloonAudioDatas[randomIndex], transform.position);
+            var position = transform.position;
+            AudioManager.Instance.PlayOneShotAudio(balloonAudioDatas[randomIndex], position);
 
-            Instantiate(effect, transform.position, Quaternion.identity);
+            Instantiate(effect, position, Quaternion.identity);
 
             if (!respawning)
             {

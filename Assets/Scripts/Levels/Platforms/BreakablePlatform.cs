@@ -11,10 +11,12 @@ namespace Levels
 
         [Header("Particle Effects")]
         public ParticleSystem effect;
+        
         public void Break()
         {
-            AudioManager.Instance.PlayOneShotAudio(breakAudioData, transform.position);
-            Instantiate(effect, transform.position, Quaternion.identity);
+            var position = transform.position;
+            AudioManager.Instance.PlayOneShotAudio(breakAudioData, position);
+            Instantiate(effect, position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

@@ -193,7 +193,7 @@ namespace Controllers
             audioSource.Configure(playerSettings.fartAudioData);
             audioSource.Play();
 
-            //instatiate particle effect
+            // Create a particle effect.
             Instantiate(particleEffect, transform.position, Quaternion.identity);
             
             // Reduce the player's health.
