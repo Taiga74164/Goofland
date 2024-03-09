@@ -9,11 +9,6 @@ namespace Managers
         private Stack<Menu> _menuStack = new Stack<Menu>();
         
         /// <summary>
-        /// Returns the number of menus open.
-        /// </summary>
-        public int MenuCount => _menuStack.Count;
-        
-        /// <summary>
         /// Clears the menuStack.
         /// </summary>
         public void ClearStack() => _menuStack.Clear();

@@ -104,6 +104,7 @@ MonoBehaviour:
   fallSpeed: 10
   despawn: 0
   crashAudioData: {fileID: 11400000, guid: 40dc4f161a8364141900da3550f41ccc, type: 2}
+  effect: {fileID: 2628704131177853917, guid: afee4baffdd6fe54787e807b56c6a050, type: 3}
 --- !u!50 &15689376316092505
 Rigidbody2D:
   serializedVersion: 4
