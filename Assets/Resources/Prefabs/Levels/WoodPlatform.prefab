@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   breakAudioData: {fileID: 11400000, guid: badc6016f35b94a47a7a6c66aab08176, type: 2}
+  effect: {fileID: 730644727008548965, guid: deb511d17d9e52b498e678b70840c086, type: 3}
 --- !u!61 &1875345188150603466
 BoxCollider2D:
   m_ObjectHideFlags: 0

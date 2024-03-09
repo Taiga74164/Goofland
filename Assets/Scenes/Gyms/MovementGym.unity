@@ -852,11 +852,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!4 &482169448 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2139498507712806911, guid: e0cf160916fb8584ebc15afc636b93ed, type: 3}
-  m_PrefabInstance: {fileID: 696557561}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &501900830
 GameObject:
   m_ObjectHideFlags: 0
@@ -1686,7 +1681,7 @@ PrefabInstance:
     - target: {fileID: 5675425815831273900, guid: e0cf160916fb8584ebc15afc636b93ed, type: 3}
       propertyPath: _squeakBody
       value: 
-      objectReference: {fileID: 482169448}
+      objectReference: {fileID: 0}
     - target: {fileID: 8904874713320273179, guid: e0cf160916fb8584ebc15afc636b93ed, type: 3}
       propertyPath: onJump
       value: 
@@ -5718,6 +5713,63 @@ MonoBehaviour:
   coinText: {fileID: 501900832}
   defeatedText: {fileID: 1996074593}
   timeText: {fileID: 1490394538}
+--- !u!1001 &1973838837
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4023167996664077045, guid: 14f1067323b590345aacb56d5f4648ff, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.0770624
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023167996664077045, guid: 14f1067323b590345aacb56d5f4648ff, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023167996664077045, guid: 14f1067323b590345aacb56d5f4648ff, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.97273475
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023167996664077045, guid: 14f1067323b590345aacb56d5f4648ff, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023167996664077045, guid: 14f1067323b590345aacb56d5f4648ff, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023167996664077045, guid: 14f1067323b590345aacb56d5f4648ff, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023167996664077045, guid: 14f1067323b590345aacb56d5f4648ff, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023167996664077045, guid: 14f1067323b590345aacb56d5f4648ff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023167996664077045, guid: 14f1067323b590345aacb56d5f4648ff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023167996664077045, guid: 14f1067323b590345aacb56d5f4648ff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7263556981076919518, guid: 14f1067323b590345aacb56d5f4648ff, type: 3}
+      propertyPath: m_Name
+      value: SplatParticle1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 14f1067323b590345aacb56d5f4648ff, type: 3}
 --- !u!1 &1996074591
 GameObject:
   m_ObjectHideFlags: 0
@@ -6090,3 +6142,4 @@ SceneRoots:
   - {fileID: 940167454}
   - {fileID: 1755690603}
   - {fileID: 40795301}
+  - {fileID: 1973838837}
